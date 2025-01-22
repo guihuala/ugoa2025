@@ -7,7 +7,7 @@ public class SelectPanel : BasePanel
 
     public void AddCell(DialogueCell cell,DialoguePanel panel)
     {
-        GameObject selectCell = Instantiate(Resources.Load<GameObject>("UI/SelectCell"));
+        GameObject selectCell = Instantiate(Resources.Load<GameObject>("UIcomponents/SelectCell"));
 
         selectCell.transform.SetParent(transform);
 

@@ -19,8 +19,8 @@ public class SceneLoader : SingletonPersistent<SceneLoader>
     
     private void OnSceneLoaded(Scene scene,LoadSceneMode mode)
     {
-        // UIManager.Instance.OpenPanel("SceneLoadedBlackPanel");
-        // UIManager.Instance.ClosePanel("SceneLoadedBlackPanel");
+        UIManager.Instance.OpenPanel("SceneLoadedBlackPanel");
+        UIManager.Instance.ClosePanel("SceneLoadedBlackPanel");
     }
 
     public void LoadScene(string sceneName,string loadStr)

@@ -7,94 +7,94 @@ using UnityEngine.UI;
 public class PauseSettingsPanel : BasePanel
 {
     [Header("Volume Sliders")]
-    public Slider mainVolumeSlider; // ¿ØÖÆÈ«¾ÖÒôÁ¿µÄ»¬¶¯Ìõ
-    public Slider bgmVolumeSlider;  // ¿ØÖÆ±³¾°ÒôÀÖÒôÁ¿µÄ»¬¶¯Ìõ
-    public Slider sfxVolumeSlider;  // ¿ØÖÆÒôĞ§ÒôÁ¿µÄ»¬¶¯Ìõ
+    public Slider mainVolumeSlider; // æ§åˆ¶å…¨å±€éŸ³é‡çš„æ»‘åŠ¨æ¡
+    public Slider bgmVolumeSlider;  // æ§åˆ¶èƒŒæ™¯éŸ³ä¹éŸ³é‡çš„æ»‘åŠ¨æ¡
+    public Slider sfxVolumeSlider;  // æ§åˆ¶éŸ³æ•ˆéŸ³é‡çš„æ»‘åŠ¨æ¡
 
     [Header("Buttons")]
-    public Button resumeButton;     // »Ö¸´ÓÎÏ·°´Å¥
-    public Button exitButton;       // ÍË³öÓÎÏ·°´Å¥
+    public Button resumeButton;     // æ¢å¤æ¸¸æˆæŒ‰é’®
+    public Button exitButton;       // é€€å‡ºæ¸¸æˆæŒ‰é’®
 
     protected override void Awake()
     {
         base.Awake();
 
-        // ³õÊ¼»¯»¬¶¯ÌõµÄÖµ
+        // åˆå§‹åŒ–éŸ³é‡æ»‘åŠ¨æ¡çš„é»˜è®¤å€¼
         mainVolumeSlider.value = AudioManager.Instance.mainVolume;
         bgmVolumeSlider.value = AudioManager.Instance.bgmVolumeFactor;
         sfxVolumeSlider.value = AudioManager.Instance.sfxVolumeFactor;
 
-        // Ìí¼Ó»¬¶¯ÌõÊÂ¼ş¼àÌı
+        // æ·»åŠ éŸ³é‡æ»‘åŠ¨æ¡çš„ç›‘å¬äº‹ä»¶
         mainVolumeSlider.onValueChanged.AddListener(OnMainVolumeChanged);
         bgmVolumeSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
         sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
 
-        // °´Å¥ÊÂ¼ş°ó¶¨
+        // æŒ‰é’®äº‹ä»¶
         resumeButton.onClick.AddListener(OnResumeButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
     }
 
     public override void OpenPanel(string name)
     {
-        base.OpenPanel(name); // µ÷ÓÃ¸¸ÀàµÄ¶¯»­·½·¨
+        base.OpenPanel(name); // è°ƒç”¨åŸºç±»çš„æ‰“å¼€é¢æ¿æ–¹æ³•
 
-        // Ê¹ÓÃ DOTween ÑÓ³ÙÉèÖÃ Time.timeScale
+        // ä½¿ç”¨ DOTween å»¶è¿Ÿæš‚åœ Time.timeScale
         DOTween.Sequence()
             .AppendInterval(0.5f)
             .AppendCallback(() =>
             {
-                Time.timeScale = 0;
+                Time.timeScale = 0; // æš‚åœæ¸¸æˆ
             });
     }
 
     public override void ClosePanel()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1; // æ¢å¤æ¸¸æˆé€Ÿåº¦
         
         base.ClosePanel();
     }
 
     /// <summary>
-    /// µ±È«¾ÖÒôÁ¿»¬¶¯Ìõ¸Ä±äÊ±µÄ»Øµ÷
+    /// å½“å…¨å±€éŸ³é‡æ»‘åŠ¨æ¡å‘ç”Ÿå˜åŒ–æ—¶çš„å›è°ƒ
     /// </summary>
-    /// <param name="value">»¬¶¯Ìõµ±Ç°Öµ</param>
+    /// <param name="value">å½“å‰æ»‘åŠ¨æ¡çš„å€¼</param>
     private void OnMainVolumeChanged(float value)
     {
         AudioManager.Instance.ChangeMainVolume(value);
     }
 
     /// <summary>
-    /// µ±BGMÒôÁ¿»¬¶¯Ìõ¸Ä±äÊ±µÄ»Øµ÷
+    /// å½“èƒŒæ™¯éŸ³ä¹(BGM)éŸ³é‡æ»‘åŠ¨æ¡å‘ç”Ÿå˜åŒ–æ—¶çš„å›è°ƒ
     /// </summary>
-    /// <param name="value">»¬¶¯Ìõµ±Ç°Öµ</param>
+    /// <param name="value">å½“å‰æ»‘åŠ¨æ¡çš„å€¼</param>
     private void OnBgmVolumeChanged(float value)
     {
         AudioManager.Instance.ChangeBgmVolume(value);
     }
 
     /// <summary>
-    /// µ±SFXÒôÁ¿»¬¶¯Ìõ¸Ä±äÊ±µÄ»Øµ÷
+    /// å½“éŸ³æ•ˆ(SFX)éŸ³é‡æ»‘åŠ¨æ¡å‘ç”Ÿå˜åŒ–æ—¶çš„å›è°ƒ
     /// </summary>
-    /// <param name="value">»¬¶¯Ìõµ±Ç°Öµ</param>
+    /// <param name="value">å½“å‰æ»‘åŠ¨æ¡çš„å€¼</param>
     private void OnSfxVolumeChanged(float value)
     {
         AudioManager.Instance.ChangeSfxVolume(value);
     }
 
     /// <summary>
-    /// »Ö¸´ÓÎÏ·°´Å¥µã»÷»Øµ÷
+    /// æ¢å¤æ¸¸æˆæŒ‰é’®ç‚¹å‡»å›è°ƒ
     /// </summary>
     private void OnResumeButtonClicked()
     {
-        UIManager.Instance.ClosePanel("SettingPanel"); // ¹Ø±ÕÃæ°å
+        UIManager.Instance.ClosePanel("SettingPanel"); // å…³é—­è®¾ç½®é¢æ¿
     }
 
     /// <summary>
-    /// ÍË³öÓÎÏ·°´Å¥µã»÷»Øµ÷
+    /// é€€å‡ºæ¸¸æˆæŒ‰é’®ç‚¹å‡»å›è°ƒ
     /// </summary>
     private void OnExitButtonClicked()
     {
-        // Èç¹ûĞèÒªÍË³öµ½Ö÷²Ëµ¥£¬¿ÉÒÔÔÚÕâÀïÊµÏÖÏà¹ØÂß¼­
+        // æ­¤å¤„å¯å®ç°é€€å‡ºåˆ°ä¸»èœå•æˆ–é€€å‡ºæ¸¸æˆçš„é€»è¾‘
         Debug.Log("Exiting game...");
     }
 }

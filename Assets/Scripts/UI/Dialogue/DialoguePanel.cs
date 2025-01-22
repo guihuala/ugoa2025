@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DialoguePanel: BasePanel
+public class DialoguePanel : BasePanel
 {
-
-    #region ¶Ô»°×é¼ş
+    #region å¯¹è¯é¢æ¿
 
     private Image _characterImage;
     private Text _characterNameText;
@@ -18,13 +17,13 @@ public class DialoguePanel: BasePanel
 
     public SelectPanel selectPanel;
 
-    private DialogueBlock _currentBlock;  // µ±Ç°¶Ô»°¿é
-    private int _currentIndex;           // µ±Ç°¶Ô»°Ë÷Òı
-    private bool _isWaitingForSelect;    // ÊÇ·ñÔÚµÈ´ıÓÃ»§Ñ¡Ôñ
-    private bool _isTyping;              // ÊÇ·ñÕıÔÚ²¥·Å´ò×Ö»ú¶¯»­
-    private Tween _typingTween;          // DOTween ´ò×Ö»ú¶¯»­¶ÔÏó
+    private DialogueData _currentData;  // å½“å‰å¯¹è¯æ•°æ®
+    private int _currentIndex;          // å½“å‰å¯¹è¯ç´¢å¼•
+    private bool _isWaitingForSelect;   // æ˜¯å¦åœ¨ç­‰å¾…ç”¨æˆ·é€‰æ‹©
+    private bool _isTyping;             // æ˜¯å¦æ­£åœ¨æ’­æ”¾æ‰“å­—æœºæ•ˆæœ
+    private Tween _typingTween;         // DOTween æ‰“å­—æœºæ•ˆæœåŠ¨ç”»
     
-    private bool _isDialogueEnding;               // ¶Ô»°ÊÇ·ñÒÑµ½Ä©Î²
+    private bool _isDialogueEnding;     // å¯¹è¯æ˜¯å¦å·²åˆ°æœ«å°¾
 
     protected override void Awake()
     {
@@ -36,11 +35,11 @@ public class DialoguePanel: BasePanel
 
         _skipBtn = transform.GetChild(2).GetComponent<Button>();
         _skipBtn.onClick.AddListener(SkipAllDialogue);
-
     }
-public void StartDialogue(DialogueBlock block)
+
+    public void StartDialogue(DialogueData data)
     {
-        _currentBlock = block;
+        _currentData = data;
         _currentIndex = 0;
         _isDialogueEnding = false;
 
@@ -49,15 +48,15 @@ public void StartDialogue(DialogueBlock block)
 
     private void RefreshDialogue()
     {
-        if (_currentBlock == null || _currentBlock.Cells.Count == 0)
+        if (_currentData == null || _currentData.Cells.Count == 0)
         {
             Debug.LogError("DialogueBlock is empty or null!");
             return;
         }
 
-        var currentCell = _currentBlock.Cells[_currentIndex];
+        var currentCell = _currentData.Cells[_currentIndex];
 
-        // ¸üĞÂ½ÇÉ«Í·Ïñ
+        // æ›´æ–°è§’è‰²å¤´åƒ
         if (currentCell.CharacterSprite != null)
         {
             _characterImage.sprite = currentCell.CharacterSprite;
@@ -68,13 +67,13 @@ public void StartDialogue(DialogueBlock block)
             _characterImage.enabled = false;
         }
 
-        // ¸üĞÂ½ÇÉ«Ãû³Æ
+        // æ›´æ–°è§’è‰²åå­—ï¼Œä¼˜å…ˆä½¿ç”¨npcçš„è§’è‰²å
         _characterNameText.text = currentCell.NPC != null ? currentCell.NPC.NPCName : currentCell.CharacterName;
 
-        // ´ò×Ö»úĞ§¹û
+        // æ‰“å­—æœºæ•ˆæœ
         _typingTween?.Kill();
         _isTyping = true;
-        _contentText.text = ""; // Çå¿ÕÄÚÈİ
+        _contentText.text = ""; // æ¸…ç©ºæ–‡æœ¬
 
         _typingTween = _contentText.DOText(currentCell.Content, currentCell.Content.Length * 0.05f)
             .SetEase(Ease.Linear)
@@ -84,25 +83,24 @@ public void StartDialogue(DialogueBlock block)
             });
     }
 
-
-    private void NextDialogue()
+    public void NextDialogue()
     {
-        if (_currentBlock == null || _currentIndex >= _currentBlock.Cells.Count - 1)
+        if (_currentData == null || _currentIndex >= _currentData.Cells.Count - 1)
         {
             Debug.LogWarning("No more dialogue available!");
             return;
         }
 
-        // ¼ì²éÊÇ·ñÎª·ÖÖ§Ñ¡Ôñ
-        if (_currentBlock.Cells[_currentIndex + 1].CellType == CellType.Select)
+        // æ£€æŸ¥æ˜¯å¦ä¸ºåˆ†æ”¯é€‰æ‹©
+        if (_currentData.Cells[_currentIndex + 1].CellType == CellType.Select)
         {
             _isWaitingForSelect = true;
             selectPanel.gameObject.SetActive(true);
 
             int tempIndex = _currentIndex + 1;
-            while (tempIndex < _currentBlock.Cells.Count && _currentBlock.Cells[tempIndex].CellType == CellType.Select)
+            while (tempIndex < _currentData.Cells.Count && _currentData.Cells[tempIndex].CellType == CellType.Select)
             {
-                selectPanel.AddCell(_currentBlock.Cells[tempIndex], this);
+                selectPanel.AddCell(_currentData.Cells[tempIndex], this);
                 tempIndex++;
             }
         }
@@ -111,8 +109,8 @@ public void StartDialogue(DialogueBlock block)
             _currentIndex++;
         }
 
-        // ¼ì²éÊÇ·ñÎª×îºóÒ»¶Î¶Ô»°
-        if (_currentBlock.Cells[_currentIndex].CellFlag == CellFlag.End)
+        // æ£€æŸ¥æ˜¯å¦ä¸ºæœ€åä¸€æ¡å¯¹è¯
+        if (_currentData.Cells[_currentIndex].CellFlag == CellFlag.End)
         {
             _isDialogueEnding = true;
         }
@@ -124,12 +122,12 @@ public void StartDialogue(DialogueBlock block)
 
         if (_isTyping)
         {
-            // Èç¹ûÕıÔÚ´ò×Ö£¬Á¢¼´Íê³É´ò×Ö¶¯»­
+            // å¦‚æœæ­£åœ¨æ‰“å­—ï¼Œåˆ™ç›´æ¥å®Œæˆæ‰“å­—æ•ˆæœ
             _typingTween?.Complete();
         }
         else
         {
-            // Èç¹û¶Ô»°ÒÑÍê³É£¬¼ÌĞøÏÂÒ»¶Î
+            // å¦‚æœå¯¹è¯å·²ç»“æŸï¼Œåˆ™å…³é—­é¢æ¿
             if (_isDialogueEnding)
             {
                 EndDialogue();
@@ -159,15 +157,15 @@ public void StartDialogue(DialogueBlock block)
 
     public void SkipAllDialogue()
     {
-        _typingTween?.Kill(); // Í£Ö¹´ò×Ö¶¯»­
+        _typingTween?.Kill(); // åœæ­¢æ‰“å­—æœºæ•ˆæœ
         _isTyping = false;
 
-        if (_currentBlock == null) return;
+        if (_currentData == null) return;
 
-        // Ìøµ½×îºóÒ»¶Î¶Ô»°
-        _currentIndex = _currentBlock.Cells.Count - 1;
+        // è·³è½¬åˆ°æœ€åä¸€æ¡å¯¹è¯
+        _currentIndex = _currentData.Cells.Count - 1;
 
-        var finalCell = _currentBlock.Cells[_currentIndex];
+        var finalCell = _currentData.Cells[_currentIndex];
         _characterImage.sprite = finalCell.CharacterSprite;
         _characterNameText.text = finalCell.CharacterName;
         _contentText.text = finalCell.Content;
@@ -176,5 +174,4 @@ public void StartDialogue(DialogueBlock block)
 
         EndDialogue();
     }
-    
 }

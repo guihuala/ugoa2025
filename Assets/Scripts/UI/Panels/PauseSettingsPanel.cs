@@ -96,7 +96,7 @@ public class PauseSettingsPanel : BasePanel
     {
         Time.timeScale = 1;
         
-        SceneLoader.Instance.LoadScene("MainMenu","back to main menu...");
+        SceneLoader.Instance.LoadScene(SceneName.MainMenu,"back to main menu...");
 
         // 防止面板还在字典中
         UIManager.Instance.RemovePanel(panelName);

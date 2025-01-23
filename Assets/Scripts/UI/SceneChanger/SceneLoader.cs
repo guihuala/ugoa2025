@@ -32,7 +32,7 @@ public class SceneLoader : SingletonPersistent<SceneLoader>
         {
             SceneManager.LoadScene(sceneName);
 
-            // UIManager.Instance.ClosePanel("SleepBlackPanel");
+            UIManager.Instance.RemovePanel("SleepBlackPanel");
         });
 
     }

@@ -94,7 +94,11 @@ public class PauseSettingsPanel : BasePanel
     /// </summary>
     private void OnExitButtonClicked()
     {
-        // 此处可实现退出到主菜单或退出游戏的逻辑
-        Debug.Log("Exiting game...");
+        Time.timeScale = 1;
+        
+        SceneLoader.Instance.LoadScene("MainMenu","back to main menu...");
+
+        // 防止面板还在字典中
+        UIManager.Instance.RemovePanel(panelName);
     }
 }

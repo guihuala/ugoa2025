@@ -125,4 +125,26 @@ public class UIManager : SingletonPersistent<UIManager>
         
         return true;
     }
+    
+    /// <summary>
+    /// 从已打开的面板字典中移除一个面板
+    /// </summary>
+    /// <param name="name">面板名称</param>
+    /// <returns>是否移除成功</returns>
+    public bool RemovePanel(string name)
+    {
+        BasePanel panel = null;
+
+        // 检查面板是否存在于已打开的字典中
+        if (!_panelDict.TryGetValue(name, out panel))
+        {
+            Debug.LogWarning($"面板 {name} 不在已打开的字典中，无法移除");
+            return false;
+        }
+        
+        _panelDict.Remove(name);
+
+        return true;
+    }
+
 }

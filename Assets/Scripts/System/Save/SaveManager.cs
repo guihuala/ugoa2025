@@ -5,19 +5,12 @@ using UnityEngine;
 // 在游戏中进行存取档
 public class SaveManager : SingletonPersistent<SaveManager>
 {
-    public enum Difficulty
-    {
-        easy,
-        middle,
-        hard,
-    } // 难度枚举
 
     // 一些需要保存的数据
     public int level;
     public SceneName scensName = SceneName.SampleScene; 
     public float gameTime;
     public bool isFullScreen;
-    public Difficulty difficulty;
     [ColorUsage(true)] public Color color;
 
 
@@ -28,7 +21,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
         public float gameTime;
         public bool isFullScreen;
         public Color color;
-        public Difficulty difficulty;
     }
 
     SaveData ForSave()
@@ -39,7 +31,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
         savedata.gameTime = gameTime;
         savedata.isFullScreen = isFullScreen;
         savedata.color = color;
-        savedata.difficulty = difficulty;
         return savedata;
     }
 
@@ -50,7 +41,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
         gameTime = savedata.gameTime;
         isFullScreen = savedata.isFullScreen;
         color = savedata.color;
-        difficulty = savedata.difficulty;
     }
 
     public void Save(int id)

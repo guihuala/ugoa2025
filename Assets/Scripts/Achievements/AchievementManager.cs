@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CardManager : SingletonPersistent<CardManager>
+public class AchievementManager : SingletonPersistent<AchievementManager>
 {
     public List<CardSO> cards = new List<CardSO>();
     private HashSet<string> unlockedCards;
@@ -15,23 +15,7 @@ public class CardManager : SingletonPersistent<CardManager>
         LoadPlayerProgress();
         InvokeRepeating(nameof(SavePlayerProgress), 60f, 60f); // 每分钟保存一次
     }
-
-    private void OnApplicationQuit()
-    {
-        SavePlayerProgress();
-        SaveUnlockedCards();
-    }
-
-    private void OnApplicationPause(bool pauseStatus)
-    {
-        if (pauseStatus)
-        {
-            // 游戏暂停时保存进度
-            SavePlayerProgress();
-            SaveUnlockedCards();
-        }
-    }
-
+    
     public void TryUnlockCards(PlayerProgress progress)
     {
         foreach (var card in cards)
@@ -160,12 +144,4 @@ public class CardManager : SingletonPersistent<CardManager>
     {
         return cards.FindAll(card => card.cardClass == cardClass);
     }
-}
-
-// 用于保存成就数据的辅助类
-[Serializable]
-public class CardData
-{
-    public string cardID;
-    public bool isHeld;
 }

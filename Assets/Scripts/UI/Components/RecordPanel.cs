@@ -4,15 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class RecordPanel : MonoBehaviour
+public class RecordPanel : BasePanel
 {
     public Transform grid;               // 存档列表的容器
     public GameObject recordPrefab;      // 存档项预制件
-    public GameObject recordPanel;       // 存档面板，用于显示/隐藏
 
     [Header("按钮")]
-    public Button open;
-    public Button exit;
     public Button save;
     public Button load;
     [ColorUsage(true)]
@@ -32,8 +29,6 @@ public class RecordPanel : MonoBehaviour
 
     private void Start()
     {
-        detail.SetActive(false);
-        
         // 初始化存档列表
         for (int i = 0; i < RecordData.recordNum; i++)
         {
@@ -54,11 +49,8 @@ public class RecordPanel : MonoBehaviour
         RecordUI.OnLeftClick += LeftClickGrid;     
         RecordUI.OnRightClick += RightClickGrid;
         RecordUI.OnEnter += ShowDetails;
-        RecordUI.OnExit += HideDetails;
-        open.onClick.AddListener(() => CloseOrOpen());
         save.onClick.AddListener(() => SaveOrLoad());
         load.onClick.AddListener(() => SaveOrLoad(false));
-        exit.onClick.AddListener(QuitGame);
         #endregion
 
         // 初始化时间
@@ -70,7 +62,6 @@ public class RecordPanel : MonoBehaviour
         RecordUI.OnLeftClick -= LeftClickGrid;
         RecordUI.OnRightClick -= RightClickGrid;
         RecordUI.OnEnter -= ShowDetails;
-        RecordUI.OnExit -= HideDetails;
     }
 
     private void Update()
@@ -94,25 +85,7 @@ public class RecordPanel : MonoBehaviour
         // 显示详情面板
         detail.SetActive(true);
     }
-
-    // 隐藏存档详情（鼠标离开事件）
-    void HideDetails()
-    {
-        // 隐藏详情面板
-        detail.SetActive(false);
-    }
-
-    // 打开或关闭存档面板
-    void CloseOrOpen()
-    {       
-        // 切换显示状态
-        recordPanel.SetActive(!recordPanel.activeSelf);
-        // 更新按钮文字
-        open.transform.GetChild(0).GetComponent<Text>().text = (recordPanel.activeSelf) ? "CLOSE" : "OPEN";
-        // 更新按钮交互状态
-        save.interactable = recordPanel.activeSelf;
-        load.interactable = recordPanel.activeSelf;
-    }
+    
 
     // 切换存档/加载模式
     void SaveOrLoad(bool OnSave = true)
@@ -193,11 +166,7 @@ public class RecordPanel : MonoBehaviour
         }
 
         // 退出游戏
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();                          
-        #endif
+
     }
 
     // 创建新存档
@@ -233,7 +202,7 @@ public class RecordPanel : MonoBehaviour
             RecordData.Instance.recordName[i] = "";
             grid.GetChild(i).GetComponent<RecordUI>().SetName(i);
             SAVE.DeleteShot(i);
-            HideDetails();
+            detail.SetActive(false);
         }
     }
 }

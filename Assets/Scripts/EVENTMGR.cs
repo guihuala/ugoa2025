@@ -6,7 +6,9 @@ using UnityEngine;
 public static class EVENTMGR
 {
     // 游戏需要用到的主要事件
-    
+
+    #region 点击物体或玩家
+
     // 点击角色事件
     public static event Action<bool> OnClickCharacter;
 
@@ -24,4 +26,8 @@ public static class EVENTMGR
     {
         OnTimeScaleChange?.Invoke(newTimeScale);
     }
+
+    #endregion
+    
+
 }

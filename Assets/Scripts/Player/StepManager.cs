@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class StepManager : MonoBehaviour
 {
-    public int maxSteps = 10;
+    // 最大积累的格数
+    public int maxSteps = 5;
     private int remainingSteps;
 
     private void Start()

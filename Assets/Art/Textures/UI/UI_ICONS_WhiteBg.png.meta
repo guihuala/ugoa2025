@@ -1,0 +1,2485 @@
+fileFormatVersion: 2
+guid: c7312ca446aef431cb3ed1d1cb1361d0
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_0
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 3298
+        width: 259
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494d56d7f087a47f99dd58c3c68894dd
+      internalID: -1838858382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_1
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 3298
+        width: 256
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c72f198955a4b6dbcb97c3288263ae
+      internalID: -1832996784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_2
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1abcaee39f9b849a5bf917dec7f4bccd
+      internalID: 1463507649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_3
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc15309315844d91b3fad6e2762a273
+      internalID: -157660322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_4
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 3298
+        width: 259
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d434a04b2db6d4e78ad6b1acd828ef15
+      internalID: -1546798234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_5
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caf2df4fedb52446d9cf5286a186db4a
+      internalID: 1798200481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_6
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6af6e9569c38e43e5920e28c48dca485
+      internalID: 1679609874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_7
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94b15a1e71a84d5b86f8bed208633b4
+      internalID: 2115626223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_8
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fadeb0f7d9f34b16bfeb0525cb0aadd
+      internalID: -1041063415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_9
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 3298
+        width: 256
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aab2532ff188c4151a41217efefb0b89
+      internalID: -1493971017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_10
+      rect:
+        serializedVersion: 2
+        x: 3327
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ed06d6f7f8a4025919842d108af548
+      internalID: 1914995779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_11
+      rect:
+        serializedVersion: 2
+        x: 3637
+        y: 3298
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0b80a358ac24a1bbeb1e2305d3b96b
+      internalID: -834950713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_12
+      rect:
+        serializedVersion: 2
+        x: 3965
+        y: 3298
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65cb40e144812449e8e58dca734af1b3
+      internalID: -773941221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_13
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 3005
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2db4d2517e834b58a0718c288b247e4
+      internalID: -522888507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_14
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 3005
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da391dde91684998ad53fb28ce50d1b
+      internalID: -259731712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_15
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8799e1005c7ca4c3b8d87c4dc7c4b5be
+      internalID: 1987336438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_16
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10eabcfb51164810a55546bb0435214
+      internalID: 1672447694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_17
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 3005
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4abb0bb77be20424ba5e3d03c9fc02fb
+      internalID: -1434576096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_18
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7576f49fc8d5470ab2a475493a42f7a
+      internalID: 1274267456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_19
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4902c49b7ee4591b0d36fdad256260
+      internalID: -1679925196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_20
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8683e60b258a944dab7763a857a731e7
+      internalID: 2134346685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_21
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1304b2bd887f84337890fa8571b9ba67
+      internalID: 896695913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_22
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 3005
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295865bbc4cae4ce68d058ccaa1b3440
+      internalID: 555901154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_23
+      rect:
+        serializedVersion: 2
+        x: 3327
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c476d8c448b0b4da7a7a6b2608f0d5f0
+      internalID: 2061792851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_24
+      rect:
+        serializedVersion: 2
+        x: 3637
+        y: 3005
+        width: 258
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b0125d6657b948ea9d23f1ad8ad5e65
+      internalID: -1435848566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_25
+      rect:
+        serializedVersion: 2
+        x: 3965
+        y: 3005
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 127bbf0dd4c8c4fa7ad060546541e05f
+      internalID: 1731735885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_26
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 2683
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd72ea9c2df44508bc163d019821284
+      internalID: -1364927048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_27
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 2683
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd51a29bb33644efcbe0373bcea36eb7
+      internalID: 1682663176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_28
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1627cdfdbe74e45408dedadaafd13892
+      internalID: 130772492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_29
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d046627f9c75417680888a9ddb18b75
+      internalID: 1551177453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_30
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 2683
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8594a7079227943b3b41c77350d29891
+      internalID: -860756397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_31
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20269a27a9cf94e4d8010bcc9342bf43
+      internalID: -240787696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_32
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083b058b0f00b4c3390abe75cb3d2e8e
+      internalID: 785651707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_33
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b748ae909d5a49a8858153737e3e104
+      internalID: -1180361645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_34
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ed53c4414fe9443283ee00fe8fc985e
+      internalID: -911511367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_35
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 2683
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca36b3e25aa2f46ab9edd8ffe0df90a5
+      internalID: -593023544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_36
+      rect:
+        serializedVersion: 2
+        x: 3327
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099633ab225744bc89a8af3596975342
+      internalID: 387806019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_37
+      rect:
+        serializedVersion: 2
+        x: 3637
+        y: 2683
+        width: 258
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4258c75ea23414c73bd4af44210af005
+      internalID: 1798710467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_38
+      rect:
+        serializedVersion: 2
+        x: 3965
+        y: 2683
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 601c42ba8b0384f9a831a9497addf1f0
+      internalID: 441520067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_39
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 2359
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df0f549e738014ccfa78f94316d5bc6d
+      internalID: -1419834364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_40
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 2359
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a08f0b794324f5e9f817074efa8a91
+      internalID: -1660387898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_41
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace39518abee747089e179b8f764a74e
+      internalID: 1974550911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_42
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dba34119b2b04a1899cf06d9c20037e
+      internalID: 1670059331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_43
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 2359
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8071beb284d4930ae44a189d6d43d7
+      internalID: -427703662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_44
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b76004ac869480d873d49401a19293
+      internalID: -1053267730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_45
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc048013a0f0a4852884de56a05bb707
+      internalID: 1637116966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_46
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f800c53f98c4d7f81f49a7077eb8f3
+      internalID: -1267811557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_47
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34acbbf8fb109448b872e025dc9ed979
+      internalID: -1716573670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_48
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 2359
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a95aca9457a874a60af4e55dc7dbdd23
+      internalID: 1958401123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_49
+      rect:
+        serializedVersion: 2
+        x: 3327
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655a377179dd748f6a3bb8802ee3d781
+      internalID: 1704681621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_50
+      rect:
+        serializedVersion: 2
+        x: 3637
+        y: 2359
+        width: 258
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d8b68f299ac47a1acd7455b21b8afd
+      internalID: 1264204414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_51
+      rect:
+        serializedVersion: 2
+        x: 3965
+        y: 2359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988bceac7f133483ba964e30e8f2ba8f
+      internalID: -531868301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_52
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 2007
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4acc84103cd4f4515bae16bca5de93c2
+      internalID: 469304668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_53
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 2007
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 423f29fbe259744d19998b4a0ef85ede
+      internalID: -1879934297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_54
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7b25a9ddd9bf4244b8c388418423da4
+      internalID: -1027643186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_55
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923fee96952c2479c88840db824ce9cb
+      internalID: -1669206344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_56
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 2007
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 746e19863398d49098f9df8ac39dccc3
+      internalID: 1700954417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_57
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db8e5e37eab64bb8b0fe21c56e47478
+      internalID: -809946916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_58
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9438209c95a2346788fefc0173b7fcc6
+      internalID: -751617197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_59
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fd92a8164ec84ce789eca4dd236b8ec
+      internalID: 1470962293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_60
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b6c6e05fd3e34d92bd0a993bd80ca0d
+      internalID: 600705179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_61
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 2007
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caee976430c64416cbb6e7d3d1861bac
+      internalID: 1208772830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_62
+      rect:
+        serializedVersion: 2
+        x: 3327
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b3a954bd93c45d489082739e5adcf5
+      internalID: -416600332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_63
+      rect:
+        serializedVersion: 2
+        x: 3637
+        y: 2007
+        width: 258
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2162fbfd05a054862927b5f1d4d4b21d
+      internalID: -1332330195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_64
+      rect:
+        serializedVersion: 2
+        x: 3965
+        y: 2007
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cfb2916b267946d58c84a9fedcd82ad
+      internalID: -1302488357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_65
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1675
+        width: 259
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b98fcb6da842422e997cec3ea22a7af
+      internalID: 494992400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_66
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1675
+        width: 256
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41587db18e1544169f55a6d68e50cbc
+      internalID: -902788454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_67
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3c6fb1339c54cd7a40ff2b74b4487b
+      internalID: 1861822073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_68
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b36c4cb61a6f45518e98c9bd918ba33
+      internalID: 847374614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_69
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 1675
+        width: 259
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43af62e6fecd4fd2a43104a6c8ae10d
+      internalID: 1396671624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_70
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255cff8a2f2454c498d6a6aada25f21d
+      internalID: 1666474640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_71
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 214d6d167978e4a9f963e693905169d5
+      internalID: 501004935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_72
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c3e07fd967984ae4928db797213ed8d
+      internalID: -1085400914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_73
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c5e0273cfc9641d4aff9a6113a2dfdb
+      internalID: -557082388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_74
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 1675
+        width: 256
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618af0e902fb94a42897363b305a0f4d
+      internalID: 796148567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_75
+      rect:
+        serializedVersion: 2
+        x: 3327
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb378ff03a7a540e6a40bd4370e0a7dc
+      internalID: -685861188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_76
+      rect:
+        serializedVersion: 2
+        x: 3637
+        y: 1675
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b7a964774294b5f8f2e28f26b9731c
+      internalID: -1589165653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_77
+      rect:
+        serializedVersion: 2
+        x: 3965
+        y: 1675
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a3a8543608994a5582d3a8adbc174ca
+      internalID: 1027895752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_78
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1355
+        width: 259
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90792ac11ca004541a9e7c99b428d412
+      internalID: 2079366282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_79
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1355
+        width: 256
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b339c8599c104be38a7297ebaf1f85e
+      internalID: -1257358424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_80
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 1355
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df62684c9344d473096ab0da78d161d0
+      internalID: 1812863031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_81
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 1355
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5902c1f1c560b48739eb3121f45ea858
+      internalID: 1532465405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_82
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 1355
+        width: 259
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219119ca1f46540a5ad0da4b98b3998f
+      internalID: 1926723259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_83
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 1355
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e10af7a66534683817cf33291286e1
+      internalID: 1605135010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_84
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 1355
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f03fdda7d637e4634995849ab7d5db8b
+      internalID: 511257761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_85
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 1355
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33018ddfe551d4d43a290cc74e3da90d
+      internalID: 650937978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_86
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 1355
+        width: 257
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c603e563387fa4a099dc63d7e575f2f1
+      internalID: -1349906500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_87
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 1359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e7c22fffe9534d82a5dcf2c4c65c702
+      internalID: 640776682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_88
+      rect:
+        serializedVersion: 2
+        x: 3331
+        y: 1359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 839d24c4aa21a44ccaa942e57a9c4ccf
+      internalID: -2032346999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_89
+      rect:
+        serializedVersion: 2
+        x: 3641
+        y: 1359
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf64d7fc9830d401a967c642a87f5814
+      internalID: -1300750882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_90
+      rect:
+        serializedVersion: 2
+        x: 3967
+        y: 1359
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de87e19d7f03843d2b3f48e9952dcc2d
+      internalID: -115805283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_91
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1035
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3188376f9099e4ac9a230550ad81bc81
+      internalID: -728128807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_92
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1035
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cce60a726f3e422cad4a77bb3b6f682
+      internalID: 1297974181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_93
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 1035
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f38c0302c997940d2a7ed335a756ce41
+      internalID: 1995739831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_94
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 1035
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5601909f787964c8084a67e8676c6936
+      internalID: -740252192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_95
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 1035
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ecd259d3d574f6d9de808c4e60ff66
+      internalID: 234469712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_96
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 1035
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 611aef0f2b26c4215bebd62b490593c5
+      internalID: 729663073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_97
+      rect:
+        serializedVersion: 2
+        x: 2032
+        y: 1035
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1700f328cbf54492b9807e19fc3e31a
+      internalID: 1350796429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_98
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 1035
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e94959d575d8d4c07aa268bce4fd7396
+      internalID: 715847612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_99
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 1035
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f0fcfd374fae403b90172231cf47b01
+      internalID: 560632590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_100
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 1043
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7304bb3e26e554930a436fbeeb68ea96
+      internalID: 2016723599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_101
+      rect:
+        serializedVersion: 2
+        x: 3331
+        y: 1043
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad798cd6dcf9245689d90ce3338e4997
+      internalID: 856785532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_102
+      rect:
+        serializedVersion: 2
+        x: 3641
+        y: 1043
+        width: 256
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1bbd543222f491e9fdcba2ed0c69cf
+      internalID: -658167800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_103
+      rect:
+        serializedVersion: 2
+        x: 3967
+        y: 1043
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8bb0fe9b4b994ac097fa963be5aa2de
+      internalID: -155247617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_104
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 720
+        width: 565
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 37, y: 40, z: 29, w: 40}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df1e4c39dccf418caaa6725afc45664
+      internalID: 1517688255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ICONS_WhiteBg_105
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 717
+        width: 257
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e6abc5aca6344feb3bcb0d88dc30c9
+      internalID: -751382274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 4e8d5cf22a05443f4867bcbbd6cbc681
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UI_ICONS_WhiteBg_0: -1838858382
+      UI_ICONS_WhiteBg_1: -1832996784
+      UI_ICONS_WhiteBg_10: 1914995779
+      UI_ICONS_WhiteBg_100: 2016723599
+      UI_ICONS_WhiteBg_101: 856785532
+      UI_ICONS_WhiteBg_102: -658167800
+      UI_ICONS_WhiteBg_103: -155247617
+      UI_ICONS_WhiteBg_104: 1517688255
+      UI_ICONS_WhiteBg_105: -751382274
+      UI_ICONS_WhiteBg_11: -834950713
+      UI_ICONS_WhiteBg_12: -773941221
+      UI_ICONS_WhiteBg_13: -522888507
+      UI_ICONS_WhiteBg_14: -259731712
+      UI_ICONS_WhiteBg_15: 1987336438
+      UI_ICONS_WhiteBg_16: 1672447694
+      UI_ICONS_WhiteBg_17: -1434576096
+      UI_ICONS_WhiteBg_18: 1274267456
+      UI_ICONS_WhiteBg_19: -1679925196
+      UI_ICONS_WhiteBg_2: 1463507649
+      UI_ICONS_WhiteBg_20: 2134346685
+      UI_ICONS_WhiteBg_21: 896695913
+      UI_ICONS_WhiteBg_22: 555901154
+      UI_ICONS_WhiteBg_23: 2061792851
+      UI_ICONS_WhiteBg_24: -1435848566
+      UI_ICONS_WhiteBg_25: 1731735885
+      UI_ICONS_WhiteBg_26: -1364927048
+      UI_ICONS_WhiteBg_27: 1682663176
+      UI_ICONS_WhiteBg_28: 130772492
+      UI_ICONS_WhiteBg_29: 1551177453
+      UI_ICONS_WhiteBg_3: -157660322
+      UI_ICONS_WhiteBg_30: -860756397
+      UI_ICONS_WhiteBg_31: -240787696
+      UI_ICONS_WhiteBg_32: 785651707
+      UI_ICONS_WhiteBg_33: -1180361645
+      UI_ICONS_WhiteBg_34: -911511367
+      UI_ICONS_WhiteBg_35: -593023544
+      UI_ICONS_WhiteBg_36: 387806019
+      UI_ICONS_WhiteBg_37: 1798710467
+      UI_ICONS_WhiteBg_38: 441520067
+      UI_ICONS_WhiteBg_39: -1419834364
+      UI_ICONS_WhiteBg_4: -1546798234
+      UI_ICONS_WhiteBg_40: -1660387898
+      UI_ICONS_WhiteBg_41: 1974550911
+      UI_ICONS_WhiteBg_42: 1670059331
+      UI_ICONS_WhiteBg_43: -427703662
+      UI_ICONS_WhiteBg_44: -1053267730
+      UI_ICONS_WhiteBg_45: 1637116966
+      UI_ICONS_WhiteBg_46: -1267811557
+      UI_ICONS_WhiteBg_47: -1716573670
+      UI_ICONS_WhiteBg_48: 1958401123
+      UI_ICONS_WhiteBg_49: 1704681621
+      UI_ICONS_WhiteBg_5: 1798200481
+      UI_ICONS_WhiteBg_50: 1264204414
+      UI_ICONS_WhiteBg_51: -531868301
+      UI_ICONS_WhiteBg_52: 469304668
+      UI_ICONS_WhiteBg_53: -1879934297
+      UI_ICONS_WhiteBg_54: -1027643186
+      UI_ICONS_WhiteBg_55: -1669206344
+      UI_ICONS_WhiteBg_56: 1700954417
+      UI_ICONS_WhiteBg_57: -809946916
+      UI_ICONS_WhiteBg_58: -751617197
+      UI_ICONS_WhiteBg_59: 1470962293
+      UI_ICONS_WhiteBg_6: 1679609874
+      UI_ICONS_WhiteBg_60: 600705179
+      UI_ICONS_WhiteBg_61: 1208772830
+      UI_ICONS_WhiteBg_62: -416600332
+      UI_ICONS_WhiteBg_63: -1332330195
+      UI_ICONS_WhiteBg_64: -1302488357
+      UI_ICONS_WhiteBg_65: 494992400
+      UI_ICONS_WhiteBg_66: -902788454
+      UI_ICONS_WhiteBg_67: 1861822073
+      UI_ICONS_WhiteBg_68: 847374614
+      UI_ICONS_WhiteBg_69: 1396671624
+      UI_ICONS_WhiteBg_7: 2115626223
+      UI_ICONS_WhiteBg_70: 1666474640
+      UI_ICONS_WhiteBg_71: 501004935
+      UI_ICONS_WhiteBg_72: -1085400914
+      UI_ICONS_WhiteBg_73: -557082388
+      UI_ICONS_WhiteBg_74: 796148567
+      UI_ICONS_WhiteBg_75: -685861188
+      UI_ICONS_WhiteBg_76: -1589165653
+      UI_ICONS_WhiteBg_77: 1027895752
+      UI_ICONS_WhiteBg_78: 2079366282
+      UI_ICONS_WhiteBg_79: -1257358424
+      UI_ICONS_WhiteBg_8: -1041063415
+      UI_ICONS_WhiteBg_80: 1812863031
+      UI_ICONS_WhiteBg_81: 1532465405
+      UI_ICONS_WhiteBg_82: 1926723259
+      UI_ICONS_WhiteBg_83: 1605135010
+      UI_ICONS_WhiteBg_84: 511257761
+      UI_ICONS_WhiteBg_85: 650937978
+      UI_ICONS_WhiteBg_86: -1349906500
+      UI_ICONS_WhiteBg_87: 640776682
+      UI_ICONS_WhiteBg_88: -2032346999
+      UI_ICONS_WhiteBg_89: -1300750882
+      UI_ICONS_WhiteBg_9: -1493971017
+      UI_ICONS_WhiteBg_90: -115805283
+      UI_ICONS_WhiteBg_91: -728128807
+      UI_ICONS_WhiteBg_92: 1297974181
+      UI_ICONS_WhiteBg_93: 1995739831
+      UI_ICONS_WhiteBg_94: -740252192
+      UI_ICONS_WhiteBg_95: 234469712
+      UI_ICONS_WhiteBg_96: 729663073
+      UI_ICONS_WhiteBg_97: 1350796429
+      UI_ICONS_WhiteBg_98: 715847612
+      UI_ICONS_WhiteBg_99: 560632590
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

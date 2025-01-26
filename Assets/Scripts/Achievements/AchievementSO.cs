@@ -33,7 +33,7 @@ public class AchievementSO
     // 更新UI
     public void ApplyVisuals(GameObject cardSlot, Color heldColor, Color notHeldColor)
     {
-        cardSlot.transform.GetChild(3).transform.GetChild(0).GetComponent<Text>().text = cardName;
+        cardSlot.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>().text = cardName;
         
         cardSlot.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = cardDes;
         

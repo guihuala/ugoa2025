@@ -3,20 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class LevelSelectionButton : MonoBehaviour
 {
     [SerializeField] private bool unlocked;
     [SerializeField] private Image unlockImage;
-    [SerializeField] private SceneName levelName;
+    [SerializeField] private string levelName;
+    [SerializeField] private SceneName sceneName;
 
     private void Awake()
     {
         GetComponent<Button>().onClick.AddListener((() =>
         {
-            PressSelection(levelName);
+            PressSelection(sceneName);
         }));
+    }
+
+    private void Start()
+    {
+        UpdateLevelStatus();
     }
 
     // 每个关卡单独读取
@@ -25,10 +30,14 @@ public class LevelSelectionButton : MonoBehaviour
         UpdateLevelImage();
         UpdateLevelStatus();
     }
-
+    
     private void UpdateLevelStatus()
     {
-        // 读取存档
+        var level = LevelManager.Instance.levels.Find(l => l.name == levelName);
+        if (level != null)
+        {
+            unlocked = level.isUnlocked; // 设置解锁状态
+        }
     }
 
     private void UpdateLevelImage()

@@ -15,7 +15,8 @@ public class AchievementPanel : BasePanel
     public int page = 0;
     public int cardsPerPage = 8;
     public Text pageText;
-    [SerializeField] private int totalNumbers; // 用于显示总卡片数量
+    
+    private int totalNumbers; // 用于显示总卡片数量
     private int maxPage; // 用于翻页时计算最大页数
 
     public Button nextPageButton;
@@ -27,7 +28,7 @@ public class AchievementPanel : BasePanel
     {
         base.OpenPanel(name);
         
-        totalNumbers = AchievementManager.Instance.achievementList.achievement.Count;
+        totalNumbers = AchievementManager.Instance.DefaultAchievementList.achievement.Count;
         UpdateMaxPage();
         DisplayCards(page);
         UpdatePageUI();
@@ -37,17 +38,18 @@ public class AchievementPanel : BasePanel
         closeButton.onClick.AddListener(CloseButton);
     }
 
-    public void CloseButton()
+    void CloseButton()
     {
+        Debug.Log("onClose button");
         UIManager.Instance.ClosePanel(panelName);
     }
 
-    private void UpdateMaxPage()
+    void UpdateMaxPage()
     {
         maxPage = Mathf.CeilToInt((float)totalNumbers / cardsPerPage) - 1;
     }
 
-    private void UpdatePageUI()
+    void UpdatePageUI()
     {
         pageText.text = $"{page + 1}/{maxPage + 1}";
     }
@@ -56,7 +58,7 @@ public class AchievementPanel : BasePanel
     {
         ResetCardSlots();
 
-        List<AchievementSO> cardsToDisplay = AchievementManager.Instance.achievementList.achievement;
+        List<AchievementSO> cardsToDisplay = AchievementManager.Instance._achievementList.achievement;
 
         for (int i = 0; i < cardsToDisplay.Count; i++)
         {

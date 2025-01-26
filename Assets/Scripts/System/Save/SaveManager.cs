@@ -31,14 +31,26 @@ public class SaveManager : SingletonPersistent<SaveManager>
         // 达成的成就、当前进度
         public List<AchievementSaveData> achievements = new List<AchievementSaveData>();
         public PlayerProgress playerProgress = new PlayerProgress();
+
+        // 新增：关卡解锁状态
+        public List<LevelUnlockData> levelUnlocks = new List<LevelUnlockData>();
     }
+
+    // 关卡解锁状态数据结构
+    [System.Serializable]
+    public class LevelUnlockData
+    {
+        public string levelName; // 关卡名称或ID
+        public bool isUnlocked; // 是否已解锁
+    }
+
 
     // 成就保存数据结构
     [System.Serializable]
     public class AchievementSaveData
     {
-        public string cardID;  // 成就卡片 ID
-        public bool isHeld;    // 是否已解锁
+        public string cardID; // 成就卡片 ID
+        public bool isHeld; // 是否已解锁
     }
 
     SaveData ForSave()
@@ -53,7 +65,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
         };
 
         // 保存成就数据
-        foreach (var achievement in AchievementManager.Instance.achievementList.achievement)
+        foreach (var achievement in AchievementManager.Instance._achievementList.achievement)
         {
             savedata.achievements.Add(new AchievementSaveData
             {
@@ -62,8 +74,19 @@ public class SaveManager : SingletonPersistent<SaveManager>
             });
         }
 
+        // 保存关卡解锁状态
+        foreach (var level in LevelManager.Instance.levels)
+        {
+            savedata.levelUnlocks.Add(new LevelUnlockData
+            {
+                levelName = level.name,
+                isUnlocked = level.isUnlocked
+            });
+        }
+
         return savedata;
     }
+
 
     void ForLoad(SaveData savedata)
     {
@@ -78,16 +101,30 @@ public class SaveManager : SingletonPersistent<SaveManager>
         {
             foreach (var achievementData in savedata.achievements)
             {
-                var achievement = AchievementManager.Instance.achievementList.achievement.Find(a => a.cardID == achievementData.cardID);
+                var achievement = AchievementManager.Instance._achievementList.achievement.Find(a => a.cardID == achievementData.cardID);
                 if (achievement != null)
                 {
                     achievement.isHeld = achievementData.isHeld;
                 }
             }
         }
+
+        // 加载关卡解锁状态
+        if (savedata.levelUnlocks != null)
+        {
+            foreach (var levelData in savedata.levelUnlocks)
+            {
+                var level = LevelManager.Instance.levels.Find(l => l.name == levelData.levelName);
+                if (level != null)
+                {
+                    level.isUnlocked = levelData.isUnlocked;
+                }
+            }
+        }
     }
-    
-    public void NewRecord(int ID = 0,string end = ".auto")
+
+
+    public void NewRecord(int ID = 0, string end = ".auto")
     {
         // 如果原位置有存档则删除
         if (RecordData.Instance.recordName[ID] != "")
@@ -99,11 +136,11 @@ public class SaveManager : SingletonPersistent<SaveManager>
         RecordData.Instance.recordName[ID] = $"{System.DateTime.Now:yyyyMMdd_HHmmss}{end}";
         RecordData.Instance.lastID = ID;
         RecordData.Instance.Save();
-        
+
         Save(ID);
         SAVE.CameraCapture(ID, Camera.main, new Rect(0, 0, Screen.width, Screen.height));
     }
-    
+
     void DeleteRecord(int i, bool isCover = true)
     {
         if (i < 0 || i >= RecordData.recordNum || RecordData.Instance.recordName[i] == "")
@@ -111,6 +148,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
             Debug.LogWarning("删除存档失败：非法的存档索引！");
             return;
         }
+
         Delete(i);
         RecordData.Instance.Delete();
 

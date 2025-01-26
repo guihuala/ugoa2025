@@ -13,6 +13,8 @@ public class TitleUI : MonoBehaviour
 
     public GameObject recordPanel; // 存档面板
 
+    private bool isFirstTimePlay; // 判断是否播放cg
+
     private void Awake()
     {
         // 继续游戏，加载最后一次的存档
@@ -43,11 +45,15 @@ public class TitleUI : MonoBehaviour
         {
             Continue.gameObject.SetActive(true);
             Load.gameObject.SetActive(true);
+
+            isFirstTimePlay = false;
         }
         else
         {
             Continue.gameObject.SetActive(false);
             Load.gameObject.SetActive(false);
+
+            isFirstTimePlay = true;
         }           
     }
 
@@ -64,6 +70,8 @@ public class TitleUI : MonoBehaviour
             RecordData.Instance.Save();
         }    
 
+        LevelManager.Instance.LoadLevelUnlocks();
+        
         // 切换到存档所在的场景
         SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName,"...");
     }
@@ -77,6 +85,8 @@ public class TitleUI : MonoBehaviour
     // 开始新游戏
     void NewGame()
     {
+        // 清除关卡管理器读取的数据，恢复默认值
+        LevelManager.Instance.InitLevelUnlocks();
         // 切换到默认场景
         SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"...");
     }

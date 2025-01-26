@@ -1,25 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-// 卡牌种类的枚举
-public enum CardClass
+/// <summary>
+/// 脚本描述了成就系统需要使用到的各种结构
+/// </summary>
+
+[CreateAssetMenu(fileName = "New AchievementListSO", menuName = "Achievement/AchievementListSO")]
+public class AchievementList : ScriptableObject
 {
-    Gathering
+    public List<AchievementSO> achievement;
 }
 
-// 卡牌类，包含卡牌的属性和行为
+
+
 [System.Serializable]
-public class CardSO
+public class AchievementSO
 {
     public string cardID;                      // 成就卡片的唯一标识符
     public string cardName;                    // 成就卡片名称
     [TextArea(1, 5)] public string cardDes;    // 成就卡片描述，支持多行输入
     public Sprite cardSprite;                  // 成就卡片图片
-    public CardClass cardClass;                // 成就卡片种类（枚举）
     public bool isHeld;                        // 标记卡片是否已被持有
-    public CardCondition condition;            // 解锁该卡片的条件
+    public AchievementCondition condition;            // 解锁该卡片的条件
 
     // 检查条件是否满足
     public bool CheckCondition(PlayerProgress progress)
@@ -49,12 +54,13 @@ public class CardSO
     }
 }
 
+
+
 // 定义卡牌解锁条件的类
 [System.Serializable]
-public class CardCondition
+public class AchievementCondition
 {
     public ConditionType conditionType; // 条件类型（进入次数或拾取道具）
-    public int requiredValue;           // 达成目标所需的数量或时长
     public string requiredItem;         // 达成目标所需的道具 ID
 
     // 评估当前条件是否满足
@@ -63,10 +69,6 @@ public class CardCondition
         // 根据条件类型执行相应逻辑
         switch (conditionType)
         {
-            case ConditionType.GameEntries:
-                // 判断玩家进入游戏的次数是否达到要求
-                return progress.gameEntries >= requiredValue;
-
             case ConditionType.ItemCollected:
                 // 判断玩家是否已经获得所需的道具
                 return progress.HasItem(requiredItem);
@@ -77,10 +79,11 @@ public class CardCondition
     }
 }
 
+
+
 // 定义条件类型的枚举
 public enum ConditionType
 {
-    GameEntries,    // 进入游戏次数
     ItemCollected   // 收集特定道具
 }
 

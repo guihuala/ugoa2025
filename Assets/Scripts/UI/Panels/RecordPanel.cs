@@ -79,7 +79,6 @@ public class RecordPanel : BasePanel
         
         gameTime.text = $"游戏时间  {TIMEMGR.GetFormatTime((int)data.gameTime)}";
         sceneName.text = $"当前场景  {data.scensName}";
-        level.text = $"完成等级  {data.level}";
         screenShot.sprite = SAVE.LoadShot(i);
 
         // 显示详情面板

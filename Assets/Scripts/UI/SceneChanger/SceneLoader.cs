@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
+// 在这里配置游戏的场景枚举，名称需要与场景名一致
 public enum SceneName
 {
     MainMenu,
-    SampleScene,
+    LevelSelection,
     ghlgScene,
 }
 

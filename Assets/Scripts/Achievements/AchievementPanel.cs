@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class CardPanel : BasePanel
+public class AchievementPanel : BasePanel
 {
     public GameObject[] cardSlots;
 
@@ -17,9 +17,6 @@ public class CardPanel : BasePanel
     public Text pageText;
     [SerializeField] private int totalNumbers; // 用于显示总卡片数量
     private int maxPage; // 用于翻页时计算最大页数
-    
-    private bool isSearchByClass;
-    private CardClass? currentSearchClass;
 
     public Button nextPageButton;
     public Button previousPageButton;
@@ -30,7 +27,7 @@ public class CardPanel : BasePanel
     {
         base.OpenPanel(name);
         
-        totalNumbers = AchievementManager.Instance.cards.Count;
+        totalNumbers = AchievementManager.Instance.achievementList.achievement.Count;
         UpdateMaxPage();
         DisplayCards(page);
         UpdatePageUI();
@@ -59,19 +56,17 @@ public class CardPanel : BasePanel
     {
         ResetCardSlots();
 
-        List<CardSO> cardsToDisplay = isSearchByClass && currentSearchClass.HasValue
-            ? AchievementManager.Instance.GetCardsByClass(currentSearchClass.Value)
-            : AchievementManager.Instance.cards;
+        List<AchievementSO> cardsToDisplay = AchievementManager.Instance.achievementList.achievement;
 
         for (int i = 0; i < cardsToDisplay.Count; i++)
         {
             if (i >= _page * cardsPerPage && i < (_page + 1) * cardsPerPage)
             {
-                CardSO card = cardsToDisplay[i];
+                AchievementSO achievement = cardsToDisplay[i];
                 GameObject slot = cardSlots[i % cardsPerPage];
 
                 slot.gameObject.SetActive(true);
-                card.ApplyVisuals(slot, heldColor, notHeldColor);
+                achievement.ApplyVisuals(slot, heldColor, notHeldColor);
                 AnimateCard(slot, 4);
             }
         }
@@ -82,21 +77,7 @@ public class CardPanel : BasePanel
         cardSlot.transform.DOPunchRotation(new Vector3(0, 0, punchStrength), 0.2f, 4, 0.5f);
         cardSlot.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0), 0.2f, 4, 0.5f);
     }
-
-    public void SearchByClass(CardClass cardClass)
-    {
-        isSearchByClass = true;
-        currentSearchClass = cardClass;
-
-        List<CardSO> filteredCards = AchievementManager.Instance.GetCardsByClass(cardClass);
-        totalNumbers = filteredCards.Count;
-        page = 0;
-        UpdateMaxPage();
-
-        DisplayCards(page);
-        UpdatePageUI();
-    }
-
+    
     private void ResetCardSlots()
     {
         foreach (var slot in cardSlots)
@@ -104,18 +85,7 @@ public class CardPanel : BasePanel
             slot.gameObject.SetActive(false);
         }
     }
-
-    public void ResetSearch()
-    {
-        isSearchByClass = false;
-        totalNumbers = AchievementManager.Instance.cards.Count;
-        page = 0;
-        UpdateMaxPage();
-        
-        DisplayCards(page);
-        UpdatePageUI();
-    }
-
+    
     public void NextPage()
     {
         if (page < maxPage)

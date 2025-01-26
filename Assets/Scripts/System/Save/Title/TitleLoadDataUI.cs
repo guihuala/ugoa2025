@@ -58,7 +58,6 @@ public class TitleLoadDataUI : MonoBehaviour
         screenShot.sprite = SAVE.LoadShot(i);
         gameTime.text  = $"游戏时间  {TIMEMGR.GetFormatTime((int)data.gameTime)}";
         sceneName.text = $"当前场景  {data.scensName}";
-        level.text     = $"完成等级  {data.level}";
         
         // 显示详情面板
         detail.SetActive(true);

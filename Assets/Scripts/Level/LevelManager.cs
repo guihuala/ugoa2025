@@ -31,9 +31,9 @@ public class LevelManager : SingletonPersistent<LevelManager>
     }
 
     // 从存档读取数据
-    public void LoadLevelUnlocks()
+    public void LoadLevelUnlocks(int ID)
     {
-        var saveData = SaveManager.Instance.ReadForShow(0);
+        var saveData = SaveManager.Instance.ReadForShow(ID);
         if (saveData != null && saveData.levelUnlocks != null)
         {
             foreach (var levelData in saveData.levelUnlocks)

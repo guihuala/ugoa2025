@@ -70,7 +70,8 @@ public class TitleUI : MonoBehaviour
             RecordData.Instance.Save();
         }    
 
-        LevelManager.Instance.LoadLevelUnlocks();
+        LevelManager.Instance.LoadLevelUnlocks(i);
+        AchievementManager.Instance.LoadAchievements(i);
         
         // 切换到存档所在的场景
         SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName,"...");
@@ -85,8 +86,13 @@ public class TitleUI : MonoBehaviour
     // 开始新游戏
     void NewGame()
     {
+        // 有时间改成事件触发
+        
         // 清除关卡管理器读取的数据，恢复默认值
         LevelManager.Instance.InitLevelUnlocks();
+        // 清除成就管理器的数据
+        AchievementManager.Instance.InitLockCards();
+        
         // 切换到默认场景
         SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"...");
     }

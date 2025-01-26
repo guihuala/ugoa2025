@@ -28,9 +28,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
         public Vector3 playerPosition;
         public float gameTime;
 
-        // 达成的成就、当前进度
+        // 达成的成就
         public List<AchievementSaveData> achievements = new List<AchievementSaveData>();
-        public PlayerProgress playerProgress = new PlayerProgress();
 
         // 新增：关卡解锁状态
         public List<LevelUnlockData> levelUnlocks = new List<LevelUnlockData>();
@@ -61,11 +60,10 @@ public class SaveManager : SingletonPersistent<SaveManager>
             playerPosition = playerPosition,
             playerStep = playerStep,
             gameTime = gameTime,
-            playerProgress = AchievementManager.Instance.playerProgress
         };
 
         // 保存成就数据
-        foreach (var achievement in AchievementManager.Instance._achievementList.achievement)
+        foreach (var achievement in AchievementManager.Instance._achievementList)
         {
             savedata.achievements.Add(new AchievementSaveData
             {
@@ -94,14 +92,13 @@ public class SaveManager : SingletonPersistent<SaveManager>
         playerPosition = savedata.playerPosition;
         playerStep = savedata.playerStep;
         gameTime = savedata.gameTime;
-        AchievementManager.Instance.playerProgress = savedata.playerProgress;
 
         // 加载成就数据
         if (savedata.achievements != null)
         {
             foreach (var achievementData in savedata.achievements)
             {
-                var achievement = AchievementManager.Instance._achievementList.achievement.Find(a => a.cardID == achievementData.cardID);
+                var achievement = AchievementManager.Instance._achievementList.Find(a => a.cardID == achievementData.cardID);
                 if (achievement != null)
                 {
                     achievement.isHeld = achievementData.isHeld;

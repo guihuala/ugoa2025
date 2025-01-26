@@ -5659,7 +5659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a783444aba5458581a4d6f08154555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementList: {fileID: 11400000, guid: c23ffc0ba6a57402ab4e71d30f4ca25d, type: 2}
+  DefaultAchievementList: {fileID: 11400000, guid: c23ffc0ba6a57402ab4e71d30f4ca25d, type: 2}
+  _achievementList: []
 --- !u!114 &1861914826
 MonoBehaviour:
   m_ObjectHideFlags: 0

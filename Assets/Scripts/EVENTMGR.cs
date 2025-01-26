@@ -28,6 +28,17 @@ public static class EVENTMGR
     }
 
     #endregion
-    
+
+    #region 捡起物品
+
+    public static event Action<string> OnCollectItem;
+
+    public static void TriggerCollectItem(string itemId)
+    {
+        OnCollectItem?.Invoke(itemId);
+    }    
+
+    #endregion
+
 
 }

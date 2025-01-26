@@ -14,11 +14,11 @@ public class SingleBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         _interactText = transform.GetChild(0).GetComponent<Text>();
     }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         AudioManager.Instance.PlaySfx("click");
         UIManager.Instance.OpenPanel(openPanelName);
-
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -16,9 +16,7 @@ public class CollectTrigger : MonoBehaviour, IEnterSpecialItem
     // 拾取后触发的事件
     protected virtual void OnItemCollected()
     {
-        // 将物品添加到玩家进度中
-        // AchievementManager.Instance.playerProgress.AddItem(itemID);
-        // AchievementManager.Instance.TryUnlockCards();
+
     }
 
     public void Apply()
@@ -32,6 +30,8 @@ public class CollectTrigger : MonoBehaviour, IEnterSpecialItem
         isCollected = true;
         
         OnItemCollected();
+        
+        EVENTMGR.TriggerCollectItem(itemID);
         
         Destroy(gameObject);
         Debug.Log($"{itemName} 已被拾取！");

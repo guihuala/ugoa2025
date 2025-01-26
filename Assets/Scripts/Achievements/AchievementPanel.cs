@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -6,14 +7,10 @@ using DG.Tweening;
 public class AchievementPanel : BasePanel
 {
     public GameObject[] cardSlots;
-
-    [Header("Card Background Color")]
-    public Color heldColor;
-    public Color notHeldColor;
     
     [Header("Page Settings")]
     public int page = 0;
-    public int cardsPerPage = 8;
+    public int cardsPerPage = 4;
     public Text pageText;
     
     private int totalNumbers; // 用于显示总卡片数量
@@ -23,42 +20,34 @@ public class AchievementPanel : BasePanel
     public Button previousPageButton;
     public Button closeButton;
 
-
-    public override void OpenPanel(string name)
+    private void Start()
     {
-        base.OpenPanel(name);
-        
-        totalNumbers = AchievementManager.Instance.DefaultAchievementList.achievement.Count;
-        UpdateMaxPage();
-        DisplayCards(page);
-        UpdatePageUI();
-
         nextPageButton.onClick.AddListener(NextPage);
         previousPageButton.onClick.AddListener(PreviousPage);
-        closeButton.onClick.AddListener(CloseButton);
-    }
+        closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
+        
+        totalNumbers = AchievementManager.Instance.DefaultAchievementList.achievement.Count;
 
-    void CloseButton()
-    {
-        Debug.Log("onClose button");
-        UIManager.Instance.ClosePanel(panelName);
+        UpdateMaxPage();
+        UpdatePageUI(); 
+        DisplayCards(page);
     }
-
+    
     void UpdateMaxPage()
     {
-        maxPage = Mathf.CeilToInt((float)totalNumbers / cardsPerPage) - 1;
+        maxPage = Mathf.CeilToInt((float)totalNumbers / cardsPerPage);
     }
 
     void UpdatePageUI()
     {
-        pageText.text = $"{page + 1}/{maxPage + 1}";
+        pageText.text = $"{page + 1}/{maxPage}";
     }
 
     private void DisplayCards(int _page)
     {
         ResetCardSlots();
 
-        List<AchievementSO> cardsToDisplay = AchievementManager.Instance._achievementList.achievement;
+        List<AchievementSO> cardsToDisplay = AchievementManager.Instance._achievementList;
 
         for (int i = 0; i < cardsToDisplay.Count; i++)
         {
@@ -68,16 +57,14 @@ public class AchievementPanel : BasePanel
                 GameObject slot = cardSlots[i % cardsPerPage];
 
                 slot.gameObject.SetActive(true);
-                achievement.ApplyVisuals(slot, heldColor, notHeldColor);
-                AnimateCard(slot, 4);
+                achievement.ApplyVisuals(slot);
+                // 可以添加动画
             }
         }
     }
 
     private void AnimateCard(GameObject cardSlot, int punchStrength)
     {
-        cardSlot.transform.DOPunchRotation(new Vector3(0, 0, punchStrength), 0.2f, 4, 0.5f);
-        cardSlot.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0), 0.2f, 4, 0.5f);
     }
     
     private void ResetCardSlots()
@@ -90,7 +77,7 @@ public class AchievementPanel : BasePanel
     
     public void NextPage()
     {
-        if (page < maxPage)
+        if (page < maxPage - 1)
         {
             page++;
         }

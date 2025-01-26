@@ -19,7 +19,6 @@ MonoBehaviour:
     cardSprite: {fileID: 21300000, guid: 734c91b2b84184488ac818f725f8d282, type: 3}
     isHeld: 0
     condition:
-      conditionType: 0
       requiredItem: 1
   - cardID: 2
     cardName: "\u4E3B\u89D2"
@@ -27,5 +26,25 @@ MonoBehaviour:
     cardSprite: {fileID: 21300000, guid: a6b88696c1adc4f80a9a67153c289682, type: 3}
     isHeld: 0
     condition:
-      conditionType: 0
       requiredItem: 2
+  - cardID: 3
+    cardName: "\u8FD9\u662F\u767E\u767E\u4E16"
+    cardDes: "\u5927\u8708\u86A3"
+    cardSprite: {fileID: -587164947, guid: 2cfcb59699ec54b3b815e6687c94c312, type: 3}
+    isHeld: 0
+    condition:
+      requiredItem: 3
+  - cardID: 4
+    cardName: "\u8FD9\u662F\u9F99"
+    cardDes: "\u5927\u5929\u72D7"
+    cardSprite: {fileID: 174721928, guid: 2cfcb59699ec54b3b815e6687c94c312, type: 3}
+    isHeld: 0
+    condition:
+      requiredItem: 3
+  - cardID: 5
+    cardName: "\u989D"
+    cardDes: 111222
+    cardSprite: {fileID: 21300000, guid: e1d863da18b204d34b3260f75ae1f9fe, type: 3}
+    isHeld: 0
+    condition:
+      requiredItem: 3

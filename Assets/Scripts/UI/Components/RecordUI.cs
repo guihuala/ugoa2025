@@ -15,7 +15,6 @@ public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     // 事件回调
     public static System.Action<int> OnLeftClick;
-    public static System.Action<int> OnRightClick;
     public static System.Action<int> OnEnter;
     public static System.Action OnExit;
 
@@ -34,12 +33,6 @@ public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
             if (OnLeftClick != null)
                 OnLeftClick(id);
         }
-
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            if (OnRightClick != null)
-                OnRightClick(id);
-        }
     }
 
     // 鼠标进入事件
@@ -49,7 +42,7 @@ public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         rect.color = enterColor;
 
         // 如果存档存在则显示提示信息（通过ID获取存档数据，ID为SiblingIndex）
-        if (recordName.text != "空白")
+        if (recordName.text != "空存档")
         {
             if (OnEnter != null)
                 OnEnter(id);
@@ -79,7 +72,7 @@ public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         // 如果为空则隐藏Auto标识（可能是删除时需要用到的）
         if (RecordData.Instance.recordName[i] == "")
         {
-            recordName.text = "空白";
+            recordName.text = "空存档";
             auto.SetActive(false);
         }
         else

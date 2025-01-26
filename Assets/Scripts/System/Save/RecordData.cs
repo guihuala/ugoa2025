@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RecordData : SingletonPersistent<RecordData>
 {
-    public const int recordNum = 5;             // 存档数量
+    public const int recordNum = 5;              // 存档数量
     public const string NAME = "RecordData";     // 存档的键名
 
     public string[] recordName = new string[recordNum];    // 存档文件名（完整路径）
@@ -46,16 +46,36 @@ public class RecordData : SingletonPersistent<RecordData>
     {
         SAVE.PlayerPrefsSave(NAME, ForSave());
     }
-
-    // 从 PlayerPrefs 加载数据
+    
+    // 从 PlayerPrefs 加载数据，并检查是否为空
     public void Load()
     {
-        // 如果存在存档数据
+        // 检查是否有存档数据
         if (PlayerPrefs.HasKey(NAME))
         {
             string json = SAVE.PlayerPrefsLoad(NAME);
-            SaveData saveData = JsonUtility.FromJson<SaveData>(json);
-            ForLoad(saveData);
+            if (!string.IsNullOrEmpty(json))
+            {
+                // 如果数据存在且非空，加载数据
+                SaveData saveData = JsonUtility.FromJson<SaveData>(json);
+                ForLoad(saveData);
+                return;
+            }
+        }
+
+        // 如果数据不存在或为空，初始化为默认值
+        lastID = 123; // 默认值
+        for (int i = 0; i < recordNum; i++)
+        {
+            recordName[i] = ""; // 初始化为空字符串
+        }
+    }
+    
+    public void Delete()
+    {
+        if (PlayerPrefs.HasKey(NAME))
+        {
+            SAVE.PlayerPrefsDelete(NAME);
         }
     }
 }

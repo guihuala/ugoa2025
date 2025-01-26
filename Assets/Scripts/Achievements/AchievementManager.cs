@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.Serialization;
 
 public class AchievementManager : SingletonPersistent<AchievementManager>
 {
@@ -10,13 +8,13 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
     private HashSet<string> unlockedCards = new HashSet<string>();
     public PlayerProgress playerProgress;
 
-    public void TryUnlockCards(PlayerProgress progress)
+    public void TryUnlockCards()
     {
         foreach (var card in achievementList.achievement) // 遍历成就列表
         {
-            if (!IsCardUnlocked(card) && card.CheckCondition(progress))
+            if (!IsCardUnlocked(card) && card.CheckCondition(playerProgress))
             {
-                CheckAndUnlockCard(card, progress);
+                CheckAndUnlockCard(card, playerProgress);
             }
         }
     }
@@ -34,7 +32,6 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
         {
             unlockedCards.Add(achievement.cardID);
             achievement.isHeld = true;
-            // 可以自动保存一下
         }
     }
 }

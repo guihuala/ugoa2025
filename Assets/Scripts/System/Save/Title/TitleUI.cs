@@ -39,7 +39,7 @@ public class TitleUI : MonoBehaviour
         RecordData.Instance.Load();
 
         // 如果有存档，则激活“继续游戏”和“加载游戏”按钮
-        if (RecordData.Instance.lastID != 233)
+        if (RecordData.Instance.lastID != 123)
         {
             Continue.gameObject.SetActive(true);
             Load.gameObject.SetActive(true);

@@ -1029,6 +1029,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3e6ca60dbe7254738bf9040aba556549, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2facca2756d224851b7a161ca1ca7afa, type: 2}
     - target: {fileID: 919132149155446097, guid: 3e6ca60dbe7254738bf9040aba556549, type: 3}
       propertyPath: m_Name
       value: tileMedium_teamBlue (23)

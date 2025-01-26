@@ -77,7 +77,6 @@ public class RecordPanel : BasePanel
         // 检查存档索引合法性
         if (i < 0 || i >= RecordData.recordNum)
         {
-            Debug.LogWarning("非法存档索引！");
             detail.SetActive(false);
             return;
         }

@@ -14,7 +14,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
 {
     // 一些需要保存零散的数据
     public SceneName scensName = SceneName.Title; // 玩家上一次所在的场景，在游戏时需要触发更新
-    // 玩家保存的脚步
+    public int playerStep = 5;
+    public Vector3 playerPosition;
     public float gameTime; // 游戏时间
 
     // 其他需要保存的数据例如成就达成度等
@@ -23,6 +24,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
     public class SaveData
     {
         public SceneName scensName;
+        public int playerStep;
+        public Vector3 playerPosition;
         public float gameTime;
 
         // 达成的成就、当前进度
@@ -43,6 +46,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
         var savedata = new SaveData
         {
             scensName = scensName,
+            playerPosition = playerPosition,
+            playerStep = playerStep,
             gameTime = gameTime,
             playerProgress = AchievementManager.Instance.playerProgress
         };
@@ -63,6 +68,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
     void ForLoad(SaveData savedata)
     {
         scensName = savedata.scensName;
+        playerPosition = savedata.playerPosition;
+        playerStep = savedata.playerStep;
         gameTime = savedata.gameTime;
         AchievementManager.Instance.playerProgress = savedata.playerProgress;
 
@@ -77,6 +84,40 @@ public class SaveManager : SingletonPersistent<SaveManager>
                     achievement.isHeld = achievementData.isHeld;
                 }
             }
+        }
+    }
+    
+    public void NewRecord(int ID = 0,string end = ".auto")
+    {
+        // 如果原位置有存档则删除
+        if (RecordData.Instance.recordName[ID] != "")
+        {
+            DeleteRecord(ID);
+        }
+
+        // 创建新存档
+        RecordData.Instance.recordName[ID] = $"{System.DateTime.Now:yyyyMMdd_HHmmss}{end}";
+        RecordData.Instance.lastID = ID;
+        RecordData.Instance.Save();
+        
+        Save(ID);
+        SAVE.CameraCapture(ID, Camera.main, new Rect(0, 0, Screen.width, Screen.height));
+    }
+    
+    void DeleteRecord(int i, bool isCover = true)
+    {
+        if (i < 0 || i >= RecordData.recordNum || RecordData.Instance.recordName[i] == "")
+        {
+            Debug.LogWarning("删除存档失败：非法的存档索引！");
+            return;
+        }
+        Delete(i);
+        RecordData.Instance.Delete();
+
+        if (!isCover)
+        {
+            RecordData.Instance.recordName[i] = "";
+            SAVE.DeleteShot(i);
         }
     }
 

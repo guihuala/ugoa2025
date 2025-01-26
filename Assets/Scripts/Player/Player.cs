@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] private float rayDistance = 1f;
+
+    private void Update()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("PickupLayer"))
+        DetectWithRaycast();
+    }
+
+    private void DetectWithRaycast()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, rayDistance))
         {
-            Debug.Log("拾取物品: " + other.name);
-            other.gameObject.GetComponent<ICollectible>()?.OnCollect();
+            var item = hit.collider.GetComponent<IEnterSpecialItem>();
+            if (item != null)
+                item.Apply();
         }
-        
     }
 }

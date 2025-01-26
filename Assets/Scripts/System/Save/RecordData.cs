@@ -71,6 +71,19 @@ public class RecordData : SingletonPersistent<RecordData>
         }
     }
     
+    public int GetFirstEmptyRecordIndex()
+    {
+        for (int i = 0; i < recordNum; i++)
+        {
+            if (string.IsNullOrEmpty(recordName[i]))
+            {
+                return i; // 返回第一个为空的索引
+            }
+        }
+
+        return 0; // 如果没有找到空的记录，返回0
+    }
+
     public void Delete()
     {
         if (PlayerPrefs.HasKey(NAME))

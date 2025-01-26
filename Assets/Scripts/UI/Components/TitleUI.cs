@@ -77,9 +77,6 @@ public class TitleUI : MonoBehaviour
     // 开始新游戏
     void NewGame()
     {
-        // 初始化玩家数据
-        // 此处可以调用 Player 的 Init 方法，也可以直接使用默认数据
-
         // 切换到默认场景
         SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"...");
     }

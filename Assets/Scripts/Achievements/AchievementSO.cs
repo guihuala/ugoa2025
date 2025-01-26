@@ -80,7 +80,6 @@ public enum ConditionType
 // 定义玩家进度管理的类
 public class PlayerProgress
 {
-    public int gameEntries;            // 玩家进入游戏的次数
     public HashSet<string> inventory;  // 玩家已收集的道具，使用 HashSet 避免重复
 
     // 检查玩家是否拥有某个特定的道具
@@ -89,15 +88,10 @@ public class PlayerProgress
         return inventory.Contains(item);
     }
 
-    // 增加玩家进入游戏的次数
-    public void IncrementGameEntries()
-    {
-        gameEntries++;
-    }
-
     // 添加道具到玩家的道具清单中
     public void AddItem(string item)
     {
         inventory.Add(item);
+        Debug.Log("收集道具： " + item);
     }
 }

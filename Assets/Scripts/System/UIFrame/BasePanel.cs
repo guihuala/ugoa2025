@@ -34,7 +34,7 @@ public class BasePanel : MonoBehaviour
 
         // 使用 DOTween 播放渐显动画
         Sequence s = DOTween.Sequence();
-        s.Append(canvasGroup.DOFade(1, 0.5f));
+        s.Append(canvasGroup.DOFade(1, 0.2f));
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class BasePanel : MonoBehaviour
 
         // 使用 DOTween 播放渐隐动画，并在动画完成后销毁对象
         Sequence s = DOTween.Sequence();
-        s.Append(canvasGroup.DOFade(0, 0.5f).OnComplete(() =>
+        s.Append(canvasGroup.DOFade(0, 0.2f).OnComplete(() =>
         {
             Destroy(gameObject);
         }));

@@ -9,10 +9,13 @@ public class CameraController : MonoBehaviour
     public float angle = 25f;
     public float zoomSpeed = 6f;
     public float dragSpeed = 2f;
+    public float smoothZoomTime = 0.2f; // 缩放的平滑时间
 
     private Vector3 velocity = Vector3.zero;
     private bool isDragging = false;
     private Vector3 dragOrigin;
+    private float targetZoom; // 目标缩放值
+    private float zoomVelocity; // 用于平滑插值的临时变量
 
     void LateUpdate()
     {
@@ -40,14 +43,21 @@ public class CameraController : MonoBehaviour
     }
 
 
-    // 滚轮缩放
+    // 平滑滚轮缩放
     void HandleZoom()
     {
+        // 获取滚轮输入并更新目标缩放值
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-        
-        Camera.main.orthographicSize -= scrollInput * zoomSpeed;
-        
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 2, 4);
+        targetZoom -= scrollInput * zoomSpeed;
+        targetZoom = Mathf.Clamp(targetZoom, 2, 4);
+
+        // 平滑插值到目标缩放值
+        Camera.main.orthographicSize = Mathf.SmoothDamp(
+            Camera.main.orthographicSize,
+            targetZoom,
+            ref zoomVelocity,
+            smoothZoomTime
+        );
     }
 
     

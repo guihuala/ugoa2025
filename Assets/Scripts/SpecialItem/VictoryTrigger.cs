@@ -13,7 +13,7 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
         // 在这边存储一下进入下一关
         if (!isEndLevel)
         {
-            SceneLoader.Instance.LoadScene(nextScene, "...");
+            SceneLoader.Instance.LoadScene(nextScene, "前往下一关...");
             LevelManager.Instance.UnlockLevel(nextLevelName);
             SaveManager.Instance.NewRecord();
         }

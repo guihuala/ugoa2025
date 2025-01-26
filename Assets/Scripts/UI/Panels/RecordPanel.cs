@@ -171,7 +171,7 @@ public class RecordPanel : BasePanel
         // 切换场景并更新时间
         if (SceneManager.GetActiveScene().name != SaveManager.Instance.scensName.ToString())
         {
-            SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName, "...");
+            SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName, "读取进度...");
         }
 
         TIMEMGR.SetOriTime();

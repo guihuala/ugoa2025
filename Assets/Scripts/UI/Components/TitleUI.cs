@@ -74,7 +74,7 @@ public class TitleUI : MonoBehaviour
         AchievementManager.Instance.LoadAchievements(i);
         
         // 切换到存档所在的场景
-        SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName,"...");
+        SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName,"loading...");
     }
 
     // 打开/关闭存档面板
@@ -94,7 +94,7 @@ public class TitleUI : MonoBehaviour
         AchievementManager.Instance.InitLockCards();
         
         // 切换到默认场景
-        SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"...");
+        SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"loading...");
     }
 
     // 退出游戏

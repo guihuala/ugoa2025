@@ -41,8 +41,13 @@ public class TitleUI : MonoBehaviour
         // 如果有存档，则激活“继续游戏”和“加载游戏”按钮
         if (RecordData.Instance.lastID != 233)
         {
-            Continue.interactable = true;
-            Load.interactable = true;
+            Continue.gameObject.SetActive(true);
+            Load.gameObject.SetActive(true);
+        }
+        else
+        {
+            Continue.gameObject.SetActive(false);
+            Load.gameObject.SetActive(false);
         }           
     }
 
@@ -76,7 +81,7 @@ public class TitleUI : MonoBehaviour
         // 此处可以调用 Player 的 Init 方法，也可以直接使用默认数据
 
         // 切换到默认场景
-        SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName,"...");
+        SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"...");
     }
 
     // 退出游戏

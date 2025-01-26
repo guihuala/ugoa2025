@@ -13,7 +13,7 @@ using UnityEngine;
 public class SaveManager : SingletonPersistent<SaveManager>
 {
     // 一些需要保存零散的数据
-    public SceneName scensName = SceneName.MainMenu; // 玩家上一次所在的场景，在游戏时需要触发更新
+    public SceneName scensName = SceneName.Title; // 玩家上一次所在的场景，在游戏时需要触发更新
     // 玩家保存的脚步
     public float gameTime; // 游戏时间
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class RecordPanel : BasePanel
 {
@@ -10,8 +11,10 @@ public class RecordPanel : BasePanel
     public GameObject recordPrefab;      // 存档项预制件
 
     [Header("按钮")]
-    public Button save;
-    public Button load;
+    public Button saveBtn;
+    public Button loadBtn;
+    public Button closeBtn;
+    
     [ColorUsage(true)]
     public Color oriColor;              // 按钮初始颜色
 
@@ -20,7 +23,6 @@ public class RecordPanel : BasePanel
     public Image screenShot;            // 存档截图
     public Text gameTime;               // 游戏时间
     public Text sceneName;              // 当前场景
-    public Text level;                  // 等级
 
     // Key：存档文件名，Value：存档编号
     Dictionary<string, int> RecordInGrid = new Dictionary<string, int>();
@@ -49,8 +51,9 @@ public class RecordPanel : BasePanel
         RecordUI.OnLeftClick += LeftClickGrid;     
         RecordUI.OnRightClick += RightClickGrid;
         RecordUI.OnEnter += ShowDetails;
-        save.onClick.AddListener(() => SaveOrLoad());
-        load.onClick.AddListener(() => SaveOrLoad(false));
+        saveBtn.onClick.AddListener(() => SaveOrLoad());
+        loadBtn.onClick.AddListener(() => SaveOrLoad(false));
+        closeBtn.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
         #endregion
 
         // 初始化时间
@@ -93,8 +96,8 @@ public class RecordPanel : BasePanel
         isSave = OnSave;
         isLoad = !OnSave;
         // 更新按钮颜色
-        save.GetComponent<Image>().color = isSave ? Color.white : oriColor;
-        load.GetComponent<Image>().color = isLoad ? Color.white : oriColor;
+        saveBtn.GetComponent<Image>().color = isSave ? Color.white : oriColor;
+        loadBtn.GetComponent<Image>().color = isLoad ? Color.white : oriColor;
     }
 
     // 左键点击事件
@@ -137,35 +140,6 @@ public class RecordPanel : BasePanel
         
         // 删除存档
         DeleteRecord(gridID, false);
-    }
-
-    private void QuitGame()
-    {
-        string autoName = SAVE.FindAuto();
-        if (autoName != "")
-        {
-            int autoID;
-            // 查找自动存档对应的编号
-            RecordInGrid.TryGetValue(autoName, out autoID);
-            // 删除旧的自动存档，创建新的自动存档
-            NewRecord(autoID, ".auto");
-        }
-        else
-        {
-            for (int i = 0; i < RecordData.recordNum; i++)
-            {
-                // 找到空位
-                if (RecordData.Instance.recordName[i] == "")
-                {
-                    NewRecord(i, ".auto");
-                    break;
-                }
-            }
-
-        }
-
-        // 退出游戏
-
     }
 
     // 创建新存档

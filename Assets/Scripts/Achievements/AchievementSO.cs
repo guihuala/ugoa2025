@@ -7,15 +7,6 @@ using UnityEngine.UI;
 /// <summary>
 /// 脚本描述了成就系统需要使用到的各种结构
 /// </summary>
-
-[CreateAssetMenu(fileName = "New AchievementListSO", menuName = "Achievement/AchievementListSO")]
-public class AchievementList : ScriptableObject
-{
-    public List<AchievementSO> achievement;
-}
-
-
-
 [System.Serializable]
 public class AchievementSO
 {

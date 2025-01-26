@@ -7,7 +7,7 @@ using System;
 // 在这里配置游戏的场景枚举，名称需要与场景名一致
 public enum SceneName
 {
-    MainMenu,
+    Title,
     LevelSelection,
     ghlgScene,
 }
@@ -42,6 +42,9 @@ public class SceneLoader : SingletonPersistent<SceneLoader>
         {
             // 使用枚举值的字符串表示加载场景
             SceneManager.LoadScene(sceneName.ToString());
+
+            // 改变一下存档管理器当前的场景
+            SaveManager.Instance.scensName = sceneName;
 
             UIManager.Instance.RemovePanel("SleepBlackPanel");
         });

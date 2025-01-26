@@ -9,7 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3f0f04ebe8ef747869e620afc9046101, type: 3}
   m_Name: AchievementListSO
-  m_EditorClassIdentifier: Assembly-CSharp::AchievementList
-  achievement: []
+  m_EditorClassIdentifier: 
+  achievement:
+  - cardID: 1
+    cardName: "\u955C\u997C"
+    cardDes: "\u8FDE\u7F18\u5496\u5561\u5385\u7F8E\u98DF"
+    cardSprite: {fileID: 21300000, guid: 734c91b2b84184488ac818f725f8d282, type: 3}
+    isHeld: 0
+    condition:
+      conditionType: 0
+      requiredItem: 1

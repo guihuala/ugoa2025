@@ -88,6 +88,8 @@ public class Player : MonoBehaviour
         {
             DieInSwamp();
         }
+        
+        EVENTMGR.TriggerChangeSwampProgress(1- stayTime / timeUntilDeath);
     }
 
     private void DieInSwamp()

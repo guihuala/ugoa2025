@@ -135,4 +135,12 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+    
+    private void OnDestroy()
+    {
+        EVENTMGR.OnStepIntoGrass -= SetInvisible;
+        EVENTMGR.OnEnterSwamp -= HandleSwampEnter;
+        EVENTMGR.OnExitSwamp -= HandleSwampExit;
+        EVENTMGR.OnStayInSwamp -= HandleSwampStay;
+    }
 }

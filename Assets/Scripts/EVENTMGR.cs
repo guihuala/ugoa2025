@@ -80,13 +80,13 @@ public static class EVENTMGR
 
     #endregion
     
-    #region 使用步数
+    #region 步数
 
-    public static event Action<int> UseSteps;
+    public static event Action<int> ChangeSteps;
 
-    public static void TriggerUseSreps(int remainSteps)
+    public static void TriggerChangeSteps(int remainSteps)
     {
-        UseSteps?.Invoke(remainSteps);
+        ChangeSteps?.Invoke(remainSteps);
     }   
 
     #endregion

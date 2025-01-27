@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-/// <summary>
-/// 定义可拾取物品的基类
-/// </summary>
 public class CollectTrigger : MonoBehaviour, IEnterSpecialItem
 {
     public string itemID; // 物品唯一标识符
-    public string itemName; // 物品名称
 
     private bool isCollected = false; // 是否已被拾取
 
@@ -34,6 +29,5 @@ public class CollectTrigger : MonoBehaviour, IEnterSpecialItem
         EVENTMGR.TriggerCollectItem(itemID);
         
         Destroy(gameObject);
-        Debug.Log($"{itemName} 已被拾取！");
     }
 }

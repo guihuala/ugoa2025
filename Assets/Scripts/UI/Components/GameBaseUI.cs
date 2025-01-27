@@ -19,7 +19,7 @@ public class GameBaseUI : MonoBehaviour
 
     private void Start()
     {
-        EVENTMGR.UseSteps += UpdateStepText;
+        EVENTMGR.ChangeSteps += UpdateStepText;
     }
 
     private void UpdateStepText(int remainSteps)

@@ -36,19 +36,20 @@ public class CameraController : MonoBehaviour
     // 跟随玩家
     void FollowPlayer()
     {
-        Vector3 playerPosition = player.position;
+        if (player == null) return;
+        
         float angleRadians_x = angle_x * Mathf.Deg2Rad;
         float angleRadians_y = angle_y * Mathf.Deg2Rad;
         
-        Vector3 targetPosition = new Vector3(
-            playerPosition.x - Mathf.Cos(angleRadians_y) * 13f,
-            transform.position.y, // 高度固定
-            playerPosition.z - Mathf.Cos(angleRadians_x) * 10f
-        );
-        
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f / followSpeed);
-    }
+        float offsetX = Mathf.Cos(angleRadians_y) * Mathf.Cos(angleRadians_x) * 13f;
+        float offsetZ = Mathf.Sin(angleRadians_y) * Mathf.Cos(angleRadians_x) * 13f;
+        float offsetY = Mathf.Sin(angleRadians_x) * 13f;
 
+        // 确定相机目标位置
+        Vector3 targetPosition = player.position - new Vector3(offsetX, -offsetY, offsetZ);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f / followSpeed);
+        transform.rotation = Quaternion.Euler(angle_x, angle_y, 0f);
+    }
 
     // 平滑滚轮缩放
     void HandleZoom()
@@ -68,28 +69,38 @@ public class CameraController : MonoBehaviour
     }
 
     
-    // 左键拖拽
-    void HandleDrag()
+void HandleDrag()
+{
+    if (Input.GetMouseButtonDown(0))
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            isDragging = true;
-            dragOrigin = Input.mousePosition;
-        }
-
-        if (Input.GetMouseButton(0) && isDragging)
-        {
-            Vector3 dragDifference = Input.mousePosition - dragOrigin;
-            dragOrigin = Input.mousePosition;
-
-
-            Vector3 move = new Vector3(-dragDifference.x * dragSpeed * Time.deltaTime, 0, -dragDifference.y * dragSpeed * Time.deltaTime);
-            transform.Translate(move, Space.World);
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            isDragging = false;
-        }
+        isDragging = true;
+        dragOrigin = Input.mousePosition;
     }
+
+    if (Input.GetMouseButton(0) && isDragging)
+    {
+        Vector3 currentMousePosition = Input.mousePosition;
+        Vector3 dragDifference = currentMousePosition - dragOrigin;
+        dragOrigin = currentMousePosition;
+
+        // 将屏幕坐标的拖拽差异转换为世界坐标
+        Vector3 worldDrag = new Vector3(-dragDifference.x, 0, -dragDifference.y);
+        float dragFactor = (Camera.main.orthographic 
+                            ? Camera.main.orthographicSize / Screen.height * 2f 
+                            : Mathf.Abs(transform.position.y) / Screen.height * 2f);
+
+        worldDrag *= dragFactor;
+        
+        Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
+        transform.position += adjustedDrag;
+    }
+
+    if (Input.GetMouseButtonUp(0))
+    {
+        isDragging = false;
+    }
+}
+
+
+
 }

@@ -14,13 +14,32 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentRotation = 0f;
     private float targetRotation = 180f;
+    
+    private StepManager _stepManager;
 
     void Start()
     {
         transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
+        
+        _stepManager = FindObjectOfType<StepManager>();
+        if (_stepManager == null)
+        {
+            Debug.LogError("StepManager not found.");
+        }
     }
 
     void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+            _stepManager.UseStep(1);
+        
+        if(_stepManager.GetRemainingSteps() <= 0)
+            return;
+        
+        HandleMovement();
+    }
+
+    private void HandleMovement()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");

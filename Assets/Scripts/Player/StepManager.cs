@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StepManager : MonoBehaviour
@@ -9,9 +7,13 @@ public class StepManager : MonoBehaviour
     public int maxSteps = 5;
     private int remainingSteps;
 
+    // 每隔多少秒增加步数
+    public float stepIncreaseInterval = 5f;
+
     private void Start()
     {
         remainingSteps = maxSteps;
+        StartCoroutine(AutoIncreaseSteps());
     }
 
     // 检查是否还有步数
@@ -26,7 +28,7 @@ public class StepManager : MonoBehaviour
         if (remainingSteps > 0 && remainingSteps >= steps)
         {
             remainingSteps -= steps;
-            EVENTMGR.TriggerUseSreps(remainingSteps);
+            EVENTMGR.TriggerChangeSteps(remainingSteps);
         }
         else
         {
@@ -40,9 +42,24 @@ public class StepManager : MonoBehaviour
         return remainingSteps;
     }
 
-    //增加步数
+    // 增加步数
     public void AddRemainSteps(int step)
     {
-        remainingSteps += step;
+        remainingSteps = Mathf.Clamp(remainingSteps + step, 0, maxSteps);
+    }
+
+    // 自动增加步数
+    private IEnumerator AutoIncreaseSteps()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(stepIncreaseInterval);
+            
+            if (remainingSteps < maxSteps)
+            {
+                remainingSteps++;
+                EVENTMGR.TriggerChangeSteps(remainingSteps);
+            }
+        }
     }
 }

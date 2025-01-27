@@ -7,7 +7,7 @@ public class ClickManager : MonoBehaviour
     private ClickableEffect currentClickableEffect; // 当前激活的物体
     [SerializeField] private float sizeLerpSpeed = 15f; // 相机缩放速度
     [SerializeField] private float targetSize = 2f; // 缩放目标正交大小
-    [SerializeField] private float normalSize = 2.5f; // 默认正交大小
+    private float normalSize; // 默认正交大小
     private Coroutine sizeChangeCoroutine;
 
     private void Awake()
@@ -95,6 +95,8 @@ public class ClickManager : MonoBehaviour
 
     private void StartCameraZoom(float targetSize)
     {
+        normalSize = mainCamera.orthographicSize;
+        
         if (sizeChangeCoroutine != null)
         {
             StopCoroutine(sizeChangeCoroutine);

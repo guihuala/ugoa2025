@@ -14,7 +14,7 @@ public class ClickableEffect : MonoBehaviour, IClickable
         // 动态生成 UI
         clickUI = Instantiate(Resources.Load<GameObject>("UIcomponents/ClickUI"));
         clickUI.transform.SetParent(transform);
-        clickUI.transform.localPosition = new Vector3(0, 0, 1);
+        clickUI.transform.localPosition = new Vector3(0, 0.5f, 0);
         clickUI.SetActive(false);
 
         uiCanvasGroup = clickUI.GetComponent<CanvasGroup>();

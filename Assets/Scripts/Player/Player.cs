@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float rayDistance = 1f;
-
     private bool isInvisible;
     public bool IsInvisible => isInvisible;
 
@@ -14,6 +12,7 @@ public class Player : MonoBehaviour
     private float stayTime = 0f; // 玩家在沼泽中累计停留时间
     private bool isInSwamp = false;
     private float initialHeight;
+    
 
     private void Start()
     {
@@ -112,6 +111,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var item = other.GetComponent<IEnterSpecialItem>();
+        Debug.Log(item);
         if (item != null)
         {
             item.Apply();

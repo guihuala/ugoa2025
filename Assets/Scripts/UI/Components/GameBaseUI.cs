@@ -16,4 +16,14 @@ public class GameBaseUI : MonoBehaviour
             UIManager.Instance.OpenPanel("SettingPanel");
         });
     }
+
+    private void Start()
+    {
+        EVENTMGR.UseSteps += UpdateStepText;
+    }
+
+    private void UpdateStepText(int remainSteps)
+    {
+        stepText.text = "当前步数：" + remainSteps.ToString();
+    }
 }

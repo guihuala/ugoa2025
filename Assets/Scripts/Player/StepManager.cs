@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,19 +21,17 @@ public class StepManager : MonoBehaviour
     }
 
     // 消耗步数
-    public void UseStep()
+    public void UseStep(int steps)
     {
-        if (remainingSteps > 0)
+        if (remainingSteps > 0 && remainingSteps >= steps)
         {
-            remainingSteps--;
+            remainingSteps -= steps;
+            EVENTMGR.TriggerUseSreps(remainingSteps);
         }
-    }
-
-    // 重置步数
-    public void ResetSteps()
-    {
-        remainingSteps = maxSteps;
-        Debug.Log("步数已重置");
+        else
+        {
+            Debug.Log("步数已用尽");
+        }
     }
 
     // 获取当前剩余步数

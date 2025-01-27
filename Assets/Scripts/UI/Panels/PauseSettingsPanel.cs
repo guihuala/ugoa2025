@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PauseSettingsPanel : BasePanel
 {
     [Header("Volume Sliders")]
-    public Slider mainVolumeSlider; // 控制全局音量的滑动条
     public Slider bgmVolumeSlider;  // 控制背景音乐音量的滑动条
     public Slider sfxVolumeSlider;  // 控制音效音量的滑动条
 
@@ -20,12 +19,10 @@ public class PauseSettingsPanel : BasePanel
         base.Awake();
 
         // 初始化音量滑动条的默认值
-        mainVolumeSlider.value = AudioManager.Instance.mainVolume;
         bgmVolumeSlider.value = AudioManager.Instance.bgmVolumeFactor;
         sfxVolumeSlider.value = AudioManager.Instance.sfxVolumeFactor;
 
         // 添加音量滑动条的监听事件
-        mainVolumeSlider.onValueChanged.AddListener(OnMainVolumeChanged);
         bgmVolumeSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
         sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
 
@@ -52,15 +49,6 @@ public class PauseSettingsPanel : BasePanel
         Time.timeScale = 1; // 恢复游戏速度
         
         base.ClosePanel();
-    }
-
-    /// <summary>
-    /// 当全局音量滑动条发生变化时的回调
-    /// </summary>
-    /// <param name="value">当前滑动条的值</param>
-    private void OnMainVolumeChanged(float value)
-    {
-        AudioManager.Instance.ChangeMainVolume(value);
     }
 
     /// <summary>
@@ -96,7 +84,7 @@ public class PauseSettingsPanel : BasePanel
     {
         Time.timeScale = 1;
         
-        SceneLoader.Instance.LoadScene(SceneName.Title,"返回主菜单...");
+        SceneLoader.Instance.LoadScene(SceneName.Title,"返回主界面...");
 
         // 防止面板还在字典中
         UIManager.Instance.RemovePanel(panelName);

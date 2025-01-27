@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class InvisibleTrigger : MonoBehaviour,IEnterSpecialItem,IExitSpecialItem
 {
+    // 灌木丛地块
+    
     public void Apply()
     {
-        // 隐身
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            EVENTMGR.TriggerStepIntoGrass(true);
+        }
     }
 
     public void UnApply()
     {
-        // 取消隐身
+        EVENTMGR.TriggerStepIntoGrass(false);
     }
 }

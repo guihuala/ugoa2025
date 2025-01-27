@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public static class EVENTMGR
 {
@@ -40,5 +37,50 @@ public static class EVENTMGR
 
     #endregion
 
+    #region 隐身效果
 
+    public static event Action<bool> OnStepIntoGrass;    
+    
+    public static void TriggerStepIntoGrass(bool isVisible)
+    {
+        OnStepIntoGrass?.Invoke(isVisible);
+    }
+
+    #endregion
+
+    #region 进入沼泽
+
+    public static event Action OnEnterSwamp;
+    
+    public static event Action OnExitSwamp;
+    
+    public static event Action<float> OnStayInSwamp;
+    
+    public static void TriggerEnterSwamp()
+    {
+        OnEnterSwamp?.Invoke();
+    }
+    
+    public static void TriggerExitSwamp()
+    {
+        OnExitSwamp?.Invoke();
+    }
+    
+    public static void TriggerStayInSwamp(float deltaTime)
+    {
+        OnStayInSwamp?.Invoke(deltaTime);
+    }
+
+    #endregion
+    
+    #region 使用步数
+
+    public static event Action<int> UseSteps;
+
+    public static void TriggerUseSreps(int remainSteps)
+    {
+        UseSteps?.Invoke(remainSteps);
+    }   
+
+    #endregion
 }

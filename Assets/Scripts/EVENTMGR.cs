@@ -90,4 +90,10 @@ public static class EVENTMGR
     }   
 
     #endregion
+
+    #region 玩家失败或胜利
+
+    // 懒得写了下次再说
+
+    #endregion
 }

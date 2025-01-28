@@ -82,8 +82,14 @@ public static class EVENTMGR
     
     #region 步数
 
+    public static event Action<int> OnUseStep;
     public static event Action<int> ChangeSteps;
 
+    public static void TriggerUseStep(int step)
+    {
+        OnUseStep?.Invoke(step);
+    }
+    
     public static void TriggerChangeSteps(int remainSteps)
     {
         ChangeSteps?.Invoke(remainSteps);

@@ -14,6 +14,8 @@ public class StepManager : MonoBehaviour
     {
         remainingSteps = maxSteps;
         StartCoroutine(AutoIncreaseSteps());
+
+        EVENTMGR.OnUseStep += UseStep;
     }
 
     // 检查是否还有步数

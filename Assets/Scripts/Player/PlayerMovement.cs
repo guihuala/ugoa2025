@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private Animator playerAnimator;
+    
+    private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
+    private bool isMoving = false;
+    [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.9f, 0); // 偏移量
 
     private float horizontalInput;
     private float verticalInput;
@@ -30,28 +34,74 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-            _stepManager.UseStep(1);
-        
-        if(_stepManager.GetRemainingSteps() <= 0)
-            return;
-        
-        HandleMovement();
+        HandleMouseInput();
+        if (!isMoving && pathQueue.Count > 0)
+        {
+            StartCoroutine(MoveAlongPath());
+        }
     }
 
-    private void HandleMovement()
+    private void HandleMouseInput()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        if (_stepManager.GetRemainingSteps() <= 0)
+            return;
 
-        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput);
-        moveDirection = moveDirection.normalized;
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                PathfindingManager pathfinding = FindObjectOfType<PathfindingManager>();
+                if (pathfinding != null)
+                {
+                    Transform targetNode = pathfinding.GetClosestNode(hit.point);
+                    Transform currentNode = pathfinding.GetClosestNode(transform.position - positionOffset);
 
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+                    if (currentNode != null && targetNode != null)
+                    {
+                        // 使用 A* 算法找到路径
+                        List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfinding.mapNodes);
 
-        HandleRotation(horizontalInput);
-        HandleAnimations(moveDirection);
+                        if (path != null)
+                        {
+                            // 检查路径长度是否超过剩余步数
+                            if (path.Count - 1 > _stepManager.GetRemainingSteps())
+                            {
+                                Debug.Log("路径超出剩余步数，无法移动！");
+                                return;
+                            }
+
+                            // 如果步数足够，清空现有路径并添加新路径
+                            pathQueue.Clear();
+                            foreach (var node in path)
+                            {
+                                pathQueue.Enqueue(node.position + positionOffset);
+                                EVENTMGR.TriggerUseStep(1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    private IEnumerator MoveAlongPath()
+    {
+        isMoving = true;
+
+        while (pathQueue.Count > 0)
+        {
+            Vector3 targetPosition = pathQueue.Dequeue();
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+
+        isMoving = false;
+    }
+    
 
     private void HandleRotation(float horizontal)
     {

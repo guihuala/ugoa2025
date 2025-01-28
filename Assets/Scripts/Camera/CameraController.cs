@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,12 @@ public class CameraController : MonoBehaviour
     private Vector3 dragOrigin;
     private float targetZoom; // 目标缩放值
     private float zoomVelocity; // 用于平滑插值的临时变量
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
+    }
 
     void LateUpdate()
     {

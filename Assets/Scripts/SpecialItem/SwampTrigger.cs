@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwampTrigger : MonoBehaviour,IEnterSpecialItem, IStayInSpecialItem, IExitSpecialItem
+public class SwampTrigger : MonoBehaviour, IEnterSpecialItem, IStayInSpecialItem, IExitSpecialItem
 {
     public void Apply()
     {
@@ -13,9 +12,9 @@ public class SwampTrigger : MonoBehaviour,IEnterSpecialItem, IStayInSpecialItem,
     {
         EVENTMGR.TriggerStayInSwamp(stayDuration);
     }
-    
+
     public void UnApply()
     {
         EVENTMGR.TriggerExitSwamp();
-    }    
+    }
 }

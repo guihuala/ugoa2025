@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
         if (renderer != null)
         {
             Color color = renderer.color;
+            // 可以改成shader
             color = isInvisible ? Color.gray : Color.white;
             renderer.color = color;
         }
@@ -64,7 +65,6 @@ public class Player : MonoBehaviour
     private void HandleSwampEnter()
     {
         isInSwamp = true;
-        stayTime = 0f; // 重置停留时间
     }
     
     private void HandleSwampExit()
@@ -111,7 +111,6 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var item = other.GetComponent<IEnterSpecialItem>();
-        Debug.Log(item);
         if (item != null)
         {
             item.Apply();

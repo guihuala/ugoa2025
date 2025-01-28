@@ -17,13 +17,7 @@ public class StepManager : MonoBehaviour
 
         EVENTMGR.OnUseStep += UseStep;
     }
-
-    // 检查是否还有步数
-    public bool CanTakeStep()
-    {
-        return remainingSteps > 0;
-    }
-
+    
     // 消耗步数
     public void UseStep(int steps)
     {

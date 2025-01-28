@@ -5,32 +5,32 @@ public class AStarPathfinding
 {
     public static List<Transform> FindPath(Transform startNode, Transform targetNode, List<Transform> nodes)
     {
-        List<Transform> openSet = new List<Transform> { startNode };
+        // 优先队列 存储openSet
+        PriorityQueue<Transform, float> openSet = new PriorityQueue<Transform, float>();
         HashSet<Transform> closedSet = new HashSet<Transform>();
 
         Dictionary<Transform, Transform> cameFrom = new Dictionary<Transform, Transform>();
         Dictionary<Transform, float> gCost = new Dictionary<Transform, float>();
-        Dictionary<Transform, float> fCost = new Dictionary<Transform, float>();
-
+        
         foreach (var node in nodes)
         {
             gCost[node] = Mathf.Infinity;
-            fCost[node] = Mathf.Infinity;
         }
 
         gCost[startNode] = 0;
-        fCost[startNode] = Vector3.Distance(startNode.position, targetNode.position);
+        float startToTargetCost = Vector3.SqrMagnitude(startNode.position - targetNode.position);
+        openSet.Enqueue(startNode, startToTargetCost);
 
         while (openSet.Count > 0)
         {
-            Transform currentNode = GetNodeWithLowestFCost(openSet, fCost);
+            Transform currentNode = openSet.Dequeue();
 
+            // 检查是否到达目标节点
             if (currentNode == targetNode)
             {
-                return ReconstructPath(cameFrom, currentNode, startNode); // 传入 startNode
+                return ReconstructPath(cameFrom, currentNode);
             }
 
-            openSet.Remove(currentNode);
             closedSet.Add(currentNode);
 
             foreach (var neighbor in GetNeighbors(currentNode, nodes))
@@ -40,39 +40,21 @@ public class AStarPathfinding
 
                 float tentativeGCost = gCost[currentNode] + Vector3.Distance(currentNode.position, neighbor.position);
 
-                if (!openSet.Contains(neighbor))
+                if (tentativeGCost < gCost[neighbor])
                 {
-                    openSet.Add(neighbor);
-                }
-                else if (tentativeGCost >= gCost[neighbor])
-                {
-                    continue;
-                }
+                    cameFrom[neighbor] = currentNode;
+                    gCost[neighbor] = tentativeGCost;
 
-                cameFrom[neighbor] = currentNode;
-                gCost[neighbor] = tentativeGCost;
-                fCost[neighbor] = gCost[neighbor] + Vector3.Distance(neighbor.position, targetNode.position);
+                    float priority = tentativeGCost + Vector3.SqrMagnitude(neighbor.position - targetNode.position);
+                    if (!openSet.Contains(neighbor))
+                    {
+                        openSet.Enqueue(neighbor, priority);
+                    }
+                }
             }
         }
 
-        return null;
-    }
-
-    private static Transform GetNodeWithLowestFCost(List<Transform> openSet, Dictionary<Transform, float> fCost)
-    {
-        Transform lowestNode = openSet[0];
-        float lowestCost = fCost[lowestNode];
-
-        foreach (var node in openSet)
-        {
-            if (fCost[node] < lowestCost)
-            {
-                lowestNode = node;
-                lowestCost = fCost[node];
-            }
-        }
-
-        return lowestNode;
+        return null; // 如果未找到路径
     }
 
     private static List<Transform> GetNeighbors(Transform node, List<Transform> nodes)
@@ -80,7 +62,7 @@ public class AStarPathfinding
         List<Transform> neighbors = new List<Transform>();
         foreach (var potentialNeighbor in nodes)
         {
-            if (Vector3.Distance(node.position, potentialNeighbor.position) == 1f) // 确保邻居是四向
+            if (Vector3.Distance(node.position, potentialNeighbor.position) <= 1.2f)// 允许存在高低差 且为四向查找
             {
                 neighbors.Add(potentialNeighbor);
             }
@@ -88,20 +70,48 @@ public class AStarPathfinding
         return neighbors;
     }
 
-    private static List<Transform> ReconstructPath(Dictionary<Transform, Transform> cameFrom, Transform currentNode, Transform startNode)
+    private static List<Transform> ReconstructPath(Dictionary<Transform, Transform> cameFrom, Transform currentNode)
     {
-        List<Transform> path = new List<Transform> { currentNode };
+        List<Transform> path = new List<Transform>();
 
         while (cameFrom.ContainsKey(currentNode))
         {
+            path.Add(currentNode);
             currentNode = cameFrom[currentNode];
-            if (currentNode != startNode) // 排除起始节点
-            {
-                path.Add(currentNode);
-            }
         }
 
         path.Reverse();
         return path;
+    }
+}
+
+// 优先队列实现
+public class PriorityQueue<TElement, TPriority> where TPriority : System.IComparable<TPriority>
+{
+    private List<KeyValuePair<TElement, TPriority>> elements = new List<KeyValuePair<TElement, TPriority>>();
+
+    public int Count => elements.Count;
+
+    public void Enqueue(TElement element, TPriority priority)
+    {
+        elements.Add(new KeyValuePair<TElement, TPriority>(element, priority));
+        elements.Sort((x, y) => x.Value.CompareTo(y.Value)); // 排序
+    }
+
+    public TElement Dequeue()
+    {
+        var item = elements[0];
+        elements.RemoveAt(0);
+        return item.Key;
+    }
+
+    public bool Contains(TElement element)
+    {
+        foreach (var item in elements)
+        {
+            if (EqualityComparer<TElement>.Default.Equals(item.Key, element))
+                return true;
+        }
+        return false;
     }
 }

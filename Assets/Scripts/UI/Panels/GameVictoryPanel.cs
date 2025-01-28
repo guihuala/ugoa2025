@@ -29,17 +29,21 @@ public class GameVictoryPanel : BasePanel
             
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
             
-            levelInfo.GoToNextLevel();
-            
             UIManager.Instance.RemovePanel(panelName);
+            
+            levelInfo.GoToNextLevel();
         });
         mainMenuBtn.onClick.AddListener(() =>
         {
             Time.timeScale = 1.0f;
             
-            SceneLoader.Instance.LoadScene(SceneName.Title,"回到主界面...");
-            
             UIManager.Instance.RemovePanel(panelName);
+            
+            LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
+            
+            levelInfo.VictorySaveLevel();
+            
+            SceneLoader.Instance.LoadScene(SceneName.Title,"回到主界面...");
         });
     }
 }

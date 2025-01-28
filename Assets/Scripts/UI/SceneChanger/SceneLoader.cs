@@ -10,6 +10,7 @@ public enum SceneName
     Title,
     LevelSelection,
     ghlgScene,
+    AgentScene,
     
 }
 

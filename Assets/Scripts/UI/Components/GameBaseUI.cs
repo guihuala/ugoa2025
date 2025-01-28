@@ -22,6 +22,11 @@ public class GameBaseUI : MonoBehaviour
         EVENTMGR.ChangeSteps += UpdateStepText;
     }
 
+    private void OnDestroy()
+    {
+        EVENTMGR.ChangeSteps -= UpdateStepText;
+    }
+
     private void UpdateStepText(int remainSteps)
     {
         stepText.text = "当前步数：" + remainSteps.ToString();

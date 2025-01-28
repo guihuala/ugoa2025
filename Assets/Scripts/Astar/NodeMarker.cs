@@ -9,8 +9,7 @@ public class NodeMarker : MonoBehaviour
     private SpriteRenderer clickHighLight;
     private SpriteRenderer walkableHighLight;
     public bool IsHighlighted { get; private set; } = false;
-
-
+    
     void Start()
     {
         clickHighLight = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -63,5 +62,4 @@ public class NodeMarker : MonoBehaviour
             IsHighlighted = false;
         }
     }
-
 }

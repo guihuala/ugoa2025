@@ -22,4 +22,10 @@ public class LevelInfo : MonoBehaviour
             SaveManager.Instance.NewRecord();
         }
     }
+
+    public void VictorySaveLevel()
+    {
+        LevelManager.Instance.UnlockLevel(nextLevelName);
+        SaveManager.Instance.NewRecord();
+    }
 }

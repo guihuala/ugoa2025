@@ -8,7 +8,7 @@ public class PathfindingManager : MonoBehaviour
     public float highlightRadius = 5f; // 高亮半径
 
     private GameObject player;
-    private Vector3 startPositionDiatance = new Vector3(0, 1.9f, 0);
+    private Vector3 startPositionDiatance = new Vector3(0, 1.5f, 0);
     public List<Transform> mapNodes = new List<Transform>();
 
     void Start()
@@ -52,7 +52,7 @@ public class PathfindingManager : MonoBehaviour
     {
         this.highlightRadius = highlightRadius;
     }
-    
+
     // 获取距离最近的节点
     public Transform GetClosestNode(Vector3 position)
     {
@@ -77,20 +77,25 @@ public class PathfindingManager : MonoBehaviour
     {
         if (player == null) return;
 
+        // 遍历所有节点，找到步数范围内的节点
         foreach (var node in mapNodes)
         {
-            float distance = Vector3.Distance(player.transform.position, node.position);
             NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
+            if (nodeMarker == null) continue;
 
-            if (distance - 1 <= highlightRadius && nodeMarker != null)
+            // 使用 A* 寻找从玩家到当前节点的路径
+            Transform currentNode = GetClosestNode(player.transform.position - startPositionDiatance);
+            List<Transform> path = AStarPathfinding.FindPath(currentNode, node, mapNodes);
+
+            // 如果路径步数小于等于剩余步数，显示高亮；否则隐藏高亮
+            if (path != null && path.Count <= highlightRadius)
             {
                 nodeMarker.ShowHighlight();
             }
-            else if (nodeMarker != null)
+            else
             {
                 nodeMarker.HideHighlight();
             }
         }
     }
-
 }

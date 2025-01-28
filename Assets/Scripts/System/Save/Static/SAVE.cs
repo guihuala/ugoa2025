@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Camera = UnityEngine.Camera;
 
 public static class SAVE
 {

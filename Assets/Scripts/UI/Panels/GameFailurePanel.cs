@@ -30,17 +30,17 @@ public class GameFailurePanel : BasePanel
             
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
             
-            SceneLoader.Instance.LoadScene(levelInfo.currentScene, "重新开始...");
-            
             UIManager.Instance.RemovePanel(panelName);
+            
+            SceneLoader.Instance.LoadScene(levelInfo.currentScene, "重新开始...");
         });
         mainMenuBtn.onClick.AddListener(() =>
         {
             Time.timeScale = 1.0f;
             
-            SceneLoader.Instance.LoadScene(SceneName.Title,"回到主界面...");
-            
             UIManager.Instance.RemovePanel(panelName);
+            
+            SceneLoader.Instance.LoadScene(SceneName.Title, "回到主界面...");
         });
     }
 }

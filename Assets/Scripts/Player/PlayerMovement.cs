@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;  // 引入 DOTween 命名空间
+using DG.Tweening;
 
+// todo:修复一下点击移动的逻辑 现在比较容易点错
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
@@ -57,9 +58,11 @@ public class PlayerMovement : MonoBehaviour
                     Transform targetNode = pathfinding.GetClosestNode(hit.point);
                     Transform currentNode = pathfinding.GetClosestNode(transform.position - positionOffset);
 
+                    if(!currentNode.GetComponent<NodeMarker>().IsWalkable)
+                        return;
+                    
                     if (currentNode != null && targetNode != null)
                     {
-                        // 使用 A* 算法找到路径
                         List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfinding.mapNodes);
 
                         if (path != null)

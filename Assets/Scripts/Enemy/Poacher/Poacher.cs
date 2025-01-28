@@ -45,7 +45,7 @@ public class Poacher : EnemyBase
 
     public override void PerformFoundPlayer()
     {
-        Debug.Log("发现玩家");
         // 触发失败事件
+        EVENTMGR.TriggerPlayerDead();
     }
 }

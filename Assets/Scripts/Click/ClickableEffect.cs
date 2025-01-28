@@ -5,7 +5,7 @@ public class ClickableEffect : MonoBehaviour, IClickable
 {
     [Header("Click Effect Settings")]
     [SerializeField] private float timeScaleSlow = 0.2f; // 时间减缓比例
-    private bool isEffectActive = false; // 是否激活效果
+
     private GameObject clickUI; // 生成的 UI 对象
     private CanvasGroup uiCanvasGroup; // 用于控制 UI 透明度
 
@@ -26,12 +26,11 @@ public class ClickableEffect : MonoBehaviour, IClickable
 
     public void OnClick()
     {
-        // 切换效果状态
-        isEffectActive = !isEffectActive;
-
-        // 触发事件
-        EVENTMGR.TriggerTimeScaleChange(isEffectActive ? timeScaleSlow : 1.0f);
-        EVENTMGR.TriggerClickCharacter(isEffectActive);
+        // todo:判断一下是不是玩家 如果是才触发以下事件
+        EVENTMGR.TriggerClickCharacter(true);
+        // todo 如果不是 则触发其他事件
+        
+        EVENTMGR.TriggerTimeScaleChange(timeScaleSlow);
     }
 
     public void ShowUIWithAnimation()

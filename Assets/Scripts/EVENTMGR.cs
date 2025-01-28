@@ -11,6 +11,8 @@ public static class EVENTMGR
 
     // 时间流速管理事件
     public static event Action<float> OnTimeScaleChange;
+    
+    public static event Action OnClickPath;
 
     // 触发点击角色事件
     public static void TriggerClickCharacter(bool isActivity)
@@ -22,6 +24,11 @@ public static class EVENTMGR
     public static void TriggerTimeScaleChange(float newTimeScale)
     {
         OnTimeScaleChange?.Invoke(newTimeScale);
+    }
+
+    public static void TriggerClickPath()
+    {
+        OnClickPath?.Invoke();
     }
 
     #endregion
@@ -99,7 +106,19 @@ public static class EVENTMGR
 
     #region 玩家失败或胜利
 
-    // 懒得写了下次再说
+    public static event Action OnPlayerDead;
+    
+    public static event Action OnPLayerVictory;
+
+    public static void TriggerPlayerDead()
+    {
+        OnPlayerDead?.Invoke();
+    }
+
+    public static void TriggerPLayerVictory()
+    {
+        OnPLayerVictory?.Invoke();
+    }
 
     #endregion
 }

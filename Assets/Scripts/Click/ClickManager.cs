@@ -24,12 +24,14 @@ public class ClickManager : MonoBehaviour
     {
         EVENTMGR.OnClickCharacter += HandleClickCharacter;
         EVENTMGR.OnTimeScaleChange += HandleTimeScaleChange;
+        EVENTMGR.OnClickPath += CloseEffect;
     }
 
     private void OnDestroy()
     {
         EVENTMGR.OnClickCharacter -= HandleClickCharacter;
         EVENTMGR.OnTimeScaleChange -= HandleTimeScaleChange;
+        EVENTMGR.OnClickPath -= CloseEffect;
     }
 
     private void Update()
@@ -65,6 +67,25 @@ public class ClickManager : MonoBehaviour
                     clickable.OnClick();
                 }
             }
+        }
+        else
+        {
+            CloseEffect();
+        }
+    }
+
+    private void CloseEffect()
+    {
+        // 没有点击到任何对象时关闭当前特效
+        if (currentClickableEffect != null)
+        {
+            currentClickableEffect.HideUIWithAnimation();
+            EVENTMGR.TriggerClickCharacter(false);
+            EVENTMGR.TriggerTimeScaleChange(1.0f);
+            currentClickableEffect = null;
+
+            // 恢复相机缩放
+            StartCameraZoom(normalSize);
         }
     }
 

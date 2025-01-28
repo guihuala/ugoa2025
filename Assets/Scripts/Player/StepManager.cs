@@ -8,7 +8,7 @@ public class StepManager : MonoBehaviour
     private int remainingSteps;
 
     // 每隔多少秒增加步数
-    public float stepIncreaseInterval = 5f;
+    public float stepIncreaseInterval = 2f;
 
     private void Start()
     {

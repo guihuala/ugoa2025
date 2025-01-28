@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9046548086422452832}
   - component: {fileID: 3330123404611120695}
   - component: {fileID: 3305882275218946518}
+  - component: {fileID: 6496697689591986347}
   m_Layer: 5
   m_Name: ClickUI
   m_TagString: Untagged
@@ -39,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.5, y: 1.5}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3288344404913386137
 Canvas:
@@ -117,6 +118,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 2
+--- !u!114 &6496697689591986347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29870101373243293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1805c3aa0652412786c23dd27b81845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3515845031550339368
 GameObject:
   m_ObjectHideFlags: 0

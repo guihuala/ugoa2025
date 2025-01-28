@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using Spine.Unity;
 
+// todo: 玩家在隐形时不能被敌人发现
 public class Player : MonoBehaviour
 {
     private bool isInvisible;
@@ -13,18 +15,53 @@ public class Player : MonoBehaviour
     private bool isInSwamp = false;
     private float initialHeight;
     
+    private Rigidbody rb;
+    private SkeletonAnimation skeletonAnimation;
+    private string currentAnimation = "";
+
+    [Header("Spine 动画名称")]
+    public string walkAnimation = "walk";
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
+
         EVENTMGR.OnStepIntoGrass += SetInvisible;
         EVENTMGR.OnEnterSwamp += HandleSwampEnter;
         EVENTMGR.OnExitSwamp += HandleSwampExit;
         EVENTMGR.OnStayInSwamp += HandleSwampStay;
+        EVENTMGR.OnPlayerDead += PlayerDead;
 
         initialHeight = transform.position.y;
+
+        ClearAnimation();
     }
 
-    #region 隐身
+    #region Spine动画控制
+
+    public void PlayAnimation(string animName, bool loop)
+    {
+        if (skeletonAnimation != null && skeletonAnimation.state != null)
+        {
+            if (currentAnimation == animName) return; // 避免重复播放相同动画
+            skeletonAnimation.state.SetAnimation(0, animName, loop);
+            currentAnimation = animName;
+        }
+    }
+
+    public void ClearAnimation()
+    {
+        if (skeletonAnimation != null && skeletonAnimation.state != null)
+        {
+            skeletonAnimation.state.ClearTrack(0);
+            currentAnimation = "";
+        }
+    }
+
+    #endregion
+
+    #region 隐身功能
 
     public void SetInvisible(bool value)
     {
@@ -35,32 +72,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void EnableStealth()
-    {
-        SetInvisible(true);
-    }
-
-    private void DisableStealth()
-    {
-        SetInvisible(false);
-    }
-
-    // 隐身的视觉特效
     private void OnStealthStateChanged(bool isInvisible)
     {
-        SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
-        if (renderer != null)
+        SpineTransparencyController spineTransparencyController = GetComponentInChildren<SpineTransparencyController>();
+        if (spineTransparencyController != null)
         {
-            Color color = renderer.color;
-            // 可以改成shader
-            color = isInvisible ? Color.gray : Color.white;
-            renderer.color = color;
+            spineTransparencyController.SetTransparency(isInvisible ? 0.5f : 1f);
         }
     }
 
     #endregion
 
-    #region 沼泽下沉和死亡逻辑
+    #region 沼泽下沉
 
     private void HandleSwampEnter()
     {
@@ -85,22 +108,14 @@ public class Player : MonoBehaviour
 
         if (stayTime >= timeUntilDeath)
         {
-            DieInSwamp();
+            PlayerDead();
         }
         
-        EVENTMGR.TriggerChangeSwampProgress(1- stayTime / timeUntilDeath);
-    }
-
-    private void DieInSwamp()
-    {
-        isInSwamp = false;
-        
-        UIManager.Instance.OpenPanel("GameFailurePanel");
+        EVENTMGR.TriggerChangeSwampProgress(1 - stayTime / timeUntilDeath);
     }
     
     private void ResetHeightPosition()
     {
-        // 重置玩家的高度位置
         transform.position = new Vector3(transform.position.x, initialHeight, transform.position.z);
     }
 
@@ -137,11 +152,18 @@ public class Player : MonoBehaviour
 
     #endregion
     
+    private void PlayerDead()
+    {
+        isInSwamp = false;
+        UIManager.Instance.OpenPanel("GameFailurePanel");
+    }  
+     
     private void OnDestroy()
     {
         EVENTMGR.OnStepIntoGrass -= SetInvisible;
         EVENTMGR.OnEnterSwamp -= HandleSwampEnter;
         EVENTMGR.OnExitSwamp -= HandleSwampExit;
         EVENTMGR.OnStayInSwamp -= HandleSwampStay;
+        EVENTMGR.OnPlayerDead -= PlayerDead;
     }
 }

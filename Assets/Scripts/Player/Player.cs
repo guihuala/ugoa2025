@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 
         if (stayTime >= timeUntilDeath)
         {
-            PlayerDead();
+            EVENTMGR.TriggerPlayerDead();
         }
         
         EVENTMGR.TriggerChangeSwampProgress(1 - stayTime / timeUntilDeath);

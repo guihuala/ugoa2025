@@ -5,6 +5,7 @@ using UnityEngine;
 public class Poacher : EnemyBase
 {
     private int currentPointIndex = 0;
+    
 
     protected override void InitializeStates()
     {
@@ -18,21 +19,24 @@ public class Poacher : EnemyBase
         // 获取目标点
         Vector3 targetPosition = patrolPoints[currentPointIndex].position;
         Vector3 direction = (targetPosition - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        // 平滑旋转
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime);
+        // 让 CheckPoint 旋转朝向目标
+        if (CheckPoint != null)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            CheckPoint.rotation = Quaternion.Slerp(CheckPoint.rotation, targetRotation, moveSpeed * Time.deltaTime);
+        }
 
-        // 移动到目标点（需要修改 不然某些方向上会变成纸片
+        // 只让敌人本体移动，不旋转
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         
+        // 如果接近目标点，则切换到下一个巡逻点
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
         }
     }
 
-    
     public void StartWobblingHead()
     {
         // 头部摇摆的动画

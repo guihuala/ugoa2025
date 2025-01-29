@@ -56,7 +56,7 @@ MonoBehaviour:
   recordName: {fileID: 1913719470987408693}
   auto: {fileID: 8282998916217112960}
   rect: {fileID: 1913719470920192366}
-  enterColor: {r: 0.39607844, g: 0.27450982, b: 0.38039216, a: 1}
+  enterColor: {r: 0.33735314, g: 0.5377358, b: 0.37694559, a: 1}
 --- !u!222 &1913719470317747569
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f773407ed521c154f87dd23f5e6d68c4, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 1939621052, guid: faf61eb3cee38484383bdff24dfafcca, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.39607844, g: 0.27450982, b: 0.38039216, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

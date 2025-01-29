@@ -1,24 +1,19 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 如果不需要玩家点击主控才显示高亮区域，就直接在update里持续更新高亮区域即可
-// 目前状态：不点击主控直接点击可行走区域也能移动
-// 有关点击移动的逻辑在playerMovement.cs
 public class PathfindingManager : MonoBehaviour
 {
-    public float highlightRadius = 5f; // 高亮半径
-
+    public float highlightRadius = 5f; // 高亮步数范围
     private GameObject player;
     private Vector3 startPositionOffset = new Vector3(0, 1.5f, 0);
     public List<Transform> mapNodes = new List<Transform>();
 
-    private bool isCharacterSelected = false; // 是否选中了玩家
+    private bool isCharacterSelected = false; // 记录玩家是否被选中
+    private HashSet<Transform> previousHighlightNodes = new HashSet<Transform>(); // 记录上一帧高亮的节点
 
     void Start()
     {
-        // 获取玩家对象
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
@@ -26,7 +21,7 @@ public class PathfindingManager : MonoBehaviour
             return;
         }
 
-        // 遍历所有节点并存储
+        // 获取所有可行走的节点
         NodeMarker[] nodes = FindObjectsOfType<NodeMarker>();
         foreach (var node in nodes)
         {
@@ -36,29 +31,116 @@ public class PathfindingManager : MonoBehaviour
             }
         }
 
-        // 初始化玩家位置到最近节点
+        // 初始化玩家位置到最近的可行走节点
         Transform closestNode = GetClosestNode(player.transform.position);
         if (closestNode != null)
         {
             player.transform.position = closestNode.position + startPositionOffset;
         }
 
+        // 监听事件
         EVENTMGR.ChangeSteps += UpdateHighlightRadius;
-        EVENTMGR.OnClickCharacter += OnClickCharacter;
+        EVENTMGR.OnClickPlayer += OnClickPlayer;
+    }
+
+    private void Update()
+    {
+        if (isCharacterSelected)
+        {
+            UpdateHighlightNodes();
+        }
     }
 
     private void OnDestroy()
     {
         EVENTMGR.ChangeSteps -= UpdateHighlightRadius;
-        EVENTMGR.OnClickCharacter -= OnClickCharacter;
+        EVENTMGR.OnClickPlayer -= OnClickPlayer;
     }
 
-    private void UpdateHighlightRadius(int highlightRadius)
+    private void UpdateHighlightRadius(int newHighlightRadius)
     {
-        this.highlightRadius = highlightRadius;
+        if (highlightRadius != newHighlightRadius)
+        {
+            highlightRadius = newHighlightRadius;
+            if (isCharacterSelected)
+            {
+                UpdateHighlightNodes();
+            }
+        }
     }
 
-    // 获取距离最近的节点
+    private void OnClickPlayer(bool isClick)
+    {
+        if (isCharacterSelected == isClick) return;
+        
+        isCharacterSelected = isClick;
+
+        if (isCharacterSelected)
+        {
+            UpdateHighlightNodes();
+        }
+        else
+        {
+            ClearAllHighlights();
+        }
+    }
+
+    private void UpdateHighlightNodes()
+    {
+        if (player == null) return;
+
+        Transform currentNode = GetClosestNode(player.transform.position - startPositionOffset);
+        if (currentNode == null) return;
+
+        HashSet<Transform> newHighlightNodes = new HashSet<Transform>();
+
+        foreach (var node in mapNodes)
+        {
+            NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
+            if (nodeMarker == null) continue;
+
+            List<Transform> path = AStarPathfinding.FindPath(currentNode, node, mapNodes);
+
+            if (path != null && path.Count <= highlightRadius)
+            {
+                newHighlightNodes.Add(node);
+                if (!previousHighlightNodes.Contains(node)) // 只更新新的高亮节点
+                {
+                    nodeMarker.ShowHighlight();
+                }
+            }
+        }
+
+        // 关闭不在新高亮列表的节点
+        foreach (var node in previousHighlightNodes)
+        {
+            if (!newHighlightNodes.Contains(node))
+            {
+                NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
+                if (nodeMarker != null)
+                {
+                    nodeMarker.HideHighlight();
+                }
+            }
+        }
+
+        // 更新上一帧高亮的节点
+        previousHighlightNodes = newHighlightNodes;
+    }
+
+    private void ClearAllHighlights()
+    {
+        foreach (var node in previousHighlightNodes)
+        {
+            NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
+            if (nodeMarker != null)
+            {
+                nodeMarker.HideHighlight();
+            }
+        }
+        previousHighlightNodes.Clear();
+    }
+
     public Transform GetClosestNode(Vector3 position)
     {
         Transform closestNode = null;
@@ -75,60 +157,5 @@ public class PathfindingManager : MonoBehaviour
         }
 
         return closestNode;
-    }
-
-    // 玩家点击事件
-    void OnClickCharacter(bool isClick)
-    {
-        isCharacterSelected = isClick;
-
-        if (isCharacterSelected)
-        {
-            HighlightNearbyNodes();
-        }
-        else
-        {
-            ClearAllHighlights();
-        }
-    }
-
-    // 高亮步数范围内的节点
-    void HighlightNearbyNodes()
-    {
-        if (player == null) return;
-
-        Transform currentNode = GetClosestNode(player.transform.position - startPositionOffset);
-
-        foreach (var node in mapNodes)
-        {
-            NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
-            if (nodeMarker == null) continue;
-
-            // 计算玩家到当前节点的路径
-            List<Transform> path = AStarPathfinding.FindPath(currentNode, node, mapNodes);
-
-            // 如果路径步数小于等于剩余步数，显示高亮；否则隐藏
-            if (path != null && path.Count <= highlightRadius)
-            {
-                nodeMarker.ShowHighlight();
-            }
-            else
-            {
-                nodeMarker.HideHighlight();
-            }
-        }
-    }
-
-    // 清除所有节点的高亮
-    void ClearAllHighlights()
-    {
-        foreach (var node in mapNodes)
-        {
-            NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
-            if (nodeMarker != null)
-            {
-                nodeMarker.HideHighlight();
-            }
-        }
     }
 }

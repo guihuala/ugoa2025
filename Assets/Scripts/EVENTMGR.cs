@@ -7,7 +7,7 @@ public static class EVENTMGR
     #region 点击物体或玩家
 
     // 点击角色事件
-    public static event Action<bool> OnClickCharacter;
+    public static event Action<bool> OnClickPlayer;
 
     // 时间流速管理事件
     public static event Action<float> OnTimeScaleChange;
@@ -15,9 +15,9 @@ public static class EVENTMGR
     public static event Action OnClickPath;
 
     // 触发点击角色事件
-    public static void TriggerClickCharacter(bool isActivity)
+    public static void TriggerClickPlayer(bool isActivity)
     {
-        OnClickCharacter?.Invoke(isActivity);
+        OnClickPlayer?.Invoke(isActivity);
     }
 
     // 触发时间流速改变事件

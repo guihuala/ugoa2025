@@ -15,27 +15,29 @@ public class Poacher : EnemyBase
     public override void MoveForward()
     {
         if (patrolPoints.Length == 0) return;
-
-        // 获取目标点
+        
         Vector3 targetPosition = patrolPoints[currentPointIndex].position;
         Vector3 direction = (targetPosition - transform.position).normalized;
 
-        // 让 CheckPoint 旋转朝向目标
-        if (CheckPoint != null)
+        // 确保方向不是零向量
+        if (direction != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            CheckPoint.rotation = Quaternion.Slerp(CheckPoint.rotation, targetRotation, moveSpeed * Time.deltaTime);
+            if (CheckPoint != null)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                CheckPoint.rotation = Quaternion.Slerp(CheckPoint.rotation, targetRotation, moveSpeed * Time.deltaTime);
+            }
+            
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
 
-        // 只让敌人本体移动，不旋转
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-        
         // 如果接近目标点，则切换到下一个巡逻点
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
         }
     }
+
 
     public void StartWobblingHead()
     {

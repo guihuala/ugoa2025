@@ -45,10 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // 创建射线
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            // 使用 LayerMask 限制检测层
+            
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, pathLayerMask))
             {
                 PathfindingManager pathfinding = FindObjectOfType<PathfindingManager>();
@@ -58,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
                     Transform currentNode = pathfinding.GetClosestNode(transform.position - positionOffset);
 
                     // 检查当前节点是否可行走
-                    if (!currentNode.GetComponent<NodeMarker>().IsWalkable)
+                    if (!currentNode.GetComponent<NodeMarker>().IsWalkable || !currentNode.GetComponent<NodeMarker>().IsHighlighted)
                         return;
                 
                     if (currentNode != null && targetNode != null)
@@ -77,11 +75,12 @@ public class PlayerMovement : MonoBehaviour
                             // 触发关闭clickUI事件
                             EVENTMGR.TriggerClickPath();
                             
-                            // 如果步数足够，清空现有路径并添加新路径
+                            // 清空现有路径并添加新路径
                             pathQueue.Clear();
                             foreach (var node in path)
                             {
-                                pathQueue.Enqueue(node.position + positionOffset);
+                                Vector3 targetPos = new Vector3(node.position.x, transform.position.y, node.position.z); // 只修改XZ坐标
+                                pathQueue.Enqueue(targetPos);
                                 EVENTMGR.TriggerUseStep(1);
                             }
 
@@ -100,15 +99,18 @@ public class PlayerMovement : MonoBehaviour
         while (pathQueue.Count > 0)
         {
             Vector3 targetPosition = pathQueue.Dequeue();
-            
+
             // 处理角色朝向
             HandleRotation(targetPosition - transform.position);
-            
-            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+
+            // 移动角色
+            while ((transform.position - targetPosition).sqrMagnitude > 0.01f) // 避免浮点数误差
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 yield return null;
             }
+
+            transform.position = targetPosition; // 确保精准到达目标点
         }
 
         isMoving = false;
@@ -116,21 +118,14 @@ public class PlayerMovement : MonoBehaviour
     
     private void HandleRotation(Vector3 direction)
     {
-
-        if (direction.x > 0) // 向右移动
+        if (Mathf.Abs(direction.x) > 0.01f)
         {
-            targetRotation = 180f;
-        }
-        else if (direction.x <= 0) // 向左移动
-        {
-            targetRotation = 0f;
-        }
-
-        // 平滑过渡旋转
-        if (Mathf.Abs(targetRotation - currentRotation) > 0.1f)
-        {
-            transform.DORotate(new Vector3(0f, targetRotation, 0f), 0.3f, RotateMode.FastBeyond360); // 使用 DOTween 来平滑旋转
-            currentRotation = targetRotation; // 更新当前旋转角度
+            targetRotation = direction.x > 0 ? 180f : 0f;
+            if (!Mathf.Approximately(targetRotation, currentRotation)) // 避免重复旋转
+            {
+                transform.DORotate(new Vector3(0f, targetRotation, 0f), 0.3f, RotateMode.FastBeyond360);
+                currentRotation = targetRotation;
+            }
         }
     }
 }

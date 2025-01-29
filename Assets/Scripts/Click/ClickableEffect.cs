@@ -8,6 +8,8 @@ public class ClickableEffect : MonoBehaviour, IClickable
 
     private GameObject clickUI; // 生成的 UI 对象
     private CanvasGroup uiCanvasGroup; // 用于控制 UI 透明度
+    
+    private bool isUIOpen = false;
 
     private void Awake()
     {
@@ -23,11 +25,15 @@ public class ClickableEffect : MonoBehaviour, IClickable
             uiCanvasGroup = clickUI.AddComponent<CanvasGroup>();
         }
     }
+    
 
     public void OnClick()
     {
+        if (isUIOpen)
+            return;
+        
         // todo:判断一下是不是玩家 如果是才触发以下事件
-        EVENTMGR.TriggerClickCharacter(true);
+        EVENTMGR.TriggerClickPlayer(true);
         // todo 如果不是 则触发其他事件
         
         EVENTMGR.TriggerTimeScaleChange(timeScaleSlow);
@@ -39,6 +45,8 @@ public class ClickableEffect : MonoBehaviour, IClickable
         uiCanvasGroup.alpha = 0;
         uiCanvasGroup.DOFade(1, 0.1f).SetEase(Ease.InOutQuad); // 渐变动画
         clickUI.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack); // 缩放动画
+        
+        isUIOpen = true;
     }
 
     public void HideUIWithAnimation()
@@ -48,5 +56,7 @@ public class ClickableEffect : MonoBehaviour, IClickable
             clickUI.SetActive(false);
         });
         clickUI.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack); // 缩放回零
+        
+        isUIOpen = false;
     }
 }

@@ -22,14 +22,14 @@ public class ClickManager : MonoBehaviour
 
     private void Start()
     {
-        EVENTMGR.OnClickCharacter += HandleClickCharacter;
+        EVENTMGR.OnClickPlayer += HandleClickPlayer;
         EVENTMGR.OnTimeScaleChange += HandleTimeScaleChange;
         EVENTMGR.OnClickPath += CloseEffect;
     }
 
     private void OnDestroy()
     {
-        EVENTMGR.OnClickCharacter -= HandleClickCharacter;
+        EVENTMGR.OnClickPlayer -= HandleClickPlayer;
         EVENTMGR.OnTimeScaleChange -= HandleTimeScaleChange;
         EVENTMGR.OnClickPath -= CloseEffect;
     }
@@ -57,7 +57,7 @@ public class ClickManager : MonoBehaviour
                 if (currentClickableEffect != null && currentClickableEffect != hit.collider.GetComponent<ClickableEffect>())
                 {
                     currentClickableEffect.HideUIWithAnimation();
-                    EVENTMGR.TriggerClickCharacter(false);
+                    EVENTMGR.TriggerClickPlayer(false);
                 }
 
                 // 激活新的物体
@@ -76,11 +76,10 @@ public class ClickManager : MonoBehaviour
 
     private void CloseEffect()
     {
-        // 没有点击到任何对象时关闭当前特效
         if (currentClickableEffect != null)
         {
             currentClickableEffect.HideUIWithAnimation();
-            EVENTMGR.TriggerClickCharacter(false);
+            EVENTMGR.TriggerClickPlayer(false);
             EVENTMGR.TriggerTimeScaleChange(1.0f);
             currentClickableEffect = null;
 
@@ -89,7 +88,7 @@ public class ClickManager : MonoBehaviour
         }
     }
 
-    private void HandleClickCharacter(bool isActivity)
+    private void HandleClickPlayer(bool isActivity)
     {
         if (currentClickableEffect == null) return;
 

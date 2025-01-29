@@ -60,14 +60,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6320754, g: 0.4757813, b: 0.35479707, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -557082388, guid: c7312ca446aef431cb3ed1d1cb1361d0, type: 3}
+  m_Sprite: {fileID: 169092027, guid: 68963b29eb6844295887e8bae1f475dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -233,8 +233,6 @@ MonoBehaviour:
   - {fileID: 4423501005169343093}
   - {fileID: 1906055279552707537}
   - {fileID: 3547648676401686947}
-  heldColor: {r: 1, g: 1, b: 1, a: 0}
-  notHeldColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
   page: 0
   cardsPerPage: 4
   pageText: {fileID: 5104249345215250297}
@@ -302,14 +300,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7169812, g: 0.5011359, b: 0.38892847, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2032346999, guid: c7312ca446aef431cb3ed1d1cb1361d0, type: 3}
+  m_Sprite: {fileID: -1375165479, guid: 68963b29eb6844295887e8bae1f475dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -451,14 +449,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7169812, g: 0.5011359, b: 0.38892847, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1300750882, guid: c7312ca446aef431cb3ed1d1cb1361d0, type: 3}
+  m_Sprite: {fileID: -98647742, guid: 68963b29eb6844295887e8bae1f475dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

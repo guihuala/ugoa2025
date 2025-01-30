@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float currentRotation = 0f;
     private float targetRotation = 180f;
     
+    private PathfindingManager pathfindingManager;
     private bool isMoving = false;
     private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
     
@@ -26,12 +28,20 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("StepManager not found.");
         }
         
+        pathfindingManager = FindObjectOfType<PathfindingManager>();
+        if (pathfindingManager == null)
+        {
+            Debug.LogError("PathfindingManager not found.");
+        }
+        
         player = GetComponent<Player>();
     }
+
 
     void Update()
     {
         HandleMouseInput();
+        
         if (!isMoving && pathQueue.Count > 0)
         {
             StartCoroutine(MoveAlongPath());
@@ -49,44 +59,48 @@ public class PlayerMovement : MonoBehaviour
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, pathLayerMask))
             {
-                PathfindingManager pathfinding = FindObjectOfType<PathfindingManager>();
-                if (pathfinding != null)
-                {
-                    Transform targetNode = pathfinding.GetClosestNode(hit.point);
-                    Transform currentNode = pathfinding.GetClosestNode(transform.position - positionOffset);
+                HandlePlayerMove(hit.point);
+            }
+        }
+    }
 
-                    // 检查当前节点是否可行走
-                    if (!currentNode.GetComponent<NodeMarker>().IsWalkable || !currentNode.GetComponent<NodeMarker>().IsHighlighted)
-                        return;
+    private void HandlePlayerMove(Vector3 pos)
+    {
+        if (pathfindingManager != null)
+        {
+            Transform targetNode = pathfindingManager.GetClosestNode(pos);
+            Transform currentNode = pathfindingManager.GetClosestNode(transform.position - positionOffset);
+
+            // 检查当前节点是否可行走
+            if (!currentNode.GetComponent<NodeMarker>().IsWalkable || !currentNode.GetComponent<NodeMarker>().IsHighlighted)
+                return;
                 
-                    if (currentNode != null && targetNode != null)
+            if (currentNode != null && targetNode != null)
+            {
+                List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes);
+
+                if (path != null)
+                {
+                    // 检查路径长度是否超过剩余步数
+                    if (path.Count - 1 > _stepManager.GetRemainingSteps())
                     {
-                        List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfinding.mapNodes);
-
-                        if (path != null)
-                        {
-                            // 检查路径长度是否超过剩余步数
-                            if (path.Count - 1 > _stepManager.GetRemainingSteps())
-                            {
-                                Debug.Log("路径超出剩余步数，无法移动！");
-                                return;
-                            }
-
-                            // 触发关闭clickUI事件
-                            EVENTMGR.TriggerClickPath();
-                            
-                            // 清空现有路径并添加新路径
-                            pathQueue.Clear();
-                            foreach (var node in path)
-                            {
-                                Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z); // 只修改XZ坐标
-                                pathQueue.Enqueue(targetPos);
-                                EVENTMGR.TriggerUseStep(1);
-                            }
-
-                            player.PlayAnimation(player.walkAnimation, true);
-                        }
+                        Debug.Log("路径超出剩余步数，无法移动！");
+                        return;
                     }
+
+                    // 触发关闭clickUI事件
+                    EVENTMGR.TriggerClickPath();
+                            
+                    // 清空现有路径并添加新路径
+                    pathQueue.Clear();
+                    foreach (var node in path)
+                    {
+                        Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
+                        pathQueue.Enqueue(targetPos);
+                        EVENTMGR.TriggerUseStep(1);
+                    }
+
+                    player.PlayAnimation(player.walkAnimation, true);
                 }
             }
         }

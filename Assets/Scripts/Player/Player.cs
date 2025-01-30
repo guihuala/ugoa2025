@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using Spine.Unity;
 
-// todo: 玩家在隐形时不能被敌人发现
 public class Player : MonoBehaviour
 {
     private bool isInvisible;
@@ -15,7 +14,6 @@ public class Player : MonoBehaviour
     private bool isInSwamp = false;
     private float initialHeight = 1.5f;
     
-    private Rigidbody rb;
     private SkeletonAnimation skeletonAnimation;
     private string currentAnimation = "";
 
@@ -24,7 +22,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
 
         EVENTMGR.OnStepIntoGrass += SetInvisible;
@@ -152,6 +149,9 @@ public class Player : MonoBehaviour
     
     private void PlayerDead()
     {
+        if (isInvisible)
+            return;
+        
         isInSwamp = false;
         UIManager.Instance.OpenPanel("GameFailurePanel");
     }  

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public static class EVENTMGR
 {
@@ -29,6 +30,17 @@ public static class EVENTMGR
     public static void TriggerClickPath()
     {
         OnClickPath?.Invoke();
+    }
+
+    #endregion
+
+    #region 点击地图
+
+    public static Action<Vector3> OnClickMarker;
+
+    public static void TriggerClickMarker(Vector3 pos)
+    {
+        OnClickMarker?.Invoke(pos);
     }
 
     #endregion

@@ -5,7 +5,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected StateMachine stateMachine;
     protected Animator animator;
 
-    [Header("敌人参数设置")] public Transform[] patrolPoints;
+    [Header("敌人参数设置")]
+    public Transform[] patrolPoints;
     public float moveSpeed = 2f;
     public float detectionRadius = 4f;
     public float detectionAngle = 60f;
@@ -53,35 +54,6 @@ public abstract class EnemyBase : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool(paramName, value);
-        }
-    }
-
-    // 动态可视化侦查区域
-    private void OnDrawGizmosSelected()
-    {
-        if (patrolPoints == null || patrolPoints.Length == 0 || CheckPoint == null) return;
-
-        Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
-
-        // 从检查点出发
-        Vector3 forward = CheckPoint.forward;
-        Vector3 leftBoundary = Quaternion.Euler(0, -detectionAngle / 2, 0) * forward;
-        Vector3 rightBoundary = Quaternion.Euler(0, detectionAngle / 2, 0) * forward;
-
-        // 画出侦查扇形范围
-        Gizmos.DrawWireSphere(CheckPoint.position, detectionRadius);
-        Gizmos.DrawLine(CheckPoint.position, CheckPoint.position + leftBoundary * detectionRadius);
-        Gizmos.DrawLine(CheckPoint.position, CheckPoint.position + rightBoundary * detectionRadius);
-
-        Gizmos.color = new Color(1f, 0.5f, 0f, 0.1f);
-        for (int i = 0; i <= 30; i++)
-        {
-            float angleStep = -detectionAngle / 2 + (detectionAngle / 30) * i;
-            Vector3 startDir = Quaternion.Euler(0, angleStep, 0) * forward;
-            Vector3 endDir = Quaternion.Euler(0, angleStep + detectionAngle / 30, 0) * forward;
-
-            Gizmos.DrawLine(CheckPoint.position + startDir * detectionRadius,
-                CheckPoint.position + endDir * detectionRadius);
         }
     }
 

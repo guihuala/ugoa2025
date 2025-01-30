@@ -24,8 +24,6 @@ public class RecordPanel : BasePanel
     // Key：存档文件名，Value：存档编号
     Dictionary<string, int> RecordInGrid = new Dictionary<string, int>();
     private int currenSelectIndex;    // 当前选择的记录编号
-    bool isSave = false;     // 当前是否处于存档模式
-    bool isLoad = false;     // 当前是否处于加载模式
 
     private void Start()
     {

@@ -4,11 +4,15 @@ using DG.Tweening;
 public class NodeMarker : MonoBehaviour
 {
     public bool IsWalkable = true;
-
+    
     private SpriteRenderer clickHighLight;
+    private MeshRenderer meshRenderer;
     public bool IsHighlighted { get; private set; } = false;
 
     private Vector3 originalScale = new Vector3(1, 1, 1);
+    
+    public Material highlightMaterial; // 高亮材质
+    private Material originalMaterial; // 原始材质
 
     void Start()
     {
@@ -18,6 +22,12 @@ public class NodeMarker : MonoBehaviour
 
         clickHighLight.gameObject.SetActive(false);
         HideHighlight();
+        
+        meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer != null && meshRenderer.materials.Length > 1)
+        {
+            originalMaterial = meshRenderer.materials[1];
+        }
     }
 
     void OnMouseEnter()
@@ -65,6 +75,13 @@ public class NodeMarker : MonoBehaviour
                 .SetUpdate(true);
 
             IsHighlighted = true;
+            
+            if (meshRenderer != null && meshRenderer.materials.Length > 1)
+            {
+                Material[] mats = meshRenderer.materials;
+                mats[1] = highlightMaterial;
+                meshRenderer.materials = mats;
+            }
         }
     }
 
@@ -75,5 +92,12 @@ public class NodeMarker : MonoBehaviour
             .SetUpdate(true);
 
         IsHighlighted = false;
+        
+        if (meshRenderer != null && meshRenderer.materials.Length > 1)
+        {
+            Material[] mats = meshRenderer.materials;
+            mats[1] = originalMaterial;
+            meshRenderer.materials = mats;
+        }
     }
 }

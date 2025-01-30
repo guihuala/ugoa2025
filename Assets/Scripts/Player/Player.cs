@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float timeUntilDeath = 5f; // 停留多久会死亡
     private float stayTime = 0f; // 玩家在沼泽中累计停留时间
     private bool isInSwamp = false;
-    private float initialHeight;
+    private float initialHeight = 1.5f;
     
     private Rigidbody rb;
     private SkeletonAnimation skeletonAnimation;
@@ -32,9 +32,7 @@ public class Player : MonoBehaviour
         EVENTMGR.OnExitSwamp += HandleSwampExit;
         EVENTMGR.OnStayInSwamp += HandleSwampStay;
         EVENTMGR.OnPlayerDead += PlayerDead;
-
-        initialHeight = transform.position.y;
-
+        
         ClearAnimation();
     }
 

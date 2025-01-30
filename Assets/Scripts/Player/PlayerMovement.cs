@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                             pathQueue.Clear();
                             foreach (var node in path)
                             {
-                                Vector3 targetPos = new Vector3(node.position.x, transform.position.y, node.position.z); // 只修改XZ坐标
+                                Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z); // 只修改XZ坐标
                                 pathQueue.Enqueue(targetPos);
                                 EVENTMGR.TriggerUseStep(1);
                             }

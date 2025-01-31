@@ -33,14 +33,13 @@ public class BirdBehavior : MonoBehaviour
         {
             if (isFlying)
             {
-                if (Random.value < 0.5f && perches.Length > 0)
+                if (Random.value < 0.5f && perches.Length > 0) // 停靠
                 {
-                    Transform perch = perches[Random.Range(0, perches.Length)];
-                    MoveTo(perch.position, stopTime);
-
                     isFlying = false;
+                    
                     if (animationCoroutine != null) StopCoroutine(animationCoroutine);
                     spriteRenderer.sprite = birdSprites[0];
+                    
                     yield return new WaitForSeconds(stopTime);
                     isFlying = true;
                 }

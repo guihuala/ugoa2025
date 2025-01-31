@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,6 +13,7 @@ public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public Image rect;             // 边框
     [ColorUsage(true)]
     public Color enterColor;       // 鼠标悬停存档时的边框颜色
+    public float transitionDuration = 0.3f;
 
     // 事件回调
     public static System.Action<int> OnLeftClick;
@@ -38,8 +40,7 @@ public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     // 鼠标进入事件
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // 改变边框颜色
-        rect.color = enterColor;
+        rect.DOColor(enterColor, transitionDuration);
 
         // 如果存档存在则显示提示信息（通过ID获取存档数据，ID为SiblingIndex）
         if (recordName.text != "空存档")
@@ -52,8 +53,8 @@ public class RecordUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     // 鼠标离开事件
     public void OnPointerExit(PointerEventData eventData)
     {
-        // 恢复离开时边框颜色
-        rect.color = Color.white;
+        // 使用DOTween来平滑过渡回白色
+        rect.DOColor(Color.white, transitionDuration);
 
         // 触发离开事件
         if (OnExit != null)

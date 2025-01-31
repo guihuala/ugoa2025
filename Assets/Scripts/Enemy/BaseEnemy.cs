@@ -32,17 +32,39 @@ public abstract class EnemyBase : MonoBehaviour
     public bool IsPlayerDetected()
     {
         if (CheckPoint == null || player == null) return false;
-        
-        Vector3 directionToPlayer = player.position - CheckPoint.position;
-        float angle = Vector3.Angle(CheckPoint.forward, directionToPlayer);
-    
-        // 计算射线是否被遮挡
-        RaycastHit hit;
-        bool isBlocked = Physics.Raycast(CheckPoint.position, directionToPlayer.normalized, out hit, detectionRadius, LayerMask.GetMask("Tree"));
 
-        // 检测玩家是否在检测角度和范围内，同时不能被遮挡
-        return directionToPlayer.magnitude <= detectionRadius && angle <= detectionAngle / 2 && !isBlocked;
+        Vector3 directionToPlayer = player.position - CheckPoint.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
+        float angle = Vector3.Angle(CheckPoint.forward, directionToPlayer);
+
+        // 进行射线检测，检测敌人与玩家之间是否有遮挡物
+        RaycastHit hit;
+        bool isBlocked = Physics.Raycast(CheckPoint.position, directionToPlayer.normalized, out hit, detectionRadius);
+
+        // 只有在视野范围内 & 没有被遮挡 才能发现玩家
+        if (distanceToPlayer <= detectionRadius && angle <= detectionAngle / 2)
+        {
+            if (isBlocked)
+            {
+                // 检查射线击中的是否是玩家
+                if (hit.collider.CompareTag("Player"))
+                {
+                    return true; // 玩家没有被遮挡，敌人可以看到
+                }
+                else
+                {
+                    return false; // 视线被障碍物挡住，敌人无法发现玩家
+                }
+            }
+            else
+            {
+                return true; // 直接看到玩家，没有任何遮挡
+            }
+        }
+
+        return false; // 超出视野范围
     }
+
     
     public void ChangeState(IState newState)
     {

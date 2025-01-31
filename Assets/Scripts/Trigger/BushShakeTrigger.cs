@@ -21,7 +21,7 @@ public class BushShakeTrigger : MonoBehaviour
 
     private void ShakeBush()
     {
-        transform.DOShakeRotation(0.5f, new Vector3(0, 10f, 10f), 10, 90, false)
+        transform.DOShakeRotation(0.5f, new Vector3(0, 5f, 5f), 10, 90, false)
             .OnComplete(() => StopShaking());
 
         transform.DOShakePosition(0.5f, 0.2f, 8, 90, false, true);

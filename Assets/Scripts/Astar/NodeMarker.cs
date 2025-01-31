@@ -6,28 +6,22 @@ public class NodeMarker : MonoBehaviour
     public bool IsWalkable = true;
     
     private SpriteRenderer clickHighLight;
-    private MeshRenderer meshRenderer;
+    private GameObject hoverHighlight;
     public bool IsHighlighted { get; private set; } = false;
 
     private Vector3 originalScale = new Vector3(1, 1, 1);
-    
-    public Material highlightMaterial; // 高亮材质
-    private Material originalMaterial; // 原始材质
 
     void Start()
     {
         clickHighLight = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        hoverHighlight = transform.GetChild(1).gameObject;
 
         if (clickHighLight == null) Debug.LogError("ClickHighLight is null");
 
         clickHighLight.gameObject.SetActive(false);
-        HideHighlight();
+        hoverHighlight.SetActive(false);
         
-        meshRenderer = GetComponent<MeshRenderer>();
-        if (meshRenderer != null && meshRenderer.materials.Length > 1)
-        {
-            originalMaterial = meshRenderer.materials[1];
-        }
+        HideHighlight();
     }
 
     void OnMouseEnter()
@@ -76,12 +70,7 @@ public class NodeMarker : MonoBehaviour
 
             IsHighlighted = true;
             
-            if (meshRenderer != null && meshRenderer.materials.Length > 1)
-            {
-                Material[] mats = meshRenderer.materials;
-                mats[1] = highlightMaterial;
-                meshRenderer.materials = mats;
-            }
+            hoverHighlight.SetActive(true);
         }
     }
 
@@ -93,11 +82,6 @@ public class NodeMarker : MonoBehaviour
 
         IsHighlighted = false;
         
-        if (meshRenderer != null && meshRenderer.materials.Length > 1)
-        {
-            Material[] mats = meshRenderer.materials;
-            mats[1] = originalMaterial;
-            meshRenderer.materials = mats;
-        }
+        hoverHighlight.SetActive(false);
     }
 }

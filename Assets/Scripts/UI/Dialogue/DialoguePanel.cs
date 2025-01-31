@@ -36,6 +36,25 @@ public class DialoguePanel : BasePanel
         _skipBtn = transform.GetChild(2).GetComponent<Button>();
         _skipBtn.onClick.AddListener(SkipAllDialogue);
     }
+    
+    public override void OpenPanel(string name)
+    {
+        base.OpenPanel(name); // 调用基类的打开面板方法
+        
+        DOTween.Sequence()
+            .AppendInterval(0.5f)
+            .AppendCallback(() =>
+            {
+                Time.timeScale = 0; // 暂停游戏
+            });
+    }
+
+    public override void ClosePanel()
+    {
+        Time.timeScale = 1; // 恢复游戏速度
+        
+        base.ClosePanel();
+    }
 
     public void StartDialogue(DialogueData data)
     {
@@ -67,16 +86,17 @@ public class DialoguePanel : BasePanel
             _characterImage.enabled = false;
         }
 
-        // 更新角色名字，优先使用npc的角色名
+        // 更新角色名字
         _characterNameText.text = currentCell.NPC != null ? currentCell.NPC.NPCName : currentCell.CharacterName;
 
-        // 打字机效果
+        // 打字机效果（忽略时间缩放）
         _typingTween?.Kill();
         _isTyping = true;
         _contentText.text = ""; // 清空文本
 
         _typingTween = _contentText.DOText(currentCell.Content, currentCell.Content.Length * 0.05f)
             .SetEase(Ease.Linear)
+            .SetUpdate(true) // 忽略时间缩放
             .OnComplete(() =>
             {
                 _isTyping = false;
@@ -123,11 +143,10 @@ public class DialoguePanel : BasePanel
         if (_isTyping)
         {
             // 如果正在打字，则直接完成打字效果
-            _typingTween?.Complete();
+            _typingTween?.Complete(true);
         }
         else
         {
-            // 如果对话已结束，则关闭面板
             if (_isDialogueEnding)
             {
                 EndDialogue();

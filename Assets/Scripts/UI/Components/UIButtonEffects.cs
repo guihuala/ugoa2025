@@ -16,11 +16,11 @@ public class UIButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.DOScale(originalScale * scaleFactor, duration).SetEase(Ease.OutBack);
+        transform.DOScale(originalScale * scaleFactor, duration).SetUpdate(true).SetEase(Ease.OutBack);
     }
     
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.DOScale(originalScale, duration).SetEase(Ease.InBack);
+        transform.DOScale(originalScale, duration).SetUpdate(true).SetEase(Ease.InBack);
     }
 }

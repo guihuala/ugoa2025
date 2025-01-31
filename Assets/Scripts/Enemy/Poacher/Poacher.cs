@@ -8,7 +8,7 @@ public class Poacher : EnemyBase
 {
     private int currentPointIndex = 0;
     
-    [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.9f, 0);    
+    [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);    
     private bool isMoving = false;
     private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
     private PathfindingManager pathfindingManager;
@@ -93,11 +93,13 @@ public class Poacher : EnemyBase
             }
 
             transform.position = targetPosition; // 确保精准到达目标点
+
+            yield return new WaitForSeconds(2f);
         }
 
         isMoving = false;
     }
-    
+
     private void HandleRotation(Vector3 direction)
     {
         if (direction.magnitude > 0.01f)

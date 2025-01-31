@@ -35,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
         }
         
         player = GetComponent<Player>();
+
+        EVENTMGR.OnEnterTargetField += HandlePlayerMoveWihoutChecking;
+    }
+
+    private void OnDestroy()
+    {
+        EVENTMGR.OnEnterTargetField -= HandlePlayerMoveWihoutChecking;
     }
 
 
@@ -64,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void HandlePlayerMove(Vector3 pos)
+    public void HandlePlayerMove(Vector3 pos)
     {
         if (pathfindingManager != null)
         {
@@ -74,6 +81,44 @@ public class PlayerMovement : MonoBehaviour
             // 检查当前节点是否可行走
             if (!currentNode.GetComponent<NodeMarker>().IsWalkable || !currentNode.GetComponent<NodeMarker>().IsHighlighted)
                 return;
+                
+            if (currentNode != null && targetNode != null)
+            {
+                List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes);
+
+                if (path != null)
+                {
+                    // 检查路径长度是否超过剩余步数
+                    if (path.Count - 1 > _stepManager.GetRemainingSteps())
+                    {
+                        Debug.Log("路径超出剩余步数，无法移动！");
+                        return;
+                    }
+
+                    // 触发关闭clickUI事件
+                    EVENTMGR.TriggerClickPath();
+                            
+                    // 清空现有路径并添加新路径
+                    pathQueue.Clear();
+                    foreach (var node in path)
+                    {
+                        Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
+                        pathQueue.Enqueue(targetPos);
+                        EVENTMGR.TriggerUseStep(1);
+                    }
+
+                    player.PlayAnimation(player.walkAnimation, true);
+                }
+            }
+        }
+    }
+    
+    public void HandlePlayerMoveWihoutChecking(Vector3 pos)
+    {
+        if (pathfindingManager != null)
+        {
+            Transform targetNode = pathfindingManager.GetClosestNode(pos);
+            Transform currentNode = pathfindingManager.GetClosestNode(transform.position - positionOffset);
                 
             if (currentNode != null && targetNode != null)
             {

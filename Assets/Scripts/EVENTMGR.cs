@@ -98,6 +98,17 @@ public static class EVENTMGR
     }
 
     #endregion
+
+    #region 进入触发目标地块
+
+    public static Action<Vector3> OnEnterTargetField;
+
+    public static void TriggerEnterTargetField(Vector3 pos)
+    {
+        OnEnterTargetField?.Invoke(pos);
+    }
+
+    #endregion
     
     #region 步数
 

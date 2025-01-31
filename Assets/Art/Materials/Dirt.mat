@@ -40,6 +40,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelHighlights: 0
+    - _ReceiveShadows: 1
+    - _WrappedLighting: 1
     m_Colors:
     - _AlbedoColor: {r: 0.4339623, g: 0.26398322, b: 0.17399432, a: 1}
     - _Color: {r: 0.43396226, g: 0.2639832, b: 0.17399427, a: 1}

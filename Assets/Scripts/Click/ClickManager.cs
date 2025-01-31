@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickManager : MonoBehaviour
 {
@@ -41,9 +43,12 @@ public class ClickManager : MonoBehaviour
             DetectClick();
         }
     }
-
+    
     private void DetectClick()
     {
+        // 如果鼠标点在 UI 上，则不执行 3D 点击逻辑
+        if (IsPointerOverUI()) return;
+
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -73,6 +78,20 @@ public class ClickManager : MonoBehaviour
             CloseEffect();
         }
     }
+
+    private bool IsPointerOverUI()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+    
+        return results.Count > 0; // 如果射线检测到 UI，则返回 true
+    }
+
 
     private void CloseEffect()
     {

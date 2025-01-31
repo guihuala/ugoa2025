@@ -39,7 +39,7 @@ public class DialoguePanel : BasePanel
     
     public override void OpenPanel(string name)
     {
-        base.OpenPanel(name); // 调用基类的打开面板方法
+        base.OpenPanel(name);
         
         DOTween.Sequence()
             .AppendInterval(0.5f)

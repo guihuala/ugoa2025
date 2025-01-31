@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -34,6 +35,7 @@ public class RecordPanel : BasePanel
             // 设置名称
             obj.name = (i + 1).ToString();
             obj.GetComponent<RecordUI>().SetID(i + 1);
+            
             // 如果存档存在，则设置存档名称
             if (RecordData.Instance.recordName[i] != "")
             {
@@ -45,19 +47,18 @@ public class RecordPanel : BasePanel
 
         #region 按钮绑定
         RecordUI.OnLeftClick += LeftClickGrid;     
-        
         closeBtn.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
         saveBtn.onClick.AddListener(() => OnSaveBtnClick());
         loadBtn.onClick.AddListener(() => OnLoadBtnClick());
         deleteBtn.onClick.AddListener(() => OnDeleteBtnClick());
         #endregion
-        
+    
         detail.SetActive(false);
 
         // 初始化时间
         TIMEMGR.SetOriTime();
     }
-
+    
     private void OnDestroy()
     {
         RecordUI.OnLeftClick -= LeftClickGrid;
@@ -89,6 +90,8 @@ public class RecordPanel : BasePanel
             sceneName.text = "当前场景：无存档";
             screenShot.sprite = null; // 清空截图显示
             detail.SetActive(true);  // 显示详情面板
+            detail.transform.localScale = Vector3.zero; // 初始为0大小
+            detail.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack); // 缩放进入
             return;
         }
 
@@ -99,6 +102,8 @@ public class RecordPanel : BasePanel
 
         // 显示详情面板
         detail.SetActive(true);
+        detail.transform.localScale = Vector3.zero; // 初始为0大小
+        detail.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack); // 缩放进入
     }
 
 

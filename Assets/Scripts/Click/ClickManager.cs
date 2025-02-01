@@ -8,8 +8,9 @@ public class ClickManager : MonoBehaviour
     private Camera mainCamera;
     private ClickableEffect currentClickableEffect; // 当前激活的物体
     [SerializeField] private float sizeLerpSpeed = 15f; // 相机缩放速度
-    [SerializeField] private float targetSize = 2f; // 缩放目标正交大小
-    private float normalSize; // 默认正交大小
+    [SerializeField] private float targetSize = 2.5f; // 缩放目标正交大小
+    
+    private float normalSize; // 记录默认相机大小
     private Coroutine sizeChangeCoroutine;
 
     private void Awake()
@@ -46,24 +47,23 @@ public class ClickManager : MonoBehaviour
     
     private void DetectClick()
     {
-        // 如果鼠标点在 UI 上，则不执行 3D 点击逻辑
         if (IsPointerOverUI()) return;
+        if (Time.timeScale == 0)
+            return;
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
         {
-            // 检测物体是否实现 IClickable 接口
             IClickable clickable = hit.collider.GetComponent<IClickable>();
             if (clickable != null)
             {
-                // 如果已经有激活的物体先关闭
-                if (currentClickableEffect != null && currentClickableEffect != hit.collider.GetComponent<ClickableEffect>())
-                {
-                    currentClickableEffect.HideUIWithAnimation();
-                    EVENTMGR.TriggerClickPlayer(false);
-                }
+                // if (currentClickableEffect != null && currentClickableEffect != hit.collider.GetComponent<ClickableEffect>())
+                // {
+                //     CloseEffect();
+                //     return;
+                // }
 
                 // 激活新的物体
                 currentClickableEffect = hit.collider.GetComponent<ClickableEffect>();
@@ -79,20 +79,6 @@ public class ClickManager : MonoBehaviour
         }
     }
 
-    private bool IsPointerOverUI()
-    {
-        PointerEventData eventData = new PointerEventData(EventSystem.current)
-        {
-            position = Input.mousePosition
-        };
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, results);
-    
-        return results.Count > 0; // 如果射线检测到 UI，则返回 true
-    }
-
-
     private void CloseEffect()
     {
         if (currentClickableEffect != null)
@@ -105,6 +91,19 @@ public class ClickManager : MonoBehaviour
             // 恢复相机缩放
             StartCameraZoom(normalSize);
         }
+    }
+
+    private bool IsPointerOverUI()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        
+        return results.Count > 0; // 如果射线检测到 UI，则返回 true
     }
 
     private void HandleClickPlayer(bool isActivity)
@@ -122,7 +121,6 @@ public class ClickManager : MonoBehaviour
             currentClickableEffect.HideUIWithAnimation();
             currentClickableEffect = null;
 
-            // 恢复相机缩放
             StartCameraZoom(normalSize);
         }
     }

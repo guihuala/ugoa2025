@@ -94,12 +94,10 @@ public class PlayerMovement : MonoBehaviour
                         Debug.Log("路径超出剩余步数，无法移动！");
                         return;
                     }
-
-                    // 触发关闭clickUI事件
-                    EVENTMGR.TriggerClickPath();
                             
                     // 清空现有路径并添加新路径
                     pathQueue.Clear();
+                    EVENTMGR.TriggerClickPath();
                     foreach (var node in path)
                     {
                         Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);

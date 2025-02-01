@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-
 public class Poacher : EnemyBase
 {
     private int currentPointIndex = 0;
@@ -80,6 +79,11 @@ public class Poacher : EnemyBase
 
         while (pathQueue.Count > 0)
         {
+            if (Time.timeScale == 0)
+            {
+                yield return new WaitUntil(() => Time.timeScale > 0);
+            }
+
             Vector3 targetPosition = pathQueue.Dequeue();
 
             // 处理角色朝向
@@ -88,6 +92,11 @@ public class Poacher : EnemyBase
             // 移动角色
             while ((transform.position - targetPosition).sqrMagnitude > 0.01f) // 避免浮点数误差
             {
+                if (Time.timeScale == 0)
+                {
+                    yield return new WaitUntil(() => Time.timeScale > 0);
+                }
+
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 yield return null;
             }

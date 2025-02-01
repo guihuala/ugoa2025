@@ -15,6 +15,7 @@ public class LevelInfo : MonoBehaviour
     public void GoToNextLevel()
     {
         // 在这边存储一下进入下一关
+        // 把场景改为下一关或者选关场景
         if (!isEndLevel)
         {
             SceneLoader.Instance.LoadScene(nextLevel, "下一关...");

@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d59411181cf654650816fc3fd4999ebd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4dd3aea64818e4aaeb75957b3830a1df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,7 +163,7 @@ Transform:
   m_Children:
   - {fileID: 2857814258521514654}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5372008867385769023
 MonoBehaviour:
@@ -184,7 +184,5 @@ MonoBehaviour:
   maxFlyTime: 6
   stopTime: 2
   animationSpeed: 0.1
-  perches:
-  - {fileID: 0}
   flyAreaMin: {x: 0, y: 2.3, z: 0}
   flyAreaMax: {x: 10, y: 2.8, z: 10}

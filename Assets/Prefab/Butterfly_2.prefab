@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &534272893137773960
+--- !u!1 &1257327361159212000
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,66 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8601594222785274312}
-  - component: {fileID: 3633221504757546705}
-  - component: {fileID: 7382927780918207079}
-  - component: {fileID: 1737310322965223137}
-  - component: {fileID: 192858556357835210}
+  - component: {fileID: 7662468781066178260}
+  - component: {fileID: 4385377570855614479}
+  m_Layer: 0
+  m_Name: Butterfly_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7662468781066178260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257327361159212000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2715372488104950193}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4385377570855614479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257327361159212000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf529b42df91462581262228875af0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  birdSprites:
+  - {fileID: 21300000, guid: d0e5e56b8bab443d6b42f50b9c6ecdf7, type: 3}
+  - {fileID: 21300000, guid: ddfc1f4f25db9477dba2e3d0b09dc4b2, type: 3}
+  - {fileID: 21300000, guid: cd9af0e771b3d4f9d8650481ee53987e, type: 3}
+  minFlyTime: 3
+  maxFlyTime: 6
+  stopTime: 2
+  animationSpeed: 0.1
+  flyAreaMin: {x: 0, y: 2.3, z: 0}
+  flyAreaMax: {x: 10, y: 2.8, z: 10}
+--- !u!1 &1268518703346881109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2715372488104950193}
+  - component: {fileID: 5282927865011195634}
+  - component: {fileID: 9090712655155845427}
+  - component: {fileID: 2897154475198403448}
+  - component: {fileID: 1270222110129415003}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -20,28 +75,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8601594222785274312
+--- !u!4 &2715372488104950193
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534272893137773960}
+  m_GameObject: {fileID: 1268518703346881109}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4962309268112586840}
+  m_Father: {fileID: 7662468781066178260}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
---- !u!212 &3633221504757546705
+--- !u!212 &5282927865011195634
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534272893137773960}
+  m_GameObject: {fileID: 1268518703346881109}
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
@@ -76,7 +131,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 941ba16f13b164be6ab1a53a8c9ea0c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0e5e56b8bab443d6b42f50b9c6ecdf7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,38 +142,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7382927780918207079
+--- !u!114 &9090712655155845427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534272893137773960}
+  m_GameObject: {fileID: 1268518703346881109}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ba21448db82d4f7cb8a9513db0d2ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1737310322965223137
+--- !u!114 &2897154475198403448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534272893137773960}
+  m_GameObject: {fileID: 1268518703346881109}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81ee42f3d07164119b5ee8038a80a571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &192858556357835210
+--- !u!95 &1270222110129415003
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534272893137773960}
+  m_GameObject: {fileID: 1268518703346881109}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e71d424f1e5d144939f10e0fa5ecfbfa, type: 2}
@@ -132,58 +187,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &4755109878109687738
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4962309268112586840}
-  - component: {fileID: 2403588456750281279}
-  m_Layer: 0
-  m_Name: Butterfly
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4962309268112586840
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4755109878109687738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8601594222785274312}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2403588456750281279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4755109878109687738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf529b42df91462581262228875af0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  birdSprites:
-  - {fileID: 21300000, guid: 941ba16f13b164be6ab1a53a8c9ea0c5, type: 3}
-  - {fileID: 21300000, guid: d26497b5b4acb4b919fe1ddf9c08ef02, type: 3}
-  - {fileID: 21300000, guid: db91f2ce6e0294f7bb2882f925b5817d, type: 3}
-  minFlyTime: 3
-  maxFlyTime: 6
-  stopTime: 2
-  animationSpeed: 0.1
-  flyAreaMin: {x: 0, y: 2.3, z: 0}
-  flyAreaMax: {x: 10, y: 2.8, z: 10}

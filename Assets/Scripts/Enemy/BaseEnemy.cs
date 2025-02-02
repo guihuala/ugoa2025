@@ -15,11 +15,12 @@ public abstract class EnemyBase : MonoBehaviour
 
     private Transform player;
 
+
     protected virtual void Start()
     {
         animator = GetComponent<Animator>();
         player = FindObjectOfType<Player>().transform;
-
+        
         stateMachine = new StateMachine();
         InitializeStates();
     }
@@ -64,7 +65,6 @@ public abstract class EnemyBase : MonoBehaviour
 
         return false; // 超出视野范围
     }
-
     
     public void ChangeState(IState newState)
     {

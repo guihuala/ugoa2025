@@ -13,8 +13,7 @@ public class NodeMarker : MonoBehaviour
     public bool IsHighlighted { get; private set; } = false;
 
     private Vector3 originalScale = new Vector3(1, 1, 1);
-
-    // 新增：跟踪脚印动画是否正在播放
+    
     private bool isFootPrintPlaying = false;
     private Tween footPrintTween;
 
@@ -33,49 +32,106 @@ public class NodeMarker : MonoBehaviour
         HideHighlight();
     }
 
-    void OnMouseEnter()
+    void Update()
     {
-        if (IsWalkable && IsHighlighted && clickHighLight != null)
-        {
-            clickHighLight.gameObject.SetActive(true);
-            clickHighLight.DOFade(1f, 0.3f).SetUpdate(true); // 渐显，忽略时间缩放
-
-            transform.DOScale(new Vector3(originalScale.x, originalScale.y * 1.2f, originalScale.z), 0.3f)
-                .SetEase(Ease.OutBack)
-                .SetUpdate(true);
-        }
+        if(!IsWalkable)
+            return;
+        
+        CheckHover();
+        CheckClick();
     }
 
-    void OnMouseExit()
+    void CheckHover()
     {
-        if (clickHighLight != null)
-        {
-            clickHighLight.DOFade(0f, 0.3f)
-                .SetUpdate(true)
-                .OnComplete(() => clickHighLight.gameObject.SetActive(false));
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-            if (!IsHighlighted)
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject == gameObject && IsHighlighted && clickHighLight != null)
             {
-                transform.DOScale(new Vector3(originalScale.x, originalScale.y, originalScale.z), 0.3f)
-                    .SetEase(Ease.InBack)
-                    .SetUpdate(true);
+                // 鼠标悬停到物体上，显示高亮效果
+                if (!clickHighLight.gameObject.activeSelf)
+                {
+                    clickHighLight.gameObject.SetActive(true);
+                    clickHighLight.DOFade(1f, 0.3f).SetUpdate(true);
+
+                    transform.DOScale(new Vector3(originalScale.x, originalScale.y * 1.2f, originalScale.z), 0.3f)
+                        .SetEase(Ease.OutBack)
+                        .SetUpdate(true);
+                }
             }
             else
             {
-                transform.DOScale(new Vector3(originalScale.x, originalScale.y * 1.1f, originalScale.z), 0.3f)
-                    .SetEase(Ease.OutBack)
-                    .SetUpdate(true);
+                // 鼠标离开物体，恢复状态
+                if (clickHighLight.gameObject.activeSelf)
+                {
+                    clickHighLight.DOFade(0f, 0.3f)
+                        .SetUpdate(true)
+                        .OnComplete(() => clickHighLight.gameObject.SetActive(false));
+
+                    if (!IsHighlighted)
+                    {
+                        transform.DOScale(new Vector3(originalScale.x, originalScale.y, originalScale.z), 0.3f)
+                            .SetEase(Ease.InBack)
+                            .SetUpdate(true);
+                    }
+                    else
+                    {
+                        transform.DOScale(new Vector3(originalScale.x, originalScale.y * 1.1f, originalScale.z), 0.3f)
+                            .SetEase(Ease.OutBack)
+                            .SetUpdate(true);
+                    }
+                }
+            }
+        }
+        else
+        {
+            // 没有射线击中物体时
+            if (clickHighLight.gameObject.activeSelf)
+            {
+                clickHighLight.DOFade(0f, 0.3f)
+                    .SetUpdate(true)
+                    .OnComplete(() => clickHighLight.gameObject.SetActive(false));
+
+                if (!IsHighlighted)
+                {
+                    transform.DOScale(new Vector3(originalScale.x, originalScale.y, originalScale.z), 0.3f)
+                        .SetEase(Ease.InBack)
+                        .SetUpdate(true);
+                }
+                else
+                {
+                    transform.DOScale(new Vector3(originalScale.x, originalScale.y * 1.1f, originalScale.z), 0.3f)
+                        .SetEase(Ease.OutBack)
+                        .SetUpdate(true);
+                }
             }
         }
     }
-
-    // 使用射线检测确保此物体的点击优先级最高
-    void OnMouseDown()
+    
+    void CheckClick()
     {
-        if (!IsWalkable || !IsHighlighted)
-            return;
+        if (Input.GetMouseButtonDown(0)) // 左键点击
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-        EVENTMGR.TriggerClickMarker(transform.position);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    Debug.Log("Click");
+                    if (!IsHighlighted)
+                    {
+                        EVENTMGR.TriggerClickPath();
+                        return;
+                    }
+
+                    EVENTMGR.TriggerClickMarker(transform.position);
+                }
+            }
+        }
     }
 
     public void ShowHighlight()
@@ -102,8 +158,7 @@ public class NodeMarker : MonoBehaviour
 
         hoverHighlight.SetActive(false);
     }
-
-    // 脚印显示方法，增加动画重置检查
+    
     public void ShowFootPrint()
     {
         if (footPrint != null)

@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         EVENTMGR.OnEnterTargetField -= HandlePlayerMoveWihoutChecking;
     }
 
-
     void Update()
     {
         HandleMouseInput();
@@ -79,10 +78,11 @@ public class PlayerMovement : MonoBehaviour
             Transform currentNode = pathfindingManager.GetClosestNode(transform.position - positionOffset);
 
             // 检查当前节点是否可行走
-            if (!currentNode.GetComponent<NodeMarker>().IsWalkable || !currentNode.GetComponent<NodeMarker>().IsHighlighted)
+            NodeMarker currentNodeMarker = currentNode?.GetComponent<NodeMarker>();
+            if (currentNodeMarker == null || !currentNodeMarker.IsWalkable || !currentNodeMarker.IsHighlighted)
                 return;
-                
-            if (currentNode != null && targetNode != null)
+
+            if (targetNode != null)
             {
                 List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes);
 
@@ -97,12 +97,13 @@ public class PlayerMovement : MonoBehaviour
                             
                     // 清空现有路径并添加新路径
                     pathQueue.Clear();
-                    EVENTMGR.TriggerClickPath();
+                    
                     foreach (var node in path)
                     {
                         Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
                         pathQueue.Enqueue(targetPos);
                         EVENTMGR.TriggerUseStep(1);
+                        EVENTMGR.TriggerClickPath();
                     }
 
                     player.PlayAnimation(player.walkAnimation, true);
@@ -117,30 +118,26 @@ public class PlayerMovement : MonoBehaviour
         {
             Transform targetNode = pathfindingManager.GetClosestNode(pos);
             Transform currentNode = pathfindingManager.GetClosestNode(transform.position - positionOffset);
-                
-            if (currentNode != null && targetNode != null)
+
+            if (targetNode != null && currentNode != null)
             {
                 List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes);
 
                 if (path != null)
                 {
-                    // 检查路径长度是否超过剩余步数
                     if (path.Count - 1 > _stepManager.GetRemainingSteps())
                     {
                         Debug.Log("路径超出剩余步数，无法移动！");
                         return;
                     }
 
-                    // 触发关闭clickUI事件
-                    EVENTMGR.TriggerClickPath();
-                            
-                    // 清空现有路径并添加新路径
                     pathQueue.Clear();
                     foreach (var node in path)
                     {
                         Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
                         pathQueue.Enqueue(targetPos);
                         EVENTMGR.TriggerUseStep(1);
+                        EVENTMGR.TriggerClickPath();
                     }
 
                     player.PlayAnimation(player.walkAnimation, true);
@@ -157,16 +154,19 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 targetPosition = pathQueue.Dequeue();
 
-            // 处理角色朝向
             HandleRotation(targetPosition - transform.position);
 
             // 移动角色
             while ((transform.position - targetPosition).sqrMagnitude > 0.01f) // 避免浮点数误差
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                transform.position =
+                    Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                // 在角色走完格子之后显示脚印
+                
                 yield return null;
             }
 
+            EVENTMGR.TriggerPlayerStep(targetPosition - positionOffset);
             transform.position = targetPosition; // 确保精准到达目标点
         }
 

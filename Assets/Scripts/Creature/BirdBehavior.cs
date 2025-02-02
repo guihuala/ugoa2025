@@ -11,8 +11,7 @@ public class BirdBehavior : MonoBehaviour
     public float maxFlyTime = 6f;
     public float stopTime = 2f;
     public float animationSpeed = 0.1f; // 控制动画播放速度
-
-    public Transform[] perches; // 停靠点
+    
     public Vector3 flyAreaMin;  // 随机飞行区域最小值
     public Vector3 flyAreaMax;  // 随机飞行区域最大值
 
@@ -33,7 +32,7 @@ public class BirdBehavior : MonoBehaviour
         {
             if (isFlying)
             {
-                if (Random.value < 0.5f && perches.Length > 0) // 停靠
+                if (Random.value < 0.5f) // 停靠
                 {
                     isFlying = false;
                     

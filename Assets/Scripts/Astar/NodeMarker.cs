@@ -3,24 +3,34 @@ using DG.Tweening;
 
 public class NodeMarker : MonoBehaviour
 {
+    [Header("能否走过")]
     public bool IsWalkable = true;
+
+    [Header("脚印消失时间")] [SerializeField] private float footprintDuration = 2.0f;
     
     private SpriteRenderer clickHighLight;
     private GameObject hoverHighlight;
+    private GameObject footPrint;
     public bool IsHighlighted { get; private set; } = false;
 
     private Vector3 originalScale = new Vector3(1, 1, 1);
+
+    // 新增：跟踪脚印动画是否正在播放
+    private bool isFootPrintPlaying = false;
+    private Tween footPrintTween;
 
     void Start()
     {
         clickHighLight = transform.GetChild(0).GetComponent<SpriteRenderer>();
         hoverHighlight = transform.GetChild(1).gameObject;
+        footPrint = transform.GetChild(2).gameObject;
 
         if (clickHighLight == null) Debug.LogError("ClickHighLight is null");
 
         clickHighLight.gameObject.SetActive(false);
         hoverHighlight.SetActive(false);
-        
+        footPrint.SetActive(false);
+
         HideHighlight();
     }
 
@@ -69,7 +79,7 @@ public class NodeMarker : MonoBehaviour
                 .SetUpdate(true);
 
             IsHighlighted = true;
-            
+
             hoverHighlight.SetActive(true);
         }
     }
@@ -81,7 +91,37 @@ public class NodeMarker : MonoBehaviour
             .SetUpdate(true);
 
         IsHighlighted = false;
-        
+
         hoverHighlight.SetActive(false);
     }
+
+    // 脚印显示方法，增加动画重置检查
+    public void ShowFootPrint()
+    {
+        Debug.Log("ShowFootPrint");
+
+        if (footPrint != null)
+        {
+            if (isFootPrintPlaying && footPrintTween != null)
+            {
+                footPrintTween.Kill();
+            }
+            
+            footPrint.SetActive(true);
+
+            // 重置脚印的透明度
+            footPrint.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+
+            // 启动脚印渐隐动画，并且重置脚印动画
+            footPrintTween = footPrint.GetComponent<SpriteRenderer>().DOFade(0f, footprintDuration)
+                .OnComplete(() =>
+                {
+                    footPrint.SetActive(false);
+                    isFootPrintPlaying = false;
+                });
+
+            isFootPrintPlaying = true;
+        }
+    }
+
 }

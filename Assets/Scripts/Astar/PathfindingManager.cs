@@ -41,6 +41,7 @@ public class PathfindingManager : MonoBehaviour
         // 监听事件
         EVENTMGR.ChangeSteps += UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer += OnClickPlayer;
+        EVENTMGR.OnPlayerStep += OnShowFootprintInNode;
     }
 
     private void Update()
@@ -55,6 +56,7 @@ public class PathfindingManager : MonoBehaviour
     {
         EVENTMGR.ChangeSteps -= UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer -= OnClickPlayer;
+        EVENTMGR.OnPlayerStep -= OnShowFootprintInNode;
     }
 
     private void UpdateHighlightRadius(int newHighlightRadius)
@@ -157,5 +159,12 @@ public class PathfindingManager : MonoBehaviour
         }
 
         return closestNode;
+    }
+
+    private void OnShowFootprintInNode(Vector3 position)
+    {
+        NodeMarker nodeToShow = GetClosestNode(position).GetComponent<NodeMarker>();
+        
+        nodeToShow.ShowFootPrint();
     }
 }

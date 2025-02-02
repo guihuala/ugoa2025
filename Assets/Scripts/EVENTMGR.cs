@@ -38,9 +38,23 @@ public static class EVENTMGR
 
     public static Action<Vector3> OnClickMarker;
 
+    /// <summary>
+    /// 角色经过图块，用于显示脚印
+    /// </summary>
+    public static Action<Vector3> OnPlayerStep;
+
     public static void TriggerClickMarker(Vector3 pos)
     {
         OnClickMarker?.Invoke(pos);
+    }
+
+    /// <summary>
+    /// 触发角色经过图块事件
+    /// </summary>
+    /// <param name="pos">图块坐标</param>
+    public static void TriggerPlayerStep(Vector3 pos)
+    {
+        OnPlayerStep?.Invoke(pos);
     }
 
     #endregion

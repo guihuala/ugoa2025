@@ -35,7 +35,6 @@ public class ClickableEffect : MonoBehaviour, IClickable
             EVENTMGR.TriggerTimeScaleChange(1.0f);
             return;
         }
-            
         
         // todo:判断一下是不是玩家 如果是才触发以下事件
         EVENTMGR.TriggerClickPlayer(true);

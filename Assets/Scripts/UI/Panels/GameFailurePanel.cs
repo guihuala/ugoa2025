@@ -30,7 +30,7 @@ public class GameFailurePanel : BasePanel
             
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
             
-            UIManager.Instance.RemovePanel(panelName);
+            UIManager.Instance.ClosePanel(panelName);
             
             SceneLoader.Instance.LoadScene(levelInfo.currentScene, "重新开始...");
         });
@@ -38,7 +38,7 @@ public class GameFailurePanel : BasePanel
         {
             Time.timeScale = 1.0f;
             
-            UIManager.Instance.RemovePanel(panelName);
+            UIManager.Instance.ClosePanel(panelName);
             
             SceneLoader.Instance.LoadScene(SceneName.Title, "回到主界面...");
         });

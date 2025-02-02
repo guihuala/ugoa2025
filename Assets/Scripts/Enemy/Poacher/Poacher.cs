@@ -7,10 +7,17 @@ public class Poacher : EnemyBase
 {
     private int currentPointIndex = 0;
     
-    [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);    
+    [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);  
+    
     private bool isMoving = false;
     private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
     private PathfindingManager pathfindingManager;
+    
+    [Header("小弟配置")]
+    [SerializeField] private EnemyFollower followerPrefab;
+    [SerializeField] private int numberOfFollowers = 3;  // 小弟的数量
+
+    private List<EnemyFollower> followers = new List<EnemyFollower>();  // 小弟列表
 
     protected override void InitializeStates()
     {
@@ -26,7 +33,18 @@ public class Poacher : EnemyBase
         {
             Debug.LogError("PathfindingManager not found.");
         }
-        
+
+        // 创建小弟
+        CreateFollowers();
+    }
+
+    private void CreateFollowers()
+    {
+        for (int i = 0; i < numberOfFollowers; i++)
+        {
+            EnemyFollower follower = Instantiate(followerPrefab, transform.position, Quaternion.identity);
+            followers.Add(follower);
+        }
     }
 
     public override void MoveForward()
@@ -40,39 +58,55 @@ public class Poacher : EnemyBase
         {
             if (!isMoving)
             {
-                MoveTo(patrolPoints[currentPointIndex].position);
-                currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length; // 循环巡逻
+                ComputeFullPath();
             }
-            yield return new WaitForSeconds(1f); // 每次巡逻间隔
+            yield return new WaitForSeconds(1f);
         }
     }
     
-    public void MoveTo(Vector3 targetPosition)
+    // 计算完整路径
+    public void ComputeFullPath()
     {
         if (pathfindingManager == null) return;
-
-        // 获取当前最近的路径点
+        
         Transform currentNode = pathfindingManager.GetClosestNode(transform.position);
-        Transform targetNode = pathfindingManager.GetClosestNode(targetPosition);
+        
+        if (currentNode == null) return;
 
-        if (currentNode != null && targetNode != null)
+        // 清空之前的路径队列
+        pathQueue.Clear();
+
+        // 遍历所有巡逻点并计算路径
+        for (int i = 0; i < patrolPoints.Length; i++)
         {
-            List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes);
-
-            if (path != null && path.Count > 0)
+            Transform targetNode = pathfindingManager.GetClosestNode(patrolPoints[i].position);
+            if (targetNode != null)
             {
-                pathQueue.Clear();
-                foreach (var node in path)
+                List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes);
+                if (path != null && path.Count > 0)
                 {
-                    Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
-                    pathQueue.Enqueue(targetPos);
+                    foreach (var node in path)
+                    {
+                        Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
+                        pathQueue.Enqueue(targetPos);
+                    }
+
+                    currentNode = targetNode; // 更新当前节点
                 }
-                
-                StartCoroutine(MoveAlongPath());
             }
         }
+
+        // 给所有小弟传递路径
+        for (int i = 0; i < followers.Count; i++)
+        {
+            float delay = (i + 1) * 1f; // 每个小弟有不同的跟随延迟
+            followers[i].FollowPath(pathQueue, delay); // 将路径队列传递给每个小弟
+        }
+
+        StartCoroutine(MoveAlongPath());
     }
-    
+
+    // 沿着完整路径行走
     private IEnumerator MoveAlongPath()
     {
         isMoving = true;
@@ -117,17 +151,7 @@ public class Poacher : EnemyBase
             CheckPoint.DORotateQuaternion(targetRotation, 0.3f);
         }
     }
-
-    public void StartWobblingHead()
-    {
-        // 头部摇摆的动画
-    }
-
-    public void StopWobblingHead()
-    {
-        // 停止头部摇摆的动画
-    }
-
+    
     public override void PerformFoundPlayer()
     {
         // 触发失败事件

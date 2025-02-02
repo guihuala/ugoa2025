@@ -47,7 +47,6 @@ public class ClickManager : MonoBehaviour
     
     private void DetectClick()
     {
-        if (IsPointerOverUI()) return;
         if (Time.timeScale == 0)
             return;
 
@@ -59,12 +58,6 @@ public class ClickManager : MonoBehaviour
             IClickable clickable = hit.collider.GetComponent<IClickable>();
             if (clickable != null)
             {
-                // if (currentClickableEffect != null && currentClickableEffect != hit.collider.GetComponent<ClickableEffect>())
-                // {
-                //     CloseEffect();
-                //     return;
-                // }
-
                 // 激活新的物体
                 currentClickableEffect = hit.collider.GetComponent<ClickableEffect>();
                 if (currentClickableEffect != null)
@@ -92,19 +85,7 @@ public class ClickManager : MonoBehaviour
             StartCameraZoom(normalSize);
         }
     }
-
-    private bool IsPointerOverUI()
-    {
-        PointerEventData eventData = new PointerEventData(EventSystem.current)
-        {
-            position = Input.mousePosition
-        };
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, results);
-        
-        return results.Count > 0; // 如果射线检测到 UI，则返回 true
-    }
+    
 
     private void HandleClickPlayer(bool isActivity)
     {
@@ -120,7 +101,6 @@ public class ClickManager : MonoBehaviour
         {
             currentClickableEffect.HideUIWithAnimation();
             currentClickableEffect = null;
-
             StartCameraZoom(normalSize);
         }
     }

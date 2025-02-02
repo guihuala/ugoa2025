@@ -3,11 +3,10 @@ using DG.Tweening;
 
 public class NodeMarker : MonoBehaviour
 {
-    [Header("能否走过")]
-    public bool IsWalkable = true;
+    [Header("能否走过")] public bool IsWalkable = true;
 
     [Header("脚印消失时间")] [SerializeField] private float footprintDuration = 2.0f;
-    
+
     private SpriteRenderer clickHighLight;
     private GameObject hoverHighlight;
     private GameObject footPrint;
@@ -70,6 +69,15 @@ public class NodeMarker : MonoBehaviour
         }
     }
 
+    // 使用射线检测确保此物体的点击优先级最高
+    void OnMouseDown()
+    {
+        if (!IsWalkable || !IsHighlighted)
+            return;
+
+        EVENTMGR.TriggerClickMarker(transform.position);
+    }
+
     public void ShowHighlight()
     {
         if (IsWalkable)
@@ -98,15 +106,13 @@ public class NodeMarker : MonoBehaviour
     // 脚印显示方法，增加动画重置检查
     public void ShowFootPrint()
     {
-        Debug.Log("ShowFootPrint");
-
         if (footPrint != null)
         {
             if (isFootPrintPlaying && footPrintTween != null)
             {
                 footPrintTween.Kill();
             }
-            
+
             footPrint.SetActive(true);
 
             // 重置脚印的透明度
@@ -123,5 +129,4 @@ public class NodeMarker : MonoBehaviour
             isFootPrintPlaying = true;
         }
     }
-
 }

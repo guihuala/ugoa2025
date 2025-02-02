@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(Player))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
@@ -37,16 +38,18 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<Player>();
 
         EVENTMGR.OnEnterTargetField += HandlePlayerMoveWihoutChecking;
+        EVENTMGR.OnClickMarker += HandlePlayerMove;
     }
 
     private void OnDestroy()
     {
         EVENTMGR.OnEnterTargetField -= HandlePlayerMoveWihoutChecking;
+        EVENTMGR.OnClickMarker -= HandlePlayerMove;
     }
 
     void Update()
     {
-        HandleMouseInput();
+        // HandleMouseInput();
         
         if (!isMoving && pathQueue.Count > 0)
         {
@@ -72,6 +75,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandlePlayerMove(Vector3 pos)
     {
+        if (_stepManager.GetRemainingSteps() <= 0)
+            return;
+        
         if (pathfindingManager != null)
         {
             Transform targetNode = pathfindingManager.GetClosestNode(pos);
@@ -88,13 +94,8 @@ public class PlayerMovement : MonoBehaviour
 
                 if (path != null)
                 {
-                    // 检查路径长度是否超过剩余步数
-                    if (path.Count - 1 > _stepManager.GetRemainingSteps())
-                    {
-                        Debug.Log("路径超出剩余步数，无法移动！");
-                        return;
-                    }
-                            
+                    EVENTMGR.TriggerClickPath();
+
                     // 清空现有路径并添加新路径
                     pathQueue.Clear();
                     
@@ -103,7 +104,6 @@ public class PlayerMovement : MonoBehaviour
                         Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
                         pathQueue.Enqueue(targetPos);
                         EVENTMGR.TriggerUseStep(1);
-                        EVENTMGR.TriggerClickPath();
                     }
 
                     player.PlayAnimation(player.walkAnimation, true);
@@ -114,6 +114,8 @@ public class PlayerMovement : MonoBehaviour
     
     public void HandlePlayerMoveWihoutChecking(Vector3 pos)
     {
+        // 剧情用不需要检查步数
+        
         if (pathfindingManager != null)
         {
             Transform targetNode = pathfindingManager.GetClosestNode(pos);

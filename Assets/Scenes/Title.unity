@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.1
@@ -4518,15 +4518,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3fe748d8e5adf4bc5a61ca8bd2e623c2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3fe748d8e5adf4bc5a61ca8bd2e623c2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3fe748d8e5adf4bc5a61ca8bd2e623c2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3fe748d8e5adf4bc5a61ca8bd2e623c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6967,7 +6967,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scensName: 1
   playerStep: 5
-  playerPosition: {x: 0, y: 0, z: 0}
   gameTime: 0
 --- !u!114 &1861914825
 MonoBehaviour:

@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 56, y: -286}
-  m_SizeDelta: {x: 20, y: 300}
+  m_SizeDelta: {x: 80, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4173125512210230058
 MonoBehaviour:
@@ -873,7 +873,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 49, y: -286}
-  m_SizeDelta: {x: 20, y: 300}
+  m_SizeDelta: {x: 80, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5751694005105563355
 MonoBehaviour:
@@ -1778,8 +1778,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmVolumeSlider: {fileID: 5751694005105563355}
   sfxVolumeSlider: {fileID: 4173125512210230058}
+  bgmVolumeButton: {fileID: 9124054811807674264}
+  sfxVolumeButton: {fileID: 2560175615448487390}
   resumeButton: {fileID: 5495802944036547579}
-  exitButton: {fileID: 2677729752413226512}
+  menuButton: {fileID: 2677729752413226512}
+  exitButton: {fileID: 7204095304740962687}
 --- !u!1 &9148478769061823411
 GameObject:
   m_ObjectHideFlags: 0

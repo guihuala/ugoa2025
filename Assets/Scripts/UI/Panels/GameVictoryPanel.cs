@@ -29,7 +29,7 @@ public class GameVictoryPanel : BasePanel
             
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
             
-            UIManager.Instance.RemovePanel(panelName);
+            UIManager.Instance.ClosePanel(panelName);
             
             levelInfo.GoToNextLevel();
         });
@@ -37,10 +37,10 @@ public class GameVictoryPanel : BasePanel
         {
             Time.timeScale = 1.0f;
             
-            UIManager.Instance.RemovePanel(panelName);
-            
+            UIManager.Instance.ClosePanel(panelName);
+
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
-            
+            SaveManager.Instance.SetDefaultCurrentScene();
             levelInfo.VictorySaveLevel();
             
             SceneLoader.Instance.LoadScene(SceneName.Title,"回到主界面...");

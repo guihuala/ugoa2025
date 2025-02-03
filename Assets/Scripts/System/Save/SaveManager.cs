@@ -15,7 +15,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
     // 一些需要保存零散的数据
     public SceneName scensName = SceneName.Title; // 玩家上一次所在的场景，在游戏时需要触发更新
     public int playerStep = 5;
-    public Vector3 playerPosition;
     public float gameTime; // 游戏时间
 
     // 其他需要保存的数据例如成就达成度等
@@ -25,7 +24,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
     {
         public SceneName scensName;
         public int playerStep;
-        public Vector3 playerPosition;
         public float gameTime;
 
         // 达成的成就
@@ -52,12 +50,16 @@ public class SaveManager : SingletonPersistent<SaveManager>
         public bool isHeld; // 是否已解锁
     }
 
+    public void SetDefaultCurrentScene()
+    {
+        SceneName sceneName = SceneName.LevelSelection;
+    }
+
     SaveData ForSave()
     {
         var savedata = new SaveData
         {
             scensName = scensName,
-            playerPosition = playerPosition,
             playerStep = playerStep,
             gameTime = gameTime,
         };
@@ -89,7 +91,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
     void ForLoad(SaveData savedata)
     {
         scensName = savedata.scensName;
-        playerPosition = savedata.playerPosition;
         playerStep = savedata.playerStep;
         gameTime = savedata.gameTime;
 

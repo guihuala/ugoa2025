@@ -10,7 +10,20 @@ public class ConfirmationPanel : BasePanel
     public Button cancelButton; // 取消按钮
 
     private System.Action onConfirm; // 确认回调
-    private System.Action onCancel; // 取消回调
+
+    public override void OpenPanel(string name)
+    {
+        panelName = name;
+        
+        gameObject.SetActive(true);
+    }
+    
+    public override void ClosePanel()
+    {
+        hasRemoved = true;
+
+        Destroy(gameObject);
+    }
 
     protected override void Awake()
     {
@@ -33,7 +46,7 @@ public class ConfirmationPanel : BasePanel
     /// <param name="message">显示的确认信息</param>
     /// <param name="onConfirmAction">点击确认时执行的回调</param>
     /// <param name="onCancelAction">点击取消时执行的回调</param>
-    public void ShowConfirmation(string message, System.Action onConfirmAction, System.Action onCancelAction)
+    public void ShowConfirmation(string message, System.Action onConfirmAction)
     {
         // 设置面板的提示信息
         if (messageText != null)
@@ -43,20 +56,15 @@ public class ConfirmationPanel : BasePanel
 
         // 绑定回调方法
         onConfirm = onConfirmAction;
-        onCancel = onCancelAction;
     }
     
     private void OnConfirmButtonClicked()
     {
         onConfirm?.Invoke();
-
-        UIManager.Instance.ClosePanel(panelName);
     }
     
     private void OnCancelButtonClicked()
     {
-        onCancel?.Invoke();
-        
         UIManager.Instance.ClosePanel(panelName);
     }
 }

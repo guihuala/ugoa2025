@@ -25,16 +25,13 @@ public class BasePanel : MonoBehaviour
     public virtual void OpenPanel(string name)
     {
         panelName = name;
-
-        // 初始化面板的透明度为 0
+        
         canvasGroup.alpha = 0;
-
-        // 激活面板
+        
         gameObject.SetActive(true);
-
-        // 使用 DOTween 播放渐显动画
+        
         Sequence s = DOTween.Sequence();
-        s.Append(canvasGroup.DOFade(1, 0.3f));
+        s.Append(canvasGroup.DOFade(1, 0.3f).SetUpdate(true));
     }
 
     /// <summary>
@@ -43,15 +40,13 @@ public class BasePanel : MonoBehaviour
     public virtual void ClosePanel()
     {
         hasRemoved = true;
-
-        // 初始化面板的透明度为 1
+        
         canvasGroup.alpha = 1;
-
-        // 使用 DOTween 播放渐隐动画，并在动画完成后销毁对象
+        
         Sequence s = DOTween.Sequence();
         s.Append(canvasGroup.DOFade(0, 0.3f).OnComplete(() =>
         {
             Destroy(gameObject);
-        }));
+        }).SetUpdate(true));
     }
 }

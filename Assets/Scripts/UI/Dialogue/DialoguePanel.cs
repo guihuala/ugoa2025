@@ -42,7 +42,7 @@ public class DialoguePanel : BasePanel
         base.OpenPanel(name);
         
         DOTween.Sequence()
-            .AppendInterval(0.5f)
+            .AppendInterval(0.3f)
             .AppendCallback(() =>
             {
                 Time.timeScale = 0; // 暂停游戏
@@ -176,7 +176,8 @@ public class DialoguePanel : BasePanel
 
     public void SkipAllDialogue()
     {
-        _typingTween?.Kill(); // 停止打字机效果
+        // 如果正在播放打字机效果，则直接结束动画
+        _typingTween?.Kill();
         _isTyping = false;
 
         if (_currentData == null) return;
@@ -191,6 +192,14 @@ public class DialoguePanel : BasePanel
 
         _isDialogueEnding = true;
 
-        EndDialogue();
+        // 如果正在等待选择，跳过选择
+        if (_isWaitingForSelect)
+        {
+            SetSelectDialogue(_currentIndex + 1);
+        }
+        else
+        {
+            EndDialogue();
+        }
     }
 }

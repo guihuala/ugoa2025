@@ -71,10 +71,11 @@ public class TitleUI : MonoBehaviour
         }    
 
         LevelManager.Instance.LoadLevelUnlocks(i);
+
         AchievementManager.Instance.LoadAchievements(i);
         
         // 切换到存档所在的场景
-        SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName,"loading...");
+        SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"loading...");
     }
 
     // 打开/关闭存档面板

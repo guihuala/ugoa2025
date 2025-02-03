@@ -10,6 +10,9 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
     // 成就系统所解锁的成就列表
     public List<AchievementSO> _achievementList;
     private HashSet<string> unlockedCards = new HashSet<string>();
+    
+    // 临时堆栈存储待保存的成就
+    private HashSet<string> pendingAchievements = new HashSet<string>();
 
     private void Start()
     {
@@ -70,7 +73,7 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
     {
         foreach (var card in DefaultAchievementList.achievement) // 遍历成就列表
         {
-            CheckAndUnlockCard(card,itemId);
+            CheckAndUnlockCard(card, itemId);
         }
     }
 
@@ -81,15 +84,41 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
     }
 
     // 检查卡牌是否满足解锁的条件
-    public void CheckAndUnlockCard(AchievementSO achievement,string itemId)
+    public void CheckAndUnlockCard(AchievementSO achievement, string itemId)
     {
         if (unlockedCards.Contains(achievement.cardID)) return;
 
         if (achievement.CheckCondition(itemId))
         {
-            // 添加已经解锁的卡牌
-            unlockedCards.Add(achievement.cardID);
+            // 成就已经解锁，添加到临时堆栈
+            pendingAchievements.Add(achievement.cardID);
             achievement.isHeld = true;
         }
+    }
+
+    // 保存成就
+    public void SaveAchievements()
+    {
+        foreach (var cardID in pendingAchievements)
+        {
+            var achievement = _achievementList.Find(a => a.cardID == cardID);
+            if (achievement != null && !unlockedCards.Contains(achievement.cardID))
+            {
+                unlockedCards.Add(achievement.cardID);
+            }
+        }
+
+        // 将已解锁的成就加入最终成就列表
+        foreach (var cardID in pendingAchievements)
+        {
+            var achievement = _achievementList.Find(a => a.cardID == cardID);
+            if (achievement != null)
+            {
+                _achievementList.Add(achievement);
+            }
+        }
+
+        // 清空临时堆栈
+        pendingAchievements.Clear();
     }
 }

@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// SaveManager用于在游戏中进行存取档
-/// 由于游戏流程是线性的，优先考虑在游戏内自动存档
-/// 自动存档的规则是碰到某些地块和通关时
-/// 直接覆盖当前正在游玩的存档
-/// 下次点击继续游戏就可以读取存档恢复上次游戏的进度
-/// 当然这样是否可行还需要经过测试
-/// </summary>
 public class SaveManager : SingletonPersistent<SaveManager>
 {
     // 一些需要保存零散的数据
@@ -57,6 +49,9 @@ public class SaveManager : SingletonPersistent<SaveManager>
 
     SaveData ForSave()
     {
+        // ★★ 保存前先提交临时待保存的成就 ★★
+        AchievementManager.Instance.SaveAchievements();
+
         var savedata = new SaveData
         {
             scensName = scensName,
@@ -94,31 +89,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
         playerStep = savedata.playerStep;
         gameTime = savedata.gameTime;
 
-        // 加载成就数据
-        if (savedata.achievements != null)
-        {
-            foreach (var achievementData in savedata.achievements)
-            {
-                var achievement = AchievementManager.Instance._achievementList.Find(a => a.cardID == achievementData.cardID);
-                if (achievement != null)
-                {
-                    achievement.isHeld = achievementData.isHeld;
-                }
-            }
-        }
-
-        // 加载关卡解锁状态
-        if (savedata.levelUnlocks != null)
-        {
-            foreach (var levelData in savedata.levelUnlocks)
-            {
-                var level = LevelManager.Instance.levels.Find(l => l.name == levelData.levelName);
-                if (level != null)
-                {
-                    level.isUnlocked = levelData.isUnlocked;
-                }
-            }
-        }
     }
 
 
@@ -156,8 +126,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
             SAVE.DeleteShot(i);
         }
     }
-
-
+    
     public void Save(int id)
     {
         SAVE.JsonSave(RecordData.Instance.recordName[id], ForSave());

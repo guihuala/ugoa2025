@@ -121,7 +121,6 @@ public class NodeMarker : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
-                    Debug.Log("Click");
                     if (!IsHighlighted)
                     {
                         EVENTMGR.TriggerClickPath();

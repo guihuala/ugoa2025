@@ -11,7 +11,7 @@ public class AchievementDisplayUI : MonoBehaviour
     {
         if (achievementIcon != null)
         {
-            achievementIcon.sprite = achievement.cardSprite;
+            achievementIcon.sprite = achievement.icon;
         }
     }
 }

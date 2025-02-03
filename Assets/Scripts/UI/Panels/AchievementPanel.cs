@@ -26,7 +26,7 @@ public class AchievementPanel : BasePanel
         previousPageButton.onClick.AddListener(PreviousPage);
         closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
         
-        totalNumbers = AchievementManager.Instance.DefaultAchievementList.achievement.Count;
+        totalNumbers = AchievementManager.Instance._achievementList.Count;
 
         UpdateMaxPage();
         UpdatePageUI(); 
@@ -58,37 +58,9 @@ public class AchievementPanel : BasePanel
 
                 slot.gameObject.SetActive(true);
                 achievement.ApplyVisuals(slot);
-                
-                
             }
         }
     }
-
-    private void AnimateCard(GameObject cardSlot)
-    {
-        cardSlot.transform.localScale = Vector3.zero;
-        Vector3 startPosition = cardSlot.transform.localPosition;
-        cardSlot.transform.localPosition = startPosition - new Vector3(0, 50f, 0); // 初始位置下移
-    
-        cardSlot.SetActive(true);
-
-        // 透明度渐入
-        CanvasGroup canvasGroup = cardSlot.GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-        {
-            canvasGroup = cardSlot.AddComponent<CanvasGroup>();
-        }
-        canvasGroup.alpha = 0;
-        canvasGroup.DOFade(1, 0.5f);
-
-        // 位移 + 缩放进入
-        cardSlot.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-        cardSlot.transform.DOLocalMoveY(startPosition.y, 0.5f).SetEase(Ease.OutQuad);
-
-        // 轻微弹跳
-        cardSlot.transform.DOPunchScale(Vector3.one * 0.05f, 0.3f, 8, 0.5f).SetDelay(0.5f);
-    }
-
     
     private void ResetCardSlots()
     {

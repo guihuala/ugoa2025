@@ -49,7 +49,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
 
     SaveData ForSave()
     {
-        // ★★ 保存前先提交临时待保存的成就 ★★
         AchievementManager.Instance.SaveAchievements();
 
         var savedata = new SaveData
@@ -64,7 +63,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
         {
             savedata.achievements.Add(new AchievementSaveData
             {
-                cardID = achievement.cardID,
+                cardID = achievement.ID,
                 isHeld = achievement.isHeld
             });
         }

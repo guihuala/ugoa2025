@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (targetNode != null && currentNode != null)
             {
-                List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes);
+                List<Transform> path = AStarPathfinding.FindPath(currentNode, targetNode, pathfindingManager.mapNodes,true);
 
                 if (path != null)
                 {

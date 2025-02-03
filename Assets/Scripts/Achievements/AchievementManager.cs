@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AchievementManager : SingletonPersistent<AchievementManager>
 {
@@ -12,7 +13,7 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
     private HashSet<string> unlockedCards = new HashSet<string>();
     
     // 临时堆栈存储待保存的成就
-    private HashSet<string> pendingAchievements = new HashSet<string>();
+    public HashSet<string> pendingAchievements = new HashSet<string>();
 
     private void Start()
     {
@@ -34,7 +35,8 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
         {
             foreach (var defaultAchievement in DefaultAchievementList.achievement)
             {
-                _achievementList.Add(defaultAchievement);
+                AchievementSO clone = defaultAchievement.Clone();
+                _achievementList.Add(clone);
             }
         }
 
@@ -43,7 +45,7 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
         {
             if (achievement.isHeld)
             {
-                unlockedCards.Add(achievement.cardID);
+                unlockedCards.Add(achievement.ID);
             }
         }
     }
@@ -56,44 +58,46 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
         
         foreach (var savedAchievement in savedAchievements)
         {
-            var achievement = _achievementList.Find(a => a.cardID == savedAchievement.cardID);
+            var achievement = _achievementList.Find(a => a.ID == savedAchievement.cardID);
             if (achievement != null)
             {
                 achievement.isHeld = savedAchievement.isHeld;
                 if (achievement.isHeld)
                 {
-                    unlockedCards.Add(achievement.cardID);
+                    unlockedCards.Add(achievement.ID);
                 }
             }
         }
     }
 
-    // 尝试解锁卡牌
+    // 尝试解锁
     public void TryUnlockCards(string itemId)
     {
-        foreach (var card in DefaultAchievementList.achievement) // 遍历成就列表
+        foreach (var card in _achievementList) // 遍历成就列表
         {
             CheckAndUnlockCard(card, itemId);
         }
     }
 
-    // 查询卡牌是否解锁
-    public bool IsCardUnlocked(AchievementSO achievement)
-    {
-        return unlockedCards.Contains(achievement.cardID);
-    }
-
     // 检查卡牌是否满足解锁的条件
     public void CheckAndUnlockCard(AchievementSO achievement, string itemId)
     {
-        if (unlockedCards.Contains(achievement.cardID)) return;
-
         if (achievement.CheckCondition(itemId))
         {
-            // 成就已经解锁，添加到临时堆栈
-            pendingAchievements.Add(achievement.cardID);
-            achievement.isHeld = true;
+            // 添加到临时堆栈
+            pendingAchievements.Add(achievement.ID);
         }
+    }
+
+    public Sprite GetAchievementIcon(string itemId)
+    {
+        foreach (var card in _achievementList) // 遍历成就列表
+        {
+            if(card.ID == itemId)
+                return card.icon;
+        }
+
+        return null;
     }
 
     // 保存成就
@@ -101,24 +105,29 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
     {
         foreach (var cardID in pendingAchievements)
         {
-            var achievement = _achievementList.Find(a => a.cardID == cardID);
-            if (achievement != null && !unlockedCards.Contains(achievement.cardID))
+            var achievement = _achievementList.Find(a => a.ID == cardID);
+            if (achievement != null && !unlockedCards.Contains(achievement.ID))
             {
-                unlockedCards.Add(achievement.cardID);
+                unlockedCards.Add(achievement.ID);
             }
         }
 
         // 将已解锁的成就加入最终成就列表
         foreach (var cardID in pendingAchievements)
         {
-            var achievement = _achievementList.Find(a => a.cardID == cardID);
+            var achievement = _achievementList.Find(a => a.ID == cardID);
             if (achievement != null)
             {
-                _achievementList.Add(achievement);
+                achievement.isHeld = true;
             }
         }
 
         // 清空临时堆栈
+        ClearPendingAchievements();
+    }
+
+    public void ClearPendingAchievements()
+    {
         pendingAchievements.Clear();
     }
 }

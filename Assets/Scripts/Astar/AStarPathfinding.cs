@@ -1,11 +1,21 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AStarPathfinding
 {
-    public static List<Transform> FindPath(Transform startNode, Transform targetNode, List<Transform> nodes)
+    /// <summary>
+    /// 寻路 允许选择是否考虑不可行走区域
+    /// </summary>
+    /// <param name="startNode">起点</param>
+    /// <param name="targetNode">目标点</param>
+    /// <param name="nodes">所有候选节点</param>
+    /// <param name="allowNonWalkable">是否允许在不可行走范围内寻路，默认为 false</param>
+    /// <returns>路径节点列表，如果未找到返回 null</returns>
+    public static List<Transform> FindPath(Transform startNode, Transform targetNode, List<Transform> nodes, bool allowNonWalkable = false)
     {
-        // 优先队列 存储openSet
+        // 优先队列存储 openSet
         PriorityQueue<Transform, float> openSet = new PriorityQueue<Transform, float>();
         HashSet<Transform> closedSet = new HashSet<Transform>();
 
@@ -33,7 +43,7 @@ public class AStarPathfinding
 
             closedSet.Add(currentNode);
 
-            foreach (var neighbor in GetNeighbors(currentNode, nodes))
+            foreach (var neighbor in GetNeighbors(currentNode, nodes, allowNonWalkable))
             {
                 if (closedSet.Contains(neighbor))
                     continue;
@@ -57,12 +67,19 @@ public class AStarPathfinding
         return null; // 如果未找到路径
     }
 
-    private static List<Transform> GetNeighbors(Transform node, List<Transform> nodes)
+    /// <summary>
+    /// 根据当前节点获取其邻居节点。
+    /// 当 allowNonWalkable 为 false 时，仅返回距离小于等于 1.2f 的节点；
+    /// 当 allowNonWalkable 为 true 时，返回距离小于等于 3.6f（即 1.2f 的 3 倍）的节点。
+    /// </summary>
+    private static List<Transform> GetNeighbors(Transform node, List<Transform> nodes, bool allowNonWalkable)
     {
         List<Transform> neighbors = new List<Transform>();
+        float threshold = allowNonWalkable ? 3.6f : 1.2f;
+        
         foreach (var potentialNeighbor in nodes)
         {
-            if (Vector3.Distance(node.position, potentialNeighbor.position) <= 1.2f)// 允许存在高低差 且为四向查找
+            if (Vector3.Distance(node.position, potentialNeighbor.position) <= threshold)
             {
                 neighbors.Add(potentialNeighbor);
             }
@@ -86,7 +103,7 @@ public class AStarPathfinding
 }
 
 // 优先队列实现
-public class PriorityQueue<TElement, TPriority> where TPriority : System.IComparable<TPriority>
+public class PriorityQueue<TElement, TPriority> where TPriority : IComparable<TPriority>
 {
     private List<KeyValuePair<TElement, TPriority>> elements = new List<KeyValuePair<TElement, TPriority>>();
 
@@ -95,7 +112,7 @@ public class PriorityQueue<TElement, TPriority> where TPriority : System.ICompar
     public void Enqueue(TElement element, TPriority priority)
     {
         elements.Add(new KeyValuePair<TElement, TPriority>(element, priority));
-        elements.Sort((x, y) => x.Value.CompareTo(y.Value)); // 排序
+        elements.Sort((x, y) => x.Value.CompareTo(y.Value)); // 按优先级排序
     }
 
     public TElement Dequeue()

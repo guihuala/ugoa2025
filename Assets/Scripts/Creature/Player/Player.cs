@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Spine.Unity;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -17,8 +18,25 @@ public class Player : MonoBehaviour
     private SkeletonAnimation skeletonAnimation;
     private string currentAnimation = "";
 
-    [Header("Spine 动画名称")]
-    public string walkAnimation = "walk";
+    [Header("Spine 移动动画")]
+    public string walkAnimation = "move/walk";
+    public string standAnimation = "move/standby";
+    public string sneakAnimation = "move/sneak";
+    
+    [Header("Spine 表情动画")]
+    public string eyesShutAnimation = "expression/eyes_shut";
+    public string mouseTrembleAnimation = "expression/mouse_tremble";
+    public string mouseDefaultAnimation = "expression/mouse_default";
+    
+    [Header("Spine 套动画")]
+    private string sinkAnimation = "sets/struggle";
+    private string saluteAnimation = "sets/salute";
+    
+    
+    [Header("Spine 动画轨道配置")]
+    private int baseTrack = 0;    // 基础动画轨道（移动、待机）
+    private int overlayTrack = 1; // 叠加动画轨道（表情、特殊动作）
+    
 
     private void Start()
     {
@@ -30,32 +48,44 @@ public class Player : MonoBehaviour
         EVENTMGR.OnStayInSwamp += HandleSwampStay;
         EVENTMGR.OnPlayerDead += PlayerDead;
         
-        ClearAnimation();
+        ClearTrack();
     }
 
     #region Spine动画控制
-
-    public void PlayAnimation(string animName, bool loop)
+    
+    public void PlayAnimation(string animName, bool loop = true)
     {
         if (skeletonAnimation != null && skeletonAnimation.state != null)
         {
-            if (currentAnimation == animName) return; // 避免重复播放相同动画
-            skeletonAnimation.state.SetAnimation(0, animName, loop);
-            currentAnimation = animName;
+            var currentTrack = skeletonAnimation.state.GetCurrent(baseTrack);
+            if (currentTrack != null && currentTrack.Animation.Name == animName) 
+                return;
+
+            skeletonAnimation.state.SetAnimation(baseTrack, animName, loop);
         }
     }
 
-    public void ClearAnimation()
+    // 叠加动画
+    public void PlayOverlayAnimation(string animName, bool loop = false, float mixDuration = 0.1f)
     {
         if (skeletonAnimation != null && skeletonAnimation.state != null)
         {
-            skeletonAnimation.state.ClearTrack(0);
-            currentAnimation = "";
+            // 设置轨道混合时间
+            skeletonAnimation.state.Data.DefaultMix = mixDuration;
+            skeletonAnimation.state.SetAnimation(1, animName, loop);
         }
+    }
+    
+    public void ClearTrack()
+    {
+        skeletonAnimation.state.ClearTrack(baseTrack);
+        skeletonAnimation.state.ClearTrack(overlayTrack);
+        
+        PlayAnimation(standAnimation, true);
     }
 
     #endregion
-
+    
     #region 隐身功能
 
     public void SetInvisible(bool value)
@@ -74,7 +104,17 @@ public class Player : MonoBehaviour
         {
             spineTransparencyController.SetTransparency(isInvisible ? 0.5f : 1f);
         }
+        
+        if (isInvisible)
+        {
+            PlayAnimation(sneakAnimation);
+        }
+        else
+        {
+            ClearTrack();
+        }
     }
+
 
     #endregion
 
@@ -83,14 +123,19 @@ public class Player : MonoBehaviour
     private void HandleSwampEnter()
     {
         isInSwamp = true;
+        
+        PlayAnimation(sinkAnimation, true);
     }
-    
+
     private void HandleSwampExit()
     {
         isInSwamp = false;
         stayTime = 0f; // 重置停留时间
         ResetHeightPosition();
+        
+        ClearTrack();
     }
+
 
     private void HandleSwampStay(float duration)
     {

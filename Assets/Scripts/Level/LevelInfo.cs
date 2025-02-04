@@ -10,7 +10,7 @@ public class LevelInfo : MonoBehaviour
     public string nextLevelName;
     
     // 是否是最后一关
-    private bool isEndLevel;
+    public bool isEndLevel;
 
     public void GoToNextLevel()
     {

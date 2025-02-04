@@ -4829,10 +4829,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7196689061731527475}
-  - component: {fileID: 6283180141284897252}
-  - component: {fileID: 4093677461122966492}
-  - component: {fileID: 6427653362532827850}
   - component: {fileID: 4646424599676477692}
+  - component: {fileID: 1690537058174379915}
+  - component: {fileID: 3607594466953634580}
+  - component: {fileID: 3038420282858366751}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -4855,7 +4855,19 @@ Transform:
   m_Father: {fileID: 1409983443839868731}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
---- !u!23 &6283180141284897252
+--- !u!114 &4646424599676477692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670071710299990322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb5c807ab2224301bd82988aeb1fdaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &1690537058174379915
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4875,7 +4887,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d94f0508233714184b62a1cb0211f333, type: 2}
+  - {fileID: 2100000, guid: 737fde1e024b145818d56b4fabda65c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4897,7 +4909,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4093677461122966492
+--- !u!114 &3607594466953634580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4909,9 +4921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 7c99f211d0d7044b7a52271bac381d32, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 9b94c3c3da8f042b7aa5fed4dffc8c79, type: 2}
   initialSkinName: 
-  fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
   updateWhenInvisible: 3
@@ -4932,12 +4943,10 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  updateTiming: 1
-  unscaledTime: 0
-  _animationName: walk
-  loop: 1
+  _animationName: move/walk
+  loop: 0
   timeScale: 1
---- !u!33 &6427653362532827850
+--- !u!33 &3038420282858366751
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4945,18 +4954,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5670071710299990322}
   m_Mesh: {fileID: 0}
---- !u!114 &4646424599676477692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5670071710299990322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfb5c807ab2224301bd82988aeb1fdaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8982854469498687822
 GameObject:
   m_ObjectHideFlags: 0
@@ -5007,9 +5004,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a655530bf44cd4037b74324cb659f667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sinkSpeed: 0.3
+  sinkSpeed: 0.2
   timeUntilDeath: 5
-  walkAnimation: walk
+  walkAnimation: move/walk
+  standAnimation: move/standby
+  sneakAnimation: move/sneak
+  eyesShutAnimation: expression/eyes_shut
+  mouseTrembleAnimation: expression/mouse_tremble
+  mouseDefaultAnimation: expression/mouse_default
 --- !u!114 &6501686983272511665
 MonoBehaviour:
   m_ObjectHideFlags: 0

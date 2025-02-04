@@ -3390,7 +3390,7 @@ MonoBehaviour:
   unlocked: 0
   unlockImage: {fileID: 38756321}
   levelName: Level3
-  sceneName: 0
+  sceneName: 4
 --- !u!114 &1032038420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5532,7 +5532,7 @@ MonoBehaviour:
   planarReflectionsExpanded: 0
   causticsExpanded: 0
   reflectionStrength: 0.1
-  reflectionFresnel: 2.31
+  reflectionFresnel: 0
   causticsStrength: 2.04
   causticsTexture: {fileID: 2800000, guid: f2c40b951cee11943a1f6d5ec1b42f2c, type: 3}
   causticsSplit: 1.56
@@ -5590,10 +5590,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.401431, g: 0.8773585, b: 0.75044495, a: 0.4745098}
-  deepColor: {r: 0.5493753, g: 0.62264144, b: 0.43724906, a: 0.92941177}
+  shallowColor: {r: 0.45834816, g: 0.9433962, b: 0.8221342, a: 1}
+  deepColor: {r: 0.5493753, g: 0.62264144, b: 0.43724853, a: 0.92941177}
   colorDepth: 0.05
-  horizonColor: {r: 0.25854176, g: 0.6603774, b: 0.5941378, a: 1}
+  horizonColor: {r: 0.25854123, g: 0.6603774, b: 0.5941378, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -5601,9 +5601,9 @@ MonoBehaviour:
   shoreBlend: 1
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.19446212, g: 0.35848838, b: 0.24270505, a: 0}
+  underwaterColor: {r: 0.19446161, g: 0.35848784, b: 0.24270451, a: 0}
   underwaterColorStrength: 0
-  underwaterRefractionStrength: 0.52
+  underwaterRefractionStrength: 0
   surfaceFoamTexture: {fileID: 2800000, guid: 5293ac8cd3dd6f6478585f4f30abddf7, type: 3}
   surfaceFoamSampling: {x: 0.583, y: 0}
   surfaceFoamCutoff: 0.583
@@ -5636,14 +5636,14 @@ MonoBehaviour:
   intersectionFoamMovement: {x: 0, y: 0}
   intersectionFoamDirection: 0
   intersectionFoamSpeed: 0
-  intersectionFoamScale: 0.74
+  intersectionFoamScale: 0
   intersectionFoamSampling: {x: 1, y: 0}
   intersectionFoamCutoff: 1
   intersectionFoamDistortion: 0
   enableIntersectionEffects: 1
   intersectionFoamBlend: 0.2
   intersectionWaterBlend: 0.068
-  shoreFoamSpeed: 1.92
+  shoreFoamSpeed: 0
   shoreFoamWidth: 0
   shoreFoamFrequency: 0
   shoreFoamBreakupStrength: 0

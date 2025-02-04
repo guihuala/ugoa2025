@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class NodeMarker : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class NodeMarker : MonoBehaviour
 
     void Update()
     {
-        if(!IsWalkable)
+        if(!IsWalkable || !IsHighlighted)
             return;
         
         CheckHover();
@@ -66,9 +67,7 @@ public class NodeMarker : MonoBehaviour
                 // 鼠标离开物体，恢复状态
                 if (clickHighLight.gameObject.activeSelf)
                 {
-                    clickHighLight.DOFade(0f, 0.3f)
-                        .SetUpdate(true)
-                        .OnComplete(() => clickHighLight.gameObject.SetActive(false));
+                    clickHighLight.gameObject.SetActive(false);
 
                     if (!IsHighlighted)
                     {
@@ -90,9 +89,7 @@ public class NodeMarker : MonoBehaviour
             // 没有射线击中物体时
             if (clickHighLight.gameObject.activeSelf)
             {
-                clickHighLight.DOFade(0f, 0.3f)
-                    .SetUpdate(true)
-                    .OnComplete(() => clickHighLight.gameObject.SetActive(false));
+                clickHighLight.gameObject.SetActive(false);
 
                 if (!IsHighlighted)
                 {
@@ -124,10 +121,11 @@ public class NodeMarker : MonoBehaviour
                     if (!IsHighlighted)
                     {
                         EVENTMGR.TriggerClickPath();
+                        
                         return;
                     }
-
                     EVENTMGR.TriggerClickMarker(transform.position);
+                    clickHighLight.gameObject.SetActive(false);
                 }
             }
         }

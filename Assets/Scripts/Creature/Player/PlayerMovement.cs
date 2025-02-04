@@ -49,13 +49,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // HandleMouseInput();
-        
+        // 处理路径移动
         if (!isMoving && pathQueue.Count > 0)
         {
             StartCoroutine(MoveAlongPath());
         }
     }
+
     
     private void HandleMouseInput()
     {
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
                         EVENTMGR.TriggerUseStep(1);
                     }
 
-                    player.PlayAnimation(player.walkAnimation, true);
+                    player.PlayAnimation(player.walkAnimation);
                 }
             }
         }
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
                         EVENTMGR.TriggerClickPath();
                     }
 
-                    player.PlayAnimation(player.walkAnimation, true);
+                    player.PlayAnimation(player.walkAnimation);
                 }
             }
         }

@@ -13,7 +13,6 @@ public class PatrolState : IState
 
     public void Enter()
     {
-        Debug.Log($"{enemy.name} 进入侦查状态");
     }
 
     public void Execute()

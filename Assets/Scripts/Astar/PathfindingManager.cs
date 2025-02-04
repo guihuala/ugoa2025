@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PathfindingManager : MonoBehaviour
 {
-    public float highlightRadius = 5f; // 高亮步数范围
+    public float highlightRadius = 5f;
+    public float searchDistance = 6f;
+    public float updateInterval = 1f;
+
     private GameObject player;
     private Vector3 startPositionOffset = new Vector3(0, 1.5f, 0);
     public List<Transform> mapNodes = new List<Transform>();
 
-    private bool isCharacterSelected = false; // 记录玩家是否被选中
-    private HashSet<Transform> previousHighlightNodes = new HashSet<Transform>(); // 记录上一帧高亮的节点
+    private bool isCharacterSelected = false;
+    private HashSet<Transform> previousHighlightNodes = new HashSet<Transform>();
+    private Coroutine highlightCoroutine = null;
+    
+    private Dictionary<(Transform, Transform), List<Transform>> pathCache = new Dictionary<(Transform, Transform), List<Transform>>();
 
     void Start()
     {
@@ -21,9 +27,8 @@ public class PathfindingManager : MonoBehaviour
             return;
         }
 
-        // 获取所有可行走的节点
-        NodeMarker[] nodes = FindObjectsOfType<NodeMarker>();
-        foreach (var node in nodes)
+        // 仅存储可行走节点
+        foreach (var node in FindObjectsOfType<NodeMarker>())
         {
             if (node.IsWalkable)
             {
@@ -31,25 +36,15 @@ public class PathfindingManager : MonoBehaviour
             }
         }
 
-        // 初始化玩家位置到最近的可行走节点
         Transform closestNode = GetClosestNode(player.transform.position);
         if (closestNode != null)
         {
             player.transform.position = closestNode.position + startPositionOffset;
         }
 
-        // 监听事件
         EVENTMGR.ChangeSteps += UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer += OnClickPlayer;
         EVENTMGR.OnPlayerStep += OnShowFootprintInNode;
-    }
-
-    private void Update()
-    {
-        if (isCharacterSelected)
-        {
-            UpdateHighlightNodes();
-        }
     }
 
     private void OnDestroy()
@@ -57,6 +52,12 @@ public class PathfindingManager : MonoBehaviour
         EVENTMGR.ChangeSteps -= UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer -= OnClickPlayer;
         EVENTMGR.OnPlayerStep -= OnShowFootprintInNode;
+
+        if (highlightCoroutine != null)
+        {
+            StopCoroutine(highlightCoroutine);
+            highlightCoroutine = null;
+        }
     }
 
     private void UpdateHighlightRadius(int newHighlightRadius)
@@ -74,16 +75,34 @@ public class PathfindingManager : MonoBehaviour
     private void OnClickPlayer(bool isClick)
     {
         if (isCharacterSelected == isClick) return;
-        
+
         isCharacterSelected = isClick;
 
         if (isCharacterSelected)
         {
             UpdateHighlightNodes();
+            if (highlightCoroutine == null)
+            {
+                highlightCoroutine = StartCoroutine(PeriodicUpdateHighlightNodes());
+            }
         }
         else
         {
+            if (highlightCoroutine != null)
+            {
+                StopCoroutine(highlightCoroutine);
+                highlightCoroutine = null;
+            }
             ClearAllHighlights();
+        }
+    }
+
+    private IEnumerator PeriodicUpdateHighlightNodes()
+    {
+        while (isCharacterSelected)
+        {
+            yield return new WaitForSeconds(updateInterval);
+            UpdateHighlightNodes();
         }
     }
 
@@ -98,22 +117,30 @@ public class PathfindingManager : MonoBehaviour
 
         foreach (var node in mapNodes)
         {
+            if (Vector3.Distance(currentNode.position, node.position) > searchDistance) continue;
+
             NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
             if (nodeMarker == null) continue;
 
-            List<Transform> path = AStarPathfinding.FindPath(currentNode, node, mapNodes);
+            // **使用缓存路径，避免重复计算**
+            List<Transform> path;
+            if (!pathCache.TryGetValue((currentNode, node), out path))
+            {
+                path = AStarPathfinding.FindPath(currentNode, node, mapNodes);
+                pathCache[(currentNode, node)] = path;
+            }
 
             if (path != null && path.Count <= highlightRadius)
             {
                 newHighlightNodes.Add(node);
-                if (!previousHighlightNodes.Contains(node)) // 只更新新的高亮节点
+                if (!previousHighlightNodes.Contains(node))
                 {
                     nodeMarker.ShowHighlight();
                 }
             }
         }
 
-        // 关闭不在新高亮列表的节点
+        // **优化：仅隐藏从高亮中移除的节点**
         foreach (var node in previousHighlightNodes)
         {
             if (!newHighlightNodes.Contains(node))
@@ -126,7 +153,6 @@ public class PathfindingManager : MonoBehaviour
             }
         }
 
-        // 更新上一帧高亮的节点
         previousHighlightNodes = newHighlightNodes;
     }
 
@@ -157,14 +183,12 @@ public class PathfindingManager : MonoBehaviour
                 closestNode = node;
             }
         }
-
         return closestNode;
     }
 
     private void OnShowFootprintInNode(Vector3 position)
     {
         NodeMarker nodeToShow = GetClosestNode(position).GetComponent<NodeMarker>();
-        
         nodeToShow.ShowFootPrint();
     }
 }

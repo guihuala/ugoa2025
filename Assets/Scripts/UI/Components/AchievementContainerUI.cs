@@ -30,7 +30,6 @@ public class AchievementContainerUI : MonoBehaviour
                 AchievementDisplayUI cardUI = newCard.GetComponent<AchievementDisplayUI>();
                 if (cardUI != null)
                 {
-                    // 更新卡片UI，例如显示卡片的名称、图标等
                     cardUI.SetupCard(achievement);
                 }
             }

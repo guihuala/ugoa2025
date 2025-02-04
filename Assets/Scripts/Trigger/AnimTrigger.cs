@@ -9,22 +9,23 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
     [SerializeField] private GameObject collectedItemPrefab;
 
     private GameObject player;
+    
+    private float animationDuration = 0.5f; // 动画时长
+    private Vector3 targetScale = new Vector3(0.3f, 0.3f, 0.3f); // 物品放大尺寸
+    private float displayRadius = 1.5f; // 物品展开的半径
+    private float maxFanAngle = 120f; // 扇形的最大角度
 
-    private float animationDuration = .5f; // 动画时长
-    private Vector3 targetScale = new Vector3(.3f, .3f, .3f); // 展示时物品的放大尺寸
-    private Vector3 targetPosition = new Vector3(0, 1, 0); // 物品展示时的偏移位置
+    private int totalAnimations = 0;
+    private int completedAnimations = 0;
+    private bool callbackTriggered = false;
 
-    private int totalAnimations = 0; // 记录总共要播放的动画数量
-    private int completedAnimations = 0; // 记录已经完成的动画数量
-
-    private bool callbackTriggered = false; // 确保回调只触发一次
-    private List<GameObject> instantiatedItems = new List<GameObject>(); // 存储实例化的物体
+    private List<GameObject> instantiatedItems = new List<GameObject>();
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    
+
     public void Apply()
     {
         StartCoroutine(DisplayCollectedAchievements());
@@ -38,7 +39,12 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
         completedAnimations = 0;
         callbackTriggered = false;
 
-        // 遍历每个成就，展示已解锁的成就
+        if (totalAnimations == 0) yield break;
+
+        float thetaStart = -maxFanAngle / 2f; // 扇形起始角度
+        float thetaStep = (totalAnimations > 1) ? maxFanAngle / (totalAnimations - 1) : 0; // 角度间隔
+
+        int index = 0;
         foreach (string achievement in achievementList)
         {
             GameObject instance = Instantiate(collectedItemPrefab, player.transform.position, Quaternion.identity, player.transform);
@@ -49,13 +55,18 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
             {
                 sr.sprite = AchievementManager.Instance.GetAchievementIcon(achievement);
             }
-            
+
             instance.transform.localScale = Vector3.zero;
 
-            // 创建动画序列：移动和放大
+            // 计算扇形排列位置
+            float angle = thetaStart + index * thetaStep;
+            float radians = angle * Mathf.Deg2Rad;
+            Vector3 targetPos = player.transform.position + new Vector3(Mathf.Cos(radians) * displayRadius, 1f, Mathf.Sin(radians) * displayRadius);
+            
             Sequence seq = DOTween.Sequence();
-            seq.Append(instance.transform.DOMove(player.transform.position + targetPosition, animationDuration).SetEase(Ease.OutBounce));
+            seq.Append(instance.transform.DOMove(targetPos, animationDuration).SetEase(Ease.OutBounce));
             seq.Join(instance.transform.DOScale(targetScale, animationDuration).SetEase(Ease.OutBack));
+            seq.Join(instance.transform.DORotate(Vector3.up * angle, animationDuration)); // 旋转使其朝向中心
 
             seq.OnComplete(() =>
             {
@@ -69,25 +80,23 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
                 }
             });
 
-            // 保存实例化的物体以便后续销毁
             instantiatedItems.Add(instance);
 
-            // 等待当前动画播放完毕再展示下一个成就
-            yield return new WaitForSeconds(animationDuration + 0.5f);
+            index++;
+            yield return new WaitForSeconds(0.2f); // 依次播放动画，避免所有物品同时展开
         }
     }
-    
+
     private IEnumerator DestroyItemsAndTriggerCallback()
     {
         yield return new WaitForSeconds(1f);
 
-        // 销毁所有实例化的物体
         foreach (GameObject item in instantiatedItems)
         {
             Destroy(item);
         }
         instantiatedItems.Clear();
-        
+
         EVENTMGR.TriggerEnterTargetField(target.transform.position);
     }
 }

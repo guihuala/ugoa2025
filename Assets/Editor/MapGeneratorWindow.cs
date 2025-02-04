@@ -6,7 +6,7 @@ public class MapGeneratorWindow : EditorWindow
     private GameObject prefabToSpawn; // 需要生成的预制件
     private int width = 10; // 地图宽度
     private int height = 10; // 地图高度
-    private float spacing = 1.5f; // 间距
+    private float spacing = 1f; // 间距
 
     [MenuItem("Tools/Map Generator")]
     public static void ShowWindow()

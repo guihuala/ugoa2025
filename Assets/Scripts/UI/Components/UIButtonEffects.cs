@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public class UIButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Vector3 originalScale;  // 存储按钮的原始大小
-    public float scaleFactor = 1.2f;
-    public float duration = 0.2f;
+    private float scaleFactor = 1.1f;
+    private float duration = 0.1f;
 
     private void Start()
     {

@@ -43,16 +43,16 @@ public class TitleUI : MonoBehaviour
         // 如果有存档，则激活“继续游戏”和“加载游戏”按钮
         if (RecordData.Instance.lastID != 123)
         {
-            Continue.gameObject.SetActive(true);
-            Load.gameObject.SetActive(true);
+            Continue.interactable = true;
+            Load.interactable = true;
 
             isFirstTimePlay = false;
         }
         else
         {
-            Continue.gameObject.SetActive(false);
-            Load.gameObject.SetActive(false);
-
+            Continue.interactable = false;
+            Load.interactable = false;
+            
             isFirstTimePlay = true;
         }           
     }

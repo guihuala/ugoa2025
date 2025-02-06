@@ -5,28 +5,52 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
+    public enum PlayerSkin
+    {
+        lv1,
+        lv2,
+        lv3
+    }
+    
     private bool isInvisible;
     public bool IsInvisible => isInvisible;
-
+    
+    
+    private bool isInSwamp = false;
+    public bool IsInSwamp => isInSwamp;
+    
+    private float stayTime = 0f; // 玩家在沼泽中累计停留时间 
+    
     [Header("沼泽下沉相关配置")]
     [SerializeField] private float sinkSpeed = 0.01f; // 下沉速度
     [SerializeField] private float timeUntilDeath = 5f; // 停留多久会死亡
-    private float stayTime = 0f; // 玩家在沼泽中累计停留时间
-    private bool isInSwamp = false;
+
     private float initialHeight = 1.5f;
-    
     private SkeletonAnimation skeletonAnimation;
     private string currentAnimation = "";
 
+    [Header("Player 皮肤")]
+    public PlayerSkin skin = PlayerSkin.lv1;
+    
     [Header("Spine 移动动画")]
     public string walkAnimation = "move/walk";
     public string standAnimation = "move/standby";
     public string sneakAnimation = "move/sneak";
+    public string hatAnimation = "move/hat";
     
-    [Header("Spine 表情动画")]
-    public string eyesShutAnimation = "expression/eyes_shut";
-    public string mouseTrembleAnimation = "expression/mouse_tremble";
-    public string mouseDefaultAnimation = "expression/mouse_default";
+    [Header("Spine 默认眼睛")]
+    public string eyeslv1Animation = "expressions/default-lv1";
+    public string eyeslv2Animation = "expressions/default-lv2";
+    public string eyeslv3Animation = "expressions/default-lv3";
+
+    [Header("Spine 眼睛动画")]
+    public string eyesXAnimation = "expressions/eyes/eyes-X";
+    public string eyesShutAnimation = "expressions/eyes/eyes-shut";
+    
+    [Header("Spine 嘴动画")]
+    public string defaultMouthAnimation = "expressions/mouth/mouth-default";
+    public string trembleMouthAnimation = "expressions/mouth/mouth-tremble";
+    public string VmouthAnimation = "expressions/mouth/smile-v";
     
     [Header("Spine 套动画")]
     private string sinkAnimation = "sets/struggle";
@@ -34,8 +58,9 @@ public class Player : MonoBehaviour
     
     
     [Header("Spine 动画轨道配置")]
-    private int baseTrack = 0;    // 基础动画轨道（移动、待机）
-    private int overlayTrack = 1; // 叠加动画轨道（表情、特殊动作）
+    private int baseTrack = 0;    // 动作
+    private int eyesTrack = 1; // 眼睛
+    private int mouseTrack = 2; // 嘴
     
 
     private void Start()
@@ -48,7 +73,8 @@ public class Player : MonoBehaviour
         EVENTMGR.OnStayInSwamp += HandleSwampStay;
         EVENTMGR.OnPlayerDead += PlayerDead;
         
-        ClearTrack();
+        PlayAnimation(standAnimation);
+        PlayEyesAnimation();
     }
 
     #region Spine动画控制
@@ -65,23 +91,56 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 播放眼睛动画 不输入参数则播放默认眼睛动画
+    /// </summary>
+    /// <param name="animName">动画名</param>
+    public void PlayEyesAnimation(string animName = "default")
+    {
+        if (skeletonAnimation != null && skeletonAnimation.state != null)
+        {
+            string selectedEyeAnimation = animName;
+
+            if (selectedEyeAnimation == "default")
+            {
+                switch (skin)
+                {
+                    case PlayerSkin.lv1:
+                        selectedEyeAnimation = $"{eyeslv1Animation}";
+                        break;
+                    case PlayerSkin.lv2:
+                        selectedEyeAnimation = $"{eyeslv2Animation}";
+                        break;
+                    case PlayerSkin.lv3:
+                        selectedEyeAnimation = $"{eyeslv3Animation}";
+                        break;
+                }                
+            }
+            
+            PlayOverlayAnimation(eyesTrack, selectedEyeAnimation, true, 0.1f);
+        }
+    }
+
+
     // 叠加动画
-    public void PlayOverlayAnimation(string animName, bool loop = false, float mixDuration = 0.1f)
+    public void PlayOverlayAnimation(int trackIndex, string animName, bool loop = false, float mixDuration = 0.1f)
     {
         if (skeletonAnimation != null && skeletonAnimation.state != null)
         {
             // 设置轨道混合时间
             skeletonAnimation.state.Data.DefaultMix = mixDuration;
-            skeletonAnimation.state.SetAnimation(1, animName, loop);
+            skeletonAnimation.state.SetAnimation(trackIndex, animName, loop);
         }
     }
-    
+
     public void ClearTrack()
     {
         skeletonAnimation.state.ClearTrack(baseTrack);
-        skeletonAnimation.state.ClearTrack(overlayTrack);
+        skeletonAnimation.state.ClearTrack(eyesTrack);
+        skeletonAnimation.state.ClearTrack(mouseTrack);
         
         PlayAnimation(standAnimation, true);
+        PlayEyesAnimation();
     }
 
     #endregion
@@ -125,6 +184,8 @@ public class Player : MonoBehaviour
         isInSwamp = true;
         
         PlayAnimation(sinkAnimation, true);
+        PlayEyesAnimation(eyesXAnimation);
+        PlayOverlayAnimation(mouseTrack,trembleMouthAnimation);
     }
 
     private void HandleSwampExit()

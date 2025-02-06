@@ -37,7 +37,7 @@ public class EnemyFollower : MonoBehaviour
 
         while (pathQueue.Count > 0)
         {
-            yield return new WaitForSeconds(followDelay + 1f);
+            yield return new WaitForSeconds(followDelay + 1.2f);
             
             if (Time.timeScale == 0)
             {

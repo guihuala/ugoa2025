@@ -1,10 +1,13 @@
+using Spine.Unity;
 using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
     protected StateMachine stateMachine;
-    protected Animator animator;
+    protected SkeletonAnimation skeletonAnimation;
+    private string currentAnimation = "";
 
+    
     [Header("敌人参数设置")]
     public Transform[] patrolPoints;
     public float moveSpeed = 2f;
@@ -14,11 +17,11 @@ public abstract class EnemyBase : MonoBehaviour
     [Header("敌人的检查点配置")] public Transform CheckPoint;
 
     private Transform player;
-
-
+    
+    
     protected virtual void Start()
     {
-        animator = GetComponent<Animator>();
+        skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
         player = FindObjectOfType<Player>().transform;
         
         stateMachine = new StateMachine();
@@ -71,15 +74,42 @@ public abstract class EnemyBase : MonoBehaviour
         stateMachine.ChangeState(newState);
     }
 
-    protected void SetAnimationBool(string paramName, bool value)
-    {
-        if (animator != null)
-        {
-            animator.SetBool(paramName, value);
-        }
-    }
-
     protected abstract void InitializeStates();
     public abstract void MoveForward();
     public abstract void PerformFoundPlayer();
+    
+    public void PlayAnimation(string animName, bool loop = true)
+    {
+        if (skeletonAnimation != null && skeletonAnimation.state != null)
+        {
+            var currentTrack = skeletonAnimation.state.GetCurrent(0);
+            if (currentTrack != null && currentTrack.Animation.Name == animName) 
+                return;
+
+            skeletonAnimation.state.SetAnimation(0, animName, loop);
+        }
+    }
+
+    /// <summary>
+    /// 表情
+    /// </summary>
+    /// <param name="animName"></param>
+    /// <param name="loop"></param>
+    /// <param name="mixDuration"></param>
+    public void PlayOverlayAnimation(int trackIndex,string animName, bool loop = false, float mixDuration = 0.1f)
+    {
+        if (skeletonAnimation != null && skeletonAnimation.state != null)
+        {
+            // 设置轨道混合时间
+            skeletonAnimation.state.Data.DefaultMix = mixDuration;
+            skeletonAnimation.state.SetAnimation(trackIndex, animName, loop);
+        }
+    }
+
+    protected virtual void ClearTrack()
+    {
+        skeletonAnimation.state.ClearTrack(0);
+        // skeletonAnimation.state.ClearTrack(1);
+        skeletonAnimation.state.ClearTrack(2);
+    }
 }

@@ -4887,7 +4887,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 485c070fc18d642c3a3080eba8cf9da9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4921,8 +4921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 633e45c5f89da476da4c3df804628489, type: 2}
-  initialSkinName: 
+  skeletonDataAsset: {fileID: 11400000, guid: b549eb27958c24e82980e430e8b9fa4b, type: 2}
+  initialSkinName: skins/LV1
   initialFlipX: 0
   initialFlipY: 0
   updateWhenInvisible: 3
@@ -4943,7 +4943,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: move/walk
+  _animationName: expressions/default-lv1
   loop: 0
   timeScale: 1
 --- !u!33 &3038420282858366751
@@ -5006,12 +5006,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sinkSpeed: 0.2
   timeUntilDeath: 5
+  skin: 0
   walkAnimation: move/walk
   standAnimation: move/standby
   sneakAnimation: move/sneak
+  hatAnimation: move/hat
+  eyeslv1Animation: expressions/default-lv1
+  eyeslv2Animation: expressions/default-lv2
+  eyeslv3Animation: expressions/default-lv3
+  eyesXAnimation: expressions/eyes/eyes-X
   eyesShutAnimation: expression/eyes_shut
-  mouseTrembleAnimation: expression/mouse_tremble
-  mouseDefaultAnimation: expression/mouse_default
+  defaultMouthAnimation: expressions/mouth/mouth-default
+  trembleMouthAnimation: expressions/mouth/mouth-tremble
+  VmouthAnimation: expressions/mouth/smile-v
 --- !u!114 &6501686983272511665
 MonoBehaviour:
   m_ObjectHideFlags: 0

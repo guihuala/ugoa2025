@@ -1,0 +1,269 @@
+{
+"skeleton": {
+	"hash": "W8kEeLmEthOGRwXlRfZ9GjF/S6k",
+	"spine": "3.8",
+	"x": -334.92,
+	"y": -340.77,
+	"width": 628,
+	"height": 706,
+	"images": "../../Downloads/images/",
+	"audio": "C:/Users/16152/Downloads"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "main", "parent": "root", "x": -5.52, "y": -1.1 },
+	{ "name": "head", "parent": "main", "length": 240.8, "rotation": 91.84, "x": -4.66, "y": 64.33 },
+	{ "name": "body", "parent": "main", "x": 4.17, "y": -76.98 },
+	{ "name": "hands", "parent": "body", "length": 299.2, "rotation": 0.63, "x": -163.39, "y": 38.64 },
+	{ "name": "gun_r", "parent": "body", "length": 186.92, "rotation": 7.13, "x": 117.02, "y": 101.57 },
+	{ "name": "gun_l", "parent": "body", "length": 173.33, "rotation": 179.64, "x": -136.9, "y": 93.84 },
+	{ "name": "foot", "parent": "main", "x": 8.59, "y": -287.85 },
+	{ "name": "feet_l", "parent": "foot", "length": 93.85, "rotation": -90.67, "x": -30.91, "y": 50.78 },
+	{ "name": "feet_r", "parent": "foot", "length": 98.28, "rotation": -91.29, "x": 28.7, "y": 49.68 },
+	{ "name": "eye", "parent": "head", "rotation": -91.84, "x": 68.49, "y": -34.23 },
+	{ "name": "earrings", "parent": "head", "length": 85.01, "rotation": 178.16, "x": 30.97, "y": 1.21 },
+	{ "name": "enemy-lv1-body", "parent": "body" }
+],
+"slots": [
+	{ "name": "enemy-lv1-feet-r", "bone": "feet_r", "attachment": "enemy-lv1-feet-r" },
+	{ "name": "enemy-lv1-feet_l", "bone": "feet_l", "attachment": "enemy-lv1-feet_l" },
+	{ "name": "enemy-lv1-body", "bone": "enemy-lv1-body", "attachment": "enemy-lv1-body" },
+	{ "name": "enemy-lv1-head", "bone": "head", "attachment": "enemy-lv1-head" },
+	{ "name": "enemy-lv1-earrings", "bone": "earrings", "attachment": "enemy-lv1-earrings" },
+	{ "name": "enemy-lv1-eye", "bone": "eye", "attachment": "enemy-lv1-eye" },
+	{ "name": "enemy-lv1-gun_l", "bone": "gun_l", "attachment": "enemy-lv1-gun_l" },
+	{ "name": "enemy-lv1-gun_r", "bone": "gun_r", "attachment": "enemy-lv1-gun_r" },
+	{ "name": "enemy-hands", "bone": "hands", "attachment": "enemy-hands" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"enemy-lv1-gun_l": {
+				"enemy-lv1-gun_l": { "x": 99.26, "y": -12.35, "rotation": -179.64, "width": 195, "height": 105 }
+			},
+			"enemy-lv1-eye": {
+				"enemy-lv1-eye": { "x": 0.24, "y": -4.54, "width": 84, "height": 38 }
+			},
+			"enemy-lv1-gun_r": {
+				"enemy-lv1-gun_r": { "x": 80.43, "y": -0.73, "rotation": -7.13, "width": 195, "height": 105 }
+			},
+			"enemy-lv1-feet-r": {
+				"enemy-lv1-feet-r": { "x": 58.22, "y": 13.12, "rotation": 91.29, "width": 77, "height": 86 }
+			},
+			"enemy-hands": {
+				"enemy-hands": { "x": 148, "y": 15.04, "rotation": -0.63, "width": 360, "height": 96 }
+			},
+			"enemy-lv1-feet_l": {
+				"enemy-lv1-feet_l": { "x": 61.63, "y": -2.35, "rotation": 90.67, "width": 80, "height": 82 }
+			},
+			"enemy-lv1-head": {
+				"enemy-lv1-head": { "x": 129.86, "y": 24.59, "rotation": -91.84, "width": 336, "height": 346 }
+			},
+			"enemy-lv1-body": {
+				"enemy-lv1-body": { "x": -6.57, "y": -15.68, "width": 246, "height": 364 }
+			},
+			"enemy-lv1-earrings": {
+				"enemy-lv1-earrings": { "x": 48.9, "y": -3.03, "rotation": 90, "width": 247, "height": 92 }
+			}
+		}
+	}
+],
+"animations": {
+	"blink": {
+		"bones": {
+			"eye": {
+				"translate": [
+					{ "time": 0.3333, "curve": 0.195, "c2": -0.21, "c3": 0.784, "c4": 1.44 },
+					{
+						"time": 0.4,
+						"x": -21.89,
+						"y": 0.7,
+						"curve": 0.195,
+						"c2": -0.21,
+						"c3": 0.784,
+						"c4": 1.44
+					},
+					{ "time": 0.4667 }
+				],
+				"scale": [
+					{ "time": 0.3333, "curve": 0.195, "c2": -0.21, "c3": 0.784, "c4": 1.44 },
+					{ "time": 0.4, "y": 0.028, "curve": 0.195, "c2": -0.21, "c3": 0.784, "c4": 1.44 },
+					{ "time": 0.4667, "curve": "stepped" },
+					{ "time": 0.8 }
+				]
+			}
+		}
+	},
+	"scare": {
+		"bones": {
+			"hands": {
+				"translate": [
+					{},
+					{ "time": 0.1333, "x": -0.37, "y": 33.36 },
+					{ "time": 0.1667, "x": -15.01, "y": 16.52 },
+					{ "time": 0.2 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.1667, "x": 1.106 },
+					{ "time": 0.4 }
+				]
+			},
+			"gun_l": {
+				"rotate": [
+					{ "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.0333, "angle": -12.15, "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.0667, "angle": 153.08, "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.1333, "angle": -40.4, "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.2667 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1333, "x": 18.66, "y": 18.66 },
+					{ "time": 0.1667, "x": -2, "y": -0.67 },
+					{ "time": 0.2, "x": 4, "y": -4.44 },
+					{ "time": 0.2667, "curve": "stepped" },
+					{ "time": 0.8 }
+				]
+			},
+			"gun_r": {
+				"rotate": [
+					{ "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.0333, "angle": 20.16, "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.0667, "angle": -149.3, "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.1333, "angle": 46.52, "curve": 0.684, "c2": 0.01, "c3": 0.75 },
+					{ "time": 0.2667 }
+				]
+			}
+		}
+	},
+	"standby": {
+		"bones": {
+			"enemy-lv1-body": {
+				"scale": [
+					{ "curve": 0.264, "c2": -0.07, "c3": 0.702, "c4": 1.31 },
+					{
+						"time": 0.4,
+						"x": 0.95,
+						"y": 1.002,
+						"curve": 0.264,
+						"c2": -0.07,
+						"c3": 0.702,
+						"c4": 1.31
+					},
+					{ "time": 0.8 }
+				]
+			},
+			"head": {
+				"translate": [
+					{ "curve": 0.514, "c3": 0.622, "c4": 0.91 },
+					{ "time": 0.4667, "x": 0.61, "y": -18.92, "curve": 0.514, "c3": 0.622, "c4": 0.91 },
+					{ "time": 0.8 }
+				]
+			},
+			"hands": {
+				"translate": [
+					{},
+					{ "time": 0.4, "x": 0.25, "y": -22.81 },
+					{ "time": 0.8 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.4, "x": 0.947 },
+					{ "time": 0.8 }
+				]
+			},
+			"gun_r": {
+				"translate": [
+					{},
+					{ "time": 0.4, "x": -11.58, "y": -13.45 },
+					{ "time": 0.8 }
+				]
+			},
+			"gun_l": {
+				"translate": [
+					{},
+					{ "time": 0.4, "x": 0.25, "y": -22.81 },
+					{ "time": 0.8 }
+				]
+			}
+		}
+	},
+	"walk": {
+		"bones": {
+			"feet_l": {
+				"rotate": [
+					{ "angle": -9.97 },
+					{ "time": 0.0667, "angle": -6.9 },
+					{ "time": 0.2, "angle": -3.54 },
+					{ "time": 0.2667, "angle": -5.69 },
+					{ "time": 0.3333, "angle": -5.36 },
+					{ "time": 0.4, "angle": -9.97 }
+				],
+				"translate": [
+					{ "x": -0.04, "y": -2.98 },
+					{ "time": 0.0667, "x": 5.74, "y": 2.35 },
+					{ "time": 0.2, "x": 1.3, "y": 1.02 },
+					{ "time": 0.2667, "x": 3.52, "y": -0.31 },
+					{ "time": 0.3333, "x": 4.41, "y": 2.35 },
+					{ "time": 0.4, "x": -0.04, "y": -2.98 }
+				]
+			},
+			"feet_r": {
+				"rotate": [
+					{ "angle": -3.15 },
+					{ "time": 0.2, "angle": 16.84 },
+					{ "time": 0.2333, "angle": 3.55 },
+					{ "time": 0.4, "angle": -3.15 }
+				],
+				"translate": [
+					{ "x": 0.51, "y": 6.63 },
+					{ "time": 0.2, "x": -15.48, "y": -6.7 },
+					{ "time": 0.4, "x": 0.51, "y": 6.63 }
+				]
+			},
+			"enemy-lv1-body": {
+				"shear": [
+					{},
+					{ "time": 0.1, "x": 6.42 },
+					{ "time": 0.2, "x": -0.06 },
+					{ "time": 0.3, "x": 6.42 },
+					{ "time": 0.4 }
+				]
+			},
+			"gun_r": {
+				"rotate": [
+					{},
+					{ "time": 0.2667, "angle": -0.91 },
+					{ "time": 0.4, "angle": 3.17 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.2667, "x": -1.11, "y": 8.86 },
+					{ "time": 0.4 }
+				]
+			},
+			"hands": {
+				"translate": [
+					{},
+					{ "time": 0.2, "x": -0.1, "y": 8.93 },
+					{ "time": 0.4 }
+				]
+			},
+			"gun_l": {
+				"rotate": [
+					{},
+					{ "time": 0.1333, "angle": 2.41 },
+					{ "time": 0.4, "angle": 3.17 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1333, "x": 0.08, "y": 12.4 },
+					{ "time": 0.4 }
+				]
+			}
+		}
+	}
+}
+}

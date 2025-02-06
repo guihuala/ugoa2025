@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
                         EVENTMGR.TriggerUseStep(1);
                     }
 
-                    player.PlayAnimation(player.walkAnimation);
+                    PlayWalkAnimation();
                 }
             }
         }
@@ -142,10 +142,20 @@ public class PlayerMovement : MonoBehaviour
                         EVENTMGR.TriggerClickPath();
                     }
 
-                    player.PlayAnimation(player.walkAnimation);
+                    PlayWalkAnimation();
                 }
             }
         }
+    }
+
+    private void PlayWalkAnimation()
+    {
+        if(player.IsInvisible)
+            return;
+        if(player.IsInSwamp)
+            return;
+        
+        player.PlayAnimation(player.walkAnimation);
     }
 
     private IEnumerator MoveAlongPath()

@@ -1,6 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Spine.Unity;
+using UnityEngine;
+
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
+using Spine.Unity;
 using UnityEngine;
 
 public class Poacher : EnemyBase
@@ -19,6 +26,12 @@ public class Poacher : EnemyBase
 
     private List<EnemyFollower> followers = new List<EnemyFollower>();  // 小弟列表
 
+    [Header("动画配置")]
+    [SerializeField] private string WalkAnimation = "walk";
+    [SerializeField] private string scaredAnimation = "scare";
+    [SerializeField] private string standAnimation = "standby";
+    [SerializeField] private string blinkAnimation = "blink";
+
     protected override void InitializeStates()
     {
         stateMachine.ChangeState(new PatrolState(this));
@@ -36,6 +49,14 @@ public class Poacher : EnemyBase
 
         // 创建小弟
         CreateFollowers();
+        PlayOverlayAnimation(1,blinkAnimation);
+    }
+
+    protected override void ClearTrack()
+    {
+        base.ClearTrack();
+        // 清除轨道时播放站立动画
+        PlayAnimation(standAnimation);
     }
 
     private void CreateFollowers()
@@ -90,7 +111,6 @@ public class Poacher : EnemyBase
                         Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
                         pathQueue.Enqueue(targetPos);
                     }
-
                     currentNode = targetNode; // 更新当前节点
                 }
             }
@@ -104,6 +124,7 @@ public class Poacher : EnemyBase
         }
 
         StartCoroutine(MoveAlongPath());
+        ClearTrack();
     }
 
     // 沿着完整路径行走
@@ -117,11 +138,13 @@ public class Poacher : EnemyBase
             {
                 yield return new WaitUntil(() => Time.timeScale > 0);
             }
-
+            
             Vector3 targetPosition = pathQueue.Dequeue();
 
             // 处理角色朝向
             HandleRotation(targetPosition - transform.position);
+            
+            PlayAnimation(WalkAnimation);
 
             // 移动角色
             while ((transform.position - targetPosition).sqrMagnitude > 0.01f) // 避免浮点数误差
@@ -149,6 +172,8 @@ public class Poacher : EnemyBase
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             CheckPoint.DORotateQuaternion(targetRotation, 0.3f);
+            
+            PlayOverlayAnimation(2, scaredAnimation);
         }
     }
     

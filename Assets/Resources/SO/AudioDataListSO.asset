@@ -13,7 +13,19 @@ MonoBehaviour:
   m_Name: AudioDataListSO
   m_EditorClassIdentifier: 
   audioDataList:
-  - audioName: BGM
-    audioPath: Audios/BGM/Tropical Blast
   - audioName: click
     audioPath: Audios/Sfx/Click
+  - audioName: into_grass_1
+    audioPath: Audios/Sfx/into_grass_1
+  - audioName: into_grass_2
+    audioPath: Audios/Sfx/into_grass_2
+  - audioName: into_grass_3
+    audioPath: Audios/Sfx/into_grass_3
+  - audioName: swamp_walk_1
+    audioPath: Audios/Sfx/swamp_walk_1
+  - audioName: swamp_walk_2
+    audioPath: Audios/Sfx/swamp_walk_2
+  - audioName: swamp_walk_3
+    audioPath: Audios/Sfx/swamp_walk_3
+  - audioName: swamp_walk_4
+    audioPath: Audios/Sfx/swamp_walk_4

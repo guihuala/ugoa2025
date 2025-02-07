@@ -5,7 +5,6 @@ using UnityEngine;
 public class PathfindingManager : MonoBehaviour
 {
     public float highlightRadius = 5f;
-    public float searchDistance = 6f;
     public float updateInterval = 1f;
 
     private GameObject player;
@@ -117,7 +116,7 @@ public class PathfindingManager : MonoBehaviour
 
         foreach (var node in mapNodes)
         {
-            if (Vector3.Distance(currentNode.position, node.position) > searchDistance) continue;
+            if (Vector3.Distance(currentNode.position, node.position) > highlightRadius * 1.2f) continue;
 
             NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
             if (nodeMarker == null) continue;

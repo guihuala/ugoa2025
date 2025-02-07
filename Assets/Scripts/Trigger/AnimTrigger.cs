@@ -75,7 +75,6 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
                 if (!callbackTriggered && completedAnimations == totalAnimations)
                 {
                     callbackTriggered = true;
-                    Debug.Log("All animations completed");
                     StartCoroutine(DestroyItemsAndTriggerCallback());
                 }
             });

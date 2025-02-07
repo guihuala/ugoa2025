@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Spine.Unity;
 using UnityEngine.Serialization;
@@ -24,6 +25,9 @@ public class Player : MonoBehaviour
     [Header("沼泽下沉相关配置")]
     [SerializeField] private float sinkSpeed = 0.01f; // 下沉速度
     [SerializeField] private float timeUntilDeath = 5f; // 停留多久会死亡
+    
+    [Header("死亡设置")]
+    [SerializeField] private float deathDelay = 1.0f;
 
     private float initialHeight = 1.5f;
     private SkeletonAnimation skeletonAnimation;
@@ -185,7 +189,6 @@ public class Player : MonoBehaviour
         
         PlayAnimation(sinkAnimation, true);
         PlayEyesAnimation(eyesXAnimation);
-        PlayOverlayAnimation(mouseTrack,trembleMouthAnimation);
     }
 
     private void HandleSwampExit()
@@ -255,12 +258,20 @@ public class Player : MonoBehaviour
     
     private void PlayerDead()
     {
+        // 如果处于隐身状态，则不触发死亡
         if (isInvisible)
             return;
         
         isInSwamp = false;
+        // 延迟触发死亡事件
+        StartCoroutine(DelayedPlayerDeath());
+    }
+    
+    private IEnumerator DelayedPlayerDeath()
+    {
+        yield return new WaitForSeconds(deathDelay);
         UIManager.Instance.OpenPanel("GameFailurePanel");
-    }  
+    }
      
     private void OnDestroy()
     {

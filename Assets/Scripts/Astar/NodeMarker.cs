@@ -36,7 +36,9 @@ public class NodeMarker : MonoBehaviour
     void Update()
     {
         if(!IsWalkable || !IsHighlighted)
+        {
             return;
+        }
         
         CheckHover();
         CheckClick();
@@ -118,12 +120,6 @@ public class NodeMarker : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
-                    if (!IsHighlighted)
-                    {
-                        EVENTMGR.TriggerClickPath();
-                        
-                        return;
-                    }
                     EVENTMGR.TriggerClickMarker(transform.position);
                     clickHighLight.gameObject.SetActive(false);
                 }

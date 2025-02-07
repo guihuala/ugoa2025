@@ -14,7 +14,15 @@ public class EnemyFollower : MonoBehaviour
     
     private float currentRotation = 0f;
     private float targetRotation = 180f;
+    
+    [SerializeField]
+    private Vector3 positionOffset = Vector3.zero;
 
+    /// <summary>
+    /// 设置跟随路径和延迟时间
+    /// </summary>
+    /// <param name="path">路径队列</param>
+    /// <param name="delay">跟随延迟</param>
     public void FollowPath(Queue<Vector3> path, float delay)
     {
         pathQueue.Clear();
@@ -37,6 +45,7 @@ public class EnemyFollower : MonoBehaviour
 
         while (pathQueue.Count > 0)
         {
+            // 每次移动前等待设定的延迟时间
             yield return new WaitForSeconds(followDelay + 1.2f);
             
             if (Time.timeScale == 0)
@@ -44,10 +53,16 @@ public class EnemyFollower : MonoBehaviour
                 yield return new WaitUntil(() => Time.timeScale > 0);
             }
 
-            Vector3 targetPosition = pathQueue.Dequeue();
+            // 从路径中取出目标点，并添加偏移量
+            Vector3 targetPosition = pathQueue.Dequeue() + positionOffset;
 
             HandleRotation(targetPosition - transform.position);
 
+            // 添加横向挤压弹性效果
+            // 这里的 DOPunchScale 会让对象的局部缩放先向 X 方向收缩、Y 方向增大（实现横向挤压效果），然后弹回原状
+            transform.DOPunchScale(new Vector3(-0.2f, 0.2f, 0f), 0.3f, 5, 0.5f);
+
+            // 开始平滑移动到目标点
             while ((transform.position - targetPosition).sqrMagnitude > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, 3f * Time.deltaTime);
@@ -57,8 +72,6 @@ public class EnemyFollower : MonoBehaviour
 
         isMoving = false;
     }
-    
-    
     
     private void HandleRotation(Vector3 direction)
     {

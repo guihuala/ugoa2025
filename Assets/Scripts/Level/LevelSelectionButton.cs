@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class LevelSelectionButton : MonoBehaviour
 {
     [SerializeField] private bool unlocked;
-    [SerializeField] private Image unlockImage;
+
+    [SerializeField] private GameObject levelUnlockImg;
+    [SerializeField] private GameObject levelLockImg;
+    
     [SerializeField] private string levelName;
     [SerializeField] private SceneName sceneName;
 
@@ -21,16 +24,10 @@ public class LevelSelectionButton : MonoBehaviour
 
     private void Start()
     {
-        UpdateLevelStatus();
-    }
-
-    // 每个关卡单独读取
-    private void Update()
-    {
         UpdateLevelImage();
         UpdateLevelStatus();
     }
-    
+
     private void UpdateLevelStatus()
     {
         var level = LevelManager.Instance.levels.Find(l => l.name == levelName);
@@ -42,13 +39,22 @@ public class LevelSelectionButton : MonoBehaviour
 
     private void UpdateLevelImage()
     {
+        if(levelName == "Level1")
+            return;
+        
         if (!unlocked)
         {
-            unlockImage.gameObject.SetActive(false);
+            levelLockImg.SetActive(true);
+            levelUnlockImg.SetActive(false);
+            
+            gameObject.SetActive(false);
         }
         else
         {
-            unlockImage.gameObject.SetActive(true);
+            levelLockImg.SetActive(false);
+            levelUnlockImg.SetActive(true);
+            
+            gameObject.SetActive(true);
         }
     }
 

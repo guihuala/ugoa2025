@@ -232,7 +232,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailBlend: 0.5
     - _DetailMapBlendMode: 0
-    - _DetailMix: 0.5
+    - _DetailMix: 0.511
     - _DetailNormalMapIntensity: 1
     - _DetailNormalMapScale: 1
     - _Diffuse: 0
@@ -303,12 +303,12 @@ Material:
     - _RimSmoothness: 0
     - _RimStyle: 0
     - _RimThresholdOffset: 0.25
-    - _Roughness: 0.5
+    - _Roughness: 0.478
     - _SSSDistortion: 0.25
     - _SSSSmoothness: 0
     - _Saturation: 1
     - _SketchMapScale: 1.61
-    - _Smoothness: 0.5
+    - _Smoothness: 0.397
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1
@@ -358,7 +358,7 @@ Material:
     - _RimDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _SSSColor: {r: 1, g: 0.65, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 0.19999993, g: 0.19999993, b: 0.19999993, a: 1}
+    - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4590996404159485479

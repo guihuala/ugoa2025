@@ -10,6 +10,8 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
     [SerializeField] private bool ifRequestCollection;
     private string[] requestedItemID = new[] { "7", "8", "9" };
     
+    public DialogueData dialogueData;
+    
     private void Start()
     {
         levelInfo = FindObjectOfType<LevelInfo>();
@@ -39,6 +41,11 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
                 levelInfo.VictorySaveLevel();
                 
                 SceneLoader.Instance.LoadScene(SceneName.CG,"...");
+            }
+            else
+            {
+                DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
+                dialoguePanel.StartDialogue(dialogueData);
             }
         }
         else

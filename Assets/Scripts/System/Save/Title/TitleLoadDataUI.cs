@@ -9,6 +9,7 @@ public class TitleLoadDataUI : MonoBehaviour
 {
     public Transform grid;               // 存档列表的容器
     public GameObject recordPrefab;      // 存档项预制件
+    public Button closeBtn;
 
     [Header("存档详情")]
     public GameObject detail;           // 存档详情面板
@@ -37,6 +38,8 @@ public class TitleLoadDataUI : MonoBehaviour
         RecordUI.OnLeftClick += LeftClickGrid;
         RecordUI.OnEnter += ShowDetails;
         RecordUI.OnExit += HideDetails;
+        
+        closeBtn.onClick.AddListener(() => gameObject.SetActive(false));
         
         detail.SetActive(false);
     }

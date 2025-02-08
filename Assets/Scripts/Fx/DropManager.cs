@@ -17,17 +17,17 @@ public class DropManager : MonoBehaviour
     [SerializeField] private float minSpeed = 200f;  // 最小掉落速度
     [SerializeField] private float maxSpeed = 300f;  // 最大掉落速度
 
+    [Header("点击间隔")]
+    [SerializeField] private float clickCooldown = 2f; // 冷却时间 2 秒
+    private bool canClick = true;  // 控制是否能点击
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+        if (canClick && Input.GetMouseButtonDown(0))
         {
             CreateFallingImage();
+            StartCoroutine(ClickCooldown());  // 启动冷却时间
         }
-    }
-
-    private bool IsPointerOverUIObject()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
     }
 
     private void CreateFallingImage()
@@ -58,5 +58,12 @@ public class DropManager : MonoBehaviour
 
         // 超出屏幕后销毁图片
         Destroy(rectTransform.gameObject);
+    }
+
+    private IEnumerator ClickCooldown()
+    {
+        canClick = false;  // 禁止点击
+        yield return new WaitForSeconds(clickCooldown);  // 等待 2 秒
+        canClick = true;  // 重新允许点击
     }
 }

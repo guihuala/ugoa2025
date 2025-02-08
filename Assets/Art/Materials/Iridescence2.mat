@@ -260,7 +260,7 @@ Material:
     - _Iridescence: 1
     - _IridescenceSize: 5
     - _IridescenceSmoothness: 1
-    - _IridescenceThresholdOffset: 0
+    - _IridescenceThresholdOffset: 1
     - _Light: 1
     - _LightBands: 4
     - _LightBandsScale: 0.5
@@ -295,7 +295,7 @@ Material:
     - _RenderFace: 2
     - _RenderPriority: 0
     - _Rim: 0
-    - _RimSize: 4.12
+    - _RimSize: 5
     - _RimSmoothness: 1
     - _RimStyle: 0
     - _RimThresholdOffset: 0.25
@@ -344,7 +344,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _GoochDarkColor: {r: 0, g: 0, b: 0, a: 1}
-    - _IridescenceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0.36862746}
     - _LightTransmissionColor: {r: 0, g: 0.89255476, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}

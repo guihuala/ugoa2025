@@ -18,6 +18,8 @@ public class EnemyFollower : MonoBehaviour
     [SerializeField]
     private Vector3 positionOffset = Vector3.zero;
 
+    private EnemyBase targetEnemy;
+
     /// <summary>
     /// 设置跟随路径和延迟时间
     /// </summary>
@@ -37,6 +39,11 @@ public class EnemyFollower : MonoBehaviour
         {
             StartCoroutine(MoveAlongPath());
         }
+    }
+
+    public void SetTargetEnemy(EnemyBase enemy)
+    {
+        targetEnemy = enemy;
     }
 
     private IEnumerator MoveAlongPath()
@@ -90,7 +97,8 @@ public class EnemyFollower : MonoBehaviour
     {
         if (other.GetComponent<Player>())
         {
-            EVENTMGR.TriggerPlayerDead();
+            if(targetEnemy !=null)
+                targetEnemy.PerformFoundPlayer();
         }
     }
 }

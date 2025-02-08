@@ -4,22 +4,18 @@ using DG.Tweening;
 using Spine.Unity;
 using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using Spine.Unity;
-using UnityEngine;
 
 public class Poacher : EnemyBase
 {
     private int currentPointIndex = 0;
-    
+
     [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);  
-    
+
     private bool isMoving = false;
+    private bool stopMoving = false;
     private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
     private PathfindingManager pathfindingManager;
-    
+
     [Header("小弟配置")]
     [SerializeField] private EnemyFollower followerPrefab;
     [SerializeField] private int numberOfFollowers = 3;  // 小弟的数量
@@ -32,11 +28,15 @@ public class Poacher : EnemyBase
     [SerializeField] private string standAnimation = "standby";
     [SerializeField] private string blinkAnimation = "blink";
 
+    [Header("发现示意图标")] 
+    [SerializeField] private GameObject foundIcon;
+    private Vector3 iconOriginalScale;
+
     protected override void InitializeStates()
     {
         stateMachine.ChangeState(new PatrolState(this));
     }
-    
+
     protected override void Start()
     {
         base.Start();
@@ -49,7 +49,13 @@ public class Poacher : EnemyBase
 
         // 创建小弟
         CreateFollowers();
-        PlayOverlayAnimation(1,blinkAnimation);
+        PlayOverlayAnimation(1, blinkAnimation);
+        
+        if (foundIcon != null)
+        {
+            iconOriginalScale = foundIcon.transform.localScale;
+            foundIcon.transform.localScale = Vector3.zero;
+        }
     }
 
     protected override void ClearTrack()
@@ -64,28 +70,31 @@ public class Poacher : EnemyBase
         for (int i = 0; i < numberOfFollowers; i++)
         {
             EnemyFollower follower = Instantiate(followerPrefab, transform.position, Quaternion.identity);
+            follower.SetTargetEnemy(this);
             followers.Add(follower);
         }
     }
 
     public override void MoveForward()
     {
-        StartCoroutine(PatrolRoutine());
+        if (!stopMoving)
+        {
+            StartCoroutine(PatrolRoutine());
+        }
     }
-    
+
     private IEnumerator PatrolRoutine()
     {
         while (true)
         {
-            if (!isMoving)
+            if (!isMoving && !stopMoving)
             {
                 ComputeFullPath();
             }
             yield return new WaitForSeconds(1f);
         }
     }
-    
-    // 计算完整路径
+
     public void ComputeFullPath()
     {
         if (pathfindingManager == null) return;
@@ -127,12 +136,11 @@ public class Poacher : EnemyBase
         ClearTrack();
     }
 
-    // 沿着完整路径行走
     private IEnumerator MoveAlongPath()
     {
         isMoving = true;
 
-        while (pathQueue.Count > 0)
+        while (pathQueue.Count > 0 && !stopMoving)
         {
             if (Time.timeScale == 0)
             {
@@ -147,7 +155,7 @@ public class Poacher : EnemyBase
             PlayAnimation(WalkAnimation);
 
             // 移动角色
-            while ((transform.position - targetPosition).sqrMagnitude > 0.01f) // 避免浮点数误差
+            while ((transform.position - targetPosition).sqrMagnitude > 0.01f && !stopMoving)
             {
                 if (Time.timeScale == 0)
                 {
@@ -176,10 +184,34 @@ public class Poacher : EnemyBase
             PlayOverlayAnimation(2, scaredAnimation);
         }
     }
-    
+
     public override void PerformFoundPlayer()
     {
-        // 触发失败事件
+        stopMoving = true;
+
+        if (foundIcon != null)
+        {
+            foundIcon.SetActive(true);
+            
+            Vector3 squeezeScale = new Vector3(0.7f, 0.7f, 1f);
+            
+            foundIcon.transform.DOScale(squeezeScale, 0.2f)
+                .SetEase(Ease.OutElastic)
+                .OnComplete(() =>
+                {
+                    DOTween.To(() => foundIcon.transform.localScale, 
+                        scale => foundIcon.transform.localScale = scale, 
+                        iconOriginalScale, 0.8f);
+                });
+        }
+        
+        StartCoroutine(TriggerEventAfterDelay(1f));
+    }
+
+    private IEnumerator TriggerEventAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
         EVENTMGR.TriggerPlayerDead();
     }
 }

@@ -16,22 +16,12 @@ public class SceneChangerInfo
 
 public class SleepBlackPanel : BasePanel
 {
-    private Text _sleepText;
-    private Image _displayImage; // 用于显示图片的组件
-    private Text titleText;
-    private Text descriptionText;
+    public Text _sleepText;
+    public Image _displayImage; // 用于显示图片的组件
+    public Text titleText;
+    public Text descriptionText;
 
     [SerializeField] public List<SceneChangerInfo> sceneChangerInfoList; // 存储多个场景信息
-    
-    protected override void Awake()
-    {
-        base.Awake();
-
-        titleText = transform.Find("Title").GetComponent<Text>();
-        descriptionText = transform.Find("Description").GetComponent<Text>();
-        _sleepText = transform.Find("SleepText").GetComponent<Text>();
-        _displayImage = transform.Find("DisplayImage").GetComponent<Image>();
-    }
 
     public void StartSleepCounting(float duration, string textStr, UnityAction callBack)
     {

@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;  // 导入DOTween命名空间
+using DG.Tweening;
 
-public class CollectTrigger : MonoBehaviour, IEnterSpecialItem
+public class CollectTrigger : MonoBehaviour
 {
     public string itemID; // 物品唯一标识符
 
@@ -34,7 +34,7 @@ public class CollectTrigger : MonoBehaviour, IEnterSpecialItem
 
         Destroy(gameObject);
     }
-    
+
     private void ApplyFloatingEffect()
     {
         if (itemSprite != null)
@@ -42,6 +42,14 @@ public class CollectTrigger : MonoBehaviour, IEnterSpecialItem
             itemSprite.DOLocalMoveY(itemSprite.localPosition.y + floatAmount, floatDuration)
                 .SetLoops(-1, LoopType.Yoyo)
                 .SetEase(Ease.InOutSine);
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Apply();
         }
     }
 }

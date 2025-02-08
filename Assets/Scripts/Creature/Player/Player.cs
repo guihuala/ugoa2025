@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using UnityEngine.Serialization;
@@ -15,7 +16,6 @@ public class Player : MonoBehaviour
     
     private bool isInvisible;
     public bool IsInvisible => isInvisible;
-    
     
     private bool isInSwamp = false;
     public bool IsInSwamp => isInSwamp;
@@ -45,11 +45,12 @@ public class Player : MonoBehaviour
     [Header("Spine 默认眼睛")]
     public string eyeslv1Animation = "expressions/default-lv1";
     public string eyeslv2Animation = "expressions/default-lv2";
-    public string eyeslv3Animation = "expressions/default-lv3";
+    public string eyeslv3Animation = "expressions/default_lv3";
 
     [Header("Spine 眼睛动画")]
     public string eyesXAnimation = "expressions/eyes/eyes-X";
     public string eyesShutAnimation = "expressions/eyes/eyes-shut";
+    public string eyesBlinkAnimation = "expressions/eyes/eyes_blink";
     
     [Header("Spine 嘴动画")]
     public string defaultMouthAnimation = "expressions/mouth/mouth-default";
@@ -60,13 +61,15 @@ public class Player : MonoBehaviour
     private string sinkAnimation = "sets/struggle";
     private string saluteAnimation = "sets/salute";
     
-    
     [Header("Spine 动画轨道配置")]
-    private int baseTrack = 0;    // 动作
-    private int eyesTrack = 1; // 眼睛
-    private int mouseTrack = 2; // 嘴
+    private int baseTrack = 1;    // 主动画轨道
+    private int eyesTrack = 2;    // 眼睛
+    private int mouseTrack = 3;   // 嘴
+    private int setTrack = 0;
     
-
+    // 用于射线检测特殊物体
+    private Dictionary<int, Collider> currentSpecialItems = new Dictionary<int, Collider>();
+    
     private void Start()
     {
         skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
@@ -74,7 +77,6 @@ public class Player : MonoBehaviour
         EVENTMGR.OnStepIntoGrass += SetInvisible;
         EVENTMGR.OnEnterSwamp += HandleSwampEnter;
         EVENTMGR.OnExitSwamp += HandleSwampExit;
-        EVENTMGR.OnStayInSwamp += HandleSwampStay;
         EVENTMGR.OnPlayerDead += PlayerDead;
         
         PlayAnimation(standAnimation);
@@ -96,15 +98,13 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 播放眼睛动画 不输入参数则播放默认眼睛动画
+    /// 播放眼睛动画；不输入参数则播放默认眼睛动画
     /// </summary>
-    /// <param name="animName">动画名</param>
     public void PlayEyesAnimation(string animName = "default")
     {
         if (skeletonAnimation != null && skeletonAnimation.state != null)
         {
             string selectedEyeAnimation = animName;
-
             if (selectedEyeAnimation == "default")
             {
                 switch (skin)
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
                         selectedEyeAnimation = $"{eyeslv2Animation}";
                         break;
                     case PlayerSkin.lv3:
-                        selectedEyeAnimation = $"{eyeslv3Animation}";
+                        selectedEyeAnimation = $"{eyesBlinkAnimation}";
                         break;
                 }                
             }
@@ -125,13 +125,10 @@ public class Player : MonoBehaviour
         }
     }
 
-
-    // 叠加动画
     public void PlayOverlayAnimation(int trackIndex, string animName, bool loop = false, float mixDuration = 0.1f)
     {
         if (skeletonAnimation != null && skeletonAnimation.state != null)
         {
-            // 设置轨道混合时间
             skeletonAnimation.state.Data.DefaultMix = mixDuration;
             skeletonAnimation.state.SetAnimation(trackIndex, animName, loop);
         }
@@ -142,7 +139,8 @@ public class Player : MonoBehaviour
         skeletonAnimation.state.ClearTrack(baseTrack);
         skeletonAnimation.state.ClearTrack(eyesTrack);
         skeletonAnimation.state.ClearTrack(mouseTrack);
-        
+        skeletonAnimation.state.ClearTrack(setTrack);
+
         PlayAnimation(standAnimation, true);
         PlayEyesAnimation();
     }
@@ -178,7 +176,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     #endregion
 
     #region 沼泽下沉
@@ -187,28 +184,29 @@ public class Player : MonoBehaviour
     {
         isInSwamp = true;
         
-        PlayAnimation(sinkAnimation, true);
+        PlayOverlayAnimation(setTrack, sinkAnimation, true);
+        
+        if(skin == PlayerSkin.lv3)
+            return;
+        
         PlayEyesAnimation(eyesXAnimation);
     }
 
     private void HandleSwampExit()
     {
         isInSwamp = false;
-        stayTime = 0f; // 重置停留时间
+        stayTime = 0f;
         ResetHeightPosition();
         
         ClearTrack();
     }
 
-
-    private void HandleSwampStay(float duration)
+    private void HandleSwampStay()
     {
         if (!isInSwamp) return;
         
-        stayTime += duration;
-        
-        // 根据停留时间改变玩家位置
-        transform.position += Vector3.down * sinkSpeed * duration;
+        stayTime += Time.deltaTime;
+        transform.position += Vector3.down * sinkSpeed * Time.deltaTime;
 
         if (stayTime >= timeUntilDeath)
         {
@@ -225,50 +223,77 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    #region 触发器检测
-
-    private void OnTriggerEnter(Collider other)
+    #region 射线检测
+    
+    private void Update()
     {
-        var item = other.GetComponent<IEnterSpecialItem>();
-        if (item != null)
-        {
-            item.Apply();
-        }
-    }
+        HandleSwampStay();
+        
+        float detectionDistance = 2f;
+        Dictionary<int, Collider> detectedItems = new Dictionary<int, Collider>();
 
-    private void OnTriggerExit(Collider other)
-    {
-        var item = other.GetComponent<IExitSpecialItem>();
-        if (item != null)
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, detectionDistance))
         {
-            item.UnApply();
+            if (hit.collider.GetComponent<IEnterSpecialItem>() != null ||
+                hit.collider.GetComponent<IExitSpecialItem>() != null)
+            {
+                int id = hit.collider.GetInstanceID();
+                if (!detectedItems.ContainsKey(id))
+                {
+                    detectedItems.Add(id, hit.collider);
+                }
+            }
+            else
+            {
+                if(isInSwamp)
+                    EVENTMGR.TriggerExitSwamp();
+            }
         }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        var stayItem = other.GetComponent<IStayInSpecialItem>();
-        if (stayItem != null)
+        
+        foreach (var kvp in detectedItems)
         {
-            stayItem.Stay(Time.deltaTime);
+            if (!currentSpecialItems.ContainsKey(kvp.Key))
+            {
+                IEnterSpecialItem enterItem = kvp.Value.GetComponent<IEnterSpecialItem>();
+                if (enterItem != null)
+                {
+                    enterItem.Apply();
+                }
+            }
         }
+        
+        foreach (var kvp in currentSpecialItems)
+        {
+            if (!detectedItems.ContainsKey(kvp.Key))
+            {
+                IExitSpecialItem exitItem = kvp.Value.GetComponent<IExitSpecialItem>();
+                if (exitItem != null)
+                {
+                    exitItem.UnApply();
+                }
+            }
+        }
+        
+        currentSpecialItems = detectedItems;
     }
 
     #endregion
     
     private void PlayerDead()
     {
-        // 如果处于隐身状态，则不触发死亡
         if (isInvisible)
             return;
         
         isInSwamp = false;
-        // 延迟触发死亡事件
         StartCoroutine(DelayedPlayerDeath());
     }
     
     private IEnumerator DelayedPlayerDeath()
     {
+        ClearTrack();
+        PlayOverlayAnimation(eyesTrack, eyesXAnimation);
         yield return new WaitForSeconds(deathDelay);
         UIManager.Instance.OpenPanel("GameFailurePanel");
     }
@@ -278,7 +303,6 @@ public class Player : MonoBehaviour
         EVENTMGR.OnStepIntoGrass -= SetInvisible;
         EVENTMGR.OnEnterSwamp -= HandleSwampEnter;
         EVENTMGR.OnExitSwamp -= HandleSwampExit;
-        EVENTMGR.OnStayInSwamp -= HandleSwampStay;
         EVENTMGR.OnPlayerDead -= PlayerDead;
     }
 }

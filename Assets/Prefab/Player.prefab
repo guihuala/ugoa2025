@@ -5014,7 +5014,7 @@ MonoBehaviour:
   hatAnimation: move/hat
   eyeslv1Animation: expressions/default-lv1
   eyeslv2Animation: expressions/default-lv2
-  eyeslv3Animation: expressions/default-lv3
+  eyeslv3Animation: expressions/default_lv3
   eyesXAnimation: expressions/eyes/eyes-X
   eyesShutAnimation: expression/eyes_shut
   defaultMouthAnimation: expressions/mouth/mouth-default
@@ -5056,7 +5056,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Height: 1.6055458
   m_Direction: 1
   m_Center: {x: 0, y: 0.05277288, z: 0}

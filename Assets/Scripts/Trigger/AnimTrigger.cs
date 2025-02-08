@@ -66,7 +66,7 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
             Sequence seq = DOTween.Sequence();
             seq.Append(instance.transform.DOMove(targetPos, animationDuration).SetEase(Ease.OutBounce));
             seq.Join(instance.transform.DOScale(targetScale, animationDuration).SetEase(Ease.OutBack));
-            seq.Join(instance.transform.DORotate(Vector3.up * angle, animationDuration)); // 旋转使其朝向中心
+            seq.Join(instance.transform.DORotate(new Vector3(1,0,1) * angle, animationDuration)); // 旋转使其朝向中心
 
             seq.OnComplete(() =>
             {

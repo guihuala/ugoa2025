@@ -86,8 +86,6 @@ public static class EVENTMGR
     public static event Action OnEnterSwamp;
     
     public static event Action OnExitSwamp;
-    
-    public static event Action<float> OnStayInSwamp;
 
     public static event Action<float> OnChangeSwampProgress;
     
@@ -100,12 +98,6 @@ public static class EVENTMGR
     {
         OnExitSwamp?.Invoke();
     }
-    
-    public static void TriggerStayInSwamp(float deltaTime)
-    {
-        OnStayInSwamp?.Invoke(deltaTime);
-    }
-    
     public static void TriggerChangeSwampProgress(float percent)
     {
         OnChangeSwampProgress?.Invoke(percent);

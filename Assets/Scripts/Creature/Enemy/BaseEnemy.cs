@@ -51,7 +51,7 @@ public abstract class EnemyBase : MonoBehaviour
             if (isBlocked)
             {
                 // 检查射线击中的是否是玩家
-                if (hit.collider.CompareTag("Player"))
+                if (hit.collider.CompareTag("Player") && !player.GetComponent<Player>().IsInvisible)
                 {
                     return true; // 玩家没有被遮挡，敌人可以看到
                 }

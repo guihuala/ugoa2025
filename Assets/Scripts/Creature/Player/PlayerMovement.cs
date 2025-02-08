@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Player))]
 public class PlayerMovement : MonoBehaviour
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // 处理路径移动
-        if (!isMoving && pathQueue.Count > 0)
+        if (!isMoving && pathQueue.Count > 0 && !player.IsDead)
         {
             StartCoroutine(MoveAlongPath());
         }
@@ -158,6 +159,25 @@ public class PlayerMovement : MonoBehaviour
         player.PlayAnimation(player.walkAnimation);
     }
 
+    private void PlayMoveSound()
+    {
+        if (player.IsInSwamp)
+        {
+            int index = Random.Range(1, 4);
+            AudioManager.Instance.PlaySfx("swamp_walk_" + index);
+        }
+        else if (player.IsInvisible)
+        {
+            int index = Random.Range(1, 3);
+            AudioManager.Instance.PlaySfx("into_grass_"+ index);
+        }
+        else
+        {
+            int index = Random.Range(1, 4);
+            AudioManager.Instance.PlaySfx("step_"+ index);
+        }
+    }
+
     private IEnumerator MoveAlongPath()
     {
         isMoving = true;
@@ -180,8 +200,10 @@ public class PlayerMovement : MonoBehaviour
 
             EVENTMGR.TriggerPlayerStep(targetPosition - positionOffset);
             transform.position = targetPosition; // 确保精准到达目标点
+            
+            PlayMoveSound();
         }
-
+        
         isMoving = false;
     }
     

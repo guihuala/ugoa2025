@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spine;
 using UnityEngine;
 using Spine.Unity;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     
     private bool isInSwamp = false;
     public bool IsInSwamp => isInSwamp;
+    
+    private bool isDead = false;
+    public bool IsDead => isDead;
     
     private float stayTime = 0f; // 玩家在沼泽中累计停留时间 
     
@@ -65,20 +68,23 @@ public class Player : MonoBehaviour
     private int baseTrack = 1;    // 主动画轨道
     private int eyesTrack = 2;    // 眼睛
     private int mouseTrack = 3;   // 嘴
-    private int setTrack = 0;
     
     // 用于射线检测特殊物体
     private Dictionary<int, Collider> currentSpecialItems = new Dictionary<int, Collider>();
-    
-    private void Start()
+
+
+    private void Awake()
     {
         skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
+    }
 
+    private void Start()
+    {
         EVENTMGR.OnStepIntoGrass += SetInvisible;
         EVENTMGR.OnEnterSwamp += HandleSwampEnter;
         EVENTMGR.OnExitSwamp += HandleSwampExit;
         EVENTMGR.OnPlayerDead += PlayerDead;
-        
+
         PlayAnimation(standAnimation);
         PlayEyesAnimation();
     }
@@ -139,8 +145,9 @@ public class Player : MonoBehaviour
         skeletonAnimation.state.ClearTrack(baseTrack);
         skeletonAnimation.state.ClearTrack(eyesTrack);
         skeletonAnimation.state.ClearTrack(mouseTrack);
-        skeletonAnimation.state.ClearTrack(setTrack);
-
+        
+        skeletonAnimation.Skeleton.SetToSetupPose();
+        
         PlayAnimation(standAnimation, true);
         PlayEyesAnimation();
     }
@@ -184,7 +191,7 @@ public class Player : MonoBehaviour
     {
         isInSwamp = true;
         
-        PlayOverlayAnimation(setTrack, sinkAnimation, true);
+        PlayAnimation(sinkAnimation, true);
         
         if(skin == PlayerSkin.lv3)
             return;
@@ -200,21 +207,24 @@ public class Player : MonoBehaviour
         
         ClearTrack();
     }
+    
 
     private void HandleSwampStay()
     {
-        if (!isInSwamp) return;
-        
+        if (!isInSwamp || isDead) return;
+    
         stayTime += Time.deltaTime;
         transform.position += Vector3.down * sinkSpeed * Time.deltaTime;
 
         if (stayTime >= timeUntilDeath)
         {
+            isDead = true;
             EVENTMGR.TriggerPlayerDead();
         }
-        
+
         EVENTMGR.TriggerChangeSwampProgress(1 - stayTime / timeUntilDeath);
     }
+
     
     private void ResetHeightPosition()
     {
@@ -305,4 +315,5 @@ public class Player : MonoBehaviour
         EVENTMGR.OnExitSwamp -= HandleSwampExit;
         EVENTMGR.OnPlayerDead -= PlayerDead;
     }
+
 }

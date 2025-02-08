@@ -18,7 +18,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2999
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -124,7 +124,7 @@ Material:
     - _PlanarReflectionFresnel: 2.5
     - _PlanarReflectionStrength: 0.82
     - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueOffset: -1
     - _ReceiveShadows: 1
     - _RefractionStrength: 0.022
     - _ShoreBlend: 1
@@ -166,10 +166,10 @@ Material:
     - _SurfaceFoamMovement: {r: 0.7, g: 0, b: 0.47, a: 0.01}
     - _SurfaceFoamSampling: {r: 0.62, g: 0.44, b: 0, a: 0}
     - _SurfaceFoamTilingAndOffset: {r: -1, g: -1, b: 0.57, a: 0.22}
-    - _WaterColorDeep: {r: 0.18348598, g: 0.3891947, b: 0.7075471, a: 1}
-    - _WaterColorHorizon: {r: 0, g: 0.22726363, b: 0.8, a: 1}
-    - _WaterColorShallow: {r: 0.4291573, g: 1, b: 0.8899051, a: 0.5019608}
-    - _WaterColorUnderwater: {r: 0.20374396, g: 0.3096165, b: 0.517647, a: 1}
+    - _WaterColorDeep: {r: 0.18347424, g: 0.3891823, b: 0.7075471, a: 1}
+    - _WaterColorHorizon: {r: 0, g: 0.22725123, b: 0.8, a: 1}
+    - _WaterColorShallow: {r: 0.42914492, g: 1, b: 0.8899051, a: 0.5019608}
+    - _WaterColorUnderwater: {r: 0.20373222, g: 0.3096041, b: 0.517647, a: 1}
     - _WaveColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaveDirections: {r: 0, g: 0.64, b: 1, a: 0.33}
     - _WaveVisuals: {r: 0, g: 7.9, b: 1.38, a: 0}

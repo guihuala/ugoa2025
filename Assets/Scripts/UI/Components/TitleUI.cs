@@ -11,7 +11,12 @@ public class TitleUI : MonoBehaviour
     public Button New;            // 新游戏按钮
     public Button Exit;           // 退出游戏按钮
 
+    public Button Set;
+    public Button Tutorial;
+    public Button About;
+
     public GameObject recordPanel; // 存档面板
+    public GameObject setPanel;
 
     private bool isFirstTimePlay; // 判断是否播放cg
 
@@ -27,6 +32,10 @@ public class TitleUI : MonoBehaviour
         New.onClick.AddListener(NewGame);
         // 退出游戏（保存存档）
         Exit.onClick.AddListener(QuitGame);
+        
+        Set.onClick.AddListener(OpenSetPanel);
+        Tutorial.onClick.AddListener(() => { UIManager.Instance.OpenPanel("TutorialPanel");});
+        About.onClick.AddListener(() => { UIManager.Instance.OpenPanel("");});
     }
 
     private void OnDestroy()
@@ -82,6 +91,11 @@ public class TitleUI : MonoBehaviour
     void OpenRecordPanel()
     {
         recordPanel.SetActive(!recordPanel.activeSelf);
+    }
+
+    void OpenSetPanel()
+    {
+        setPanel.SetActive(!setPanel.activeSelf);
     }
 
     // 开始新游戏

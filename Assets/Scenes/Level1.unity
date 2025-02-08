@@ -40289,10 +40289,10 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.42915776, g: 1, b: 0.8899051, a: 0.5019608}
-  deepColor: {r: 0.18348643, g: 0.38919514, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.4291488, g: 1, b: 0.8899051, a: 0.5019608}
+  deepColor: {r: 0.18347791, g: 0.38918617, b: 0.7075471, a: 1}
   colorDepth: 0.22
-  horizonColor: {r: 0, g: 0.22726408, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.2272551, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -40300,7 +40300,7 @@ MonoBehaviour:
   shoreBlend: 1
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20374441, g: 0.30961698, b: 0.517647, a: 1}
+  underwaterColor: {r: 0.20373589, g: 0.30960798, b: 0.517647, a: 1}
   underwaterColorStrength: 1
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: f2c40b951cee11943a1f6d5ec1b42f2c, type: 3}
@@ -54925,7 +54925,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -60555,10 +60555,10 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.42915773, g: 1, b: 0.8899051, a: 0.5019608}
-  deepColor: {r: 0.1834864, g: 0.3891951, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.42914876, g: 1, b: 0.8899051, a: 0.5019608}
+  deepColor: {r: 0.18347788, g: 0.38918614, b: 0.7075471, a: 1}
   colorDepth: 0.22
-  horizonColor: {r: 0, g: 0.22726405, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.22725508, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -60566,7 +60566,7 @@ MonoBehaviour:
   shoreBlend: 1
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20374438, g: 0.30961695, b: 0.517647, a: 1}
+  underwaterColor: {r: 0.20373586, g: 0.30960795, b: 0.517647, a: 1}
   underwaterColorStrength: 1
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: f2c40b951cee11943a1f6d5ec1b42f2c, type: 3}

@@ -79,6 +79,7 @@ public class Poacher : EnemyBase
     {
         if (!stopMoving)
         {
+            foundIcon.transform.localScale = Vector3.zero;
             StartCoroutine(PatrolRoutine());
         }
     }

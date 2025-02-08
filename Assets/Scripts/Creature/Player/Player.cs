@@ -72,7 +72,9 @@ public class Player : MonoBehaviour
     // 用于射线检测特殊物体
     private Dictionary<int, Collider> currentSpecialItems = new Dictionary<int, Collider>();
 
-
+    [Header("指示箭头")]
+    [SerializeField] private GameObject triangle;
+    
     private void Awake()
     {
         skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
@@ -87,7 +89,15 @@ public class Player : MonoBehaviour
 
         PlayAnimation(standAnimation);
         PlayEyesAnimation();
+        
+        triangle.SetActive(false);
     }
+    
+    private void Update()
+    {
+        HandleSwampStay();
+    }
+
 
     #region Spine动画控制
     
@@ -162,6 +172,8 @@ public class Player : MonoBehaviour
         {
             isInvisible = value;
             OnStealthStateChanged(isInvisible);
+            
+            triangle.SetActive(value);
         }
     }
 
@@ -189,6 +201,9 @@ public class Player : MonoBehaviour
 
     private void HandleSwampEnter()
     {
+        if(isInSwamp)
+            return;
+        
         isInSwamp = true;
         
         PlayAnimation(sinkAnimation, true);
@@ -235,57 +250,61 @@ public class Player : MonoBehaviour
 
     #region 射线检测
     
-    private void Update()
+    public void HandleDetect()
     {
-        HandleSwampStay();
-        
         float detectionDistance = 2f;
         Dictionary<int, Collider> detectedItems = new Dictionary<int, Collider>();
-
+    
         Ray ray = new Ray(transform.position, Vector3.down);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, detectionDistance))
+        RaycastHit[] hits = Physics.RaycastAll(ray, detectionDistance);
+
+        bool hitSwamp = false;
+        bool isInInvisibleZone = false;
+
+        foreach (RaycastHit hit in hits)
         {
-            if (hit.collider.GetComponent<IEnterSpecialItem>() != null ||
-                hit.collider.GetComponent<IExitSpecialItem>() != null)
+            Collider collider = hit.collider;
+        
+            IEnterSpecialItem[] enterItems = collider.GetComponents<IEnterSpecialItem>();
+
+            int id = collider.GetInstanceID();
+            if (!detectedItems.ContainsKey(id))
             {
-                int id = hit.collider.GetInstanceID();
-                if (!detectedItems.ContainsKey(id))
-                {
-                    detectedItems.Add(id, hit.collider);
-                }
+                detectedItems.Add(id, collider);
             }
-            else
+        
+            // 检查当前物体是否是隐身地块
+            if (collider.GetComponent<InvisibleTrigger>())
             {
-                if(isInSwamp)
-                    EVENTMGR.TriggerExitSwamp();
+                isInInvisibleZone = true;
+            }
+            
+            // 检查是否是 SwampTrigger
+            if (collider.GetComponent<SwampTrigger>())
+            {
+                hitSwamp = true;
+                Debug.Log(hitSwamp);
+            }
+            
+            // 触发所有 IEnterSpecialItem 逻辑
+            foreach (var enterItem in enterItems)
+            {
+                enterItem?.Apply();
+            }
+            
+            if (isInSwamp && !hitSwamp)
+            {
+                EVENTMGR.TriggerExitSwamp();
+            }
+
+            // 只有当隐身状态发生变化时才进行处理
+            if (isInvisible && !isInInvisibleZone)
+            {
+                SetInvisible(false); // 关闭隐身
             }
         }
-        
-        foreach (var kvp in detectedItems)
-        {
-            if (!currentSpecialItems.ContainsKey(kvp.Key))
-            {
-                IEnterSpecialItem enterItem = kvp.Value.GetComponent<IEnterSpecialItem>();
-                if (enterItem != null)
-                {
-                    enterItem.Apply();
-                }
-            }
-        }
-        
-        foreach (var kvp in currentSpecialItems)
-        {
-            if (!detectedItems.ContainsKey(kvp.Key))
-            {
-                IExitSpecialItem exitItem = kvp.Value.GetComponent<IExitSpecialItem>();
-                if (exitItem != null)
-                {
-                    exitItem.UnApply();
-                }
-            }
-        }
-        
+
+        // 更新当前特殊物体列表
         currentSpecialItems = detectedItems;
     }
 
@@ -315,5 +334,4 @@ public class Player : MonoBehaviour
         EVENTMGR.OnExitSwamp -= HandleSwampExit;
         EVENTMGR.OnPlayerDead -= PlayerDead;
     }
-
 }

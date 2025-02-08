@@ -12,6 +12,7 @@ public enum SceneName
     Level1,
     Level2,
     Level3,
+    CG,
 }
 
 public class SceneLoader : SingletonPersistent<SceneLoader>

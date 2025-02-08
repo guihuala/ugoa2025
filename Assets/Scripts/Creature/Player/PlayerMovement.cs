@@ -201,6 +201,8 @@ public class PlayerMovement : MonoBehaviour
             EVENTMGR.TriggerPlayerStep(targetPosition - positionOffset);
             transform.position = targetPosition; // 确保精准到达目标点
             
+            player.HandleDetect();
+            
             PlayMoveSound();
         }
         

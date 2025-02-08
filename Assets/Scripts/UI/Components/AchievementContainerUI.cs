@@ -7,6 +7,8 @@ public class AchievementContainerUI : MonoBehaviour
 {
     [SerializeField] private GameObject achievementUIPrefab;
     [SerializeField] private Transform achievementCardParent;
+    [SerializeField] private Vector3 cardScaleIn = new Vector3(0f, 0f, 1f);  // 挤压效果的目标大小
+    [SerializeField] private Vector3 cardScaleNormal = new Vector3(1f, 1f, 1f); // 正常大小
 
     private void Start()
     {
@@ -32,7 +34,28 @@ public class AchievementContainerUI : MonoBehaviour
                 {
                     cardUI.SetupCard(achievement);
                 }
+
+                // 启动挤压动画
+                StartCoroutine(AnimateCard(newCard));
             }
         }
+    }
+
+    private IEnumerator AnimateCard(GameObject card)
+    {
+        RectTransform rectTransform = card.GetComponent<RectTransform>();
+        
+        rectTransform.localScale = cardScaleIn;
+        
+        float elapsed = 0f;
+        float duration = 0.2f;
+        while (elapsed < duration)
+        {
+            rectTransform.localScale = Vector3.Lerp(cardScaleIn, cardScaleNormal, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        
+        rectTransform.localScale = cardScaleNormal;
     }
 }

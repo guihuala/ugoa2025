@@ -28,8 +28,5 @@ public class PatrolState : IState
         }
     }
 
-    public void Exit()
-    {
-        Debug.Log($"{enemy.name} 退出侦查状态");
-    }
+    public void Exit() { }
 }

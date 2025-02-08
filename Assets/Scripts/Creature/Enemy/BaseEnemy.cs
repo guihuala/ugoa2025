@@ -44,8 +44,7 @@ public abstract class EnemyBase : MonoBehaviour
         // 进行射线检测，检测敌人与玩家之间是否有遮挡物
         RaycastHit hit;
         bool isBlocked = Physics.Raycast(CheckPoint.position, directionToPlayer.normalized, out hit, detectionRadius);
-
-        // 只有在视野范围内 & 没有被遮挡 才能发现玩家
+        
         if (distanceToPlayer <= detectionRadius && angle <= detectionAngle / 2)
         {
             if (isBlocked)

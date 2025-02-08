@@ -6,7 +6,3 @@ public interface IEnterSpecialItem
 {
     void Apply();
 }
-public interface IExitSpecialItem
-{
-    void UnApply();
-}

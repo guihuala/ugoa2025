@@ -34,7 +34,11 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
 
             if (allRequestedItemsMet)
             {
-                Debug.Log("All achievements requested");
+                LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
+                SaveManager.Instance.SetDefaultCurrentScene();
+                levelInfo.VictorySaveLevel();
+                
+                SceneLoader.Instance.LoadScene(SceneName.CG,"...");
             }
         }
         else
@@ -42,5 +46,4 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
             UIManager.Instance.OpenPanel("GameVictoryPanel"); 
         }
     }
-
 }

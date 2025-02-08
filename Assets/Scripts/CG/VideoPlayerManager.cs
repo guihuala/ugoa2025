@@ -18,20 +18,15 @@ public class VideoPlayerManager : MonoBehaviour
 
     private void Start()
     {
-        // 设置视频文件
         videoPlayer.clip = videoClip;
-
-        // 设置视频显示的 RawImage
+        
         videoPlayer.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
         rawImage.texture = videoPlayer.targetTexture;
-
-        // 播放视频
+        
         videoPlayer.Play();
-
-        // 监听视频播放完毕事件
+        
         videoPlayer.loopPointReached += OnVideoEnd;
-
-        // 添加跳过按钮的监听
+        
         skipButton.onClick.AddListener(SkipVideo);
     }
 
@@ -40,7 +35,6 @@ public class VideoPlayerManager : MonoBehaviour
     /// </summary>
     private void OnVideoEnd(VideoPlayer vp)
     {
-        // 视频播放完毕后，跳转到指定的场景
         SceneLoader.Instance.LoadScene(SceneName.LevelSelection, "...");
     }
 
@@ -49,10 +43,8 @@ public class VideoPlayerManager : MonoBehaviour
     /// </summary>
     private void SkipVideo()
     {
-        // 停止视频播放
         videoPlayer.Stop();
-
-        // 跳转到指定场景
+        
         SceneLoader.Instance.LoadScene(SceneName.LevelSelection, "...");
     }
 }

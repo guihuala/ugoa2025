@@ -56,7 +56,7 @@ public class PauseSettingsPanel : BasePanel
             .AppendCallback(() =>
             {
                 Time.timeScale = 0; // 暂停游戏
-            });
+            }).SetUpdate(true);
     }
 
     public override void ClosePanel()

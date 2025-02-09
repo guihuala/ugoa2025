@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
-public class UIButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UIButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     private Vector3 originalScale;  // 存储按钮的原始大小
     private float scaleFactor = 1.1f;
@@ -22,5 +22,10 @@ public class UIButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale(originalScale, duration).SetUpdate(true).SetEase(Ease.InBack);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        AudioManager.Instance.PlaySfx("click");
     }
 }

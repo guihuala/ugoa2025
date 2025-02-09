@@ -58,4 +58,16 @@ public class LevelManager : SingletonPersistent<LevelManager>
             SaveManager.Instance.Save(0); // 保存解锁状态
         }
     }
+    
+    public string GetLastUnlockedLevel()
+    {
+        for (int i = levels.Count - 1; i >= 0; i--)
+        {
+            if (levels[i].isUnlocked)
+            {
+                return $"第{i + 1}关";
+            }
+        }
+        return "None";
+    }
 }

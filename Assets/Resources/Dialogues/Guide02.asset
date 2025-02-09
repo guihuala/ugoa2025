@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b47e8935dc184185b1e75ee5c1267e7, type: 3}
+  m_Name: Guide02
+  m_EditorClassIdentifier: 
+  Cells:
+  - Index: 0
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 1
+    CellFlag: 0
+    Content: "\u6CBC\u6CFD\u771F\u662F\u5371\u9669\u554A..."
+  - Index: 0
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 0
+    CellFlag: 1
+    Content: "\u6389\u4E0B\u53BB\u5C31\u7CDF\u7CD5\u4E86\u3002\u5728\u907F\u514D\u628A\u6211\u7684\u4F53\u529B\u6D88\u8017\u5B8C\u4E4B\u524D\u79BB\u5F00\u6CBC\u6CFD..\uFF01"

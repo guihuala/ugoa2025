@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
         lv2,
         lv3
     }
+
+    [Header("是否教程")] public bool isInTutorial;
     
     private bool isInvisible;
     public bool IsInvisible => isInvisible;
@@ -60,6 +62,10 @@ public class Player : MonoBehaviour
     public string trembleMouthAnimation = "expressions/mouth/mouth-tremble";
     public string VmouthAnimation = "expressions/mouth/smile-v";
     
+    [Header("lv 1 帽子")]
+    private string hat1Animation = "expressions/hat/hat_down-lv1";
+    private string hat2Animation = "expressions/hat/hat_up-lv1";
+    
     [Header("Spine 套动画")]
     private string sinkAnimation = "sets/struggle";
     private string saluteAnimation = "sets/salute";
@@ -75,6 +81,7 @@ public class Player : MonoBehaviour
     [Header("指示箭头")]
     [SerializeField] private GameObject triangle;
     
+    
     private void Awake()
     {
         skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
@@ -86,11 +93,13 @@ public class Player : MonoBehaviour
         EVENTMGR.OnEnterSwamp += HandleSwampEnter;
         EVENTMGR.OnExitSwamp += HandleSwampExit;
         EVENTMGR.OnPlayerDead += PlayerDead;
-
-        PlayAnimation(standAnimation);
+        
+        ClearTrack();
         PlayEyesAnimation();
         
         triangle.SetActive(false);
+        
+        HandleDetect();
     }
     
     private void Update()
@@ -160,6 +169,9 @@ public class Player : MonoBehaviour
         
         PlayAnimation(standAnimation, true);
         PlayEyesAnimation();
+        
+        if(skin == PlayerSkin.lv1)
+            skeletonAnimation.state.SetAnimation(4, hat1Animation, true);
     }
 
     #endregion
@@ -206,7 +218,11 @@ public class Player : MonoBehaviour
         
         isInSwamp = true;
         
+        
         PlayAnimation(sinkAnimation, true);
+        
+        if(skin == PlayerSkin.lv1)
+            skeletonAnimation.state.SetAnimation(4, hat2Animation, true);
         
         if(skin == PlayerSkin.lv3)
             return;
@@ -216,6 +232,8 @@ public class Player : MonoBehaviour
 
     private void HandleSwampExit()
     {
+        if (isDead) return; 
+        
         isInSwamp = false;
         stayTime = 0f;
         ResetHeightPosition();
@@ -230,8 +248,8 @@ public class Player : MonoBehaviour
     
         stayTime += Time.deltaTime;
         transform.position += Vector3.down * sinkSpeed * Time.deltaTime;
-
-        if (stayTime >= timeUntilDeath)
+        
+        if (stayTime >= timeUntilDeath && !isDead)
         {
             isDead = true;
             EVENTMGR.TriggerPlayerDead();
@@ -283,7 +301,6 @@ public class Player : MonoBehaviour
             if (collider.GetComponent<SwampTrigger>())
             {
                 hitSwamp = true;
-                Debug.Log(hitSwamp);
             }
             
             // 触发所有 IEnterSpecialItem 逻辑
@@ -312,9 +329,7 @@ public class Player : MonoBehaviour
     
     private void PlayerDead()
     {
-        if (isInvisible)
-            return;
-        
+        isDead = true;
         isInSwamp = false;
         StartCoroutine(DelayedPlayerDeath());
     }
@@ -324,7 +339,15 @@ public class Player : MonoBehaviour
         ClearTrack();
         PlayOverlayAnimation(eyesTrack, eyesXAnimation);
         yield return new WaitForSeconds(deathDelay);
-        UIManager.Instance.OpenPanel("GameFailurePanel");
+
+        if (isInTutorial)
+        {
+            SceneLoader.Instance.LoadScene(SceneName.TutorialScene,"为什么要在教程关作死!?");
+        }
+        else
+        {
+            UIManager.Instance.OpenPanel("GameFailurePanel");
+        }
     }
      
     private void OnDestroy()

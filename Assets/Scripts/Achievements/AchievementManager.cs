@@ -130,4 +130,13 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
     {
         pendingAchievements.Clear();
     }
+    
+    public string GetAchievementCompletionRatio()
+    {
+        int unlockedCount = unlockedCards.Count;
+        
+        int totalCount = _achievementList.Count;
+        
+        return $"{unlockedCount}/{totalCount}";
+    }
 }

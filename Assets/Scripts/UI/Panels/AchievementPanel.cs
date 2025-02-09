@@ -12,6 +12,8 @@ public class AchievementPanel : BasePanel
     public int page = 0;
     public int cardsPerPage = 4;
     public Text pageText;
+
+    public Text statisticsText;
     
     private int totalNumbers; // 用于显示总卡片数量
     private int maxPage; // 用于翻页时计算最大页数
@@ -32,7 +34,14 @@ public class AchievementPanel : BasePanel
         UpdatePageUI(); 
         DisplayCards(page);
     }
-    
+
+    public override void OpenPanel(string name)
+    {
+        base.OpenPanel(name);
+        
+        UpdateStatisticsText();
+    }
+
     void UpdateMaxPage()
     {
         maxPage = Mathf.CeilToInt((float)totalNumbers / cardsPerPage);
@@ -61,7 +70,13 @@ public class AchievementPanel : BasePanel
             }
         }
     }
-    
+
+    private void UpdateStatisticsText()
+    {
+        
+        statisticsText.text = "收集进度：\n" + AchievementManager.Instance.GetAchievementCompletionRatio();
+    }
+
     private void ResetCardSlots()
     {
         foreach (var slot in cardSlots)
@@ -93,7 +108,7 @@ public class AchievementPanel : BasePanel
         }
         else
         {
-            page = maxPage; // 循环到最后一页
+            page = maxPage - 1; // 循环到最后一页
         }
 
         DisplayCards(page);

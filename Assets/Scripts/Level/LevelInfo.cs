@@ -27,6 +27,10 @@ public class LevelInfo : MonoBehaviour
     public void VictorySaveLevel()
     {
         LevelManager.Instance.UnlockLevel(nextLevelName);
+        if (isEndLevel)
+        {
+            SaveManager.Instance.isComplete = true;
+        }
         SaveManager.Instance.NewRecord();
     }
 }

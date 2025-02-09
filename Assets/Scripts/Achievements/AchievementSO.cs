@@ -45,13 +45,20 @@ public class AchievementSO
     // 更新UI
     public void ApplyVisuals(GameObject cardSlot)
     {
-        cardSlot.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>().text = name;
-
-        cardSlot.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = des;
-
-        cardSlot.transform.GetChild(0).GetComponent<Image>().sprite = icon;
-
-        cardSlot.transform.GetChild(3).gameObject.SetActive(!isHeld);
+        if (isHeld)
+        {
+            cardSlot.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>().text = name;
+            cardSlot.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = des;
+            cardSlot.transform.GetChild(0).GetComponent<Image>().sprite = icon;
+            cardSlot.transform.GetChild(3).gameObject.SetActive(!isHeld);
+        }
+        else
+        {
+            cardSlot.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>().text = "???";
+            cardSlot.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = "??????";
+            cardSlot.transform.GetChild(0).GetComponent<Image>().sprite = icon;
+            cardSlot.transform.GetChild(3).gameObject.SetActive(!isHeld);
+        }
     }
 }
 

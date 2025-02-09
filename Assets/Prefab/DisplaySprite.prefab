@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1078243600349681896}
   - component: {fileID: 7489743487404100278}
   - component: {fileID: 3438453756467142362}
+  - component: {fileID: 782628772579574743}
   m_Layer: 2
   m_Name: DisplaySprite
   m_TagString: Untagged
@@ -110,3 +111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ee42f3d07164119b5ee8038a80a571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &782628772579574743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459940635244349448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcf018e96fac4039ba4665f11f0bf3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 2

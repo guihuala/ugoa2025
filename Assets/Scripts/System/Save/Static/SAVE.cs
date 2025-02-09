@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,6 @@ using Camera = UnityEngine.Camera;
 
 public static class SAVE
 {
-    // 截图保存路径
-    public static string shotPath = $"{Application.persistentDataPath}/Shot";
-
     static string GetPath(string fileName)
     {
         return Path.Combine(Application.persistentDataPath, fileName);
@@ -37,14 +35,34 @@ public static class SAVE
     #endregion
 
     #region JSON存储
+
     public static void JsonSave(string fileName, object data)
     {
-        string json = JsonUtility.ToJson(data);
+        try
+        {
+            string fullPath = Path.Combine(Application.persistentDataPath, fileName);
+            string directory = Path.GetDirectoryName(fullPath);
 
-        File.WriteAllText(GetPath(fileName), json);
-        Debug.Log($"保存到 {GetPath(fileName)}");
+            // 确保目录存在
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            // 序列化数据
+            string jsonData = JsonUtility.ToJson(data, prettyPrint: true);
+
+            // 写入文件
+            File.WriteAllText(fullPath, jsonData);
+            Debug.Log($"存档成功: {fullPath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"存档失败: {ex.GetType().Name} - {ex.Message}");
+        }
     }
-
+    
+    
     public static T JsonLoad<T>(string fileName)
     {
         string path = GetPath(fileName);
@@ -62,97 +80,6 @@ public static class SAVE
     public static void JsonDelete(string fileName)
     {
         File.Delete(GetPath(fileName));
-    }
-
-    public static string FindAuto()
-    {
-        // 确认路径存在
-        if (Directory.Exists(Application.persistentDataPath))
-        {
-            // 获取所有存档文件
-            FileInfo[] fileInfos = new DirectoryInfo(Application.persistentDataPath).GetFiles("*");
-            for (int i = 0; i < fileInfos.Length; i++)
-            {
-                // 查找自动存档文件
-                if (fileInfos[i].Name.EndsWith(".auto"))
-                {
-                    return fileInfos[i].Name;
-                }
-            }
-        }
-        return "";
-    }
-    #endregion
-
-    #region 截图功能
-    /* 截取整个屏幕或UI
-       可直接指定路径，默认保存到项目文件夹下。
-       如果路径已经存在则覆盖。
-       使用 ScreenCapture.CaptureScreenshot(path);
-    */
-
-    /* 截取指定相机的指定范围*/
-    public static void CameraCapture(int i, Camera camera, Rect rect)
-    {
-        // 如果截图文件夹不存在则创建
-        if (!Directory.Exists(SAVE.shotPath))
-            Directory.CreateDirectory(SAVE.shotPath);
-        string path = Path.Combine(SAVE.shotPath, $"{i}.png");
-
-        int w = (int)rect.width;
-        int h = (int)rect.height;
-
-        RenderTexture rt = new RenderTexture(w, h, 0);
-        // 将相机的渲染结果保存到指定的RenderTexture
-        camera.targetTexture = rt;
-        camera.Render();
-
-        // 激活指定的RenderTexture
-        RenderTexture.active = rt;
-
-        // 创建Texture2D
-        Texture2D t2D = new Texture2D(w, h, TextureFormat.RGB24, true);
-
-        // 将RenderTexture的数据读取到Texture2D中
-        t2D.ReadPixels(rect, 0, 0);
-        t2D.Apply();
-
-        // 保存为PNG格式
-        byte[] bytes = t2D.EncodeToPNG();
-        File.WriteAllBytes(path, bytes);
-
-        // 释放资源
-        camera.targetTexture = null;
-        RenderTexture.active = null;
-        GameObject.Destroy(rt);
-    }
-
-    public static Sprite LoadShot(int i)
-    {
-        var path = Path.Combine(shotPath, $"{i}.png");
-
-        Texture2D t = new Texture2D(640, 360);
-        t.LoadImage(GetImgByte(path));
-        return Sprite.Create(t, new Rect(0, 0, t.width, t.height), new Vector2(0.5f, 0.5f));
-    }
-
-    static byte[] GetImgByte(string path)
-    {
-        FileStream s = new FileStream(path, FileMode.Open);
-        byte[] imgByte = new byte[s.Length];
-        s.Read(imgByte, 0, imgByte.Length);
-        s.Close();
-        return imgByte;
-    }
-
-    public static void DeleteShot(int i)
-    {
-        var path = Path.Combine(shotPath, $"{i}.png");
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-            Debug.Log($"删除截图 {i}");
-        }
     }
     #endregion
 
@@ -184,20 +111,12 @@ public static class SAVE
             }
         }
     }
-
-    [UnityEditor.MenuItem("Delete/Shot")]
-    public static void DeleteScreenShot()
-    {
-        ClearDirectory(shotPath);
-        Debug.Log("已清空截图");
-    }
-
+    
     [UnityEditor.MenuItem("Delete/All")]
     public static void DeleteAll()
     {
         DeletePlayerData();
         DeleteRecord();
-        DeleteScreenShot();
     }
     #endif
     #endregion

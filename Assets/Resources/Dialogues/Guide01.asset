@@ -20,7 +20,7 @@ MonoBehaviour:
     CellType: 0
     JumpToIndex: 1
     CellFlag: 0
-    Content: 1
+    Content: "\u770B\u5F97\u5230\u524D\u9762\u7684\u8DEF\u5417\uFF1F\n\u4F1A\u4E0D\u4F1A\u89C6\u91CE\u592A\u5C0F\u4E86\u5462\u3002"
   - Index: 1
     CharacterName: 
     NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
@@ -28,7 +28,7 @@ MonoBehaviour:
     CellType: 0
     JumpToIndex: 2
     CellFlag: 2
-    Content: 2
+    Content: "\u5982\u679C\u89C9\u5F97\u89C6\u91CE\u5C0F\u7684\u8BDD\uFF0C\u8F6C\u52A8\u9F20\u6807\u6EDA\u8F6E\u53EF\u4EE5\u7F29\u653E\u753B\u9762\u3002"
   - Index: 2
     CharacterName: 
     NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
@@ -36,4 +36,4 @@ MonoBehaviour:
     CellType: 0
     JumpToIndex: 0
     CellFlag: 1
-    Content: 3
+    Content: "\u9F20\u6807\u62D6\u62FD\u53EF\u4EE5\u79FB\u52A8\u753B\u9762\uFF0C\u67E5\u770B\u89C6\u91CE\u4E4B\u5916\u7684\u5730\u65B9\u7684\u60C5\u51B5\u3002"

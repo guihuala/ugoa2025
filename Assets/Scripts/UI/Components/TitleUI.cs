@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class TitleUI : MonoBehaviour
 {
@@ -18,24 +17,31 @@ public class TitleUI : MonoBehaviour
     public GameObject recordPanel; // 存档面板
     public GameObject setPanel;
 
-    private bool isFirstTimePlay; // 判断是否播放cg
+    private bool isFirstTimePlay;
+
+    public RectTransform aboutPanelRectTransform;
+    public Vector2 targetPosition; // 目标位置，可以根据比例计算
+    public Vector2 initialPosition; // 初始位置
+
+    private bool isAboutOpen = false;
 
     private void Awake()
-    {
+    { 
+        TitleLoadDataUI.OnLoad += LoadRecord;
+        
         // 继续游戏，加载最后一次的存档
         Continue.onClick.AddListener(() => LoadRecord(RecordData.Instance.lastID));
         // 打开/关闭存档列表
         Load.onClick.AddListener(OpenRecordPanel);
         // 注册加载存档事件
-        TitleLoadDataUI.OnLoad += LoadRecord;
         // 新游戏（重置数据并开始新游戏）
         New.onClick.AddListener(NewGame);
         // 退出游戏（保存存档）
         Exit.onClick.AddListener(QuitGame);
         
         Set.onClick.AddListener(OpenSetPanel);
-        Tutorial.onClick.AddListener(() => { UIManager.Instance.OpenPanel("TutorialPanel");});
-        About.onClick.AddListener(() => { UIManager.Instance.OpenPanel("");});
+        Tutorial.onClick.AddListener(() => { SceneLoader.Instance.LoadScene(SceneName.TutorialScene,"教学...?"); });
+        About.onClick.AddListener(ToggleAboutPanel);
     }
 
     private void OnDestroy()
@@ -46,6 +52,9 @@ public class TitleUI : MonoBehaviour
 
     private void Start()
     {
+        // 设置 initialPosition 和 targetPosition 基于屏幕比例
+        SetAboutPanelPosition();
+
         // 加载存档数据
         RecordData.Instance.Load();
 
@@ -101,12 +110,32 @@ public class TitleUI : MonoBehaviour
     // 开始新游戏
     void NewGame()
     {
-        // 有时间改成事件触发
-        
         // 清除关卡管理器读取的数据，恢复默认值
         LevelManager.Instance.InitLevelUnlocks();
         // 清除成就管理器的数据
         AchievementManager.Instance.InitLockCards();
+        
+        SaveManager.Instance.ID = RecordData.Instance.GetFirstEmptyRecordIndex();
+        
+        if(!RecordData.Instance.IsRecordFull())
+            SaveManager.Instance.NewRecord();
+        else
+        {
+            ConfirmationPanel confirmationPanel = UIManager.Instance.OpenPanel("ConfirmationPanel") as ConfirmationPanel;
+
+            confirmationPanel.ShowConfirmation("存档已经用完了，确定要开始新的游戏吗？\n 将会覆盖掉第一个存档。", () =>
+            {
+                SaveManager.Instance.NewRecord();
+                SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"loading...");
+            });
+            return;
+        }
+
+        if (isFirstTimePlay)
+        {
+            SceneLoader.Instance.LoadScene(SceneName.TutorialScene,"Step Or Sink...？");
+            return;
+        }
         
         // 切换到默认场景
         SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"loading...");
@@ -120,5 +149,26 @@ public class TitleUI : MonoBehaviour
         #else
             Application.Quit();                          
         #endif
+    }
+    
+    void ToggleAboutPanel()
+    {
+        if (isAboutOpen)
+        {
+            aboutPanelRectTransform.DOKill();
+            aboutPanelRectTransform.DOLocalMove(initialPosition, 0.5f);
+        }
+        else
+        {
+            aboutPanelRectTransform.localPosition = initialPosition;
+            aboutPanelRectTransform.DOLocalMove(targetPosition, 0.5f);
+        }
+        isAboutOpen = !isAboutOpen;
+    }
+    
+    private void SetAboutPanelPosition()
+    {
+        initialPosition = new Vector2(Screen.width * -0.1f, Screen.height * 1.0f);
+        targetPosition = new Vector2(Screen.width * -0.1f, Screen.height * 0.2f);
     }
 }

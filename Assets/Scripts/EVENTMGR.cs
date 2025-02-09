@@ -133,20 +133,13 @@ public static class EVENTMGR
 
     #endregion
 
-    #region 玩家失败或胜利
+    #region 玩家失败
 
     public static event Action OnPlayerDead;
     
-    public static event Action OnPLayerVictory;
-
     public static void TriggerPlayerDead()
     {
         OnPlayerDead?.Invoke();
-    }
-
-    public static void TriggerPLayerVictory()
-    {
-        OnPLayerVictory?.Invoke();
     }
 
     #endregion

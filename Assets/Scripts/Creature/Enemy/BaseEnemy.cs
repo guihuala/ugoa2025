@@ -61,7 +61,10 @@ public abstract class EnemyBase : MonoBehaviour
             }
             else
             {
-                return true; // 直接看到玩家，没有任何遮挡
+                if (!player.GetComponent<Player>().IsInvisible)
+                    return true;
+
+                return false;
             }
         }
 

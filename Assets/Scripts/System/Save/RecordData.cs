@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RecordData : SingletonPersistent<RecordData>
@@ -82,6 +80,19 @@ public class RecordData : SingletonPersistent<RecordData>
         }
 
         return 0; // 如果没有找到空的记录，返回0
+    }
+
+    // 判断存档是否已满
+    public bool IsRecordFull()
+    {
+        foreach (var record in recordName)
+        {
+            if (string.IsNullOrEmpty(record))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void Delete()

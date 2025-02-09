@@ -5,21 +5,17 @@ using UnityEngine.EventSystems;
 
 public class ClickManager : MonoBehaviour
 {
-    private Camera mainCamera;
+    private CameraController cameraController;
     private ClickableEffect currentClickableEffect; // 当前激活的物体
-    [SerializeField] private float sizeLerpSpeed = 15f; // 相机缩放速度
-    [SerializeField] private float targetSize = 2.5f; // 缩放目标正交大小
     
-    private float normalSize; // 记录默认相机大小
-    private Coroutine sizeChangeCoroutine;
+    private bool isActive = true;
 
     private void Awake()
     {
-        mainCamera = Camera.main;
-
-        if (mainCamera == null)
+        cameraController = FindObjectOfType<CameraController>(); // 获取 CameraController 实例
+        if (cameraController == null)
         {
-            Debug.LogError("Main Camera not found! Please ensure your camera has the 'MainCamera' tag.");
+            Debug.LogError("CameraController not found in the scene!");
         }
     }
 
@@ -28,6 +24,8 @@ public class ClickManager : MonoBehaviour
         EVENTMGR.OnClickPlayer += HandleClickPlayer;
         EVENTMGR.OnTimeScaleChange += HandleTimeScaleChange;
         EVENTMGR.OnClickPath += CloseEffect;
+
+        EVENTMGR.OnPlayerDead += PlayerDead;
     }
 
     private void OnDestroy()
@@ -35,6 +33,8 @@ public class ClickManager : MonoBehaviour
         EVENTMGR.OnClickPlayer -= HandleClickPlayer;
         EVENTMGR.OnTimeScaleChange -= HandleTimeScaleChange;
         EVENTMGR.OnClickPath -= CloseEffect;
+        
+        EVENTMGR.OnPlayerDead -= PlayerDead;
     }
 
     private void Update()
@@ -44,13 +44,13 @@ public class ClickManager : MonoBehaviour
             DetectClick();
         }
     }
-    
+
     private void DetectClick()
     {
         if (Time.timeScale == 0)
             return;
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
@@ -82,53 +82,44 @@ public class ClickManager : MonoBehaviour
             currentClickableEffect = null;
 
             // 恢复相机缩放
-            StartCameraZoom(normalSize);
+            cameraController.SetCameraZoom(3.5f); // 默认的缩放值
         }
     }
-    
+
+    private void PlayerDead()
+    {
+        isActive = false;
+        
+        if(currentClickableEffect != null)
+            CloseEffect();
+    }
 
     private void HandleClickPlayer(bool isActivity)
     {
         if (currentClickableEffect == null) return;
+        
+        if(!isActive)
+            return;
 
         if (isActivity)
         {
             currentClickableEffect.ShowUIWithAnimation();
             
-            StartCameraZoom(targetSize);
+            // 控制相机缩放
+            cameraController.SetCameraZoom(2.5f); // 缩放到目标大小
         }
         else
         {
             currentClickableEffect.HideUIWithAnimation();
             currentClickableEffect = null;
-            StartCameraZoom(normalSize);
+
+            // 恢复相机缩放
+            cameraController.SetCameraZoom(3.5f); // 恢复默认大小
         }
     }
 
     private void HandleTimeScaleChange(float newTimeScale)
     {
         Time.timeScale = newTimeScale;
-    }
-
-    private void StartCameraZoom(float targetSize)
-    {
-        normalSize = mainCamera.orthographicSize;
-        
-        if (sizeChangeCoroutine != null)
-        {
-            StopCoroutine(sizeChangeCoroutine);
-        }
-        sizeChangeCoroutine = StartCoroutine(ChangeCameraSize(targetSize));
-    }
-
-    private IEnumerator ChangeCameraSize(float targetSize)
-    {
-        while (Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.01f)
-        {
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, Time.deltaTime * sizeLerpSpeed);
-            yield return null;
-        }
-
-        mainCamera.orthographicSize = targetSize;
     }
 }

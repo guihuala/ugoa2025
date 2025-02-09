@@ -13,12 +13,10 @@ public class RecordPanel : BasePanel
     [Header("按钮")]
     public Button closeBtn;
     public Button saveBtn;
-    public Button loadBtn;
     public Button deleteBtn;
 
     [Header("存档详情")]   
     public GameObject detail;           // 存档详情面板
-    public Image screenShot;            // 存档截图
     public Text gameTime;               // 游戏时间
     public Text sceneName;              // 当前场景
 
@@ -49,7 +47,6 @@ public class RecordPanel : BasePanel
         RecordUI.OnLeftClick += LeftClickGrid;     
         closeBtn.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
         saveBtn.onClick.AddListener(() => OnSaveBtnClick());
-        loadBtn.onClick.AddListener(() => OnLoadBtnClick());
         deleteBtn.onClick.AddListener(() => OnDeleteBtnClick());
         #endregion
     
@@ -88,7 +85,6 @@ public class RecordPanel : BasePanel
             // 存档为空，显示提示信息
             gameTime.text = "游戏时间：无";
             sceneName.text = "当前场景：无存档";
-            screenShot.sprite = null; // 清空截图显示
             detail.SetActive(true);  // 显示详情面板
             detail.transform.localScale = Vector3.zero; // 初始为0大小
             detail.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack); // 缩放进入
@@ -98,7 +94,6 @@ public class RecordPanel : BasePanel
         // 如果存档不为空，正常更新存档详情
         gameTime.text = $"游戏时间  {TIMEMGR.GetFormatTime((int)data.gameTime)}";
         sceneName.text = $"当前场景  {data.scensName}";
-        screenShot.sprite = SAVE.LoadShot(i);
 
         // 显示详情面板
         detail.SetActive(true);
@@ -117,12 +112,6 @@ public class RecordPanel : BasePanel
         }
         NewRecord(currenSelectIndex);
         ShowDetails(currenSelectIndex);
-    }
-
-    // 加载按钮点击事件
-    void OnLoadBtnClick()
-    {
-        LoadRecord(currenSelectIndex);
     }
     
     // 删除按钮点击事件
@@ -155,29 +144,7 @@ public class RecordPanel : BasePanel
         SaveManager.Instance.Save(ID);
         RecordInGrid.Add(RecordData.Instance.recordName[ID], ID);
         grid.GetChild(ID).GetComponent<RecordUI>().SetName(ID);
-        SAVE.CameraCapture(ID, Camera.main, new Rect(0, 0, Screen.width, Screen.height));
         ShowDetails(ID);
-    }
-
-    void LoadRecord(int ID)
-    {
-        // 如果为空存档则不处理
-        if (RecordData.Instance.recordName[ID] == "")
-            return;
-
-        // 加载存档数据
-        SaveManager.Instance.Load(ID);
-        // 更新当前存档ID并保存到存档数据
-        RecordData.Instance.lastID = ID;
-        RecordData.Instance.Save();
-
-        // 切换场景并更新时间
-        if (SceneManager.GetActiveScene().name != SaveManager.Instance.scensName.ToString())
-        {
-            SceneLoader.Instance.LoadScene(SaveManager.Instance.scensName, "读取进度...");
-        }
-
-        TIMEMGR.SetOriTime();
     }
     
     // 删除存档
@@ -196,7 +163,6 @@ public class RecordPanel : BasePanel
         {
             RecordData.Instance.recordName[i] = "";
             grid.GetChild(i).GetComponent<RecordUI>().SetName(i);
-            SAVE.DeleteShot(i);
             detail.SetActive(false);
         }
     }

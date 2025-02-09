@@ -20,7 +20,7 @@ public class ScrollTexture : MonoBehaviour
 
     private void Update()
     {
-        float dynamicScrollSpeed = scrollSpeed + Mathf.Sin(Time.time) * 0.03f;  // 滚动速度变化
+        float dynamicScrollSpeed = scrollSpeed;  // 滚动速度变化
         
         float offsetX = Time.time * dynamicScrollSpeed;
         float offsetY = Mathf.Sin(Time.time * verticalScrollSpeed) * verticalAmplitude;

@@ -13,6 +13,7 @@ public enum SceneName
     Level2,
     Level3,
     CG,
+    TutorialScene,
 }
 
 public class SceneLoader : SingletonPersistent<SceneLoader>
@@ -48,7 +49,10 @@ public class SceneLoader : SingletonPersistent<SceneLoader>
             UIManager.Instance.RemovePanel("SleepBlackPanel");
             // 改变一下存档管理器当前的场景
             SaveManager.Instance.scensName = sceneName;
-        });
+        },sceneName);
+        
+        // 以后改成事件触发
+        AchievementManager.Instance.ClearPendingAchievements();
     }
 
     // 检查传入的字符串是否在枚举中，返回找到的场景枚举

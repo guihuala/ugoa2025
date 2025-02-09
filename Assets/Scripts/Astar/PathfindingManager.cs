@@ -44,6 +44,8 @@ public class PathfindingManager : MonoBehaviour
         EVENTMGR.ChangeSteps += UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer += OnClickPlayer;
         EVENTMGR.OnPlayerStep += OnShowFootprintInNode;
+
+        EVENTMGR.OnPlayerDead += ClearAllHighlights;
     }
 
     private void OnDestroy()
@@ -51,6 +53,8 @@ public class PathfindingManager : MonoBehaviour
         EVENTMGR.ChangeSteps -= UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer -= OnClickPlayer;
         EVENTMGR.OnPlayerStep -= OnShowFootprintInNode;
+        
+        EVENTMGR.OnPlayerDead -= ClearAllHighlights;
 
         if (highlightCoroutine != null)
         {

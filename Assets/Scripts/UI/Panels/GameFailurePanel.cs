@@ -19,7 +19,7 @@ public class GameFailurePanel : BasePanel
             .AppendCallback(() =>
             {
                 Time.timeScale = 0;
-            });
+            }).SetUpdate(true);
     }
     
     private void Start()

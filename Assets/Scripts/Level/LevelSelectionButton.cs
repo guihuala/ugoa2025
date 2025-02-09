@@ -24,8 +24,9 @@ public class LevelSelectionButton : MonoBehaviour
 
     private void Start()
     {
-        UpdateLevelImage();
         UpdateLevelStatus();
+        
+        UpdateLevelImage();
     }
 
     private void UpdateLevelStatus()

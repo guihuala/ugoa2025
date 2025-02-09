@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +7,24 @@ public class SaveManager : SingletonPersistent<SaveManager>
 {
     // 一些需要保存零散的数据
     public SceneName scensName = SceneName.Title; // 玩家上一次所在的场景，在游戏时需要触发更新
-    public int playerStep = 5;
     public float gameTime; // 游戏时间
+    public bool isComplete = false;
+
+    public int ID;
 
     // 其他需要保存的数据例如成就达成度等
     // 直接从持久化的成就管理器中获取
 
+    private void Update()
+    {
+        TIMEMGR.SetCurTime();
+    }
+
     public class SaveData
     {
         public SceneName scensName;
-        public int playerStep;
         public float gameTime;
+        public bool isComplete;
 
         // 达成的成就
         public List<AchievementSaveData> achievements = new List<AchievementSaveData>();
@@ -54,8 +62,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
         var savedata = new SaveData
         {
             scensName = scensName,
-            playerStep = playerStep,
             gameTime = gameTime,
+            isComplete = isComplete
         };
 
         // 保存成就数据
@@ -85,13 +93,12 @@ public class SaveManager : SingletonPersistent<SaveManager>
     void ForLoad(SaveData savedata)
     {
         scensName = savedata.scensName;
-        playerStep = savedata.playerStep;
         gameTime = savedata.gameTime;
-
+        isComplete = savedata.isComplete;
     }
 
 
-    public void NewRecord(int ID = 0, string end = ".auto")
+    public void NewRecord(string end = ".save")
     {
         // 如果原位置有存档则删除
         if (RecordData.Instance.recordName[ID] != "")
@@ -105,7 +112,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
         RecordData.Instance.Save();
 
         Save(ID);
-        SAVE.CameraCapture(ID, Camera.main, new Rect(0, 0, Screen.width, Screen.height));
+        
+        TIMEMGR.SetOriTime();
     }
 
     void DeleteRecord(int i, bool isCover = true)
@@ -122,7 +130,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
         if (!isCover)
         {
             RecordData.Instance.recordName[i] = "";
-            SAVE.DeleteShot(i);
         }
     }
     

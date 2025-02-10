@@ -40,6 +40,7 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
                 SaveManager.Instance.SetDefaultCurrentScene();
                 levelInfo.VictorySaveLevel();
                 
+                SaveManager.Instance.NewRecord();
                 SceneLoader.Instance.LoadScene(SceneName.CG,"...");
             }
             else
@@ -50,6 +51,10 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
         }
         else
         {
+            LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
+            levelInfo.VictorySaveLevel();
+            
+            SaveManager.Instance.NewRecord();
             UIManager.Instance.OpenPanel("GameVictoryPanel"); 
         }
     }

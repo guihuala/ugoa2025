@@ -20,17 +20,18 @@ public class LevelInfo : MonoBehaviour
         {
             SceneLoader.Instance.LoadScene(nextLevel, "下一关...");
             LevelManager.Instance.UnlockLevel(nextLevelName);
-            SaveManager.Instance.NewRecord();
         }
     }
 
     public void VictorySaveLevel()
     {
-        LevelManager.Instance.UnlockLevel(nextLevelName);
         if (isEndLevel)
         {
             SaveManager.Instance.isComplete = true;
         }
-        SaveManager.Instance.NewRecord();
+        else
+        {
+            LevelManager.Instance.UnlockLevel(nextLevelName);
+        }
     }
 }

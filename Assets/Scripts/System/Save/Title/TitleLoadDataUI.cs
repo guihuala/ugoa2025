@@ -82,7 +82,7 @@ public class TitleLoadDataUI : MonoBehaviour
 
         // 如果存档不为空，正常更新存档详情
         gameTime.text = $"游戏时间  {TIMEMGR.GetFormatTime((int)data.gameTime)}";
-        sceneName.text = $"游戏进度  {LevelManager.Instance.GetLastUnlockedLevel()}";
+        sceneName.text = $"游戏进度  {LevelManager.Instance.GetLastUnlockedLevel(data.levelUnlocks)}";
 
         // 显示详情面板
         detail.SetActive(true);

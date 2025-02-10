@@ -59,11 +59,11 @@ public class LevelManager : SingletonPersistent<LevelManager>
         }
     }
     
-    public string GetLastUnlockedLevel()
+    public string GetLastUnlockedLevel(List<SaveManager.LevelUnlockData> levelDates)
     {
-        for (int i = levels.Count - 1; i >= 0; i--)
+        for (int i = levelDates.Count - 1; i >= 0; i--)
         {
-            if (levels[i].isUnlocked)
+            if (levelDates[i].isUnlocked)
             {
                 return $"第{i + 1}关";
             }

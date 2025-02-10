@@ -54,6 +54,8 @@ public class TitleUI : MonoBehaviour
     {
         // 设置 initialPosition 和 targetPosition 基于屏幕比例
         SetAboutPanelPosition();
+        
+        aboutPanelRectTransform.anchoredPosition = initialPosition;
 
         // 加载存档数据
         RecordData.Instance.Load();

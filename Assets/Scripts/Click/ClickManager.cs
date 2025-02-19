@@ -1,19 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class ClickManager : MonoBehaviour
 {
-    private CameraController cameraController;
     private ClickableEffect currentClickableEffect; // 当前激活的物体
     
     private bool isActive = true;
 
+    [Header("Camera Settings")]
+    public bool useOrthographicCamera = true; // 默认使用正交相机
+
+    private OrthographicCameraController _orthographicCameraController;    
+    private PerspectiveCameraController _perspectiveCameraController;
+
+    private CameraController _cameraController;  // 通用相机控制器
+
+    [Header("Zoom Settings")]
+    public float orthographicZoomIn = 2.5f; // 正交相机的缩放值
+    public float orthographicZoomOut = 3.5f; // 正交相机的默认缩放值
+    public float perspectiveZoomIn = 20f; // 透视相机的缩放值
+    public float perspectiveZoomOut = 30f; // 透视相机的默认缩放值
+
     private void Awake()
     {
-        cameraController = FindObjectOfType<CameraController>(); // 获取 CameraController 实例
-        if (cameraController == null)
+        // 根据是否使用正交相机，选择相机控制器
+        if (useOrthographicCamera)
+        {
+            _orthographicCameraController = FindObjectOfType<OrthographicCameraController>();
+            _cameraController = _orthographicCameraController;
+        }
+        else
+        {
+            _perspectiveCameraController = FindObjectOfType<PerspectiveCameraController>();
+            _cameraController = _perspectiveCameraController;
+        }
+
+        if (_cameraController == null)
         {
             Debug.LogError("CameraController not found in the scene!");
         }
@@ -82,7 +105,14 @@ public class ClickManager : MonoBehaviour
             currentClickableEffect = null;
 
             // 恢复相机缩放
-            cameraController.SetCameraZoom(3.5f); // 默认的缩放值
+            if (useOrthographicCamera)
+            {
+                _cameraController.SetCameraZoom(orthographicZoomOut); // 正交相机恢复默认缩放
+            }
+            else
+            {
+                _cameraController.SetCameraZoom(perspectiveZoomOut); // 透视相机恢复默认缩放
+            }
         }
     }
 
@@ -106,7 +136,14 @@ public class ClickManager : MonoBehaviour
             currentClickableEffect.ShowUIWithAnimation();
             
             // 控制相机缩放
-            cameraController.SetCameraZoom(2.5f); // 缩放到目标大小
+            if (useOrthographicCamera)
+            {
+                _cameraController.SetCameraZoom(orthographicZoomIn); // 正交相机缩放
+            }
+            else
+            {
+                _cameraController.SetCameraZoom(perspectiveZoomIn); // 透视相机缩放
+            }
         }
         else
         {
@@ -114,7 +151,14 @@ public class ClickManager : MonoBehaviour
             currentClickableEffect = null;
 
             // 恢复相机缩放
-            cameraController.SetCameraZoom(3.5f); // 恢复默认大小
+            if (useOrthographicCamera)
+            {
+                _cameraController.SetCameraZoom(orthographicZoomOut); // 恢复正交相机默认缩放
+            }
+            else
+            {
+                _cameraController.SetCameraZoom(perspectiveZoomOut); // 恢复透视相机默认缩放
+            }
         }
     }
 

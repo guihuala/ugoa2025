@@ -50,6 +50,7 @@ public class AchievementSO
             cardSlot.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>().text = name;
             cardSlot.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = des;
             cardSlot.transform.GetChild(0).GetComponent<Image>().sprite = icon;
+            cardSlot.transform.GetChild(0).GetComponent<Image>().color = Color.white;
             cardSlot.transform.GetChild(3).gameObject.SetActive(!isHeld);
         }
         else
@@ -57,6 +58,7 @@ public class AchievementSO
             cardSlot.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>().text = "???";
             cardSlot.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = "??????";
             cardSlot.transform.GetChild(0).GetComponent<Image>().sprite = icon;
+            cardSlot.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
             cardSlot.transform.GetChild(3).gameObject.SetActive(!isHeld);
         }
     }

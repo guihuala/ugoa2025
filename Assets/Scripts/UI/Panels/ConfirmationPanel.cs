@@ -1,6 +1,6 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class ConfirmationPanel : BasePanel
 {
@@ -28,7 +28,13 @@ public class ConfirmationPanel : BasePanel
     protected override void Awake()
     {
         base.Awake();
-        
+
+        // 清理可能存在的动画
+        if (transform != null)
+        {
+            DOTween.Kill(transform);
+        }
+
         if (confirmButton != null)
         {
             confirmButton.onClick.AddListener(OnConfirmButtonClicked);
@@ -39,6 +45,7 @@ public class ConfirmationPanel : BasePanel
             cancelButton.onClick.AddListener(OnCancelButtonClicked);
         }
     }
+
 
     /// <summary>
     /// 初始化并显示确认面板

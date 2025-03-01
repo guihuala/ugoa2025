@@ -65,51 +65,114 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
 
     void HandleDrag()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (IsTouchInput())
         {
-            isDragging = true;
-            dragOrigin = Input.mousePosition;
+            if (Input.touchCount == 1) // 处理触摸屏单指拖动
+            {
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    isDragging = true;
+                    dragOrigin = touch.position;
+                }
+
+                if (touch.phase == TouchPhase.Moved && isDragging)
+                {
+                    Vector3 currentTouchPosition = touch.position;
+                    Vector3 dragDifference = currentTouchPosition - dragOrigin;
+                    dragOrigin = currentTouchPosition;
+
+                    Vector3 worldDrag = new Vector3(-dragDifference.x, 0, -dragDifference.y);
+
+                    float dragFactor = Mathf.Abs(transform.position.y) / Screen.height * 0.5f;
+
+                    worldDrag *= dragFactor;
+
+                    Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
+                    transform.position += adjustedDrag;
+                }
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    isDragging = false;
+                }
+            }
         }
-
-        if (Input.GetMouseButton(0) && isDragging)
+        else // PC端处理鼠标拖动
         {
-            Vector3 currentMousePosition = Input.mousePosition;
-            Vector3 dragDifference = currentMousePosition - dragOrigin;
-            dragOrigin = currentMousePosition;
+            if (Input.GetMouseButtonDown(0))
+            {
+                isDragging = true;
+                dragOrigin = Input.mousePosition;
+            }
 
-            Vector3 worldDrag = new Vector3(-dragDifference.x, 0, -dragDifference.y);
+            if (Input.GetMouseButton(0) && isDragging)
+            {
+                Vector3 currentMousePosition = Input.mousePosition;
+                Vector3 dragDifference = currentMousePosition - dragOrigin;
+                dragOrigin = currentMousePosition;
 
-            float dragFactor = Mathf.Abs(transform.position.y) / Screen.height * 0.5f;
+                Vector3 worldDrag = new Vector3(-dragDifference.x, 0, -dragDifference.y);
 
-            worldDrag *= dragFactor;
+                float dragFactor = Mathf.Abs(transform.position.y) / Screen.height * 0.5f;
 
-            Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
-            transform.position += adjustedDrag;
-        }
+                worldDrag *= dragFactor;
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            isDragging = false;
+                Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
+                transform.position += adjustedDrag;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                isDragging = false;
+            }
         }
     }
 
     void HandleZoom()
     {
-        // 获取滚轮输入并更新目标缩放值
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-        targetZoom -= scrollInput * zoomSpeed;
-        targetZoom = Mathf.Clamp(targetZoom, 20f, 40f); // 透视相机的视野角度范围
-        
-        isZooming = true; // 设置为正在缩放
-        mainCamera.fieldOfView = Mathf.SmoothDamp(
-            mainCamera.fieldOfView,
-            targetZoom,
-            ref zoomVelocity,
-            smoothZoomTime,
-            Mathf.Infinity, // 无需限制速度
-            Time.unscaledDeltaTime // 使用不受时间缩放影响的增量时间
-        );
-        isZooming = false; // 缩放结束后设置为未缩放
+        if (IsTouchInput()) // 移动端触摸缩放
+        {
+            if (Input.touchCount == 2) // 如果有两根手指进行缩放
+            {
+                Touch touch1 = Input.GetTouch(0);
+                Touch touch2 = Input.GetTouch(1);
+
+                float previousDistance = (touch1.position - touch2.position).magnitude;
+                float currentDistance = (touch1.position - touch2.position).magnitude;
+
+                float deltaDistance = previousDistance - currentDistance;
+                targetZoom += deltaDistance * zoomSpeed * 0.1f;
+                targetZoom = Mathf.Clamp(targetZoom, 20f, 40f); // 透视相机的视野角度范围
+                isZooming = true;
+                mainCamera.fieldOfView = Mathf.SmoothDamp(
+                    mainCamera.fieldOfView,
+                    targetZoom,
+                    ref zoomVelocity,
+                    smoothZoomTime,
+                    Mathf.Infinity, // 无需限制速度
+                    Time.unscaledDeltaTime // 使用不受时间缩放影响的增量时间
+                );
+                isZooming = false;
+            }
+        }
+        else // PC端滚轮缩放
+        {
+            float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+            targetZoom -= scrollInput * zoomSpeed;
+            targetZoom = Mathf.Clamp(targetZoom, 20f, 40f); // 透视相机的视野角度范围
+
+            isZooming = true;
+            mainCamera.fieldOfView = Mathf.SmoothDamp(
+                mainCamera.fieldOfView,
+                targetZoom,
+                ref zoomVelocity,
+                smoothZoomTime,
+                Mathf.Infinity, // 无需限制速度
+                Time.unscaledDeltaTime // 使用不受时间缩放影响的增量时间
+            );
+            isZooming = false;
+        }
     }
 
     public void SetCameraZoom(float targetSize)
@@ -125,5 +188,11 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
             Time.unscaledDeltaTime // 使用不受时间缩放影响的增量时间
         );
         isZooming = false; // 完成缩放后设置为未缩放
+    }
+
+    // 判断当前设备是否是触摸设备
+    private bool IsTouchInput()
+    {
+        return Input.touchCount > 0;
     }
 }

@@ -1,6 +1,7 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PerspectiveCameraController : MonoBehaviour , CameraController
 {
@@ -22,26 +23,45 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
     private bool isZooming = false; // 用来控制是否正在缩放，防止多次触发
 
     private Camera mainCamera;
+    private bool isShaking = false; // 是否正在震动
+    private Vector3 shakeOffset = Vector3.zero; // 震动偏移量
+
+    [Header("相机震动配置")]
+    [SerializeField] private float duration;
+    [SerializeField] private float magnitude;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         mainCamera = Camera.main; // 获取主相机
         mainCamera.orthographic = false; // 确保相机使用透视模式
+        
+        EVENTMGR.OnPlayerFound += ShakeCamera;
+    }
+
+    private void OnDestroy()
+    {
+        EVENTMGR.OnPlayerFound -= ShakeCamera;
     }
 
     void LateUpdate()
     {
-        if (Time.timeScale == 0 || isZooming) // 如果正在缩放或者游戏暂停，则不进行相机更新
+        if (isShaking)
+        {
+            transform.position += shakeOffset;
+        }
+
+        if (Time.timeScale == 0 || isZooming || isShaking)
             return;
 
-        HandleZoom(); // 处理滚轮缩放
+        HandleZoom();
         HandleDrag();
 
-        if (player == null || isDragging) return; // 拖动时不跟随玩家
+        if (player == null || isDragging || isShaking) return;
 
         FollowPlayer();
     }
+
 
     // 跟随玩家
     void FollowPlayer()
@@ -59,6 +79,7 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
 
         // 确定相机目标位置
         Vector3 targetPosition = player.position - new Vector3(offsetX, -offsetY, offsetZ);
+
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f / followSpeed);
         transform.rotation = Quaternion.Euler(angle_x, angle_y, 0f);
     }
@@ -194,5 +215,32 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
     private bool IsTouchInput()
     {
         return Input.touchCount > 0;
+    }
+
+    // 震动效果方法
+    public void ShakeCamera()
+    {
+        if (isShaking) return; // 防止多次震动同时发生
+
+        Debug.Log("Shaking Camera");
+        StartCoroutine(ShakeCoroutine(duration, magnitude));
+    }
+
+    // 震动协程
+    private IEnumerator ShakeCoroutine(float duration, float magnitude)
+    {
+        isShaking = true;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            shakeOffset = Random.insideUnitSphere * magnitude;
+            
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        shakeOffset = Vector3.zero;
+        isShaking = false;
     }
 }

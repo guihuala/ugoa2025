@@ -141,6 +141,13 @@ public static class EVENTMGR
     {
         OnPlayerDead?.Invoke();
     }
+    
+    public static event Action OnPlayerFound;
+    
+    public static void TriggerPlayerFound()
+    {
+        OnPlayerFound?.Invoke();
+    }
 
     #endregion
 }

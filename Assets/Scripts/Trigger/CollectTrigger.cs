@@ -29,6 +29,8 @@ public class CollectTrigger : MonoBehaviour
         }
         
         isCollected = true;
+        
+        AudioManager.Instance.PlaySfx("Collect_1");
 
         EVENTMGR.TriggerCollectItem(itemID);
 

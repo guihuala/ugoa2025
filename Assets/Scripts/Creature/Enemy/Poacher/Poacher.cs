@@ -206,6 +206,9 @@ public class Poacher : EnemyBase
                 });
         }
         
+        AudioManager.Instance.PlaySfx("BeFound_1");
+        EVENTMGR.TriggerPlayerFound();
+        
         StartCoroutine(TriggerEventAfterDelay(1f));
     }
 

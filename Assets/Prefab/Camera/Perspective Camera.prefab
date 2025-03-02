@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25, y: 45, z: 0}
 --- !u!20 &6456425146033447723
 Camera:
@@ -156,3 +156,5 @@ MonoBehaviour:
   angle_y: 45
   zoomSpeed: 6
   smoothZoomTime: 0.2
+  duration: 0.2
+  magnitude: 0.1

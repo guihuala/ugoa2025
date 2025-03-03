@@ -152,7 +152,7 @@ public class NodeMarker : MonoBehaviour
         hoverHighlight.SetActive(false);
     }
     
-    public void ShowFootPrint()
+    public void ShowFootPrint(Vector3 moveDirection)
     {
         if (footPrint != null)
         {
@@ -162,11 +162,12 @@ public class NodeMarker : MonoBehaviour
             }
 
             footPrint.SetActive(true);
-
-            // 重置脚印的透明度
+            
+            Quaternion rotation = Quaternion.LookRotation(moveDirection);
+            footPrint.transform.rotation = Quaternion.Euler(90f, rotation.eulerAngles.y, 0);
+            
             footPrint.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-
-            // 启动脚印渐隐动画，并且重置脚印动画
+            
             footPrintTween = footPrint.GetComponent<SpriteRenderer>().DOFade(0f, footprintDuration)
                 .OnComplete(() =>
                 {
@@ -177,4 +178,5 @@ public class NodeMarker : MonoBehaviour
             isFootPrintPlaying = true;
         }
     }
+
 }

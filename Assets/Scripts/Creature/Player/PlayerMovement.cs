@@ -186,8 +186,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 targetPosition = pathQueue.Dequeue();
 
-            HandleRotation(targetPosition - transform.position);
+            Vector3 direction = targetPosition - transform.position;  // 计算旋转
 
+            HandleRotation(direction);
+
+            NodeMarker currentNodeMarker = pathfindingManager.GetClosestNode(transform.position)?.GetComponent<NodeMarker>();
+            if (currentNodeMarker != null)
+            {
+                currentNodeMarker.ShowFootPrint(direction.normalized);
+            }
+            
             // 移动角色
             while ((transform.position - targetPosition).sqrMagnitude > 0.01f) // 避免浮点数误差
             {

@@ -8,19 +8,18 @@ using UnityEngine;
 public class Poacher : EnemyBase
 {
     private int currentPointIndex = 0;
-
-    [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);  
-
     private bool isMoving = false;
     private bool stopMoving = false;
-    private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
+    private bool isPlayerFound = false; // 防止重复触发发现玩家事件
+
+    [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);
+    private Queue<Vector3> pathQueue = new Queue<Vector3>();
     private PathfindingManager pathfindingManager;
 
     [Header("小弟配置")]
     [SerializeField] private EnemyFollower followerPrefab;
-    [SerializeField] private int numberOfFollowers = 3;  // 小弟的数量
-
-    private List<EnemyFollower> followers = new List<EnemyFollower>();  // 小弟列表
+    [SerializeField] private int numberOfFollowers = 3;
+    private List<EnemyFollower> followers = new List<EnemyFollower>();
 
     [Header("动画配置")]
     [SerializeField] private string WalkAnimation = "walk";
@@ -61,7 +60,6 @@ public class Poacher : EnemyBase
     protected override void ClearTrack()
     {
         base.ClearTrack();
-        // 清除轨道时播放站立动画
         PlayAnimation(standAnimation);
     }
 
@@ -101,13 +99,9 @@ public class Poacher : EnemyBase
         if (pathfindingManager == null) return;
         
         Transform currentNode = pathfindingManager.GetClosestNode(transform.position);
-        
         if (currentNode == null) return;
 
-        // 清空之前的路径队列
         pathQueue.Clear();
-
-        // 遍历所有巡逻点并计算路径
         for (int i = 0; i < patrolPoints.Length; i++)
         {
             Transform targetNode = pathfindingManager.GetClosestNode(patrolPoints[i].position);
@@ -121,16 +115,15 @@ public class Poacher : EnemyBase
                         Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
                         pathQueue.Enqueue(targetPos);
                     }
-                    currentNode = targetNode; // 更新当前节点
+                    currentNode = targetNode;
                 }
             }
         }
 
-        // 给所有小弟传递路径
         for (int i = 0; i < followers.Count; i++)
         {
-            float delay = (i + 1) * 1f; // 每个小弟有不同的跟随延迟
-            followers[i].FollowPath(pathQueue, delay); // 将路径队列传递给每个小弟
+            float delay = (i + 1) * 1f;
+            followers[i].FollowPath(pathQueue, delay);
         }
 
         StartCoroutine(MoveAlongPath());
@@ -149,13 +142,10 @@ public class Poacher : EnemyBase
             }
             
             Vector3 targetPosition = pathQueue.Dequeue();
-
-            // 处理角色朝向
             HandleRotation(targetPosition - transform.position);
             
             PlayAnimation(WalkAnimation);
 
-            // 移动角色
             while ((transform.position - targetPosition).sqrMagnitude > 0.01f && !stopMoving)
             {
                 if (Time.timeScale == 0)
@@ -167,8 +157,7 @@ public class Poacher : EnemyBase
                 yield return null;
             }
 
-            transform.position = targetPosition; // 确保精准到达目标点
-
+            transform.position = targetPosition;
             yield return new WaitForSeconds(2f);
         }
 
@@ -181,21 +170,23 @@ public class Poacher : EnemyBase
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             CheckPoint.DORotateQuaternion(targetRotation, 0.3f);
-            
             PlayOverlayAnimation(2, scaredAnimation);
         }
     }
 
     public override void PerformFoundPlayer()
     {
+        // **防止重复触发**
+        if (isPlayerFound) return;
+        isPlayerFound = true;
+
         stopMoving = true;
 
         if (foundIcon != null)
         {
             foundIcon.SetActive(true);
-            
             Vector3 squeezeScale = new Vector3(0.7f, 0.7f, 1f);
-            
+
             foundIcon.transform.DOScale(squeezeScale, 0.2f)
                 .SetEase(Ease.OutElastic)
                 .OnComplete(() =>
@@ -205,17 +196,23 @@ public class Poacher : EnemyBase
                         iconOriginalScale, 0.8f);
                 });
         }
-        
+
         AudioManager.Instance.PlaySfx("BeFound_1");
         EVENTMGR.TriggerPlayerFound();
-        
+
         StartCoroutine(TriggerEventAfterDelay(1f));
     }
 
     private IEnumerator TriggerEventAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        
         EVENTMGR.TriggerPlayerDead();
+    }
+
+    // **如果需要重置游戏状态，添加一个方法**
+    public void ResetFoundState()
+    {
+        isPlayerFound = false;
+        stopMoving = false;
     }
 }

@@ -128,21 +128,21 @@ public class ClickManager : MonoBehaviour
     {
         if (currentClickableEffect == null) return;
         
-        if(!isActive)
+        if (!isActive)
             return;
 
         if (isActivity)
         {
             currentClickableEffect.ShowUIWithAnimation();
             
-            // 控制相机缩放
+            // 控制相机缩放和角度
             if (useOrthographicCamera)
             {
-                _cameraController.SetCameraZoom(orthographicZoomIn); // 正交相机缩放
+                _cameraController.SetCameraZoom(orthographicZoomIn);
             }
             else
             {
-                _cameraController.SetCameraZoom(perspectiveZoomIn); // 透视相机缩放
+                _cameraController.SetCameraZoom(perspectiveZoomIn);
             }
         }
         else
@@ -150,14 +150,14 @@ public class ClickManager : MonoBehaviour
             currentClickableEffect.HideUIWithAnimation();
             currentClickableEffect = null;
 
-            // 恢复相机缩放
+            // 恢复相机缩放和角度
             if (useOrthographicCamera)
             {
-                _cameraController.SetCameraZoom(orthographicZoomOut); // 恢复正交相机默认缩放
+                _cameraController.SetCameraZoom(orthographicZoomOut);
             }
             else
             {
-                _cameraController.SetCameraZoom(perspectiveZoomOut); // 恢复透视相机默认缩放
+                _cameraController.SetCameraZoom(perspectiveZoomOut);
             }
         }
     }

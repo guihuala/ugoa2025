@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface CameraController
 {
-    void SetCameraZoom(float targetZoom);
+    void SetCameraZoom(float targetSize);
 }
 

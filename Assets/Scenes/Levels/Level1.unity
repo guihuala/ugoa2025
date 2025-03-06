@@ -19,7 +19,7 @@ RenderSettings:
   m_FogMode: 1
   m_FogDensity: 0.03
   m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogEnd: 150
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -40865,6 +40865,9 @@ MonoBehaviour:
   orthographicZoomOut: 3.5
   perspectiveZoomIn: 20
   perspectiveZoomOut: 30
+  rotationSpeed: 20
+  rotationStart: 35
+  rotationEnd: 50
 --- !u!114 &732688872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54582,18 +54585,18 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43919665, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.1834183, g: 0.3891233, b: 0.7075471, a: 1}
-  colorDepth: 0.22
-  horizonColor: {r: 0.3102362, g: 0.44734877, b: 0.7924528, a: 1}
-  horizonDistance: 20
+  shallowColor: {r: 0.43919075, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18341267, g: 0.38911733, b: 0.7075471, a: 1}
+  colorDepth: 2
+  horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
+  horizonDistance: 3
   shoreFade: 1
   shoreColor: {r: 0.75775397, g: 0.65241194, b: 0.764151, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20367628, g: 0.3095451, b: 0.517647, a: 1}
+  underwaterColor: {r: 0.20367587, g: 0.30954465, b: 0.517647, a: 1}
   underwaterColorStrength: 1
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: f2c40b951cee11943a1f6d5ec1b42f2c, type: 3}
@@ -54646,18 +54649,18 @@ MonoBehaviour:
   lightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
   lightingHardness: 1
   normalsTexture: {fileID: 2800000, guid: a41da5f5671718b47bbc71e9ef691103, type: 3}
-  normalsMovement: {x: 0.04, y: 2}
+  normalsMovement: {x: 0.5, y: 2}
   normalsStrength: 0.29
   normalsScale: 2
-  normalsSpeed: 0.04
+  normalsSpeed: 0.5
   refractionStrength: 0.022
-  waveVisuals: {x: 0, y: 7.9, z: 1.38}
-  waveSteepness: 0
+  waveVisuals: {x: 0.02, y: 7.9, z: 1.38}
+  waveSteepness: 0.02
   waveLength: 7.9
   waveSpeed: 1.38
-  waveDirections: {x: 0, y: 0.64, z: 1, w: 0.33}
+  waveDirections: {x: 0, y: 1, z: 1, w: 0.33}
   waveDirection1: 0
-  waveDirection2: 0.64
+  waveDirection2: 1
   waveDirection3: 1
   waveDirection4: 0.33
   waterUVs: 1
@@ -82683,18 +82686,18 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43919668, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18341833, g: 0.38912332, b: 0.7075471, a: 1}
-  colorDepth: 0.22
-  horizonColor: {r: 0.31023622, g: 0.44734877, b: 0.7924528, a: 1}
-  horizonDistance: 20
+  shallowColor: {r: 0.43919072, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18341264, g: 0.3891173, b: 0.7075471, a: 1}
+  colorDepth: 2
+  horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
+  horizonDistance: 3
   shoreFade: 1
   shoreColor: {r: 0.75775397, g: 0.65241194, b: 0.764151, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20367631, g: 0.30954513, b: 0.517647, a: 1}
+  underwaterColor: {r: 0.20367584, g: 0.30954462, b: 0.517647, a: 1}
   underwaterColorStrength: 1
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: f2c40b951cee11943a1f6d5ec1b42f2c, type: 3}
@@ -82747,18 +82750,18 @@ MonoBehaviour:
   lightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
   lightingHardness: 1
   normalsTexture: {fileID: 2800000, guid: a41da5f5671718b47bbc71e9ef691103, type: 3}
-  normalsMovement: {x: 0.04, y: 2}
+  normalsMovement: {x: 0.5, y: 2}
   normalsStrength: 0.29
   normalsScale: 2
-  normalsSpeed: 0.04
+  normalsSpeed: 0.5
   refractionStrength: 0.022
-  waveVisuals: {x: 0, y: 7.9, z: 1.38}
-  waveSteepness: 0
+  waveVisuals: {x: 0.02, y: 7.9, z: 1.38}
+  waveSteepness: 0.02
   waveLength: 7.9
   waveSpeed: 1.38
-  waveDirections: {x: 0, y: 0.64, z: 1, w: 0.33}
+  waveDirections: {x: 0, y: 1, z: 1, w: 0.33}
   waveDirection1: 0
-  waveDirection2: 0.64
+  waveDirection2: 1
   waveDirection3: 1
   waveDirection4: 0.33
   waterUVs: 1
@@ -117645,6 +117648,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
+      propertyPath: angle_x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
+      propertyPath: rotationSmoothTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4345080069577555773, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
       propertyPath: m_Name
       value: Perspective Camera

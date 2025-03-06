@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,6 +11,11 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
 
     [Header("角度")] public float angle_x = 30f;
     public float angle_y = 45f;
+    private Quaternion targetRotation;
+    
+    private float minAngleX = 30f;  // 最小角度
+    private float maxAngleX = 60f;  // 最大角度
+    private float rotationSpeed = 1f; // 旋转灵敏度
 
     [Header("缩放调节")] public float zoomSpeed = 6f;
     public float smoothZoomTime = 0.2f; // 缩放的平滑时间
@@ -37,12 +43,18 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
         mainCamera.orthographic = false; // 确保相机使用透视模式
         
         EVENTMGR.OnPlayerFound += ShakeCamera;
+        
+        targetRotation = Quaternion.Euler(angle_x, angle_y, 0f);
+        transform.rotation = targetRotation;
     }
 
     private void OnDestroy()
     {
         EVENTMGR.OnPlayerFound -= ShakeCamera;
     }
+
+    public float rotationSmoothTime = 0.2f; // 平滑时间
+    private float rotationVelocity; 
 
     void LateUpdate()
     {
@@ -56,6 +68,7 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
 
         HandleZoom();
         HandleDrag();
+        HandleRotation(); // 处理旋转
 
         if (player == null || isDragging || isShaking) return;
 
@@ -195,6 +208,51 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
             isZooming = false;
         }
     }
+    
+    void HandleRotation()
+    {
+        if (IsTouchInput()) // 触摸设备：双指滑动调整角度
+        {
+            if (Input.touchCount == 2)
+            {
+                Touch touch1 = Input.GetTouch(0);
+                Touch touch2 = Input.GetTouch(1);
+
+                // 计算两个手指的平均位置
+                Vector2 touchCenter = (touch1.position + touch2.position) / 2;
+            
+                // 计算手指滑动方向
+                float deltaY = (touch1.deltaPosition.y + touch2.deltaPosition.y) / 2;
+            
+                // 调整 x 轴角度
+                angle_x -= deltaY * rotationSpeed;
+                angle_x = Mathf.Clamp(angle_x, minAngleX, maxAngleX);
+            
+                // 应用旋转
+                UpdateCameraAngle();
+            }
+        }
+        else // 电脑端鼠标右键拖动
+        {
+            if (Input.GetMouseButton(1)) // 右键按住
+            {
+                float deltaY = Input.GetAxis("Mouse Y"); // 读取鼠标垂直移动
+            
+                // 计算新的 x 角度
+                angle_x -= deltaY * rotationSpeed * 10f;
+                angle_x = Mathf.Clamp(angle_x, minAngleX, maxAngleX);
+
+                // 应用旋转
+                UpdateCameraAngle();
+            }
+        }
+    }
+    
+    public void UpdateCameraAngle()
+    {
+        Quaternion targetRotation = Quaternion.Euler(angle_x, angle_y, 0f);
+        transform.DORotateQuaternion(targetRotation, 0.2f).SetEase(Ease.OutQuad);
+    }
 
     public void SetCameraZoom(float targetSize)
     {
@@ -210,6 +268,7 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
         );
         isZooming = false; // 完成缩放后设置为未缩放
     }
+    
 
     // 判断当前设备是否是触摸设备
     private bool IsTouchInput()
@@ -221,8 +280,7 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
     public void ShakeCamera()
     {
         if (isShaking) return; // 防止多次震动同时发生
-
-        Debug.Log("Shaking Camera");
+        
         StartCoroutine(ShakeCoroutine(duration, magnitude));
     }
 

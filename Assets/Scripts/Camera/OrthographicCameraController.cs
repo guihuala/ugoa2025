@@ -173,6 +173,13 @@ public class OrthographicCameraController : MonoBehaviour , CameraController
             isZooming = false;
         }
     }
+    
+    public void SetCameraAngle(float newAngle)
+    {
+        angle_x = newAngle;
+        transform.rotation = Quaternion.Euler(angle_x, angle_y, 0f);
+    }
+
 
     public void SetCameraZoom(float targetSize)
     {

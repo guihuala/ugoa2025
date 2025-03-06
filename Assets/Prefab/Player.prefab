@@ -4894,7 +4894,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 65
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 0.97822684, b: 0.495283, a: 1}
   m_FlipX: 0
@@ -5171,9 +5171,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.45
-  m_Height: 2.1803918
+  m_Height: 1.3797445
   m_Direction: 1
-  m_Center: {x: 0, y: 0.3401959, z: 0}
+  m_Center: {x: 0, y: 0.07833409, z: 0}
 --- !u!54 &5181988448149207754
 Rigidbody:
   m_ObjectHideFlags: 0

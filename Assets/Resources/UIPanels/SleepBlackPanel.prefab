@@ -282,7 +282,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "\u4F5C\u4E3A\u62A4\u6797\u5458\u6536\u5230\u4E86\u90E8\u843D\u6C11\u7684\u5A5A\u793C\u8BF7\u67EC\u3002\u6311\u6218\u4E0D\u53EA\u6709\u7A7F\u8D8A\u5371\u673A\u56DB\u4F0F\u7684\u6CBC\u6CFD\uFF0C\u66F4\u6709\u8822\u8822\u6B32\u52A8\u7684\u5077\u730E\u8005\u3002"
+  m_Text: "\u4F5C\u4E3A\u62A4\u6797\u5458\u6536\u5230\u4E86\u90E8\u843D\u6C11\u7684\u5A5A\u793C\u8BF7\u67EC\u3002
+    \n \u6311\u6218\u4E0D\u53EA\u6709\u7A7F\u8D8A\u5371\u673A\u56DB\u4F0F\u7684\u6CBC\u6CFD\uFF0C\u66F4\u6709\u8822\u8822\u6B32\u52A8\u7684\u5077\u730E\u8005\u3002"
 --- !u!1 &3378206564753168423
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,10 +320,10 @@ RectTransform:
   m_Father: {fileID: 8486332473998309002}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.372}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -879.62695, y: 280}
-  m_SizeDelta: {x: 890.9705, y: 557.633}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -263, y: -379}
+  m_SizeDelta: {x: 890.9705, y: 557.63306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4333613114977202665
 CanvasRenderer:

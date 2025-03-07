@@ -13,7 +13,7 @@ public class PerspectiveCameraController : MonoBehaviour , CameraController
     public float angle_y = 45f;
     private Quaternion targetRotation;
     
-    private float minAngleX = 30f;  // 最小角度
+    private float minAngleX = 10f;  // 最小角度
     private float maxAngleX = 60f;  // 最大角度
     private float rotationSpeed = 1f; // 旋转灵敏度
 

@@ -37,8 +37,16 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _AlphaCutoff: 0.461
+    - _DetailMix: 0.5
+    - _LightTransmissionDistortion: 0.323
+    - _LightTransmissionThresholdOffset: 0.299
+    - _RimSize: 1.55
+    - _RimSmoothness: 0.59
+    - _Stencil: 1
+    - _VertexAnimationIntensity: 0.05
     m_Colors:
-    - _AlbedoColor: {r: 0.6123945, g: 0.8962264, b: 0.36779106, a: 1}
+    - _AlbedoColor: {r: 0.5450806, g: 0.7830189, b: 0.34349412, a: 1}
     - _Color: {r: 0.6123946, g: 0.8962264, b: 0.36779103, a: 1}
   m_BuildTextureStacks: []

@@ -1,7 +1,7 @@
 using UnityEngine;
-using DG.Tweening;
+using System.Collections;
 
-public class CameraShake : MonoBehaviour
+public class LevelSelectionCamera : MonoBehaviour
 {
     public float shakeMagnitude = 0.05f;  // 震动幅度
     public float shakeFrequency = 1.0f;   // 震动频率
@@ -17,7 +17,7 @@ public class CameraShake : MonoBehaviour
     private bool isDragging = false;
     private float dragThreshold = 50f; // 判断滑动的最小距离
     private Vector3 currentTargetPosition; // 记录当前相机平滑移动的目标位置
-    private bool isMoving = false; // 是否正在平滑移动
+    private bool isMoving = false;
 
     private void Start()
     {
@@ -26,15 +26,13 @@ public class CameraShake : MonoBehaviour
 
         // 设置当前目标位置
         currentTargetPosition = fixedPositions[currentIndex];
-        
-        Vector3 startPosition = fixedPositions[1];
+
+        // 让相机从固定的初始位置平滑移动到目标位置
+        Vector3 startPosition = fixedPositions[1]; 
         transform.position = startPosition;
 
-        transform.DOMove(currentTargetPosition, transitionTime)
-            .SetEase(Ease.OutQuad)
-            .OnComplete(() => isMoving = false); // 移动完成后允许用户滑动
+        StartCoroutine(SmoothMove(startPosition, currentTargetPosition, transitionTime));
     }
-
 
     private void Update()
     {
@@ -43,7 +41,7 @@ public class CameraShake : MonoBehaviour
         float yShake = Mathf.PerlinNoise(0, Time.time * shakeFrequency + timeOffsetY) * 2f - 1f;
         xShake *= shakeMagnitude;
         yShake *= shakeMagnitude;
-        
+
         transform.position = currentTargetPosition + new Vector3(xShake, yShake, 0f);
 
         HandleSwipe();
@@ -119,11 +117,26 @@ public class CameraShake : MonoBehaviour
 
     private void MoveToPosition(int index)
     {
-        isMoving = true; // 标记正在移动
-        currentTargetPosition = fixedPositions[index]; // 目标位置更新
+        if (isMoving) return; // 防止重复调用
+        isMoving = true;
+        Vector3 newTarget = fixedPositions[index];
+
+        StartCoroutine(SmoothMove(transform.position, newTarget, transitionTime));
+    }
+
+    private IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float duration)
+    {
+        float elapsedTime = 0f;
         
-        transform.DOMove(currentTargetPosition, transitionTime)
-                 .SetEase(Ease.OutQuad)
-                 .OnComplete(() => isMoving = false); // 移动完成后解除锁定
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = endPos; // 确保最终位置正确
+        currentTargetPosition = endPos;
+        isMoving = false; // 解除移动锁定
     }
 }

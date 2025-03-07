@@ -6,25 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Title.unity
+    path: Assets/Scenes/Publish/Title.unity
     guid: aa70bff0c5a34ef4a97b47038ccc514d
   - enabled: 1
-    path: Assets/Scenes/LevelSelection.unity
+    path: Assets/Scenes/Publish/LevelSelection.unity
     guid: 351166f3e88b94154aac648a24aa9d60
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1.unity
+    path: Assets/Scenes/Publish/Levels/Level1.unity
     guid: 9d2dcdb495ded40cd9d5a6d84585bc04
   - enabled: 1
-    path: Assets/Scenes/Levels/Level2.unity
+    path: Assets/Scenes/Publish/Levels/Level2.unity
     guid: b553f91d786a84019b79d7c29a2c4523
   - enabled: 1
-    path: Assets/Scenes/Levels/Level3.unity
+    path: Assets/Scenes/Publish/Levels/Level3.unity
     guid: 86446e929fd214ace834d34001ef1644
   - enabled: 1
-    path: Assets/Scenes/CG.unity
+    path: Assets/Scenes/OfficeScene.unity
+    guid: 39413fca838084ffe94ad81e4db55996
+  - enabled: 1
+    path: Assets/Scenes/Publish/CG.unity
     guid: 3aa5389d79a044acc954f5bc07e8d283
   - enabled: 1
-    path: Assets/Scenes/TutorialScene.unity
+    path: Assets/Scenes/Publish/TutorialScene.unity
     guid: a5ea63b6a988a4f8d9ed619ffafa4f37
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ca405d0d421514d87ab0d2be0de8b4e4, type: 2}

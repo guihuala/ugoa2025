@@ -19,7 +19,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     private float rotationSpeed = 0.05f; // 旋转灵敏度
 
     [Header("缩放调节")]
-    public float zoomSpeed = 6f;
+    public float zoomSpeed = 610;
     public float smoothZoomTime = 0.2f; // 缩放的平滑时间
 
     private Vector3 velocity = Vector3.zero;
@@ -59,9 +59,6 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     {
         EVENTMGR.OnPlayerFound -= ShakeCamera;
     }
-
-    public float rotationSmoothTime = 0.2f; // 平滑时间
-    private float rotationVelocity; 
 
     void LateUpdate()
     {

@@ -3,7 +3,12 @@ guid: c5810bbdfd01c4c7fb5d7a051f62a1a6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: furniture_texture
+    second: {fileID: 2100000, guid: 257eb0729b7fa4c1c83c11ca6c5b04e3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

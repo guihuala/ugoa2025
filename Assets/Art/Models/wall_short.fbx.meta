@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dc08249b1eca4425ca59f89716f011b0
+guid: e4ac30055ab62464ea1c500105ceeba0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: furniture_texture
-    second: {fileID: 2100000, guid: 1cc0f680663bb414ba66ce0c3c01526c, type: 2}
+      name: "\u6750\u8D28"
+    second: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.7
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.7
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

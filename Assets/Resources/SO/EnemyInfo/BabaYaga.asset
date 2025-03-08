@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d0498f4461c487c9380b16710a8816, type: 3}
+  m_Name: BabaYaga
+  m_EditorClassIdentifier: 
+  enemyName: "\u5DF4\u5DF4\u96C5\u560E"
+  enemyDescription: "\u5C45\u6C11\u666E\u904D\u6050\u60E7\u7684\u5DEB\u5A46\uFF0C\u4F7F\u5524\u90AA\u6076\u7684\u8001\u9F20\uFF0C\u636E\u4F20\u4F4F\u5728\u7528\u817F\u9AA8\u505A\u6805\u680F\u3001\u7ACB\u5728\u9E21\u811A\u4E0A\u7684\u6CBC\u6CFD\u5C0F\u5C4B\u91CC\uFF0C\u559C\u6012\u65E0\u5E38\uFF0C\u6551\u4EBA\u4E00\u547D\u6216\u662F\u6298\u78E8\u65C5\u4EBA\u7EAF\u7CB9\u53D6\u51B3\u4E8E\u5F53\u65F6\u5FC3\u60C5"
+  enemySprite: {fileID: 0}
+  requiredLevelName: Level2
+  isUnlocked: 0

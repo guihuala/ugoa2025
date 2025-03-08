@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask pathLayerMask;
 
     private Player player;
+    private Transform playerSpine;
     private StepManager _stepManager;
     
     private float currentRotation = 0f;
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("PathfindingManager not found.");
         }
+
+        playerSpine = transform.GetChild(0).transform;
         
         player = GetComponent<Player>();
 
@@ -221,10 +224,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Mathf.Abs(direction.x) > 0.01f)
         {
-            targetRotation = direction.x > 0 ? 180f : 0f;
+            targetRotation = direction.x > 0 ? 225f : 45f;
             if (!Mathf.Approximately(targetRotation, currentRotation)) // 避免重复旋转
             {
-                transform.DORotate(new Vector3(0f, targetRotation, 0f), 0.3f, RotateMode.FastBeyond360);
+                playerSpine.DORotate(new Vector3(0f, targetRotation, 0f), 0.3f, RotateMode.FastBeyond360);
                 currentRotation = targetRotation;
             }
         }

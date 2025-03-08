@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class LevelInfo : MonoBehaviour
     
     // 是否是最后一关
     public bool isEndLevel;
+    
 
     public void GoToNextLevel()
     {

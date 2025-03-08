@@ -8,6 +8,7 @@ public class LevelData
 {
     public string name; // 关卡名称
     public bool isUnlocked; // 是否解锁
+    public bool isPlayed;
 }
 
 public class LevelManager : SingletonPersistent<LevelManager>
@@ -24,9 +25,9 @@ public class LevelManager : SingletonPersistent<LevelManager>
     {
         levels = new List<LevelData>
         {
-            new LevelData { name = "Level1", isUnlocked = true }, // 默认解锁第一个关卡
-            new LevelData { name = "Level2", isUnlocked = false },
-            new LevelData { name = "Level3", isUnlocked = false }
+            new LevelData { name = "Level1", isUnlocked = true, isPlayed = false}, // 默认解锁第一个关卡
+            new LevelData { name = "Level2", isUnlocked = false, isPlayed = false },
+            new LevelData { name = "Level3", isUnlocked = false, isPlayed = false }
         };
     }
 
@@ -54,8 +55,16 @@ public class LevelManager : SingletonPersistent<LevelManager>
         if (level != null && !level.isUnlocked)
         {
             level.isUnlocked = true;
-            Debug.Log($"Level {levelName} unlocked.");
-            SaveManager.Instance.Save(0); // 保存解锁状态
+            SaveManager.Instance.NewRecord(); // 保存解锁状态
+        }
+    }
+
+    public void PlayLevel(string levelName)
+    {
+        var level = levels.Find(l => l.name == levelName);
+        if (level != null && !level.isPlayed)
+        {
+            level.isPlayed = true;
         }
     }
     

@@ -494,9 +494,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7703145464430625730, guid: 75579071795fb4e53a2646b65f9083d4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1075534524}
     - targetCorrespondingSourceObject: {fileID: 215663873225581053, guid: 75579071795fb4e53a2646b65f9083d4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1880840861}
@@ -2696,24 +2693,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1075534523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7703145464430625730, guid: 75579071795fb4e53a2646b65f9083d4, type: 3}
-  m_PrefabInstance: {fileID: 275318405}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1075534524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075534523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c33cc61d86a648ed9bcc5c5f19c1f80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PanelName: SavePanel
 --- !u!1001 &1099839361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4237,7 +4216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c33cc61d86a648ed9bcc5c5f19c1f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelName: AchievementPanel
+  PanelName: EnemyEncyclopediaPanel
 --- !u!1 &1610053932
 GameObject:
   m_ObjectHideFlags: 0

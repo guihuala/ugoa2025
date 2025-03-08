@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+
 
 public class EnemyEncyclopediaPanel : BasePanel
 {
     public List<EnemyData> enemies; // 存储所有敌人的数据
+    public List<Transform> pages;   // 书本的页面
+    [FormerlySerializedAs("bookController")] public BookController bookControllerController;     // 书本控制器
 
     public Image enemySpriteImg;
     public Text enemyNameText;
@@ -25,27 +29,34 @@ public class EnemyEncyclopediaPanel : BasePanel
         closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
         nextButton.onClick.AddListener(() => ShowNextEnemy());
         previousButton.onClick.AddListener(() => ShowPreviousEnemy());
+
+        bookControllerController.InitialState(); // 书本初始化
     }
 
     // 显示当前敌人信息
     void DisplayEnemy(int index)
     {
-        if (index < 0 || index >= enemies.Count)
+        if (index < 0 || index >= enemies.Count || index >= pages.Count)
             return;
-        
+
         EnemyData enemy = enemies[index];
+
+        Transform page = pages[index]; // 获取当前翻到的页面
+        Image pageEnemyImage = page.Find("EnemyImage").GetComponent<Image>();
+        Text pageEnemyName = page.Find("EnemyName").GetComponent<Text>();
+        Text pageEnemyDescription = page.Find("EnemyDescription").GetComponent<Text>();
 
         if (enemy.isUnlocked)
         {
-            enemyNameText.text = enemy.enemyName;
-            enemyDescriptionText.text = enemy.enemyDescription;
-            enemySpriteImg.sprite = enemy.enemySprite;
+            pageEnemyName.text = enemy.enemyName;
+            pageEnemyDescription.text = enemy.enemyDescription;
+            pageEnemyImage.sprite = enemy.enemySprite;
         }
         else
         {
-            enemyNameText.text = "lock";
-            enemyDescriptionText.text = "";
-            enemySpriteImg.sprite = enemy.enemySprite;
+            pageEnemyName.text = "???";
+            pageEnemyDescription.text = "尚未解锁";
+            pageEnemyImage.sprite = null;
         }
     }
 
@@ -57,23 +68,25 @@ public class EnemyEncyclopediaPanel : BasePanel
         }
     }
 
-    // 显示下一位敌人
+    // 显示下一位敌人（模拟翻页）
     void ShowNextEnemy()
     {
-        currentIndex++;
-        if (currentIndex >= enemies.Count)
-            currentIndex = 0;  // 如果超出敌人数量，则回到第一个敌人
-
-        DisplayEnemy(currentIndex);
+        if (currentIndex < enemies.Count - 1)
+        {
+            currentIndex++;
+            bookControllerController.RotateForward();
+            DisplayEnemy(currentIndex);
+        }
     }
 
-    // 显示上一位敌人
+    // 显示上一位敌人（模拟翻页）
     void ShowPreviousEnemy()
     {
-        currentIndex--;
-        if (currentIndex < 0)
-            currentIndex = enemies.Count - 1;  // 如果超出范围，则回到最后一个敌人
-
-        DisplayEnemy(currentIndex);
+        if (currentIndex > 0)
+        {
+            currentIndex--;
+            bookControllerController.RotateBack();
+            DisplayEnemy(currentIndex);
+        }
     }
 }

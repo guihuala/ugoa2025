@@ -44,7 +44,7 @@ public class EnemyEncyclopediaPanel : BasePanel
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            DisplayEnemy(i);  // 加载所有页面的敌人信息
+            DisplayEnemy(i);
         }
     }
 
@@ -73,12 +73,8 @@ public class EnemyEncyclopediaPanel : BasePanel
             pageEnemyDescription.text = "尚未解锁";
             pageEnemyImage.sprite = enemy.enemySprite;
         }
-
-        // 更新按钮状态
-        previousButton.gameObject.SetActive(index > 0);
     }
 
-    // 处理翻页动画
     private IEnumerator RotatePage(Transform page, float targetAngle, bool isForward)
     {
         isRotating = true;
@@ -97,20 +93,27 @@ public class EnemyEncyclopediaPanel : BasePanel
             yield return null;
         }
 
+        // 确保最终角度正确
         page.rotation = targetRotation;
 
-        // 旋转结束后再更新页面和敌人信息
-        if (isForward)
+        // 更新索引
+        currentIndex = isForward ? currentIndex + 1 : currentIndex - 1;
+
+        // 确保当前页在最上层
+        pages[currentIndex].SetAsLastSibling();
+
+        // 仅调整当前索引前的页面状态
+        for (int i = 0; i < pages.Count; i++)
         {
-            currentIndex++;
-        }
-        else
-        {
-            currentIndex--;
+            if (i < currentIndex)
+            {
+                pages[i].rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
 
-        // 更新敌人信息
-        DisplayEnemy(currentIndex);
+        // 更新按钮状态
+        previousButton.gameObject.SetActive(currentIndex > 0);
+        nextButton.gameObject.SetActive(currentIndex < pages.Count - 1);
 
         isRotating = false;
     }
@@ -121,7 +124,6 @@ public class EnemyEncyclopediaPanel : BasePanel
         if (isRotating || currentIndex >= enemies.Count - 1) return;
 
         Transform currentPage = pages[currentIndex];
-        currentPage.SetAsLastSibling(); // 确保当前页显示在最上层
         StartCoroutine(RotatePage(currentPage, 180, true));
     }
 
@@ -130,7 +132,8 @@ public class EnemyEncyclopediaPanel : BasePanel
     {
         if (isRotating || currentIndex <= 0) return;
 
-        Transform currentPage = pages[currentIndex];
+        Transform currentPage = pages[currentIndex - 1]; // 回到上一页
+        currentPage.SetAsLastSibling(); // 确保它在最上层
         StartCoroutine(RotatePage(currentPage, 0, false));
     }
 }

@@ -1,17 +1,30 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class LevelSelectionCamera : MonoBehaviour
 {
+    [Header("相机基本配置")]
     public float shakeMagnitude = 0.05f;  // 震动幅度
     public float shakeFrequency = 1.0f;   // 震动频率
     public float transitionTime = 0.5f;   // 切换位置的过渡时间
 
+    [Header("组件配置")]
+    public Button prevBtn;
+    public Button nextBtn;
+    public Vector3[] fixedPositions; // 预设的四个固定位置
+    
+    [Header("材质配置")]
+    public Material skyboxMaterial;
+    public Color startColor0;
+    public Color startColor1;
+    public Color[] targetColor0;
+    public Color[] targetColor1;
+    
     private float timeOffsetX;
     private float timeOffsetY;
-
-    public Vector3[] fixedPositions; // 预设的四个固定位置
-
+    
     private int currentIndex = 1; // 当前相机所在的索引
     private Vector3 lastMousePosition;
     private bool isDragging = false;
@@ -21,6 +34,9 @@ public class LevelSelectionCamera : MonoBehaviour
 
     private void Start()
     {
+        prevBtn.onClick.AddListener(MoveLeft);
+        nextBtn.onClick.AddListener(MoveRight);
+        
         timeOffsetX = Random.Range(0f, 100f);
         timeOffsetY = Random.Range(0f, 100f);
 
@@ -127,16 +143,37 @@ public class LevelSelectionCamera : MonoBehaviour
     private IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float duration)
     {
         float elapsedTime = 0f;
-        
         while (elapsedTime < duration)
         {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / duration);
+            float t = elapsedTime / duration;
+            // 平滑插值相机位置
+            Vector3 newPos = Vector3.Lerp(startPos, endPos, t);
+
+            Color newColor0 = Color.Lerp(startColor0, targetColor0[currentIndex], t);
+            Color newColor1 = Color.Lerp(startColor1, targetColor1[currentIndex], t);
+            skyboxMaterial.SetColor("_Color0", newColor0);
+            skyboxMaterial.SetColor("_Color1", newColor1);
+            
+            transform.position = newPos;
+        
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        transform.position = endPos; // 确保最终位置正确
+    
+        // 确保位置和颜色完全更新到目标值
+        transform.position = endPos;
+        skyboxMaterial.SetColor("_Color0", targetColor0[currentIndex]);
+        skyboxMaterial.SetColor("_Color1", targetColor1[currentIndex]);
+        // 更新起始颜色，便于下次过渡使用
+        startColor0 = targetColor0[currentIndex];
+        startColor1 = targetColor1[currentIndex];
+    
         currentTargetPosition = endPos;
-        isMoving = false; // 解除移动锁定
+        isMoving = false;
+    
+        // 根据当前位置显示或隐藏左右按钮
+        prevBtn.gameObject.SetActive(currentIndex > 0);
+        nextBtn.gameObject.SetActive(currentIndex < fixedPositions.Length - 1);
     }
+
 }

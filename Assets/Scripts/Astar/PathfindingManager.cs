@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PathfindingManager : MonoBehaviour
 {
+    [Header("一些配置")]
     public float highlightRadius = 5f;
     public float updateInterval = 1f;
-
-    private GameObject player;
-    private Vector3 startPositionOffset = new Vector3(0, 1.5f, 0);
+    [SerializeField][Tooltip("初始偏移")]private Vector3 startPositionOffset = new Vector3(0, 1.5f, 0);
+    
+    [Header("节点")]
     public List<Transform> mapNodes = new List<Transform>();
-
+    
+    private GameObject player;
     private bool isCharacterSelected = false;
     private HashSet<Transform> previousHighlightNodes = new HashSet<Transform>();
     private Coroutine highlightCoroutine = null;

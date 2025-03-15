@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
 public class PerspectiveCameraController : MonoBehaviour, CameraController
@@ -53,6 +54,11 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     {
         EVENTMGR.OnPlayerFound -= ShakeCamera;
     }
+    
+    public float GetCameraZoom()
+    {
+        return mainCamera.fieldOfView;
+    }
 
     void LateUpdate()
     {
@@ -83,18 +89,18 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
         // 将角度转换为弧度
         float radX = angle_x * Mathf.Deg2Rad;
         float radY = angle_y * Mathf.Deg2Rad;
-        
+
         // 采用球坐标计算偏移量
         float offsetX = distance * Mathf.Cos(radX) * Mathf.Sin(radY);
         float offsetY = distance * Mathf.Sin(radX);
         float offsetZ = distance * Mathf.Cos(radX) * Mathf.Cos(radY);
-        
+
         // 以玩家为中心
         Vector3 targetPosition = player.position + new Vector3(offsetX, offsetY, offsetZ);
-        
+
         // 平滑移动相机
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f / followSpeed);
-        
+
         // 始终面向玩家
         transform.LookAt(player);
     }
@@ -102,39 +108,24 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     // 处理平移与旋转输入
     void HandleInput()
     {
+        // 如果点击在 UI 上，直接返回，不处理相机操作
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
+        
         if (IsTouchInput())
         {
-            // 当只有一根手指时，区分平移与旋转
+            // 处理单指拖动
             if (Input.touchCount == 1)
             {
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
                 {
-                    // 屏幕右侧 80% 作为旋转输入区域
-                    if (touch.position.x > Screen.width * 0.8f)
-                    {
-                        isRotatingInput = true;
-                        rotationDragOrigin = touch.position;
-                    }
-                    else
-                    {
-                        isDragging = true;
-                        dragOrigin = touch.position;
-                    }
+                    isDragging = true;
+                    dragOrigin = touch.position;
                 }
                 else if (touch.phase == TouchPhase.Moved)
                 {
-                    if (isRotatingInput)
-                    {
-                        Vector2 currentPos = touch.position;
-                        Vector2 delta = currentPos - rotationDragOrigin;
-                        rotationDragOrigin = currentPos;
-                        
-                        // 仅修改 x 轴（俯仰角），忽略水平方向的变化
-                        angle_x -= delta.y * rotationSpeed * 10f;
-                        angle_x = Mathf.Clamp(angle_x, minAngleX, maxAngleX);
-                    }
-                    else if (isDragging)
+                    if (isDragging)
                     {
                         Vector2 currentPos = touch.position;
                         Vector2 delta = currentPos - dragOrigin;
@@ -149,11 +140,10 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
                 }
                 else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                 {
-                    isRotatingInput = false;
                     isDragging = false;
                 }
             }
-            // 两指触控用于缩放
+            // 处理双指缩放
             else if (Input.touchCount == 2)
             {
                 HandleZoom();
@@ -163,31 +153,13 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Input.mousePosition.x > Screen.width * 0.8f)
-                {
-                    isRotatingInput = true;
-                    rotationDragOrigin = Input.mousePosition;
-                }
-                else
-                {
-                    isDragging = true;
-                    dragOrigin = Input.mousePosition;
-                }
+                isDragging = true;
+                dragOrigin = Input.mousePosition;
             }
 
             if (Input.GetMouseButton(0))
             {
-                if (isRotatingInput)
-                {
-                    Vector2 currentPos = Input.mousePosition;
-                    Vector2 delta = currentPos - rotationDragOrigin;
-                    rotationDragOrigin = currentPos;
-
-                    // 仅根据垂直方向更新俯仰角
-                    angle_x -= delta.y * rotationSpeed * 10f;
-                    angle_x = Mathf.Clamp(angle_x, minAngleX, maxAngleX);
-                }
-                else if (isDragging)
+                if (isDragging)
                 {
                     Vector2 currentPos = Input.mousePosition;
                     Vector2 delta = currentPos - dragOrigin;
@@ -203,11 +175,11 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
 
             if (Input.GetMouseButtonUp(0))
             {
-                isRotatingInput = false;
                 isDragging = false;
             }
         }
     }
+
 
     void HandleZoom()
     {
@@ -221,7 +193,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
                 float previousDistance = (touch1.position - touch2.position).magnitude;
                 float currentDistance = (touch1.position - touch2.position).magnitude;
                 float deltaDistance = previousDistance - currentDistance;
-                
+
                 targetZoom += deltaDistance * zoomSpeed * 0.1f;
                 targetZoom = Mathf.Clamp(targetZoom, 20f, 40f);
                 isZooming = true;
@@ -271,7 +243,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
         );
         isZooming = false;
     }
-    
+
     // 判断当前设备是否为触摸设备
     private bool IsTouchInput()
     {
@@ -296,6 +268,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
             elapsed += Time.deltaTime;
             yield return null;
         }
+
         shakeOffset = Vector3.zero;
         isShaking = false;
     }

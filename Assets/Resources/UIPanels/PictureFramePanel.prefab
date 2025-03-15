@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6092766407987958413}
   - component: {fileID: 8989111036411309065}
+  - component: {fileID: 9115697394294627580}
   m_Layer: 5
   m_Name: PictureFramePanel
   m_TagString: Untagged
@@ -50,6 +51,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6af6d7f18d894be5b4f5139182ad063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photos:
+  - {fileID: 186354697446956603}
+  - {fileID: 7500507722918839963}
+  - {fileID: 5830652848361846112}
+--- !u!225 &9115697394294627580
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717564541457822219}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2717786891875224291
 GameObject:
   m_ObjectHideFlags: 0

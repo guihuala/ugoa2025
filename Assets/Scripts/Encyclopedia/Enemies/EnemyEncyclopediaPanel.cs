@@ -50,7 +50,6 @@ public class EnemyEncyclopediaPanel : BasePanel
         PanelSlideOut();
     }
     
-
     // 初始化书本状态
     private void InitialState()
     {
@@ -83,8 +82,8 @@ public class EnemyEncyclopediaPanel : BasePanel
         Image pageEnemyImage = page.GetChild(0).GetChild(0).GetComponent<Image>();
         Text pageEnemyName = page.GetChild(0).GetChild(1).GetComponent<Text>();
         Text pageEnemyDescription = page.GetChild(0).GetChild(2).GetComponent<Text>();
-
-        if (enemy.isUnlocked)
+        
+        if (enemy.CheckUnlock(LevelManager.Instance.levels))
         {
             pageEnemyName.text = enemy.enemyName;
             pageEnemyDescription.text = enemy.enemyDescription;

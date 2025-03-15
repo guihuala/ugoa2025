@@ -9,6 +9,7 @@ public class PictureFramePanel : BasePanel
 {
     [Header("组件配置")]
     [SerializeField] private Image[] photos;
+    [SerializeField] private Button closeBtn;
     
     private RectTransform panelRectTransform;
 
@@ -20,6 +21,8 @@ public class PictureFramePanel : BasePanel
 
     private void Start()
     {
+        closeBtn.onClick.AddListener(ClosePanel);
+        
         InitUI();
     }
 

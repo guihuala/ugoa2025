@@ -32276,6 +32276,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameBaseUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3582791694975529645, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582791694975529645, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582791694975529645, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392236153473462790, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392236153473462790, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392236153473462790, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392236153473462790, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975738587553847810, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975738587553847810, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975738587553847810, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975738587553847810, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7137129182433012671, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -32358,6 +32402,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7137129182433012671, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979473441201298092, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979473441201298092, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979473441201298092, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979473441201298092, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281769201646356759, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281769201646356759, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281769201646356759, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281769201646356759, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172412280403960650, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172412280403960650, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172412280403960650, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172412280403960650, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -36912,7 +37004,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e5659755d6b49619528a845858fb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
 --- !u!114 &655417487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40978,6 +41069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightRadius: 5
   updateInterval: 1
+  startPositionOffset: {x: 0, y: 1.5, z: 0}
   mapNodes: []
 --- !u!114 &732688870
 MonoBehaviour:
@@ -54727,8 +54819,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43918812, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.1834102, g: 0.38911474, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.43918505, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18340728, g: 0.38911164, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -82859,8 +82951,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.4391881, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18341017, g: 0.3891147, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.43918502, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18340725, g: 0.3891116, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -112810,7 +112902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e5659755d6b49619528a845858fb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
 --- !u!114 &2059527874
 MonoBehaviour:
   m_ObjectHideFlags: 0

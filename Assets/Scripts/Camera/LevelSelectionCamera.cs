@@ -175,5 +175,4 @@ public class LevelSelectionCamera : MonoBehaviour
         prevBtn.gameObject.SetActive(currentIndex > 0);
         nextBtn.gameObject.SetActive(currentIndex < fixedPositions.Length - 1);
     }
-
 }

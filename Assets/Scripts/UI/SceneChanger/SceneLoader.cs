@@ -19,7 +19,7 @@ public enum SceneName
 
 public class SceneLoader : SingletonPersistent<SceneLoader>
 {
-    public float fadeDuration = 1f;
+    private float fadeDuration = 1.5f;
 
     private void OnEnable()
     {

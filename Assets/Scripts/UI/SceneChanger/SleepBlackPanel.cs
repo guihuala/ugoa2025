@@ -12,7 +12,6 @@ public class SceneChangerInfo
     public string title;
     [TextArea] public string description;
     public Color BgColor;
-    public string sceneName; // 添加场景名称字段
 }
 
 public class SleepBlackPanel : BasePanel
@@ -42,7 +41,6 @@ public class SleepBlackPanel : BasePanel
                 selectedScene = sceneChangerInfoList[randomIndex];
             }
         }
-
 
         // 如果选择了场景，更新 UI 元素
         if (selectedScene != null)

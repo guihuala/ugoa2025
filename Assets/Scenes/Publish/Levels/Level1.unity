@@ -32272,6 +32272,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1007657274}
     m_Modifications:
+    - target: {fileID: 1933517086598284894, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2933721923493038572, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3540993420848009712, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
       propertyPath: m_Name
       value: GameBaseUI
@@ -32432,6 +32440,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7694824092678088445, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782491892421496987, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802065626822196622, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7979473441201298092, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -32489,6 +32509,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8281769201646356759, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631644862331371153, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -54883,8 +54907,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43918288, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18340522, g: 0.3891095, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.4391811, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18340352, g: 0.38910767, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -83015,8 +83039,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43918285, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18340519, g: 0.38910943, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.43918112, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18340355, g: 0.3891077, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -117978,7 +118002,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
       propertyPath: angle_x
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
       propertyPath: rotationSmoothTime

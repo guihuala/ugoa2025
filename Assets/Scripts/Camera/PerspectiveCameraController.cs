@@ -20,13 +20,15 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     [Header("缩放调节")]
     public float zoomSpeed = 10;
     public float smoothZoomTime = 0.2f; // 缩放的平滑时间
-
+    
+    [Header("相机震动配置")]
+    [SerializeField] private float duration;
+    [SerializeField] private float magnitude;
+    
     private Vector3 velocity = Vector3.zero;
     private bool isDragging = false;
     private Vector2 dragOrigin; // 平移时的起始点
-
-    // 用于旋转输入的标志和起始点（仅用于修改 x 轴）
-    private bool isRotatingInput = false;
+    
     private Vector2 rotationDragOrigin;
 
     private float targetZoom; // 目标缩放值
@@ -36,11 +38,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     private Camera mainCamera;
     private bool isShaking = false; // 震动标志
     private Vector3 shakeOffset = Vector3.zero; // 震动偏移量
-
-    [Header("相机震动配置")]
-    [SerializeField] private float duration;
-    [SerializeField] private float magnitude;
-
+    
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -55,12 +53,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
         EVENTMGR.OnPlayerFound -= ShakeCamera;
     }
     
-    public float GetCameraZoom()
-    {
-        return mainCamera.fieldOfView;
-    }
-
-    void LateUpdate()
+    void Update()
     {
         if (isShaking)
         {
@@ -71,116 +64,102 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
             return;
 
         HandleZoom();
-        HandleInput();  // 处理平移和旋转输入
+        HandleInput();
 
-        if (player == null || isDragging || isRotatingInput || isShaking)
+        if (player == null || isDragging || isShaking)
             return;
 
         FollowPlayer();
     }
 
-    // 以玩家为中心计算相机位置，并始终面向玩家
     void FollowPlayer()
     {
         if (player == null) return;
 
-        float distance = 13f; // 相机与玩家的距离
+        float distance = 13f;
 
-        // 将角度转换为弧度
         float radX = angle_x * Mathf.Deg2Rad;
         float radY = angle_y * Mathf.Deg2Rad;
 
-        // 采用球坐标计算偏移量
         float offsetX = distance * Mathf.Cos(radX) * Mathf.Sin(radY);
         float offsetY = distance * Mathf.Sin(radX);
         float offsetZ = distance * Mathf.Cos(radX) * Mathf.Cos(radY);
 
-        // 以玩家为中心
         Vector3 targetPosition = player.position + new Vector3(offsetX, offsetY, offsetZ);
-
-        // 平滑移动相机
+    
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f / followSpeed);
-
-        // 始终面向玩家
-        transform.LookAt(player);
+        
+        Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
+        transform.DORotateQuaternion(targetRotation, 1f).SetEase(Ease.OutCubic);
     }
 
-    // 处理平移与旋转输入
-    void HandleInput()
+    private void HandleInput()
     {
-        // 如果点击在 UI 上，直接返回，不处理相机操作
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
-        
-        if (IsTouchInput())
-        {
-            // 处理单指拖动
-            if (Input.touchCount == 1)
-            {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    isDragging = true;
-                    dragOrigin = touch.position;
-                }
-                else if (touch.phase == TouchPhase.Moved)
-                {
-                    if (isDragging)
-                    {
-                        Vector2 currentPos = touch.position;
-                        Vector2 delta = currentPos - dragOrigin;
-                        dragOrigin = currentPos;
 
-                        Vector3 worldDrag = new Vector3(-delta.x, 0, -delta.y);
-                        float dragFactor = Mathf.Abs(transform.position.y) / Screen.height * 0.5f;
-                        worldDrag *= dragFactor;
-                        Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
-                        transform.position -= adjustedDrag;
-                    }
-                }
-                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-                {
-                    isDragging = false;
-                }
-            }
-            // 处理双指缩放
-            else if (Input.touchCount == 2)
-            {
-                HandleZoom();
-            }
+        Vector2? currentInput = null;
+        bool began = false, ended = false;
+        
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            currentInput = touch.position;
+            began = (touch.phase == TouchPhase.Began);
+            ended = (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled);
         }
-        else // PC端输入
+        else
         {
             if (Input.GetMouseButtonDown(0))
             {
-                isDragging = true;
-                dragOrigin = Input.mousePosition;
+                currentInput = Input.mousePosition;
+                began = true;
             }
-
-            if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0))
             {
-                if (isDragging)
-                {
-                    Vector2 currentPos = Input.mousePosition;
-                    Vector2 delta = currentPos - dragOrigin;
-                    dragOrigin = currentPos;
-
-                    Vector3 worldDrag = new Vector3(-delta.x, 0, -delta.y);
-                    float dragFactor = Mathf.Abs(transform.position.y) / Screen.height * 0.5f;
-                    worldDrag *= dragFactor;
-                    Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
-                    transform.position -= adjustedDrag;
-                }
+                currentInput = Input.mousePosition;
             }
-
-            if (Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0))
             {
-                isDragging = false;
+                ended = true;
             }
         }
+
+        if (currentInput.HasValue)
+        {
+            if (began)
+            {
+                isDragging = true;
+                dragOrigin = currentInput.Value;
+            }
+            else if (isDragging)
+            {
+                Vector2 delta = currentInput.Value - dragOrigin;
+                dragOrigin = currentInput.Value;
+                ProcessDrag(delta);
+            }
+        }
+        if (ended)
+        {
+            isDragging = false;
+        }
+
+        // 缩放处理：当移动端双指或PC端鼠标滚轮操作时调用
+        if (Input.touchCount == 2 || Math.Abs(Input.GetAxis("Mouse ScrollWheel")) > 0.001f)
+        {
+            HandleZoom();
+        }
     }
-
-
+    
+    private void ProcessDrag(Vector2 delta)
+    {
+        Vector3 worldDrag = new Vector3(-delta.x, 0, -delta.y);
+        float dragFactor = Mathf.Abs(transform.position.y) / Screen.height * 0.5f;
+        worldDrag *= dragFactor;
+        Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
+        transform.position -= adjustedDrag;
+    }
+    
     void HandleZoom()
     {
         if (IsTouchInput()) // 移动端两指缩放
@@ -250,14 +229,14 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
         return Input.touchCount > 0;
     }
 
-    // 震动效果方法
+    #region 震动
+
     public void ShakeCamera()
     {
         if (isShaking) return;
         StartCoroutine(ShakeCoroutine(duration, magnitude));
     }
-
-    // 震动协程
+    
     private IEnumerator ShakeCoroutine(float duration, float magnitude)
     {
         isShaking = true;
@@ -271,5 +250,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
 
         shakeOffset = Vector3.zero;
         isShaking = false;
-    }
+    }    
+
+    #endregion
 }

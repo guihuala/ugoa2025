@@ -23,7 +23,8 @@ public class GameBaseUI : MonoBehaviour
 
     private void Start()
     {
-        EVENTMGR.ChangeSteps += UpdateTransform;
+        if(stepContainer != null)
+            EVENTMGR.ChangeSteps += UpdateTransform;
     }
 
     private void OnDestroy()

@@ -8,7 +8,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
     // 一些需要保存零散的数据
     public SceneName scensName = SceneName.Title; // 玩家上一次所在的场景，在游戏时需要触发更新
     public float gameTime; // 游戏时间
-    public bool isComplete = false;
+    public bool isComplete = false; // 是否通关
 
     public int ID;
 

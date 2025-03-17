@@ -178,5 +178,4 @@ public class NodeMarker : MonoBehaviour
             isFootPrintPlaying = true;
         }
     }
-
 }

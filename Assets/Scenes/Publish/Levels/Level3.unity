@@ -5945,6 +5945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightRadius: 5
   updateInterval: 1
+  startPositionOffset: {x: 0, y: 1.5, z: 0}
   mapNodes: []
 --- !u!114 &102317152
 MonoBehaviour:
@@ -12475,6 +12476,14 @@ PrefabInstance:
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionRadius
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28863,6 +28872,14 @@ PrefabInstance:
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionRadius
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35656,6 +35673,14 @@ PrefabInstance:
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionRadius
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48102,6 +48127,14 @@ PrefabInstance:
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionRadius
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -70022,6 +70055,14 @@ PrefabInstance:
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionRadius
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76797,7 +76838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e5659755d6b49619528a845858fb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
 --- !u!114 &1175328530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100173,6 +100213,14 @@ PrefabInstance:
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
+      propertyPath: detectionRadius
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

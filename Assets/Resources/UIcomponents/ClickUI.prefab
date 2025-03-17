@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9046548086422452832}
   - component: {fileID: 3330123404611120695}
   - component: {fileID: 3305882275218946518}
-  - component: {fileID: 6496697689591986347}
   m_Layer: 5
   m_Name: ClickUI
   m_TagString: Untagged
@@ -118,18 +117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 2
---- !u!114 &6496697689591986347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29870101373243293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1805c3aa0652412786c23dd27b81845, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4441437334173896855
 GameObject:
   m_ObjectHideFlags: 0

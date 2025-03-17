@@ -54907,8 +54907,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.4391766, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18339926, g: 0.3891032, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.4391762, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.1833989, g: 0.38910282, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -83039,8 +83039,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43917656, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18339923, g: 0.38910314, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.43917617, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18339887, g: 0.3891028, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -118157,9 +118157,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -48
+  m_SortingLayerID: -2030307879
+  m_SortingLayer: -1
+  m_SortingOrder: -47
   m_Sprite: {fileID: 21300000, guid: 403dd2169dfb3496b8782d746178f38c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -118433,7 +118433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8811308523946830813}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: -0.475, z: 0}
+  m_LocalPosition: {x: 0.017, y: -0.475, z: 0.017}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

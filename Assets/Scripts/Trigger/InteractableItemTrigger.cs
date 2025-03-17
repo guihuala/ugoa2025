@@ -6,12 +6,15 @@ using UnityEngine;
 public class InteractableItemTrigger : MonoBehaviour, IEnterSpecialItem
 {
     public BaseOfficeItem targetObject;
+    private PlayerInteractManager playerInteractManager;
 
-    private Vector3 originalScale = new Vector3(1, 1, 1);
-
+    private void Start()
+    {
+        playerInteractManager = FindObjectOfType<PlayerInteractManager>();
+    }
     
     public void Apply()
     {
-        targetObject.IsActive = true;
+        playerInteractManager.UpdateOfficeItem(targetObject);
     }
 }

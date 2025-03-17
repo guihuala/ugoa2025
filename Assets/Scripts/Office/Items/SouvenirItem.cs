@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class SouvenirItem : MonoBehaviour
+public class SouvenirItem : BaseOfficeItem
 {
-    private void Start()
+    protected override void Start()
     {
         gameObject.SetActive(false);
         

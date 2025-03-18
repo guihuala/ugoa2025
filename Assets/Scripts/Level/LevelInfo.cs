@@ -20,6 +20,8 @@ public class LevelInfo : MonoBehaviour
         // 把场景改为下一关或者选关场景
         if (!isEndLevel)
         {
+            SaveManager.Instance.playTime++;
+            
             SceneLoader.Instance.LoadScene(nextLevel, "下一关...");
             LevelManager.Instance.UnlockLevel(nextLevelName);
         }

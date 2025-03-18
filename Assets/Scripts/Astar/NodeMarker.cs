@@ -113,6 +113,11 @@ public class NodeMarker : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // 左键点击
         {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 

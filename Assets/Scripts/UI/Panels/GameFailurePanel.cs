@@ -9,6 +9,7 @@ public class GameFailurePanel : BasePanel
 {
     [SerializeField] private Button replayBtn;
     [SerializeField] private Button mainMenuBtn;
+    [SerializeField] private string failureReason;
 
     public override void OpenPanel(string name)
     {
@@ -42,5 +43,10 @@ public class GameFailurePanel : BasePanel
             
             SceneLoader.Instance.LoadScene(SceneName.Title, "回到主界面...");
         });
+    }
+
+    public void InitUI(string reason)
+    {
+        failureReason = reason;
     }
 }

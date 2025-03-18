@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class ClickableEffect : MonoBehaviour, IClickable
 {
@@ -29,6 +30,12 @@ public class ClickableEffect : MonoBehaviour, IClickable
 
     public void OnClick()
     {
+        // 如果鼠标指针位于 UI 上，则不执行点击检测
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        
         if (isUIOpen)
         {
             EVENTMGR.TriggerClickPlayer(false);

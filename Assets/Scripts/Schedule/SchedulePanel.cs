@@ -23,10 +23,27 @@ public class SchedulePanel : SlidePanel
     private void Start()
     {
         closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
-        
         CGBtn.onClick.AddListener(() => SceneLoader.Instance.LoadScene(SceneName.CG,"..."));
+
+        mission1Btn.onClick.AddListener(() => { OpenInfo(mission1Info); });
+        mission2Btn.onClick.AddListener(() => { OpenInfo(mission2Info); });
+        mission3Btn.onClick.AddListener(() => { OpenInfo(mission3Info); });
         
+        InitUI();
+    }
+
+    void InitUI()
+    {
         if(!SaveManager.Instance.isComplete)
             CGBtn.gameObject.SetActive(false);
+        
+        mission1Info.gameObject.SetActive(false);
+        mission2Info.gameObject.SetActive(false);
+        mission3Info.gameObject.SetActive(false);
+    }
+
+    void OpenInfo(Transform info)
+    {
+        info.gameObject.SetActive(true);
     }
 }

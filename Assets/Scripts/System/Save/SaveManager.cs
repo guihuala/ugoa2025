@@ -9,6 +9,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
     public SceneName scensName = SceneName.Title; // 玩家上一次所在的场景，在游戏时需要触发更新
     public float gameTime; // 游戏时间
     public bool isComplete = false; // 是否通关
+    public int playTime = 0;
+    public int failureTime = 0;
 
     public int ID;
 
@@ -25,6 +27,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
         public SceneName scensName;
         public float gameTime;
         public bool isComplete;
+        public int playTime;
+        public int failureTime;
 
         // 达成的成就
         public List<AchievementSaveData> achievements = new List<AchievementSaveData>();
@@ -63,7 +67,9 @@ public class SaveManager : SingletonPersistent<SaveManager>
         {
             scensName = scensName,
             gameTime = gameTime,
-            isComplete = isComplete
+            isComplete = isComplete,
+            playTime = playTime,
+            failureTime = failureTime,
         };
 
         // 保存成就数据
@@ -95,6 +101,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
         scensName = savedata.scensName;
         gameTime = savedata.gameTime;
         isComplete = savedata.isComplete;
+        playTime = savedata.playTime;
+        failureTime = savedata.failureTime;
     }
 
 

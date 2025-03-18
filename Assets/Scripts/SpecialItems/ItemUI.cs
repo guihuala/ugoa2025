@@ -8,14 +8,14 @@ public class ItemUI : MonoBehaviour
     
     private ItemData item;
     private Button itemButton;
-    private GameObject player;
+    private PlayerItemEffect player;
     
     private float currentTime; // 当前冷却时间
     private float cooldown;    // 冷却时长
 
     private void Start()
     {
-        player = FindObjectOfType<Player>().gameObject;
+        player = FindObjectOfType<PlayerItemEffect>();
         itemButton = GetComponent<Button>(); // 获取Button组件
         itemIcon = transform.GetChild(0).GetComponent<Image>();
 
@@ -90,7 +90,7 @@ public class ItemUI : MonoBehaviour
                 Debug.Log("使用弹弓。");
                 break;
             case ItemEffectType.energyMedicine:
-                Debug.Log("使用精力药剂");
+                player.UseEnergyMedicine();
                 break;
         }
     }    

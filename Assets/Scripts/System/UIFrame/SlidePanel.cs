@@ -35,7 +35,7 @@ public class SlidePanel : BasePanel
             // 设置初始位置为屏幕外的顶部
             panelRectTransform.anchoredPosition = new Vector2(panelRectTransform.anchoredPosition.x, Screen.height);
             // 动画播放到目标位置
-            panelRectTransform.DOAnchorPosY(0f, 0.5f).SetEase(Ease.OutBack);
+            panelRectTransform.DOAnchorPosY(0f, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
         }
     }
 
@@ -47,7 +47,7 @@ public class SlidePanel : BasePanel
             // 设置初始位置为当前的屏幕内
             panelRectTransform.anchoredPosition = new Vector2(panelRectTransform.anchoredPosition.x, 0f);
             // 动画播放到屏幕外的底部
-            panelRectTransform.DOAnchorPosY(Screen.height, 0.5f).SetEase(Ease.InBack).OnKill(() =>
+            panelRectTransform.DOAnchorPosY(Screen.height, 0.5f).SetEase(Ease.InBack).SetUpdate(true).OnKill(() =>
             {
                 // 动画播放完后隐藏面板
                 gameObject.SetActive(false);

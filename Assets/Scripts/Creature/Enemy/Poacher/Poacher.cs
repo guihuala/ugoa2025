@@ -208,11 +208,4 @@ public class Poacher : EnemyBase
         yield return new WaitForSeconds(delay);
         EVENTMGR.TriggerPlayerDead();
     }
-
-    // **如果需要重置游戏状态，添加一个方法**
-    public void ResetFoundState()
-    {
-        isPlayerFound = false;
-        stopMoving = false;
-    }
 }

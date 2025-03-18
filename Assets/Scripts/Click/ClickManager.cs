@@ -116,6 +116,7 @@ public class ClickManager : MonoBehaviour
         }
     }
 
+    // 只是为了关闭UI？
     private void PlayerDead()
     {
         isActive = false;

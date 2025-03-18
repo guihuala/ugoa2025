@@ -6,15 +6,20 @@ using UnityEngine.UI;
 
 public class SchedulePanel : SlidePanel
 {
-    [Header("组件配置")]
+    [Header("按钮配置")]
     public Button closeButton;
-
+    public Button CGBtn;
+    
+    [Header("任务配置")]
     public Button mission1Btn;
     public Button mission2Btn;
     public Button mission3Btn;
-    
-    public Button CGBtn;
 
+    [Header("面板配置")] 
+    public Transform mission1Info;
+    public Transform mission2Info;
+    public Transform mission3Info;
+    
     private void Start()
     {
         closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));

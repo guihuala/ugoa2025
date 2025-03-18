@@ -8,7 +8,7 @@ public class InteractableItemTrigger : MonoBehaviour, IEnterSpecialItem
     public BaseOfficeItem targetObject;
     private PlayerInteractManager playerInteractManager;
 
-    private void Start()
+    private void Awake()
     {
         playerInteractManager = FindObjectOfType<PlayerInteractManager>();
     }

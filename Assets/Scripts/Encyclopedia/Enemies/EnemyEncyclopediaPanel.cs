@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyEncyclopediaPanel : BasePanel
+public class EnemyEncyclopediaPanel : SlidePanel
 {
     [SerializeField] private float pageSpeed = 0.5f;
     public List<EnemyData> enemies; // 存储所有敌人的数据
@@ -16,13 +16,6 @@ public class EnemyEncyclopediaPanel : BasePanel
 
     private int currentIndex = 0; // 当前显示的敌人索引
     private bool isRotating = false; // 旋转动画标记
-    private RectTransform panelRectTransform;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        panelRectTransform = transform as RectTransform;
-    }
     
     private void Start()
     {
@@ -34,20 +27,6 @@ public class EnemyEncyclopediaPanel : BasePanel
         previousButton.onClick.AddListener(() => ShowPreviousEnemy());
 
         InitialState(); // 书本初始化
-    }
-
-    public override void OpenPanel(string name)
-    {
-        panelName = name;
-        // 激活面板
-        gameObject.SetActive(true);
-        PanelSlideIn();
-    }
-
-    public override void ClosePanel()
-    {
-        hasRemoved = true;
-        PanelSlideOut();
     }
     
     // 初始化书本状态
@@ -157,33 +136,5 @@ public class EnemyEncyclopediaPanel : BasePanel
         Transform currentPage = pages[currentIndex - 1]; // 回到上一页
         currentPage.SetAsLastSibling(); // 确保它在最上层
         StartCoroutine(RotatePage(currentPage, 0, false));
-    }
-    
-    // 从上至下的进入动画
-    private void PanelSlideIn()
-    {
-        if (panelRectTransform != null)
-        {
-            // 设置初始位置为屏幕外的顶部
-            panelRectTransform.anchoredPosition = new Vector2(panelRectTransform.anchoredPosition.x, Screen.height);
-            // 动画播放到目标位置
-            panelRectTransform.DOAnchorPosY(0f, 0.5f).SetEase(Ease.OutBack);
-        }
-    }
-
-    // 从下至上的退出动画，并在结束后隐藏面板
-    private void PanelSlideOut()
-    {
-        if (panelRectTransform != null)
-        {
-            // 设置初始位置为当前的屏幕内
-            panelRectTransform.anchoredPosition = new Vector2(panelRectTransform.anchoredPosition.x, 0f);
-            // 动画播放到屏幕外的底部
-            panelRectTransform.DOAnchorPosY(Screen.height, 0.5f).SetEase(Ease.InBack).OnKill(() => 
-            {
-                // 动画播放完后隐藏面板
-                gameObject.SetActive(false);
-            });
-        }
     }
 }

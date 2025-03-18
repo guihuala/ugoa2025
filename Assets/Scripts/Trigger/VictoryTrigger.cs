@@ -36,7 +36,6 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
 
             if (allRequestedItemsMet)
             {
-                LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
                 SaveManager.Instance.SetDefaultCurrentScene();
                 levelInfo.VictorySaveLevel();
                 
@@ -51,7 +50,6 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
         }
         else
         {
-            LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
             levelInfo.VictorySaveLevel();
             
             SaveManager.Instance.NewRecord();

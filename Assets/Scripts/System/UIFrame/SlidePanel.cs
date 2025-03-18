@@ -1,52 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PictureFramePanel : BasePanel
+public class SlidePanel : BasePanel
 {
-    [Header("组件配置")]
-    [SerializeField] private Image[] photos;
-    [SerializeField] private Button closeBtn;
-    
     private RectTransform panelRectTransform;
-
+    
     protected override void Awake()
     {
         base.Awake();
         panelRectTransform = transform as RectTransform;
     }
-
-    private void Start()
-    {
-        closeBtn.onClick.AddListener(ClosePanel);
-        
-        InitUI();
-    }
-
-    private void InitUI()
-    {
-        int index = 0;
-        
-        foreach (var photo in photos)
-        {
-            LevelData requiredLevel = LevelManager.Instance.levels[index];
-
-            if (requiredLevel != null && requiredLevel.isUnlocked && requiredLevel.isPlayed)
-            {
-                photo.gameObject.SetActive(true);
-                index++;
-            }
-            else
-            {
-                photo.gameObject.SetActive(false);
-                return;
-            }
-        }
-    }
-
+    
     public override void OpenPanel(string name)
     {
         panelName = name;
@@ -60,7 +26,7 @@ public class PictureFramePanel : BasePanel
         hasRemoved = true;
         PanelSlideOut();
     }
-
+    
     // 从上至下的进入动画
     private void PanelSlideIn()
     {

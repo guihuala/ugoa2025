@@ -137,8 +137,9 @@ public static class EVENTMGR
 
     public static event Action OnPlayerDead;
     
-    public static void TriggerPlayerDead()
+    public static void TriggerPlayerDead(string reason)
     {
+        LevelManager.Instance.failureReason = reason;
         OnPlayerDead?.Invoke();
     }
     

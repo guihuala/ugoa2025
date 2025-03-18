@@ -14,6 +14,7 @@ public class LevelData
 public class LevelManager : SingletonPersistent<LevelManager>
 {
     public List<LevelData> levels = new List<LevelData>();
+    public string failureReason;
 
     private void Start()
     {

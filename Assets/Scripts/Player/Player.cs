@@ -252,7 +252,7 @@ public class Player : MonoBehaviour
         if (stayTime >= timeUntilDeath && !isDead)
         {
             isDead = true;
-            EVENTMGR.TriggerPlayerDead();
+            EVENTMGR.TriggerPlayerDead("陷入沼泽！");
         }
 
         EVENTMGR.TriggerChangeSwampProgress(1 - stayTime / timeUntilDeath);

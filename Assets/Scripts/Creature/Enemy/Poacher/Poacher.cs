@@ -206,6 +206,6 @@ public class Poacher : EnemyBase
     private IEnumerator TriggerEventAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        EVENTMGR.TriggerPlayerDead();
+        EVENTMGR.TriggerPlayerDead("被发现了！");
     }
 }

@@ -9,7 +9,7 @@ public class GameFailurePanel : BasePanel
 {
     [SerializeField] private Button replayBtn;
     [SerializeField] private Button mainMenuBtn;
-    [SerializeField] private string failureReason;
+    [SerializeField] private Text titleText;
 
     public override void OpenPanel(string name)
     {
@@ -25,6 +25,8 @@ public class GameFailurePanel : BasePanel
     
     private void Start()
     {
+        titleText.text = LevelManager.Instance.failureReason;
+        
         replayBtn.onClick.AddListener(() =>
         {
             Time.timeScale = 1.0f;
@@ -43,10 +45,5 @@ public class GameFailurePanel : BasePanel
             
             SceneLoader.Instance.LoadScene(SceneName.Title, "回到主界面...");
         });
-    }
-
-    public void InitUI(string reason)
-    {
-        failureReason = reason;
     }
 }

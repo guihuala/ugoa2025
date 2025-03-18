@@ -9,6 +9,8 @@ public class MainMenuSetting : MonoBehaviour
     public Slider bgmVolumeSlider;  // 控制背景音乐音量的滑动条
     public Slider sfxVolumeSlider;  // 控制音效音量的滑动条
 
+    public Button closeBtn;
+
     private void Awake()
     {
         // 初始化音量滑动条的默认值
@@ -18,6 +20,8 @@ public class MainMenuSetting : MonoBehaviour
         // 添加音量滑动条的监听事件
         bgmVolumeSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
         sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
+
+        closeBtn.onClick.AddListener(() => gameObject.SetActive(false));
     }
     
     private void OnBgmVolumeChanged(float value)

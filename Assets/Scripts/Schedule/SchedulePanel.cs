@@ -20,6 +20,10 @@ public class SchedulePanel : SlidePanel
     public Transform mission2Info;
     public Transform mission3Info;
     
+    [Header("游戏次数统计")]
+    public Text playTimeText;
+    public Text failureTimeText;
+    
     private void Start()
     {
         closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
@@ -40,6 +44,9 @@ public class SchedulePanel : SlidePanel
         mission1Info.gameObject.SetActive(false);
         mission2Info.gameObject.SetActive(false);
         mission3Info.gameObject.SetActive(false);
+        
+        playTimeText.text = "出差次数：" + SaveManager.Instance.playTime.ToString();
+        failureTimeText.text = "失败次数：" + SaveManager.Instance.failureTime.ToString();
     }
 
     void OpenInfo(Transform info)

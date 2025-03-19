@@ -190,6 +190,4 @@ public class PathfindingManager : MonoBehaviour
         }
         return closestNode;
     }
-
-
 }

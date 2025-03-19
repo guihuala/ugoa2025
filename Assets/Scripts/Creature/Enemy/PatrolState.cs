@@ -24,6 +24,7 @@ public class PatrolState : IState
         }
         else
         {
+            enemy.stopMoving = false;
             enemy.MoveForward();
         }
     }

@@ -100,8 +100,7 @@ public class EnemyFollower : MonoBehaviour
         {
             if (targetEnemy != null)
             {
-                targetEnemy.PerformFoundPlayer();
-                stopMoving = true;
+                targetEnemy.PerformAttackPlayer();
             }
         }
     }

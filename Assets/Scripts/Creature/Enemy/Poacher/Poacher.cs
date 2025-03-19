@@ -8,10 +8,6 @@ using UnityEngine.UI;
 public class Poacher : EnemyBase
 {
     private int currentPointIndex = 0;
-    private bool isMoving = false;
-    private bool stopMoving = false;
-    private bool isPlayerFound = false; // 防止重复触发发现玩家事件
-    private bool isPlayerDead = false;
 
     [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);
     private Queue<Vector3> pathQueue = new Queue<Vector3>();

@@ -1,3 +1,4 @@
+using System;
 using Spine.Unity;
 using UnityEngine;
 
@@ -6,7 +7,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected StateMachine stateMachine;
     protected SkeletonAnimation skeletonAnimation;
     private string currentAnimation = "";
-
+    
+    protected bool isMoving = false;
+    public bool stopMoving = false;
+    protected bool isPlayerFound = false; // 防止重复触发发现玩家事件
+    protected bool isPlayerDead = false;
     
     [Header("敌人参数设置")]
     public Transform[] patrolPoints;
@@ -31,6 +36,12 @@ public abstract class EnemyBase : MonoBehaviour
     private void Update()
     {
         stateMachine.Update();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if( other.gameObject.GetComponent<Player>() )
+            PerformAttackPlayer();
     }
 
     public bool IsPlayerDetected()

@@ -24,11 +24,11 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     [Header("相机震动配置")]
     [SerializeField] private float duration;
     [SerializeField] private float magnitude;
-    
+
     private Vector3 velocity = Vector3.zero;
     private bool isDragging = false;
     private Vector2 dragOrigin; // 平移时的起始点
-    
+
     private Vector2 rotationDragOrigin;
 
     private float targetZoom; // 目标缩放值
@@ -39,6 +39,9 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     private bool isShaking = false; // 震动标志
     private Vector3 shakeOffset = Vector3.zero; // 震动偏移量
     
+    [Header("是否开启触屏控制")]
+    public bool allowCameraControl = true;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -52,7 +55,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     {
         EVENTMGR.OnPlayerFound -= ShakeCamera;
     }
-    
+
     void Update()
     {
         if (isShaking)
@@ -64,6 +67,10 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
             return;
 
         HandleZoom();
+
+        if (!allowCameraControl)
+            return;
+
         HandleInput();
 
         if (player == null || isDragging || isShaking)
@@ -150,7 +157,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
             HandleZoom();
         }
     }
-    
+
     private void ProcessDrag(Vector2 delta)
     {
         Vector3 worldDrag = new Vector3(-delta.x, 0, -delta.y);
@@ -159,7 +166,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
         Vector3 adjustedDrag = Quaternion.Euler(0, angle_y, 0) * worldDrag;
         transform.position -= adjustedDrag;
     }
-    
+
     void HandleZoom()
     {
         if (IsTouchInput()) // 移动端两指缩放

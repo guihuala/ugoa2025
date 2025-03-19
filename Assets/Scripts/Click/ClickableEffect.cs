@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
+
 public class ClickableEffect : MonoBehaviour, IClickable
 {
     [Header("Click Effect Settings")]
@@ -11,6 +12,7 @@ public class ClickableEffect : MonoBehaviour, IClickable
     private CanvasGroup uiCanvasGroup; // 用于控制 UI 透明度
     
     private bool isUIOpen = false;
+    public bool isActive = true; // 是否可点击
 
     private void Awake()
     {
@@ -26,10 +28,12 @@ public class ClickableEffect : MonoBehaviour, IClickable
             uiCanvasGroup = clickUI.AddComponent<CanvasGroup>();
         }
     }
-    
 
     public void OnClick()
     {
+        // **如果对象未激活，直接返回**
+        if (!isActive) return;
+
         // 如果鼠标指针位于 UI 上，则不执行点击检测
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
@@ -40,14 +44,14 @@ public class ClickableEffect : MonoBehaviour, IClickable
         {
             EVENTMGR.TriggerClickPlayer(false);
             EVENTMGR.TriggerTimeScaleChange(1.0f);
+            HideUIWithAnimation();
             return;
         }
-        
-        // todo:判断一下是不是玩家 如果是才触发以下事件
+
+        // 触发点击事件（仅在激活时）
         EVENTMGR.TriggerClickPlayer(true);
-        // todo 如果不是 则触发其他事件
-        
         EVENTMGR.TriggerTimeScaleChange(timeScaleSlow);
+        ShowUIWithAnimation();
     }
 
     public void ShowUIWithAnimation()
@@ -69,5 +73,16 @@ public class ClickableEffect : MonoBehaviour, IClickable
         clickUI.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack); // 缩放回零
         
         isUIOpen = false;
+    }
+    
+    public void Activate()
+    {
+        isActive = true;
+    }
+    
+    public void Deactivate()
+    {
+        isActive = false;
+        if (isUIOpen) HideUIWithAnimation(); // 关闭UI
     }
 }

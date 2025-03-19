@@ -28,6 +28,15 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
 
     public void Apply()
     {
+        HashSet<string> achievementList = AchievementManager.Instance.pendingAchievements;
+
+        if (achievementList.Count == 0)
+        {
+            // 如果没有收集到的展品，直接触发回调
+            EVENTMGR.TriggerEnterTargetField(target.transform.position);
+            return;
+        }
+
         StartCoroutine(DisplayCollectedAchievements());
     }
 
@@ -47,7 +56,8 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
         int index = 0;
         foreach (string achievement in achievementList)
         {
-            GameObject instance = Instantiate(collectedItemPrefab, player.transform.position, Quaternion.identity, player.transform);
+            GameObject instance = Instantiate(collectedItemPrefab, player.transform.position, Quaternion.identity,
+                player.transform);
 
             // 设置图标
             SpriteRenderer sr = instance.GetComponent<SpriteRenderer>();
@@ -61,12 +71,13 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
             // 计算扇形排列位置
             float angle = thetaStart + index * thetaStep;
             float radians = angle * Mathf.Deg2Rad;
-            Vector3 targetPos = player.transform.position + new Vector3(Mathf.Cos(radians) * displayRadius, 1f, Mathf.Sin(radians) * displayRadius);
-            
+            Vector3 targetPos = player.transform.position + new Vector3(Mathf.Cos(radians) * displayRadius, 1f,
+                Mathf.Sin(radians) * displayRadius);
+
             Sequence seq = DOTween.Sequence();
             seq.Append(instance.transform.DOMove(targetPos, animationDuration).SetEase(Ease.OutBounce));
             seq.Join(instance.transform.DOScale(targetScale, animationDuration).SetEase(Ease.OutBack));
-            seq.Join(instance.transform.DORotate(new Vector3(1,0,1) * angle, animationDuration)); // 旋转使其朝向中心
+            seq.Join(instance.transform.DORotate(new Vector3(1, 0, 1) * angle, animationDuration)); // 旋转使其朝向中心
 
             seq.OnComplete(() =>
             {

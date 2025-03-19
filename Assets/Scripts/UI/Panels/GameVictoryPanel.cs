@@ -31,21 +31,12 @@ public class GameVictoryPanel : BasePanel
             
             SetVictoryImage(index); // 传入当前关卡索引
         }
-
-        DOTween.Sequence()
-            .AppendInterval(0.5f)
-            .AppendCallback(() =>
-            {
-                Time.timeScale = 0;
-            }).SetUpdate(true);
     }
     
     private void Start()
     {
         nextLevelBtn.onClick.AddListener(() =>
         {
-            Time.timeScale = 1.0f;
-            
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
             
             UIManager.Instance.ClosePanel(panelName);
@@ -55,8 +46,6 @@ public class GameVictoryPanel : BasePanel
 
         mainMenuBtn.onClick.AddListener(() =>
         {
-            Time.timeScale = 1.0f;
-            
             UIManager.Instance.ClosePanel(panelName);
 
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();

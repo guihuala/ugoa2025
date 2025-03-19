@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -16,18 +15,86 @@ public class VideoPlayerManager : MonoBehaviour
     [Header("跳过按钮")]
     [SerializeField] private Button skipButton; // 跳过按钮
 
+    private float lastInputTime = 0f; // 记录上次输入时间
+    private float hideDelay = 3f; // 多少秒后隐藏按钮
+    private Vector3 lastMousePosition; // 记录上次鼠标位置
+    private bool isButtonVisible = false; // 按钮当前是否可见
+
     private void Start()
     {
         videoPlayer.clip = videoClip;
-        
+
         videoPlayer.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
         rawImage.texture = videoPlayer.targetTexture;
-        
+
         videoPlayer.Play();
-        
         videoPlayer.loopPointReached += OnVideoEnd;
-        
+
         skipButton.onClick.AddListener(SkipVideo);
+
+        skipButton.gameObject.SetActive(false); // 初始隐藏跳过按钮
+        lastMousePosition = Input.mousePosition; // 记录初始鼠标位置
+    }
+
+    private void Update()
+    {
+        // 检测鼠标移动、键盘输入 或 触摸输入（移动端）
+        if (Input.anyKeyDown || MouseMoved() || TouchDetected())
+        {
+            ShowSkipButton();
+            lastInputTime = Time.time; // 更新上次输入时间
+        }
+
+        // 一定时间无输入后隐藏按钮
+        if (isButtonVisible && Time.time - lastInputTime > hideDelay)
+        {
+            HideSkipButton();
+        }
+    }
+
+    /// <summary>
+    /// 检测鼠标是否移动
+    /// </summary>
+    private bool MouseMoved()
+    {
+        if (Input.mousePosition != lastMousePosition)
+        {
+            lastMousePosition = Input.mousePosition;
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 检测触摸输入（移动端）
+    /// </summary>
+    private bool TouchDetected()
+    {
+        return Input.touchCount > 0; // 只要有手指触摸屏幕，就返回 true
+    }
+
+    /// <summary>
+    /// 显示跳过按钮
+    /// </summary>
+    private void ShowSkipButton()
+    {
+        if (!isButtonVisible)
+        {
+            skipButton.gameObject.SetActive(true);
+            isButtonVisible = true;
+        }
+    }
+
+    /// <summary>
+    /// 隐藏跳过按钮
+    /// </summary>
+    private void HideSkipButton()
+    {
+        if (isButtonVisible)
+        {
+            skipButton.gameObject.SetActive(false);
+            isButtonVisible = false;
+        }
     }
 
     /// <summary>
@@ -35,7 +102,7 @@ public class VideoPlayerManager : MonoBehaviour
     /// </summary>
     private void OnVideoEnd(VideoPlayer vp)
     {
-        SceneLoader.Instance.LoadScene(SceneName.LevelSelection, "...");
+        UIManager.Instance.OpenPanel("CompletePanel");
     }
 
     /// <summary>
@@ -44,7 +111,6 @@ public class VideoPlayerManager : MonoBehaviour
     private void SkipVideo()
     {
         videoPlayer.Stop();
-        
-        SceneLoader.Instance.LoadScene(SceneName.LevelSelection, "...");
+        UIManager.Instance.OpenPanel("CompletePanel");
     }
 }

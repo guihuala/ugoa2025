@@ -25,16 +25,20 @@ public class GameFailurePanel : BasePanel
     
     private void Start()
     {
+        SaveManager.Instance.failureTime++;
+        
         titleText.text = LevelManager.Instance.failureReason;
         
         replayBtn.onClick.AddListener(() =>
         {
             Time.timeScale = 1.0f;
+
+            // 增加一次游戏次数
+            SaveManager.Instance.playTime++;
             
+            // 从当前关卡重新开始
             LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
-            
             UIManager.Instance.ClosePanel(panelName);
-            
             SceneLoader.Instance.LoadScene(levelInfo.currentScene, "重新开始...");
         });
         mainMenuBtn.onClick.AddListener(() =>
@@ -43,7 +47,7 @@ public class GameFailurePanel : BasePanel
             
             UIManager.Instance.ClosePanel(panelName);
             
-            SceneLoader.Instance.LoadScene(SceneName.Title, "回到主界面...");
+            SceneLoader.Instance.LoadScene(SceneName.LevelSelection, "...");
         });
     }
 }

@@ -63,7 +63,7 @@ public class GameVictoryPanel : BasePanel
             SaveManager.Instance.SetDefaultCurrentScene();
             levelInfo.VictorySaveLevel();
             
-            SceneLoader.Instance.LoadScene(SceneName.Title, "回到主界面...");
+            SceneLoader.Instance.LoadScene(SceneName.LevelSelection, "...");
         });
     }
 

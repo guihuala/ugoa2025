@@ -88,7 +88,7 @@ public class PauseSettingsPanel : BasePanel
         confirmationPanel.ShowConfirmation("确定要退出游戏吗？关卡内的进度将不会保存", () =>
         {
             Time.timeScale = 1;
-            SceneLoader.Instance.LoadScene(SceneName.Title, "返回主界面...");
+            SceneLoader.Instance.LoadScene(SceneName.LevelSelection, "...");
 
             // 防止面板还在字典中
             UIManager.Instance.RemovePanel("ConfirmationPanel");

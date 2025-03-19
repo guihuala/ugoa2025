@@ -210,7 +210,7 @@ Material:
     - _AlembicMotionVectors: 0
     - _AlphaClip: 0
     - _AlphaClipping: 0
-    - _AlphaCutoff: 0.5
+    - _AlphaCutoff: 0.513
     - _Anisotropy: 0
     - _Artistic: 0
     - _ArtisticFrequency: 1
@@ -238,15 +238,15 @@ Material:
     - _Diffuse: 0
     - _DiffuseMode: 1
     - _DiffuseSmoothness: 0.356
-    - _DiffuseThresholdOffset: 0.511
+    - _DiffuseThresholdOffset: 0.374
     - _Dissolve: 0
     - _DissolveAmount: 0
-    - _DissolveBorderSize: 0.689
+    - _DissolveBorderSize: 0.702
     - _DissolveMapScale: 6.26
     - _DissolveMode: 0
     - _DissolveRampSize: 0.25
     - _DrawnClampMax: 1
-    - _DrawnClampMin: 0.198
+    - _DrawnClampMin: 0.251
     - _DrawnMapScale: 4.99
     - _DstBlend: 0
     - _EnvironmentReflections: 2
@@ -254,7 +254,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GoochRampIntensity: 0.554
+    - _GoochRampIntensity: 0.471
     - _HatchingMapScale: 6.78
     - _HeightMapScale: 0.5
     - _Hue: 0
@@ -262,7 +262,7 @@ Material:
     - _Initialized: 1
     - _InputTab: 1
     - _Iridescence: 0
-    - _IridescenceSize: 2.83
+    - _IridescenceSize: 2.5
     - _IridescenceSmoothness: 1
     - _IridescenceThresholdOffset: 0.25
     - _Light: 3
@@ -271,12 +271,12 @@ Material:
     - _LightCuts: 3
     - _LightCutsScale: 0.5
     - _LightStyle: 0
-    - _LightThreshold: 0.33
+    - _LightThreshold: 0.36
     - _LightTransmission: 0
     - _LightTransmissionDistortion: 0.105
     - _LightTransmissionIntensity: 1
-    - _LightTransmissionSmoothness: 0.485
-    - _LightTransmissionThresholdOffset: 0.291
+    - _LightTransmissionSmoothness: 0.475
+    - _LightTransmissionThresholdOffset: 0.269
     - _Metallic: 0
     - _NormalMapIntensity: 0.59
     - _NormalMapScale: 1
@@ -302,8 +302,8 @@ Material:
     - _RimSize: 0.65
     - _RimSmoothness: 0
     - _RimStyle: 0
-    - _RimThresholdOffset: 0.426
-    - _Roughness: 0.551
+    - _RimThresholdOffset: 0.365
+    - _Roughness: 0.489
     - _SSSDistortion: 0.25
     - _SSSSmoothness: 0
     - _Saturation: 1
@@ -314,7 +314,7 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularIntensity: 1.5
     - _SpecularMode: 1
-    - _SpecularSmoothness: 0.581
+    - _SpecularSmoothness: 0.431
     - _SpecularThresholdOffset: 1
     - _SrcBlend: 1
     - _Stencil: 1
@@ -339,13 +339,13 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.34766987, g: 0.5471698, b: 0.28648984, a: 1}
+    - _AlbedoColor: {r: 0.31895468, g: 0.5943396, b: 0.23268954, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.34766984, g: 0.5471698, b: 0.2864898, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 0.5}
-    - _EmissionColor: {r: 0.08085617, g: 0.09708314, b: 0.21698111, a: 1}
+    - _EmissionColor: {r: 0.08962265, g: 0.3584906, b: 0.27492353, a: 1}
     - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _GoochDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0.21176471}

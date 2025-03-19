@@ -20,7 +20,7 @@ public class PatrolState : IState
         // 如果玩家在侦查范围内
         if (enemy.IsPlayerDetected())
         {
-            enemy.ChangeState(new FailState(enemy));
+            enemy.ChangeState(new FoundState(enemy));
         }
         else
         {

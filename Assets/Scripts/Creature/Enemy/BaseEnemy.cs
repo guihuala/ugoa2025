@@ -78,7 +78,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected abstract void InitializeStates();
     public abstract void MoveForward();
+    public abstract void UpdateBar(float value);
     public abstract void PerformFoundPlayer();
+    public abstract void PerformAttackPlayer();
     
     public void PlayAnimation(string animName, bool loop = true)
     {

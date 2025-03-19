@@ -1252,7 +1252,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
       propertyPath: angle_x
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
       propertyPath: angle_y
@@ -3413,7 +3413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046970831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.69, z: -0.45}
+  m_LocalPosition: {x: 0, y: 1.32, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4828,6 +4828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels: []
+  failureReason: 
 --- !u!114 &1480500669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4862,6 +4863,8 @@ MonoBehaviour:
   scensName: 1
   gameTime: 0
   isComplete: 0
+  playTime: 0
+  failureTime: 0
   ID: 0
 --- !u!114 &1480500671
 MonoBehaviour:

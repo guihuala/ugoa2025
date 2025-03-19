@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using Spine.Unity;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Poacher : EnemyBase
@@ -11,10 +11,13 @@ public class Poacher : EnemyBase
     private bool isMoving = false;
     private bool stopMoving = false;
     private bool isPlayerFound = false; // 防止重复触发发现玩家事件
+    private bool isPlayerDead = false;
 
     [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.5f, 0);
     private Queue<Vector3> pathQueue = new Queue<Vector3>();
     private PathfindingManager pathfindingManager;
+
+    #region 各种配置
 
     [Header("小弟配置")]
     [SerializeField] private EnemyFollower followerPrefab;
@@ -29,8 +32,12 @@ public class Poacher : EnemyBase
 
     [Header("发现示意图标")] 
     [SerializeField] private GameObject foundIcon;
-    private Vector3 iconOriginalScale;
+    [SerializeField] private Transform iconCanvas;
+    [SerializeField] private Image foundBar;
+    private Vector3 iconOriginalScale;    
 
+    #endregion
+    
     protected override void InitializeStates()
     {
         stateMachine.ChangeState(new PatrolState(this));
@@ -39,6 +46,8 @@ public class Poacher : EnemyBase
     protected override void Start()
     {
         base.Start();
+        
+        iconCanvas.gameObject.SetActive(false);
         
         pathfindingManager = FindObjectOfType<PathfindingManager>();
         if (pathfindingManager == null)
@@ -174,6 +183,12 @@ public class Poacher : EnemyBase
         }
     }
 
+    public override void UpdateBar(float value)
+    {
+        iconCanvas.gameObject.SetActive(value > 0);
+        foundBar.fillAmount = value;
+    }
+    
     public override void PerformFoundPlayer()
     {
         // **防止重复触发**
@@ -181,7 +196,16 @@ public class Poacher : EnemyBase
         isPlayerFound = true;
 
         stopMoving = true;
+    }
 
+    public override void PerformAttackPlayer()
+    {
+        if (isPlayerDead) return;
+        isPlayerDead = true;
+
+        stopMoving = true;
+        
+        // 表示被发现（即失败）的icon
         if (foundIcon != null)
         {
             foundIcon.SetActive(true);

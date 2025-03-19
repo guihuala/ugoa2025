@@ -9,6 +9,7 @@ public class EnemyFollower : MonoBehaviour
 {
     private Queue<Vector3> pathQueue = new Queue<Vector3>();
     private bool isMoving = false;
+    private bool stopMoving = false;
 
     private float followDelay;
     
@@ -35,7 +36,7 @@ public class EnemyFollower : MonoBehaviour
 
         followDelay = delay;  // 设置小弟的跟随延迟
 
-        if (!isMoving)
+        if (!isMoving && !stopMoving)
         {
             StartCoroutine(MoveAlongPath());
         }
@@ -97,8 +98,11 @@ public class EnemyFollower : MonoBehaviour
     {
         if (other.GetComponent<Player>())
         {
-            if(targetEnemy !=null)
+            if (targetEnemy != null)
+            {
                 targetEnemy.PerformFoundPlayer();
+                stopMoving = true;
+            }
         }
     }
 }

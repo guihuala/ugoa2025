@@ -11984,7 +11984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1409983443839868731, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.655
+      value: 3.24
       objectReference: {fileID: 0}
     - target: {fileID: 1409983443839868731, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29065,6 +29065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels: []
+  failureReason: 
 --- !u!114 &1319857547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29099,6 +29100,8 @@ MonoBehaviour:
   scensName: 1
   gameTime: 0
   isComplete: 0
+  playTime: 0
+  failureTime: 0
   ID: 0
 --- !u!114 &1319857549
 MonoBehaviour:

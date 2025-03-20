@@ -1,21 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class BulletLifecycle : MonoBehaviour
 {
     [Tooltip("子弹在场景中激活的最长时间（秒）")]
     public float lifeTime = 5f;  // 子弹存在时间
+    public float fadeOutDuration = 0.5f;  // 淡出动画时长
+    public GameObject hitEffectPrefab;
 
     private float timer = 0f;
     private bool hasReturned = false;
     private BulletPool bulletPool;
+    private Transform bulletTransform;
 
-    // 当子弹被启用时，重置计时器和状态
+    private void Awake()
+    {
+        bulletTransform = transform;
+    }
+
     private void OnEnable()
     {
         timer = 0f;
         hasReturned = false;
+        bulletTransform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+
         if (bulletPool == null)
         {
             bulletPool = FindObjectOfType<BulletPool>();
@@ -25,31 +34,49 @@ public class BulletLifecycle : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        // 超过设定时间后归还子弹
         if (timer > lifeTime)
         {
-            ReturnToPool();
+            StartFadeOut();
         }
     }
 
-    // 当子弹发生碰撞时归还子弹到对象池
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        ReturnToPool();
+        if (other.gameObject.GetComponent<EnemyBase>())
+        {
+            Debug.Log("Knock on an enemy");
+            SpawnHitEffect(); // 在原地生成粒子特效
+            StartFadeOut();
+        }
     }
 
-    // 将子弹归还到对象池或直接禁用
-    private void ReturnToPool()
+    // 在子弹击中敌人时生成粒子特效
+    private void SpawnHitEffect()
+    {
+        if (hitEffectPrefab != null)
+        {
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    // 开始消失动画
+    private void StartFadeOut()
     {
         if (hasReturned) return;
         hasReturned = true;
+        
+        bulletTransform.DOScale(Vector3.zero, fadeOutDuration).SetEase(Ease.InBack).OnComplete(ReturnToPool);
+    }
+
+    // 归还子弹到对象池
+    private void ReturnToPool()
+    {
         if (bulletPool != null)
         {
             bulletPool.ReturnBullet(gameObject);
         }
         else
         {
-            // 如果找不到对象池，则直接禁用子弹
             gameObject.SetActive(false);
         }
     }

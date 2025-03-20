@@ -8,23 +8,24 @@ public class SlingshotManager : MonoBehaviour
     public LineRenderer lineRenderer;         // 用于显示拖拽的线
 
     public LineRenderer trajectoryLineRenderer; // 用于显示子弹轨迹的线
-    public int trajectoryPoints = 30;           // 轨迹线点数
-    public float timeStep = 0.1f;               // 每个轨迹点间的时间间隔
+    public int trajectoryPoints = 10;           // 轨迹线点数
+    public float timeStep = 0.5f;               // 每个轨迹点间的时间间隔
 
     public Transform slingStart;             // 弹弓的起始位置
     
-    public BulletPool bulletPool;            
+    public BulletPool bulletPool;
 
+    private bool isUsingSlingshot = false;
+    
     private Vector3 slingStartPosition;      // 弹弓初始位置
     private Vector3 dragStartPosition;       // 鼠标按下位置
     private bool isDragging = false;         // 是否在拖拽
 
     private void Start()
     {
-        slingStartPosition = slingStart.position;
         if (lineRenderer != null)
         {
-            lineRenderer.positionCount = 2; // 两个点：起点和当前拖拽点
+            lineRenderer.positionCount = 2;
         }
         if (trajectoryLineRenderer != null)
         {
@@ -34,6 +35,12 @@ public class SlingshotManager : MonoBehaviour
 
     void Update()
     {
+        if (!isUsingSlingshot)
+        {
+            slingStartPosition = slingStart.position;
+            return;
+        }
+
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
         
@@ -60,6 +67,11 @@ public class SlingshotManager : MonoBehaviour
             DragSlingshot();
             DrawTrajectory();
         }
+    }
+
+    public void SetIsUsingSlingshot(bool isUsingSlingshot)
+    {
+        this.isUsingSlingshot = isUsingSlingshot;
     }
     
     Vector3 GetMouseWorldPosition()
@@ -103,7 +115,7 @@ public class SlingshotManager : MonoBehaviour
         // 使用对象池获取子弹
         GameObject bullet = bulletPool.GetBullet(slingStartPosition, Quaternion.identity);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.useGravity = false;  // 禁用重力影响（根据需要设置）
+        rb.useGravity = false;
         rb.velocity = force;
 
         // 重置弹弓位置

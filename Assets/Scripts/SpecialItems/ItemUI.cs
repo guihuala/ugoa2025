@@ -87,7 +87,7 @@ public class ItemUI : MonoBehaviour
         switch (item.effectType)
         {
             case ItemEffectType.slingshot:
-                Debug.Log("使用弹弓。");
+                player.UseSlingshot();
                 break;
             case ItemEffectType.energyMedicine:
                 player.UseEnergyMedicine();

@@ -10,16 +10,23 @@ public class PlayerItemEffect : MonoBehaviour
 {
     [SerializeField] private Transform intervalDecreaseFx;
     
+    private SlingshotManager slingshotManager;
+    
     private StepManager stepManager;
 
     private float originInterval;
+    
+    private bool isSlingshotActive;
 
     private void Start()
     {
         intervalDecreaseFx.gameObject.SetActive(false);
         
+        slingshotManager = FindObjectOfType<SlingshotManager>();
         stepManager = FindObjectOfType<StepManager>();
     }
+
+    #region 能量药剂
 
     public void UseEnergyMedicine()
     {
@@ -39,5 +46,41 @@ public class PlayerItemEffect : MonoBehaviour
         
         intervalDecreaseFx.gameObject.SetActive(false);
         stepManager.SetStepIncreaseInterval(originInterval);
+    }    
+
+    #endregion
+
+    #region 弹弓
+
+    public void UseSlingshot()
+    {
+        if (isSlingshotActive)
+        {
+            StopUsingSlingshot();
+        }
+        else
+        {
+            StartUsingSlingshot();
+        }
     }
+    
+    private void StartUsingSlingshot()
+    {
+        FindObjectOfType<PerspectiveCameraController>().allowCameraControl = false;
+        FindObjectOfType<ClickableEffect>().Deactivate();
+        
+        slingshotManager.SetIsUsingSlingshot(true);
+        isSlingshotActive = true;
+    }
+
+    private void StopUsingSlingshot()
+    {
+        FindObjectOfType<PerspectiveCameraController>().allowCameraControl = true;
+        FindObjectOfType<ClickableEffect>().Activate();
+        
+        slingshotManager.SetIsUsingSlingshot(false);
+        isSlingshotActive = false;
+    }
+
+    #endregion
 }

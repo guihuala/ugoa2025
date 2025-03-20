@@ -16,7 +16,6 @@ public class BulletLifecycle : MonoBehaviour
     {
         timer = 0f;
         hasReturned = false;
-        // 如果对象池引用为空，则查找场景中的 BulletPool 实例
         if (bulletPool == null)
         {
             bulletPool = FindObjectOfType<BulletPool>();

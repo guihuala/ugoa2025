@@ -9,11 +9,15 @@ public class TestSlingshotBtn : MonoBehaviour
     private Button btn;
     private Text btnText;
     private bool isUsing = false;
+    
+    private PlayerItemEffect playerEffect;
 
     private void Start()
     {
         btn = GetComponent<Button>();
         btnText = btn.GetComponentInChildren<Text>();
+        
+        playerEffect = FindObjectOfType<PlayerItemEffect>();
         
         btn.onClick.AddListener(ToggleBtn);
         
@@ -22,12 +26,7 @@ public class TestSlingshotBtn : MonoBehaviour
 
     void ToggleBtn()
     {
-        isUsing = !isUsing;
-        
-        FindObjectOfType<PerspectiveCameraController>().allowCameraControl = !FindObjectOfType<PerspectiveCameraController>().allowCameraControl;
-        FindObjectOfType<ClickableEffect>().isActive = !FindObjectOfType<ClickableEffect>().isActive;
-        
-        UpdateButtonText();
+        playerEffect.UseSlingshot();
     }
     
     void UpdateButtonText()

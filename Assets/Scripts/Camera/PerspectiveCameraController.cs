@@ -67,10 +67,6 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
             return;
 
         HandleZoom();
-
-        if (!allowCameraControl)
-            return;
-
         HandleInput();
 
         if (player == null || isDragging || isShaking)
@@ -102,6 +98,9 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
 
     private void HandleInput()
     {
+        if (!allowCameraControl)
+            return;
+        
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 

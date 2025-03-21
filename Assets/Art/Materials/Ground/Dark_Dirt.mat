@@ -32,7 +32,7 @@ Material:
   m_CustomRenderQueue: 1997
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _DetailMap _MetallicMap _RoughnessMap
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -204,7 +204,7 @@ Material:
     - _AlembicMotionVectors: 0
     - _AlphaClip: 0
     - _AlphaClipping: 0
-    - _AlphaCutoff: 0.318
+    - _AlphaCutoff: 0.463
     - _Anisotropy: 0
     - _Artistic: 0
     - _ArtisticFrequency: 1
@@ -231,8 +231,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _Diffuse: 0
     - _DiffuseMode: 1
-    - _DiffuseSmoothness: 0.356
-    - _DiffuseThresholdOffset: 0.511
+    - _DiffuseSmoothness: 0.194
+    - _DiffuseThresholdOffset: 0.727
     - _Dissolve: 0
     - _DissolveAmount: 0
     - _DissolveBorderSize: 0.689
@@ -240,7 +240,7 @@ Material:
     - _DissolveMode: 0
     - _DissolveRampSize: 0.25
     - _DrawnClampMax: 1
-    - _DrawnClampMin: 0.198
+    - _DrawnClampMin: 0.079
     - _DrawnMapScale: 4.99
     - _DstBlend: 0
     - _EnvironmentReflections: 2
@@ -248,7 +248,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GoochRampIntensity: 0.554
+    - _GoochRampIntensity: 0.594
     - _HatchingMapScale: 6.78
     - _HeightMapScale: 0.5
     - _Hue: 0
@@ -256,7 +256,7 @@ Material:
     - _Initialized: 1
     - _InputTab: 1
     - _Iridescence: 0
-    - _IridescenceSize: 2.83
+    - _IridescenceSize: 2.57
     - _IridescenceSmoothness: 1
     - _IridescenceThresholdOffset: 0.25
     - _Light: 3
@@ -269,7 +269,7 @@ Material:
     - _LightTransmission: 0
     - _LightTransmissionDistortion: 0.105
     - _LightTransmissionIntensity: 1
-    - _LightTransmissionSmoothness: 0.485
+    - _LightTransmissionSmoothness: 0.582
     - _LightTransmissionThresholdOffset: 0.291
     - _Metallic: 0
     - _NormalMapIntensity: 0.59
@@ -293,7 +293,7 @@ Material:
     - _RenderFace: 2
     - _RenderPriority: 3
     - _Rim: 0
-    - _RimSize: 0.65
+    - _RimSize: 0.23
     - _RimSmoothness: 0
     - _RimStyle: 0
     - _RimThresholdOffset: 0.426
@@ -308,7 +308,7 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularIntensity: 1.5
     - _SpecularMode: 1
-    - _SpecularSmoothness: 0.581
+    - _SpecularSmoothness: 0.449
     - _SpecularThresholdOffset: 1
     - _SrcBlend: 1
     - _Stencil: 1
@@ -333,13 +333,13 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.20754719, g: 0.08162381, b: 0.06363475, a: 1}
+    - _AlbedoColor: {r: 0.3301887, g: 0.24141155, b: 0.2525087, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.34766984, g: 0.5471698, b: 0.2864898, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 0.5}
-    - _EmissionColor: {r: 0.08085617, g: 0.09708314, b: 0.21698111, a: 1}
+    - _EmissionColor: {r: 0.014017446, g: 0.023795156, b: 0.084905684, a: 1}
     - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _GoochDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0}
@@ -352,6 +352,6 @@ Material:
     - _RimDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _SSSColor: {r: 1, g: 0.65, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+    - _SpecularColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []

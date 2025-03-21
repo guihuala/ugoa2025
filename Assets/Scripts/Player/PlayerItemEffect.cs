@@ -24,6 +24,13 @@ public class PlayerItemEffect : MonoBehaviour
         
         slingshotManager = FindObjectOfType<SlingshotManager>();
         stepManager = FindObjectOfType<StepManager>();
+
+        EVENTMGR.OnUsingSlingshot += UseSlingshot;
+    }
+
+    private void OnDestroy()
+    {
+        EVENTMGR.OnUsingSlingshot -= UseSlingshot;
     }
 
     #region 能量药剂

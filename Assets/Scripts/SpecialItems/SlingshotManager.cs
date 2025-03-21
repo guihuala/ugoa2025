@@ -53,6 +53,8 @@ public class SlingshotManager : MonoBehaviour
         {
             if (isDragging)
             {
+                EVENTMGR.TriggerUsingSlingshot();
+                
                 LaunchSlingshot();
                 isDragging = false;
                 if (trajectoryLineRenderer != null)

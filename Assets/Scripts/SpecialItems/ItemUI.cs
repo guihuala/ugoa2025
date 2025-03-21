@@ -87,7 +87,7 @@ public class ItemUI : MonoBehaviour
         switch (item.effectType)
         {
             case ItemEffectType.slingshot:
-                player.UseSlingshot();
+               EVENTMGR.TriggerUsingSlingshot();
                 break;
             case ItemEffectType.energyMedicine:
                 player.UseEnergyMedicine();

@@ -15,13 +15,7 @@ public class ClickManager : MonoBehaviour
     private PerspectiveCameraController _perspectiveCameraController;
 
     private CameraController _cameraController;  // 通用相机控制器
-
-    [Header("Zoom Settings")]
-    public float orthographicZoomIn = 2.5f; // 正交相机的缩放值
-    public float orthographicZoomOut = 3.5f; // 正交相机的默认缩放值
-    public float perspectiveZoomIn = 20f; // 透视相机的缩放值
-    public float perspectiveZoomOut = 30f; // 透视相机的默认缩放值
-
+    
     private void Awake()
     {
         // 根据是否使用正交相机，选择相机控制器
@@ -103,20 +97,9 @@ public class ClickManager : MonoBehaviour
             EVENTMGR.TriggerClickPlayer(false);
             EVENTMGR.TriggerTimeScaleChange(1.0f);
             currentClickableEffect = null;
-
-            // 恢复相机缩放
-            if (useOrthographicCamera)
-            {
-                _cameraController.SetCameraZoom(orthographicZoomOut); // 正交相机恢复默认缩放
-            }
-            else
-            {
-                _cameraController.SetCameraZoom(perspectiveZoomOut); // 透视相机恢复默认缩放
-            }
         }
     }
-
-    // 只是为了关闭UI？
+    
     private void PlayerDead()
     {
         isActive = false;
@@ -135,31 +118,11 @@ public class ClickManager : MonoBehaviour
         if (isActivity)
         {
             currentClickableEffect.ShowUIWithAnimation();
-            
-            // 控制相机缩放和角度
-            if (useOrthographicCamera)
-            {
-                _cameraController.SetCameraZoom(orthographicZoomIn);
-            }
-            else
-            {
-                _cameraController.SetCameraZoom(perspectiveZoomIn);
-            }
         }
         else
         {
             currentClickableEffect.HideUIWithAnimation();
             currentClickableEffect = null;
-
-            // 恢复相机缩放和角度
-            if (useOrthographicCamera)
-            {
-                _cameraController.SetCameraZoom(orthographicZoomOut);
-            }
-            else
-            {
-                _cameraController.SetCameraZoom(perspectiveZoomOut);
-            }
         }
     }
 

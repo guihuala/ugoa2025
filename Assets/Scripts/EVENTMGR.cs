@@ -151,4 +151,15 @@ public static class EVENTMGR
     }
 
     #endregion
+
+    #region 使用弹弓
+
+    public static event Action OnUsingSlingshot;
+    
+    public static void TriggerUsingSlingshot()
+    {
+        OnUsingSlingshot?.Invoke();
+    }
+
+    #endregion
 }

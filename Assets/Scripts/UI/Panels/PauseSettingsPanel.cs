@@ -51,12 +51,7 @@ public class PauseSettingsPanel : BasePanel
     {
         base.OpenPanel(name); // 调用基类的打开面板方法
         
-        DOTween.Sequence()
-            .AppendInterval(0.3f)
-            .AppendCallback(() =>
-            {
-                Time.timeScale = 0; // 暂停游戏
-            }).SetUpdate(true);
+        Time.timeScale = 0; // 暂停游戏
     }
 
     public override void ClosePanel()

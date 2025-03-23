@@ -15,6 +15,7 @@ public class ItemData : ScriptableObject
     public string itemName; // 道具名称
     public Sprite icon; // 图标
     public float cooldownTime; // 冷却时间
+    public float effectDuration; // 生效时长
     
     public string requiredLevelName; // 该道具解锁所需的关卡名称
     public bool isUnlocked; // 是否解锁

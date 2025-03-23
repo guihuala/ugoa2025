@@ -592,6 +592,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6146530445014753986, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
     - {fileID: 2851119284707285132, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+    - {fileID: 6157458927397827046, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
@@ -3071,10 +3072,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOrthographicCamera: 0
-  orthographicZoomIn: 2.5
-  orthographicZoomOut: 3.5
-  perspectiveZoomIn: 20
-  perspectiveZoomOut: 30
 --- !u!4 &946536846
 Transform:
   m_ObjectHideFlags: 0

@@ -8,11 +8,13 @@ public abstract class EnemyBase : MonoBehaviour
     protected SkeletonAnimation skeletonAnimation;
     private string currentAnimation = "";
     
+    [Header("敌人的状态")]
     protected bool isMoving = false;
     public bool stopMoving = false;
     protected bool isPlayerFound = false; // 防止重复触发发现玩家事件
     protected bool isPlayerDead = false;
-    
+    protected bool isStunned = false;
+
     [Header("敌人参数设置")]
     public Transform[] patrolPoints;
     public float moveSpeed = 2f;
@@ -22,7 +24,6 @@ public abstract class EnemyBase : MonoBehaviour
     [Header("敌人的检查点配置")] public Transform CheckPoint;
 
     private Transform player;
-    
     
     protected virtual void Start()
     {
@@ -40,12 +41,20 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if( other.gameObject.GetComponent<Player>() )
+        if (isStunned)
+            return;
+        
+        if (other.gameObject.GetComponent<Player>())
             PerformAttackPlayer();
     }
-
+    
     public bool IsPlayerDetected()
     {
+        if (isStunned)
+        {
+            return false;
+        }
+
         if (CheckPoint == null || player == null) return false;
 
         Vector3 directionToPlayer = player.position - CheckPoint.position;
@@ -82,6 +91,20 @@ public abstract class EnemyBase : MonoBehaviour
         return false; // 超出视野范围
     }
     
+    // 触发眩晕状态
+    public void Stun()
+    {
+        // 切换到眩晕状态
+        isStunned = true;
+        ChangeState(new StunState(this)); // 假设你有一个 StunState 状态
+    }
+
+    // 恢复敌人的正常状态
+    public void RecoverFromStun()
+    {
+        isStunned = false; // 恢复正常状态
+    }
+
     public void ChangeState(IState newState)
     {
         stateMachine.ChangeState(newState);
@@ -104,13 +127,7 @@ public abstract class EnemyBase : MonoBehaviour
             skeletonAnimation.state.SetAnimation(0, animName, loop);
         }
     }
-
-    /// <summary>
-    /// 表情
-    /// </summary>
-    /// <param name="animName"></param>
-    /// <param name="loop"></param>
-    /// <param name="mixDuration"></param>
+    
     public void PlayOverlayAnimation(int trackIndex,string animName, bool loop = false, float mixDuration = 0.1f)
     {
         if (skeletonAnimation != null && skeletonAnimation.state != null)
@@ -124,7 +141,6 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void ClearTrack()
     {
         skeletonAnimation.state.ClearTrack(0);
-        // skeletonAnimation.state.ClearTrack(1);
         skeletonAnimation.state.ClearTrack(2);
     }
 }

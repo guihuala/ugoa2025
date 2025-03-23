@@ -42,11 +42,15 @@ public class BulletLifecycle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<EnemyBase>())
+        EnemyBase enemyBase = other.gameObject.GetComponent<EnemyBase>();
+        
+        if (enemyBase != null)
         {
-            Debug.Log("Knock on an enemy");
             SpawnHitEffect(); // 在原地生成粒子特效
             StartFadeOut();
+            
+            // 令敌人眩晕
+            enemyBase.Stun();
         }
     }
 

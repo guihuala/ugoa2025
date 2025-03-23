@@ -9,7 +9,10 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    
     [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.9f, 0); // 偏移量
+    public Vector3 PositionOffset => positionOffset;
+    
     [SerializeField] private LayerMask pathLayerMask;
 
     private Player player;

@@ -7,7 +7,8 @@ public class PathfindingManager : MonoBehaviour
     [Header("一些配置")]
     public float highlightRadius = 5f;
     public float updateInterval = 1f;
-    [SerializeField][Tooltip("初始偏移")]private Vector3 startPositionOffset = new Vector3(0, 1.5f, 0);
+    [SerializeField][Tooltip("初始偏移")] private Vector3 startPositionOffset = new Vector3(0, 1.5f, 0);
+    [SerializeField][Tooltip("是否启用路径缓存")] private bool usePathCache = true;  // 是否启用路径缓存
     
     [Header("节点")]
     public List<Transform> mapNodes = new List<Transform>();
@@ -45,8 +46,6 @@ public class PathfindingManager : MonoBehaviour
 
         EVENTMGR.ChangeSteps += UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer += OnClickPlayer;
-
-
         EVENTMGR.OnPlayerDead += ClearAllHighlights;
     }
 
@@ -54,8 +53,6 @@ public class PathfindingManager : MonoBehaviour
     {
         EVENTMGR.ChangeSteps -= UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer -= OnClickPlayer;
-
-        
         EVENTMGR.OnPlayerDead -= ClearAllHighlights;
 
         if (highlightCoroutine != null)
@@ -127,12 +124,21 @@ public class PathfindingManager : MonoBehaviour
             NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
             if (nodeMarker == null) continue;
 
-            // **使用缓存路径，避免重复计算**
+            // **根据配置是否启用缓存路径**
             List<Transform> path;
-            if (!pathCache.TryGetValue((currentNode, node), out path))
+            if (usePathCache && pathCache.TryGetValue((currentNode, node), out path))
             {
+                // 如果启用缓存且缓存中有路径，则使用缓存路径
+            }
+            else
+            {
+                // 如果缓存未启用，或没有缓存路径，则重新计算路径
                 path = AStarPathfinding.FindPath(currentNode, node, mapNodes);
-                pathCache[(currentNode, node)] = path;
+
+                if (usePathCache && path != null)
+                {
+                    pathCache[(currentNode, node)] = path;  // 启用缓存时存储路径
+                }
             }
 
             if (path != null && path.Count <= highlightRadius)

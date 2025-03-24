@@ -6,6 +6,8 @@ public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
 {
     public Vector3[] movePoints;
     public float moveSpeed = 1f;  // 物体移动的速度
+
+    private bool isActive = false;
     
     private Transform playerTransform;  // 玩家对象的位置
     private PlayerMovement playerMovement;
@@ -16,17 +18,20 @@ public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
     {
         playerTransform = FindObjectOfType<Player>().transform;
         playerMovement = FindObjectOfType<PlayerMovement>();
-        
-        // 初始化路径
-        if (movePoints.Length > 0)
-        {
-            StartCoroutine(MoveAlongPath());
-        }
     }
-    
+
     public void Apply()
     {
         isPlayerFollowing = true; // 当玩家站在物体上时，允许玩家跟随
+
+        if (isActive == false)
+        {
+            if (movePoints.Length > 0)
+            {
+                StartCoroutine(MoveAlongPath());
+                isActive = true;
+            }
+        }
     }
 
     public void Exit()
@@ -45,7 +50,7 @@ public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
             currentPointIndex = (currentPointIndex + 1) % movePoints.Length;
 
             // 控制移动间隔
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -71,7 +76,7 @@ public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
                 playerTransform.position = Vector3.Lerp(startPlayerPosition, target + playerMovement.PositionOffset, easedT);
             }
 
-            yield return null; // 等待下一帧
+            yield return 1f; // 等待下一帧
         }
 
         // 确保物体和玩家精确到达目标位置

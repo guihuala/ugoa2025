@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2677729752413226512}
   - component: {fileID: 8559738542603477902}
   m_Layer: 5
-  m_Name: back to menu
+  m_Name: restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9000\u51FA\u6E38\u620F"
+  m_Text: "\u9000\u51FA\u5173\u5361"
 --- !u!1 &2873332365456303444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u56DE\u5230\u83DC\u5355"
+  m_Text: "\u91CD\u65B0\u5F00\u59CB"
 --- !u!1 &8364422375835711435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1807,7 @@ MonoBehaviour:
   bgmVolumeButton: {fileID: 9124054811807674264}
   sfxVolumeButton: {fileID: 2560175615448487390}
   resumeButton: {fileID: 5495802944036547579}
-  menuButton: {fileID: 2677729752413226512}
+  restartButton: {fileID: 2677729752413226512}
   exitButton: {fileID: 7204095304740962687}
 --- !u!1 &9148478769061823411
 GameObject:

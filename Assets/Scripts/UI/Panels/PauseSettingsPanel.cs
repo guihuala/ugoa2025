@@ -16,7 +16,7 @@ public class PauseSettingsPanel : BasePanel
     [SerializeField] private Button bgmVolumeButton; // 显示/隐藏BGM音量滑动条按钮
     [SerializeField] private Button sfxVolumeButton; // 显示/隐藏SFX音量滑动条按钮
     [SerializeField] private Button resumeButton; // 恢复游戏按钮
-    [SerializeField] private Button menuButton; // 返回菜单按钮
+    [SerializeField] private Button restartButton; // 返回菜单按钮
     [SerializeField] private Button exitButton; // 退出游戏按钮
 
     protected override void Awake()
@@ -33,7 +33,7 @@ public class PauseSettingsPanel : BasePanel
 
         // 按钮事件
         resumeButton.onClick.AddListener(OnResumeButtonClicked);
-        menuButton.onClick.AddListener(OnMenuButtonClicked);
+        restartButton.onClick.AddListener(OnMenuButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
 
         // 音量按钮事件
@@ -78,6 +78,16 @@ public class PauseSettingsPanel : BasePanel
 
     private void OnMenuButtonClicked()
     {
+        Time.timeScale = 1.0f;
+            
+        // 从当前关卡重新开始
+        LevelInfo levelInfo = FindObjectOfType<LevelInfo>();
+        UIManager.Instance.ClosePanel(panelName);
+        SceneLoader.Instance.LoadScene(levelInfo.currentScene, "重新开始...");
+    }
+
+    private void OnExitButtonClicked()
+    {
         ConfirmationPanel confirmationPanel = UIManager.Instance.OpenPanel("ConfirmationPanel") as ConfirmationPanel;
 
         confirmationPanel.ShowConfirmation("确定要退出游戏吗？关卡内的进度将不会保存", () =>
@@ -89,11 +99,6 @@ public class PauseSettingsPanel : BasePanel
             UIManager.Instance.RemovePanel("ConfirmationPanel");
             UIManager.Instance.RemovePanel("SettingPanel");
         });
-    }
-
-    private void OnExitButtonClicked()
-    {
-        Application.Quit();
     }
 
     // 显示/隐藏BGM音量滑动条

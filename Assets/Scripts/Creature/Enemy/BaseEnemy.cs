@@ -99,12 +99,6 @@ public abstract class EnemyBase : MonoBehaviour
         ChangeState(new StunState(this)); // 假设你有一个 StunState 状态
     }
 
-    // 恢复敌人的正常状态
-    public void RecoverFromStun()
-    {
-        isStunned = false; // 恢复正常状态
-    }
-
     public void ChangeState(IState newState)
     {
         stateMachine.ChangeState(newState);

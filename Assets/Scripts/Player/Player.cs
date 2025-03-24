@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
     private int mouseTrack = 3;   // 嘴
     
     // 用于射线检测特殊物体
-    private Dictionary<int, Collider> currentSpecialItems = new Dictionary<int, Collider>();
+    private Collider currentSpecialItem;
 
     [Header("指示箭头")]
     [SerializeField] private GameObject triangle;
@@ -271,59 +271,57 @@ public class Player : MonoBehaviour
     public void HandleDetect()
     {
         float detectionDistance = 2f;
-        Dictionary<int, Collider> detectedItems = new Dictionary<int, Collider>();
-    
+
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit[] hits = Physics.RaycastAll(ray, detectionDistance);
 
         bool hitSwamp = false;
         bool isInInvisibleZone = false;
 
+        Collider previousSpecialItem = currentSpecialItem;
+        currentSpecialItem = null;
+        if (previousSpecialItem != null)
+        {
+            IExitSpecialItem[] previousExitItems = previousSpecialItem.GetComponents<IExitSpecialItem>();
+            foreach (var exitItem in previousExitItems)
+            {
+                exitItem?.Exit();
+            }
+        }
+
         foreach (RaycastHit hit in hits)
         {
             Collider collider = hit.collider;
-        
             IEnterSpecialItem[] enterItems = collider.GetComponents<IEnterSpecialItem>();
 
-            int id = collider.GetInstanceID();
-            if (!detectedItems.ContainsKey(id))
-            {
-                detectedItems.Add(id, collider);
-            }
-        
-            // 检查当前物体是否是隐身地块
+            currentSpecialItem = collider;
             if (collider.GetComponent<InvisibleTrigger>())
             {
                 isInInvisibleZone = true;
             }
             
-            // 检查是否是 SwampTrigger
             if (collider.GetComponent<SwampTrigger>())
             {
                 hitSwamp = true;
             }
             
-            // 触发所有 IEnterSpecialItem 逻辑
             foreach (var enterItem in enterItems)
             {
                 enterItem?.Apply();
             }
-            
-            if (isInSwamp && !hitSwamp)
-            {
-                EVENTMGR.TriggerExitSwamp();
-            }
-
-            // 只有当隐身状态发生变化时才进行处理
-            if (isInvisible && !isInInvisibleZone)
-            {
-                SetInvisible(false); // 关闭隐身
-            }
+        }
+        
+        if (isInSwamp && !hitSwamp)
+        {
+            EVENTMGR.TriggerExitSwamp();
         }
 
-        // 更新当前特殊物体列表
-        currentSpecialItems = detectedItems;
+        if (isInvisible && !isInInvisibleZone)
+        {
+            SetInvisible(false);
+        }
     }
+
 
     #endregion
     

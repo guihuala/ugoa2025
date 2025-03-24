@@ -3,19 +3,17 @@ using UnityEngine;
 
 public class ElevatorTrigger : MonoBehaviour, IEnterSpecialItem
 {
-    private Vector3 originalPosition;  // 记录物体的初始位置
+    public Vector3 originalPosition;  // 记录物体的初始位置
     public Vector3 targetPosition;     // 目标下降位置
     public float moveSpeed = 5f;       // 物体移动的速度
 
-    private bool isMovingDown = false;  // 判断物体是否已经下降
+    public bool isMovingDown = false;  // 判断物体是否已经下降
 
     private Transform playerTransform;  // 玩家对象的位置
     private PlayerMovement playerMovement;
 
     private void Start()
     {
-        originalPosition = transform.position;
-
         playerTransform = FindObjectOfType<Player>().transform;
         playerMovement = FindObjectOfType<PlayerMovement>();
     }

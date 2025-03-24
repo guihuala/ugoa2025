@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.8178912, g: 0.3580943, b: 0.14707625, a: 1}
+  m_IndirectSpecularColor: {r: 0.1993452, g: 0.07221662, b: 0.018710392, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1415,6 +1415,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1891458452}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3829062431401856371, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -1728,6 +1736,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1723293879}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -1742,7 +1754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1931,6 +1943,7 @@ GameObject:
   - component: {fileID: 354567001}
   - component: {fileID: 354567000}
   - component: {fileID: 354566999}
+  - component: {fileID: 354567004}
   m_Layer: 0
   m_Name: ----------GAME----------
   m_TagString: Untagged
@@ -1967,7 +1980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 1
+  stepIncreaseInterval: 0.5
 --- !u!114 &354567001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,6 +2029,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &354567004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354566998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b019d56597c8744879cb749ec50336dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionTime: 2
+  skyboxMaterial: {fileID: 2100000, guid: 421e856a8812042768707de6d60ad1ce, type: 2}
+  targetColor0:
+  - {r: 0.99056596, g: 0.5512611, b: 0.35043606, a: 1}
+  - {r: 0.33962262, g: 0.12976147, b: 0.13179529, a: 1}
+  targetColor1:
+  - {r: 0.5921679, g: 0.6132076, b: 0.4194108, a: 1}
+  - {r: 0.5372549, g: 0.37119827, b: 0.12941177, a: 1}
 --- !u!1001 &375607458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2354,6 +2387,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1891458452}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -2368,7 +2405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15
+      value: -14.5
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5475,6 +5512,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1891458452}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -5489,7 +5530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15
+      value: -14.5
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8723,6 +8764,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1723293879}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -8737,7 +8782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8855,6 +8900,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1723293879}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -10307,6 +10356,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1891458452}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -10321,7 +10374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15
+      value: -14.5
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12774,6 +12827,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1723293879}
     m_Modifications:
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -12788,7 +12845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_LocalPosition.z

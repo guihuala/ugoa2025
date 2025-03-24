@@ -162,4 +162,15 @@ public static class EVENTMGR
     }
 
     #endregion
+
+    #region 电梯上升/下降
+
+    public static event Action<bool> OnElevatorMove;
+    
+    public static void TriggerElevatorMove(bool isMoveUp)
+    {
+        OnElevatorMove?.Invoke(isMoveUp);
+    }
+
+    #endregion
 }

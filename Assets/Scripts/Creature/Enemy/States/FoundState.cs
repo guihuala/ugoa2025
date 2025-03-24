@@ -15,6 +15,7 @@ public class FoundState : IState
 
     public void Enter()
     {
+        enemy.stopMoving = true; // 禁止敌人移动
         enterTime = Time.time;
     }
 
@@ -33,6 +34,7 @@ public class FoundState : IState
         else
         {
             enemy.UpdateBar(-1f);
+            enemy.stopMoving = false; // 恢复敌人移动
             enemy.ChangeState(new PatrolState(enemy));
         }
     }

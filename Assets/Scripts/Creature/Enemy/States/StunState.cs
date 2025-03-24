@@ -5,7 +5,7 @@ using UnityEngine;
 public class StunState : IState
 {
     private EnemyBase enemy;
-    private float stunDuration = 5f; // 眩晕持续时间
+    private float stunDuration = 10f; // 眩晕持续时间
     private float timer = 0f;
 
     public StunState(EnemyBase enemy)

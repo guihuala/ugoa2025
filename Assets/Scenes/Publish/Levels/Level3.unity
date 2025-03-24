@@ -5946,6 +5946,7 @@ MonoBehaviour:
   highlightRadius: 5
   updateInterval: 1
   startPositionOffset: {x: 0, y: 1.5, z: 0}
+  usePathCache: 1
   mapNodes: []
 --- !u!114 &102317152
 MonoBehaviour:
@@ -12418,7 +12419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: followerPrefab
@@ -12426,7 +12427,7 @@ PrefabInstance:
       objectReference: {fileID: 7171191214965849541, guid: fa45a11539f4a4752996467942df61e7, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -12474,11 +12475,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28814,7 +28815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: followerPrefab
@@ -28822,7 +28823,7 @@ PrefabInstance:
       objectReference: {fileID: 7171191214965849541, guid: fa45a11539f4a4752996467942df61e7, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -28870,11 +28871,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35615,7 +35616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: followerPrefab
@@ -35623,7 +35624,7 @@ PrefabInstance:
       objectReference: {fileID: 7171191214965849541, guid: fa45a11539f4a4752996467942df61e7, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -35675,11 +35676,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48239,7 +48240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: followerPrefab
@@ -48247,7 +48248,7 @@ PrefabInstance:
       objectReference: {fileID: 7171191214965849541, guid: fa45a11539f4a4752996467942df61e7, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -48299,11 +48300,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70190,7 +70191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: followerPrefab
@@ -70198,7 +70199,7 @@ PrefabInstance:
       objectReference: {fileID: 7171191214965849541, guid: fa45a11539f4a4752996467942df61e7, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -70246,11 +70247,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -100434,7 +100435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: followerPrefab
@@ -100442,7 +100443,7 @@ PrefabInstance:
       objectReference: {fileID: 7171191214965849541, guid: fa45a11539f4a4752996467942df61e7, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -100490,11 +100491,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ecfd5f61109b3490ca5c2120ef8a6f47, type: 2}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionAngle
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9222760341811498807, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

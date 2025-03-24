@@ -10,13 +10,14 @@ Material:
   m_Name: SlimeHair
   m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
   m_Parent: {fileID: 2100000, guid: bf737ce8b478a452081aff86d7160ce9, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _MK_ARTISTIC_ANIMATION_STUTTER
   - _MK_DETAIL_BLEND_MIX
   - _MK_ENVIRONMENT_REFLECTIONS_ADVANCED
   - _MK_FRESNEL_HIGHLIGHTS
-  - _MK_LIGHT_RAMP
+  - _MK_LIGHT_BANDED
+  - _MK_NORMAL_MAP
   - _MK_OUTLINE_DATA_UV7
   - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
@@ -33,17 +34,34 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 1997
+  stringTagMap:
+    IGNOREPROJECTOR: False
+    RenderType: Opaque
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _Dissolve
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _DiffuseThresholdOffset: 1
+    - _Light: 2
+    - _LightBands: 3
+    - _LightBandsScale: 0.217
+    - _LightThreshold: 0.443
+    - _Metallic: 0
+    - _NormalMapIntensity: 0.1
+    - _ReceiveShadows: 1
     - _RenderFace: 0
+    - _RenderPriority: 3
+    - _Smoothness: 1
+    - _SpecularIntensity: 1.5
+    - _SpecularThresholdOffset: 1
     m_Colors:
     - _AlbedoColor: {r: 0.6603774, g: 0.5797542, b: 0.48905307, a: 1}
+    - _Color: {r: 0.6603774, g: 0.5797542, b: 0.48905307, a: 1}
     - _EmissionColor: {r: 0.3207547, g: 0.21726592, b: 0.19820221, a: 1}
+    - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GoochDarkColor: {r: 0.3207547, g: 0.19820221, b: 0.19820221, a: 1}
   m_BuildTextureStacks: []

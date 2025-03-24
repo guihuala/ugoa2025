@@ -15,7 +15,9 @@ Material:
   - _MK_ARTISTIC_ANIMATION_STUTTER
   - _MK_DETAIL_BLEND_MIX
   - _MK_ENVIRONMENT_REFLECTIONS_ADVANCED
-  - _MK_LIGHT_RAMP
+  - _MK_FRESNEL_HIGHLIGHTS
+  - _MK_LIGHT_BANDED
+  - _MK_NORMAL_MAP
   - _MK_OUTLINE_DATA_UV7
   - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
@@ -30,9 +32,11 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 1997
-  stringTagMap: {}
+  stringTagMap:
+    IGNOREPROJECTOR: False
+    RenderType: Opaque
   disabledShaderPasses: []
-  m_LockedProperties: _DetailMap _MetallicMap _RoughnessMap
+  m_LockedProperties: _DetailMap _Dissolve _MetallicMap _RoughnessMap
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -223,7 +227,7 @@ Material:
     - _ColorGrading: 0
     - _Contrast: 1
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.463
     - _DetailBlend: 0.5
     - _DetailMapBlendMode: 0
     - _DetailMix: 0
@@ -232,7 +236,7 @@ Material:
     - _Diffuse: 0
     - _DiffuseMode: 1
     - _DiffuseSmoothness: 0.194
-    - _DiffuseThresholdOffset: 0.727
+    - _DiffuseThresholdOffset: 1
     - _Dissolve: 0
     - _DissolveAmount: 0
     - _DissolveBorderSize: 0.689
@@ -259,20 +263,20 @@ Material:
     - _IridescenceSize: 2.57
     - _IridescenceSmoothness: 1
     - _IridescenceThresholdOffset: 0.25
-    - _Light: 3
-    - _LightBands: 2
-    - _LightBandsScale: 1
+    - _Light: 2
+    - _LightBands: 3
+    - _LightBandsScale: 0.217
     - _LightCuts: 3
     - _LightCutsScale: 0.5
     - _LightStyle: 0
-    - _LightThreshold: 0.33
+    - _LightThreshold: 0.443
     - _LightTransmission: 0
     - _LightTransmissionDistortion: 0.105
     - _LightTransmissionIntensity: 1
     - _LightTransmissionSmoothness: 0.582
     - _LightTransmissionThresholdOffset: 0.291
     - _Metallic: 0
-    - _NormalMapIntensity: 0.59
+    - _NormalMapIntensity: 0.1
     - _NormalMapScale: 1
     - _OcclusionMapIntensity: 1
     - _OcclusionMapScale: 1
@@ -335,13 +339,13 @@ Material:
     m_Colors:
     - _AlbedoColor: {r: 0.3301887, g: 0.24141155, b: 0.2525087, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.34766984, g: 0.5471698, b: 0.2864898, a: 1}
+    - _Color: {r: 0.33018863, g: 0.2414115, b: 0.25250867, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _EmissionColor: {r: 0.014017446, g: 0.023795156, b: 0.084905684, a: 1}
     - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GoochDarkColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GoochDarkColor: {r: 0.3207547, g: 0.19820221, b: 0.19820221, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0}
     - _LightTransmissionColor: {r: 1, g: 0.65, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

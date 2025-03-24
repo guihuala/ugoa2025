@@ -18,6 +18,8 @@ Material:
   - _MK_LIGHT_CEL
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ANISOTROPIC
+  - _MK_VERTEX_ANIMATION_SINE
+  - _MK_VERTEX_ANIMATION_STUTTER
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _RECEIVESHADOWS_ON
@@ -209,7 +211,7 @@ Material:
     - _BumpScale: 1
     - _ColorGrading: 0
     - _Contrast: 1
-    - _Cutoff: 0.5
+    - _Cutoff: 0.892
     - _DetailBlend: 0
     - _DetailMix: 0.5
     - _DetailNormalMapIntensity: 1
@@ -303,7 +305,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AlbedoColor: {r: 0.3786935, g: 0.42045215, b: 0.4339623, a: 1}
-    - _Color: {r: 0.34117645, g: 0.60784316, b: 0.69411767, a: 1}
+    - _Color: {r: 0.37869346, g: 0.42045212, b: 0.43396226, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.073380224, g: 0.119437546, b: 0.16037738, a: 1}

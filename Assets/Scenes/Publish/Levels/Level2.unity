@@ -15974,7 +15974,7 @@ PrefabInstance:
     - target: {fileID: 6810791894850253058, guid: 1ec4f60b8ffcd41e8b3927e7a9891220, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 5918377874590281035, guid: 909e5ca7a216b4a7898063675c293f6d, type: 3}
+      objectReference: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -30298,7 +30298,7 @@ MonoBehaviour:
   shallowColor: {r: 0.5518868, g: 0.90082735, b: 1, a: 0.7372549}
   deepColor: {r: 0.44811308, g: 0.66575867, b: 1, a: 1}
   colorDepth: 0.1
-  horizonColor: {r: 0.21171129, g: 0.25014663, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21170941, g: 0.25014475, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -112497,6 +112497,7 @@ MonoBehaviour:
   highlightRadius: 5
   updateInterval: 1
   startPositionOffset: {x: 0, y: 1.5, z: 0}
+  usePathCache: 1
   mapNodes: []
 --- !u!114 &1682006754
 MonoBehaviour:
@@ -143923,7 +143924,7 @@ MonoBehaviour:
   shallowColor: {r: 0.5518868, g: 0.90082735, b: 1, a: 0.7372549}
   deepColor: {r: 0.44811308, g: 0.66575867, b: 1, a: 1}
   colorDepth: 0.1
-  horizonColor: {r: 0.21171126, g: 0.2501466, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21170944, g: 0.25014478, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}

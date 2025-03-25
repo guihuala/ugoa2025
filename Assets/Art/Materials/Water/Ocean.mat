@@ -26,7 +26,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - INTERSECTION_EFFECTS_ON
-  - REFRACTION_ON
   - SURFACE_FOAM_ON
   - WORLD_SPACE_UV_ON
   m_InvalidKeywords: []
@@ -36,7 +35,7 @@ Material:
   m_CustomRenderQueue: 2999
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _ShoreDepth _SurfaceFoamBlend _WaveColor
+  m_LockedProperties: _ShoreDepth _SurfaceFoamBlend _WaveColor _WaveDirections
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -76,7 +75,7 @@ Material:
     m_Floats:
     - FOAM_SHADOWS: 0
     - INTERSECTION_EFFECTS: 1
-    - REFRACTION: 1
+    - REFRACTION: 0
     - SHORE_MOVEMENT: 0
     - SURFACE_FOAM: 1
     - WATER_LIGHTING: 0
@@ -131,7 +130,7 @@ Material:
     - _SurfaceFoamSampling: {r: 0.7, g: 1.33, b: 0, a: 0}
     - _SurfaceFoamTilingAndOffset: {r: -1, g: -1, b: 0.57, a: 0.22}
     - _WaterColorDeep: {r: 0.44811308, g: 0.66575867, b: 1, a: 1}
-    - _WaterColorHorizon: {r: 0.2117095, g: 0.25014484, b: 0.735849, a: 1}
+    - _WaterColorHorizon: {r: 0.2117086, g: 0.25014398, b: 0.735849, a: 1}
     - _WaterColorShallow: {r: 0.5518868, g: 0.90082735, b: 1, a: 0.7372549}
     - _WaterColorUnderwater: {r: 0.03429559, g: 0.07803569, b: 0.23064911, a: 0}
     - _WaveColor: {r: 0, g: 0, b: 0, a: 0}

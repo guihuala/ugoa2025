@@ -59780,10 +59780,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1690537058174379915, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 485c070fc18d642c3a3080eba8cf9da9, type: 2}
     - target: {fileID: 3038420282858366751, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3607594466953634580, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b549eb27958c24e82980e430e8b9fa4b, type: 2}
     - target: {fileID: 4632453307822825503, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Color.b
       value: 0.25943398
@@ -79178,8 +79186,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43916157, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18338501, g: 0.38908815, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.43916145, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.1833849, g: 0.38908803, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -119818,8 +119826,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43916154, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18338498, g: 0.38908812, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.4391614, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18338487, g: 0.389088, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3

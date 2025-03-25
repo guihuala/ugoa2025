@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     private SkeletonAnimation skeletonAnimation;
     private string currentAnimation = "";
 
+    #region Spine动画相关变量
+
     [Header("Player 皮肤")]
     public PlayerSkin skin = PlayerSkin.lv1;
     
@@ -70,17 +72,24 @@ public class Player : MonoBehaviour
     private string sinkAnimation = "sets/struggle";
     private string saluteAnimation = "sets/salute";
     
+    [Header("Spine 道具动画")]
+    private string withSlingshotAnimation = "tool/with_catapult";
+    private string hideSlingshotAnimation = "tool/hide_catpult";
+    private string withoutSlingshotAnimation = "tool/without_catapult";
+    
     [Header("Spine 动画轨道配置")]
     private int baseTrack = 1;    // 主动画轨道
     private int eyesTrack = 2;    // 眼睛
     private int mouseTrack = 3;   // 嘴
+    private int toolTrack = 4; // 道具    
+
+    #endregion
     
     // 用于射线检测特殊物体
     private Collider currentSpecialItem;
 
     [Header("指示箭头")]
     [SerializeField] private GameObject triangle;
-    
     
     private void Awake()
     {
@@ -96,18 +105,26 @@ public class Player : MonoBehaviour
         
         ClearTrack();
         PlayEyesAnimation();
+        PlayOverlayAnimation(4, withoutSlingshotAnimation, true);
         
         triangle.SetActive(false);
         
         HandleDetect();
     }
     
+    private void OnDestroy()
+    {
+        EVENTMGR.OnStepIntoGrass -= SetInvisible;
+        EVENTMGR.OnEnterSwamp -= HandleSwampEnter;
+        EVENTMGR.OnExitSwamp -= HandleSwampExit;
+        EVENTMGR.OnPlayerDead -= PlayerDead;
+    }    
+    
     private void Update()
     {
         HandleSwampStay();
     }
-
-
+    
     #region Spine动画控制
     
     public void PlayAnimation(string animName, bool loop = true)
@@ -119,6 +136,7 @@ public class Player : MonoBehaviour
                 return;
 
             skeletonAnimation.state.SetAnimation(baseTrack, animName, loop);
+            PlayOverlayAnimation(4, withoutSlingshotAnimation, true); // 隐藏弹弓
         }
     }
 
@@ -150,12 +168,26 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayOverlayAnimation(int trackIndex, string animName, bool loop = false, float mixDuration = 0.1f)
+    public void PlayOverlayAnimation(int trackIndex, string animName, bool loop = false, float mixDuration = 0.1f,
+        bool reverse = false)
     {
         if (skeletonAnimation != null && skeletonAnimation.state != null)
         {
             skeletonAnimation.state.Data.DefaultMix = mixDuration;
-            skeletonAnimation.state.SetAnimation(trackIndex, animName, loop);
+            var trackEntry = skeletonAnimation.state.SetAnimation(trackIndex, animName, loop);
+
+            if (reverse)
+            {
+                trackEntry.TimeScale = -1f;// 倒放
+                if (loop)
+                {
+                    trackEntry.TrackTime = trackEntry.AnimationEnd;
+                }
+            }
+            else
+            {
+                trackEntry.TimeScale = 1f; // 正常播放
+            }
         }
     }
 
@@ -324,7 +356,9 @@ public class Player : MonoBehaviour
 
 
     #endregion
-    
+
+    #region 角色死亡
+
     private void PlayerDead()
     {
         isDead = true;
@@ -346,13 +380,7 @@ public class Player : MonoBehaviour
         {
             UIManager.Instance.OpenPanel("GameFailurePanel");
         }
-    }
-     
-    private void OnDestroy()
-    {
-        EVENTMGR.OnStepIntoGrass -= SetInvisible;
-        EVENTMGR.OnEnterSwamp -= HandleSwampEnter;
-        EVENTMGR.OnExitSwamp -= HandleSwampExit;
-        EVENTMGR.OnPlayerDead -= PlayerDead;
-    }
+    }    
+
+    #endregion
 }

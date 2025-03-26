@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class ClickableEffect : MonoBehaviour, IClickable
 {
-    [Header("Click Effect Settings")]
-    [SerializeField] private float timeScaleSlow = 0.2f; // 时间减缓比例
+    [Header("点击设置")]
+    [SerializeField] private float timeScaleSlow = 0.2f;
 
     private GameObject clickUI; // 生成的 UI 对象
     private CanvasGroup uiCanvasGroup; // 用于控制 UI 透明度
@@ -40,7 +40,7 @@ public class ClickableEffect : MonoBehaviour, IClickable
             return;
         }
         
-        if (isUIOpen)
+        if (isUIOpen) // ui存在时，再次点击玩家，关闭画布
         {
             EVENTMGR.TriggerClickPlayer(false);
             EVENTMGR.TriggerTimeScaleChange(1.0f);

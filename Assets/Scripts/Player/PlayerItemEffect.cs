@@ -9,6 +9,8 @@ using UnityEngine;
 public class PlayerItemEffect : MonoBehaviour
 {
     [SerializeField] private Transform intervalDecreaseFx;
+    [SerializeField]
+    [Tooltip("时间减缓比例")]private float timeScaleSlow = 0.2f;
     
     private SlingshotManager slingshotManager;
     
@@ -78,6 +80,8 @@ public class PlayerItemEffect : MonoBehaviour
         
         slingshotManager.SetIsUsingSlingshot(true);
         isSlingshotActive = true;
+        
+        EVENTMGR.TriggerTimeScaleChange(timeScaleSlow);
     }
 
     private void StopUsingSlingshot()
@@ -87,6 +91,8 @@ public class PlayerItemEffect : MonoBehaviour
         
         slingshotManager.SetIsUsingSlingshot(false);
         isSlingshotActive = false;
+        
+        EVENTMGR.TriggerTimeScaleChange(1.0f);
     }
 
     #endregion

@@ -8,34 +8,6 @@ public class ClickManager : MonoBehaviour
     
     private bool isActive = true;
 
-    [Header("Camera Settings")]
-    public bool useOrthographicCamera = true; // 默认使用正交相机
-
-    private OrthographicCameraController _orthographicCameraController;    
-    private PerspectiveCameraController _perspectiveCameraController;
-
-    private CameraController _cameraController;  // 通用相机控制器
-    
-    private void Awake()
-    {
-        // 根据是否使用正交相机，选择相机控制器
-        if (useOrthographicCamera)
-        {
-            _orthographicCameraController = FindObjectOfType<OrthographicCameraController>();
-            _cameraController = _orthographicCameraController;
-        }
-        else
-        {
-            _perspectiveCameraController = FindObjectOfType<PerspectiveCameraController>();
-            _cameraController = _perspectiveCameraController;
-        }
-
-        if (_cameraController == null)
-        {
-            Debug.LogError("CameraController not found in the scene!");
-        }
-    }
-
     private void Start()
     {
         EVENTMGR.OnClickPlayer += HandleClickPlayer;

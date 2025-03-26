@@ -45,9 +45,14 @@ public class SceneLoader : SingletonPersistent<SceneLoader>
 
         sleepBlackPanel.StartSleepCounting(fadeDuration, loadStr, () =>
         {
+            // 保存当前场景名到 PlayerPrefs
+            PlayerPrefs.SetString("LastSceneName", SceneManager.GetActiveScene().name);
+            PlayerPrefs.Save(); // 确保立即保存
+            
             // 使用枚举值的字符串表示加载场景
             SceneManager.LoadScene(sceneName.ToString());
             UIManager.Instance.RemovePanel("SleepBlackPanel");
+            
             // 改变一下存档管理器当前的场景
             SaveManager.Instance.scensName = sceneName;
         },sceneName);

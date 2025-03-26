@@ -195,12 +195,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 direction = targetPosition - transform.position;  // 计算旋转
 
             HandleRotation(direction);
-
-            NodeMarker currentNodeMarker = pathfindingManager.GetClosestNode(transform.position)?.GetComponent<NodeMarker>();
-            if (currentNodeMarker != null)
-            {
-                currentNodeMarker.ShowFootPrint(direction.normalized);
-            }
             
             // 移动角色
             while ((transform.position - targetPosition).sqrMagnitude > 0.01f) // 避免浮点数误差
@@ -208,6 +202,12 @@ public class PlayerMovement : MonoBehaviour
                 transform.position =
                     Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 // 在角色走完格子之后显示脚印
+                
+                NodeMarker currentNodeMarker = pathfindingManager.GetClosestNode(transform.position - positionOffset)?.GetComponent<NodeMarker>();
+                if (currentNodeMarker != null)
+                {
+                    currentNodeMarker.ShowFootPrint(direction.normalized);
+                }
                 
                 yield return null;
             }

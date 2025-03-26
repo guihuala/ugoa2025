@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class VideoPlayerManager : MonoBehaviour
 {
@@ -15,15 +16,21 @@ public class VideoPlayerManager : MonoBehaviour
     [Header("跳过按钮")]
     [SerializeField] private Button skipButton; // 跳过按钮
 
+    [Header("场景控制")]
+    [SerializeField] private string[] disableSkipSceneNames; // 需要禁用跳过按钮的场景名列表
+
     private float lastInputTime = 0f; // 记录上次输入时间
     private float hideDelay = 3f; // 多少秒后隐藏按钮
     private Vector3 lastMousePosition; // 记录上次鼠标位置
     private bool isButtonVisible = false; // 按钮当前是否可见
+    private string previousSceneName; // 上一个场景的名字
 
     private void Start()
     {
+        // 获取上一个场景的名字
+        previousSceneName = PlayerPrefs.GetString("LastSceneName", "");
+        
         videoPlayer.clip = videoClip;
-
         videoPlayer.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
         rawImage.texture = videoPlayer.targetTexture;
 
@@ -32,8 +39,30 @@ public class VideoPlayerManager : MonoBehaviour
 
         skipButton.onClick.AddListener(SkipVideo);
 
+        // 根据上一个场景决定是否禁用跳过按钮
+        bool shouldDisableSkip = CheckIfDisableSkip();
+        skipButton.interactable = !shouldDisableSkip; // 禁用按钮交互（但按钮仍可见）
         skipButton.gameObject.SetActive(false); // 初始隐藏跳过按钮
+        
         lastMousePosition = Input.mousePosition; // 记录初始鼠标位置
+    }
+
+    /// <summary>
+    /// 检查是否需要禁用跳过按钮
+    /// </summary>
+    private bool CheckIfDisableSkip()
+    {
+        if (disableSkipSceneNames == null || disableSkipSceneNames.Length == 0)
+            return false;
+
+        foreach (string sceneName in disableSkipSceneNames)
+        {
+            if (previousSceneName == sceneName)
+            {
+                return true; // 如果上一个场景在禁用列表中，返回 true
+            }
+        }
+        return false;
     }
 
     private void Update()

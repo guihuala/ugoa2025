@@ -13,6 +13,19 @@ public class TransparencyObject : MonoBehaviour
         originalMaterial = GetComponent<MeshRenderer>().material;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Player>())
+        {
+            OnBecameInvisible();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        OnBecameVisible();
+    }
+
     public void OnBecameVisible()
     {
         // 恢复原材质

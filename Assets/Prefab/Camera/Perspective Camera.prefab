@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3356862228903053447}
   - component: {fileID: 7531725298699361697}
   - component: {fileID: 811059991025582900}
+  - component: {fileID: 101841855425727977}
   m_Layer: 0
   m_Name: Perspective Camera
   m_TagString: MainCamera
@@ -159,6 +160,21 @@ MonoBehaviour:
   smoothZoomTime: 0.2
   duration: 0.2
   magnitude: 0.1
+  allowCameraControl: 1
+--- !u!114 &101841855425727977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4345080069577555773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ddc1a165ca44deea457387fd277ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outerRadius: 5
+  innerRadius: 1
 --- !u!1 &7105328902942145935
 GameObject:
   m_ObjectHideFlags: 0

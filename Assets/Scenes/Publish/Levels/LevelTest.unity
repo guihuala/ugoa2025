@@ -2085,7 +2085,6 @@ GameObject:
   - component: {fileID: 354567000}
   - component: {fileID: 354566999}
   - component: {fileID: 354567004}
-  - component: {fileID: 354567005}
   m_Layer: 0
   m_Name: ----------GAME----------
   m_TagString: Untagged
@@ -2191,20 +2190,6 @@ MonoBehaviour:
   targetColor1:
   - {r: 0.5921679, g: 0.6132076, b: 0.4194108, a: 1}
   - {r: 0.5372549, g: 0.37119827, b: 0.12941177, a: 1}
---- !u!114 &354567005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354566998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ddc1a165ca44deea457387fd277ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outerRadius: 12
-  innerRadius: 8
 --- !u!1001 &375607458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3145,7 +3130,7 @@ GameObject:
   - component: {fileID: 535292788}
   - component: {fileID: 535292787}
   - component: {fileID: 535292786}
-  - component: {fileID: 535292785}
+  - component: {fileID: 535292790}
   m_Layer: 2
   m_Name: tree-acacia-senegal-dry-dead-a (1)
   m_TagString: Untagged
@@ -3153,27 +3138,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &535292785
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 535292784}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 5.03284, z: 1}
-  m_Center: {x: -1.1074538, y: 3.4522111, z: -0.2195847}
 --- !u!114 &535292786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3252,6 +3216,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &535292790
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535292784}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.673291
+  m_Height: 8.886486
+  m_Direction: 1
+  m_Center: {x: -1.1074535, y: 0.8698416, z: 2.1163201}
 --- !u!1001 &553045326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10239,8 +10226,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4345080069577555773, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1732434939}
   m_SourcePrefab: {fileID: 100100000, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
+--- !u!1 &1732434938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4345080069577555773, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
+  m_PrefabInstance: {fileID: 1732434937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1732434939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732434938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ddc1a165ca44deea457387fd277ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outerRadius: 5
+  innerRadius: 1
 --- !u!1001 &1735381124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12576,8 +12585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transparentMaterial: {fileID: 2100000, guid: 05341aba1a2d84e0f873226ba89bdcdf, type: 2}
---- !u!65 &2024557727
-BoxCollider:
+--- !u!136 &2024557727
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -12594,9 +12603,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 5.2884912, z: 1}
-  m_Center: {x: -1.1074538, y: 3.5800369, z: -0.2195847}
+  serializedVersion: 2
+  m_Radius: 2.8697517
+  m_Height: 9.699989
+  m_Direction: 1
+  m_Center: {x: 1.6565136, y: 1.2765932, z: 2.26985}
 --- !u!1001 &2025210784
 PrefabInstance:
   m_ObjectHideFlags: 0

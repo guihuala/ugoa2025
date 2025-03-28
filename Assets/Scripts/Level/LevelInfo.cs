@@ -9,10 +9,20 @@ public class LevelInfo : MonoBehaviour
     public SceneName currentScene;
     public SceneName nextLevel;
     public string nextLevelName;
+
+    public DialogueData levelDialogue;
     
     // 是否是最后一关
     public bool isEndLevel;
-    
+
+    private void Start()
+    {
+        if (levelDialogue != null)
+        {
+            DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
+            dialoguePanel.StartDialogue(levelDialogue);
+        }
+    }
 
     public void GoToNextLevel()
     {

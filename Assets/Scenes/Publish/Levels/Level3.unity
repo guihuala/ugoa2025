@@ -31390,8 +31390,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.9114304, y: 5.6886272, z: 2.1172233}
-  m_Center: {x: -0.55872345, y: 2.4357915, z: -0.9267404}
+  m_Size: {x: 6.394804, y: 2.6621523, z: 5}
+  m_Center: {x: -1.197402, y: 1.2415698, z: 0}
 --- !u!1 &474614247 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
@@ -120978,7 +120978,9 @@ GameObject:
   - component: {fileID: 1712647428}
   - component: {fileID: 1712647427}
   - component: {fileID: 1712647426}
-  m_Layer: 0
+  - component: {fileID: 1712647430}
+  - component: {fileID: 1712647429}
+  m_Layer: 2
   m_Name: cloud-a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121050,6 +121052,40 @@ Transform:
   m_Father: {fileID: 1791659174}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1712647429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712647425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb5e0e55817443d2a1b0321455f8cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transparentMaterial: {fileID: 2100000, guid: 05341aba1a2d84e0f873226ba89bdcdf, type: 2}
+--- !u!65 &1712647430
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712647425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.8888564, y: 5.524811, z: 7.9621143}
+  m_Center: {x: 0.14447522, y: 2.7624054, z: 0.15659189}
 --- !u!1 &1714029860 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}

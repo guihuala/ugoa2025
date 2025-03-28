@@ -123,12 +123,12 @@ public class PathfindingManager : MonoBehaviour
 
             NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
             if (nodeMarker == null) continue;
-
-            // **根据配置是否启用缓存路径**
+            
             List<Transform> path;
             if (usePathCache && pathCache.TryGetValue((currentNode, node), out path))
             {
                 // 如果启用缓存且缓存中有路径，则使用缓存路径
+                path = pathCache[(currentNode, node)];
             }
             else
             {
@@ -150,8 +150,7 @@ public class PathfindingManager : MonoBehaviour
                 }
             }
         }
-
-        // **优化：仅隐藏从高亮中移除的节点**
+        
         foreach (var node in previousHighlightNodes)
         {
             if (!newHighlightNodes.Contains(node))

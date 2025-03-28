@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.14117648, g: 0.14117648, b: 0.14117648, a: 0.627451}
+  m_Color: {r: 0.2749644, g: 0.31022695, b: 0.3490566, a: 0.627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -708,11 +708,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29dcf607a18a2914eb9d48330e2f3f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasRectTransform: {fileID: 224997560533156244}
-  CanvasScaler: {fileID: 114161964665463852}
   Target1: {fileID: 2514107817707156669}
   Target2: {fileID: 224793492899175094}
-  Target3: {fileID: 0}
+  Target3: {fileID: 224829324451148248}
 --- !u!114 &114881747540770518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,7 +1009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -458.3, y: 167.8}
+  m_AnchoredPosition: {x: -458.3, y: 167.79999}
   m_SizeDelta: {x: 215.5, y: 328.6}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &3862238027482134158

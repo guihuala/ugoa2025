@@ -13,6 +13,7 @@ public static class SAVE
     }
 
     #region PlayerPrefs存储
+
     public static void PlayerPrefsSave(string key, object data)
     {
         // 将对象数据序列化为JSON字符串保存
@@ -32,6 +33,7 @@ public static class SAVE
         PlayerPrefs.DeleteKey(key);
         PlayerPrefs.Save();
     }
+
     #endregion
 
     #region JSON存储
@@ -61,8 +63,8 @@ public static class SAVE
             Debug.LogError($"存档失败: {ex.GetType().Name} - {ex.Message}");
         }
     }
-    
-    
+
+
     public static T JsonLoad<T>(string fileName)
     {
         string path = GetPath(fileName);
@@ -73,6 +75,7 @@ public static class SAVE
             var data = JsonUtility.FromJson<T>(json);
             return data;
         }
+
         // 对象类型返回null，值类型返回默认值
         return default;
     }
@@ -81,10 +84,101 @@ public static class SAVE
     {
         File.Delete(GetPath(fileName));
     }
+
+    #endregion
+
+    #region 存档导入导出功能
+
+    /// <summary>
+    /// 导出存档到指定路径
+    /// </summary>
+    public static bool ExportSave(string fileName, string exportPath)
+    {
+        try
+        {
+            string sourcePath = GetPath(fileName);
+            if (!File.Exists(sourcePath))
+            {
+                Debug.LogWarning($"导出失败: 存档文件 {fileName} 不存在");
+                return false;
+            }
+
+            // 确保目标目录存在
+            string directory = Path.GetDirectoryName(exportPath);
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            File.Copy(sourcePath, exportPath, overwrite: true);
+            Debug.Log($"存档导出成功: {exportPath}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"存档导出失败: {ex.GetType().Name} - {ex.Message}");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// 从外部文件导入存档
+    /// </summary>
+    public static bool ImportSave(string importPath, string fileName)
+    {
+        try
+        {
+            if (!File.Exists(importPath))
+            {
+                Debug.LogWarning($"导入失败: 源文件 {importPath} 不存在");
+                return false;
+            }
+
+            string destPath = GetPath(fileName);
+
+            // 确保目标目录存在
+            string directory = Path.GetDirectoryName(destPath);
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            File.Copy(importPath, destPath, overwrite: true);
+            Debug.Log($"存档导入成功: {destPath}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"存档导入失败: {ex.GetType().Name} - {ex.Message}");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// 获取存档文件列表
+    /// </summary>
+    public static List<string> GetSaveFiles()
+    {
+        List<string> saveFiles = new List<string>();
+
+        try
+        {
+            var files = Directory.GetFiles(Application.persistentDataPath, "*.save");
+            saveFiles.AddRange(files);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"获取存档列表失败: {ex.Message}");
+        }
+
+        return saveFiles;
+    }
+
     #endregion
 
     #region 清理功能
-    #if UNITY_EDITOR
+
+#if UNITY_EDITOR
     [UnityEditor.MenuItem("Delete/Records List")]
     public static void DeleteRecord()
     {
@@ -111,13 +205,14 @@ public static class SAVE
             }
         }
     }
-    
+
     [UnityEditor.MenuItem("Delete/All")]
     public static void DeleteAll()
     {
         DeletePlayerData();
         DeleteRecord();
     }
-    #endif
+#endif
+
     #endregion
 }

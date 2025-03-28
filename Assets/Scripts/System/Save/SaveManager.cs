@@ -161,4 +161,63 @@ public class SaveManager : SingletonPersistent<SaveManager>
     {
         SAVE.JsonDelete(RecordData.Instance.recordName[id]);
     }
+
+    #region 存档导入导出功能
+
+    /// <summary>
+    /// 导出当前存档到指定路径
+    /// </summary>
+    public bool ExportCurrentSave(string exportPath)
+    {
+        if (ID < 0 || ID >= RecordData.recordNum || string.IsNullOrEmpty(RecordData.Instance.recordName[ID]))
+        {
+            Debug.LogWarning("导出失败: 无效的存档ID或存档不存在");
+            return false;
+        }
+    
+        return SAVE.ExportSave(RecordData.Instance.recordName[ID], exportPath);
+    }
+
+    /// <summary>
+    /// 导入存档到指定槽位
+    /// </summary>
+    public bool ImportSaveToSlot(string importPath, int slotID)
+    {
+        if (slotID < 0 || slotID >= RecordData.recordNum)
+        {
+            Debug.LogWarning("导入失败: 无效的存档槽位ID");
+            return false;
+        }
+
+        // 生成新的存档文件名
+        string newFileName = $"{System.DateTime.Now:yyyyMMdd_HHmmss}.save";
+    
+        // 导入文件
+        if (SAVE.ImportSave(importPath, newFileName))
+        {
+            // 更新记录数据
+            if (RecordData.Instance.recordName[slotID] != "")
+            {
+                DeleteRecord(slotID);
+            }
+        
+            RecordData.Instance.recordName[slotID] = newFileName;
+            RecordData.Instance.lastID = slotID;
+            RecordData.Instance.Save();
+        
+            return true;
+        }
+    
+        return false;
+    }
+
+    /// <summary>
+    /// 获取所有存档文件列表
+    /// </summary>
+    public List<string> GetAllSaveFiles()
+    {
+        return SAVE.GetSaveFiles();
+    }
+
+    #endregion
 }

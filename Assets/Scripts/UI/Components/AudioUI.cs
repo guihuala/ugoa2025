@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuSetting : MonoBehaviour
+public class AudioUI : MonoBehaviour
 {
     [Header("Volume Sliders")]
     public Slider bgmVolumeSlider;  // 控制背景音乐音量的滑动条
     public Slider sfxVolumeSlider;  // 控制音效音量的滑动条
 
-    public Button closeBtn;
+    [Header("Buttons")]
+    [SerializeField] private Button bgmVolumeButton; // 显示/隐藏BGM音量滑动条按钮
+    [SerializeField] private Button sfxVolumeButton; // 显示/隐藏SFX音量滑动条按钮
 
     private void Awake()
     {
+
         // 初始化音量滑动条的默认值
         bgmVolumeSlider.value = AudioManager.Instance.bgmVolumeFactor;
         sfxVolumeSlider.value = AudioManager.Instance.sfxVolumeFactor;
@@ -21,8 +24,15 @@ public class MainMenuSetting : MonoBehaviour
         bgmVolumeSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
         sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
 
-        if (closeBtn != null)
-            closeBtn.onClick.AddListener(() => gameObject.SetActive(false));
+        // 音量按钮事件
+        bgmVolumeButton.onClick.AddListener(ToggleBgmVolumeSlider);
+        sfxVolumeButton.onClick.AddListener(ToggleSfxVolumeSlider);
+    }
+
+    private void Start()
+    {
+        bgmVolumeSlider.gameObject.SetActive(false);
+        sfxVolumeSlider.gameObject.SetActive(false);
     }
     
     private void OnBgmVolumeChanged(float value)
@@ -33,5 +43,17 @@ public class MainMenuSetting : MonoBehaviour
     private void OnSfxVolumeChanged(float value)
     {
         AudioManager.Instance.ChangeSfxVolume(value);
+    }
+
+    // 显示/隐藏BGM音量滑动条
+    private void ToggleBgmVolumeSlider()
+    {
+        bgmVolumeSlider.gameObject.SetActive(!bgmVolumeSlider.gameObject.activeSelf);
+    }
+
+    // 显示/隐藏SFX音量滑动条
+    private void ToggleSfxVolumeSlider()
+    {
+        sfxVolumeSlider.gameObject.SetActive(!sfxVolumeSlider.gameObject.activeSelf);
     }
 }

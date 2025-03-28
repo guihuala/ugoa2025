@@ -222,6 +222,11 @@ public class PlayerMovement : MonoBehaviour
         
         isMoving = false;
     }
+
+    public void Teleport(Vector3 targetPosition)
+    {
+        transform.position = targetPosition + positionOffset;
+    }
     
     private void HandleRotation(Vector3 direction)
     {

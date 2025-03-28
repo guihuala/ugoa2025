@@ -117,9 +117,11 @@ public class PathfindingManager : MonoBehaviour
 
         HashSet<Transform> newHighlightNodes = new HashSet<Transform>();
 
+        float checkRadius = highlightRadius * 1.2f;
+        
         foreach (var node in mapNodes)
         {
-            if (Vector3.Distance(currentNode.position, node.position) > highlightRadius * 1.2f) continue;
+            if (Vector3.Distance(currentNode.position, node.position) > checkRadius) continue;
 
             NodeMarker nodeMarker = node.GetComponent<NodeMarker>();
             if (nodeMarker == null) continue;

@@ -2150,6 +2150,7 @@ MonoBehaviour:
   currentScene: 4
   nextLevel: 1
   nextLevelName: 
+  levelDialogue: {fileID: 0}
   isEndLevel: 1
 --- !u!4 &354567003
 Transform:
@@ -9433,6 +9434,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8610464118657349190, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
   m_PrefabInstance: {fileID: 1523788414}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1524270565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4098688169117374381, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
+  m_PrefabInstance: {fileID: 6829109626158802562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1524442412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13261,10 +13267,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4098688169117374381, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8610464117250999055}
   m_SourcePrefab: {fileID: 100100000, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
 --- !u!4 &8610464117250999052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1358685812772629022, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
   m_PrefabInstance: {fileID: 6829109626158802562}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8610464117250999055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524270565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14efe04a5243840929d6bd9810c00cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movePoints:
+  - {x: 9, y: -15, z: 9}
+  - {x: 12, y: -15, z: 9}
+  - {x: 12, y: -15, z: 15}
+  - {x: 15, y: -15, z: 15}
+  - {x: 12, y: -15, z: 15}
+  - {x: 12, y: -15, z: 9}
+  moveSpeed: 1

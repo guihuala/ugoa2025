@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -88,27 +89,18 @@ public class CameraBarUI : MonoBehaviour
     {
         isUIVisible = visible;
         StopAllCoroutines();
-        StartCoroutine(FadeUI(visible ? 1f : 0f));
+        FadeUI(visible ? 1f : 0f);
     }
 
-    /// <summary>
-    /// UI淡入淡出动画
-    /// </summary>
-    private IEnumerator FadeUI(float targetAlpha)
+    private void FadeUI(float targetAlpha)
     {
-        float startAlpha = uiCanvasGroup.alpha;
-        float elapsed = 0f;
+        uiCanvasGroup.DOKill();
 
-        while (elapsed < fadeTime)
-        {
-            uiCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsed / fadeTime);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        uiCanvasGroup.alpha = targetAlpha;
-        
-        // 完全隐藏后禁用交互
-        uiCanvasGroup.blocksRaycasts = (targetAlpha > 0.1f);
+        uiCanvasGroup.DOFade(targetAlpha, fadeTime)
+            .SetUpdate(true)
+            .OnComplete(() => {
+                uiCanvasGroup.blocksRaycasts = (targetAlpha > 0.1f);
+            });
     }
 
     /// <summary>

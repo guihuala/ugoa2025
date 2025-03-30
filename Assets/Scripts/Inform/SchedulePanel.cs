@@ -24,6 +24,11 @@ public class SchedulePanel : SlidePanel
     public Text playTimeText;
     public Text failureTimeText;
     
+    [Header("新任务提示")]
+    public GameObject newMissionDot; // 红点提示
+    
+    private List<MissionData> currentMissions = new List<MissionData>();
+    
     private void Start()
     {
         closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
@@ -48,9 +53,41 @@ public class SchedulePanel : SlidePanel
         playTimeText.text = "出差次数：" + SaveManager.Instance.playTime.ToString();
         failureTimeText.text = "失败次数：" + SaveManager.Instance.failureTime.ToString();
     }
-
+    
+    // 添加新任务方法
+    public void AddNewMission(MissionData mission)
+    {
+        if (!currentMissions.Contains(mission))
+        {
+            currentMissions.Add(mission);
+            UpdateMissionButtons();
+            newMissionDot.SetActive(true);
+        }
+    }
+    
+    // 更新任务按钮状态
+    private void UpdateMissionButtons()
+    {
+        // 根据currentMissions更新按钮状态
+        mission1Btn.gameObject.SetActive(currentMissions.Count > 0);
+        mission2Btn.gameObject.SetActive(currentMissions.Count > 1);
+        mission3Btn.gameObject.SetActive(currentMissions.Count > 2);
+        
+        // 更新按钮文本等信息
+        if (currentMissions.Count > 0)
+            mission1Btn.GetComponentInChildren<Text>().text = currentMissions[0].missionName;
+        
+    }
+    
+    // 当查看任务信息后调用
+    public void OnMissionViewed()
+    {
+        newMissionDot.SetActive(false);
+    }
+    
     void OpenInfo(Transform info)
     {
         info.gameObject.SetActive(true);
+        OnMissionViewed(); // 查看后取消红点
     }
 }

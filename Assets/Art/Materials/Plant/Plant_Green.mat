@@ -17,7 +17,6 @@ Material:
   - _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
   - _MK_LIGHT_BANDED
   - _MK_RECEIVE_SHADOWS
-  - _MK_RIM_SPLIT
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
   - _MK_VERTEX_ANIMATION_SINE
@@ -269,7 +268,7 @@ Material:
     - _ReceiveShadows: 1
     - _RenderFace: 0
     - _RenderPriority: 0
-    - _Rim: 2
+    - _Rim: 0
     - _RimSize: 2
     - _RimSmoothness: 0.424
     - _RimThresholdOffset: 0.158

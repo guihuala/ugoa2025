@@ -59511,6 +59511,7 @@ MonoBehaviour:
   currentScene: 2
   nextLevel: 3
   nextLevelName: Level2
+  levelDialogue: {fileID: 0}
   isEndLevel: 0
 --- !u!4 &732688873
 Transform:
@@ -79221,8 +79222,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.4391583, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18338192, g: 0.3890849, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.4391547, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18337852, g: 0.3890813, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -79290,10 +79291,10 @@ MonoBehaviour:
   normalsScale: 2
   normalsSpeed: 0.5
   refractionStrength: 0.022
-  waveVisuals: {x: 0.02, y: 7.9, z: 1.38}
+  waveVisuals: {x: 0.02, y: 8, z: 1}
   waveSteepness: 0.02
-  waveLength: 7.9
-  waveSpeed: 1.38
+  waveLength: 8
+  waveSpeed: 1
   waveDirections: {x: 0, y: 1, z: 1, w: 0.33}
   waveDirection1: 0
   waveDirection2: 1
@@ -119861,8 +119862,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.43915826, g: 0.8867924, b: 0.8009553, a: 1}
-  deepColor: {r: 0.18338189, g: 0.38908485, b: 0.7075471, a: 1}
+  shallowColor: {r: 0.43915468, g: 0.8867924, b: 0.8009553, a: 1}
+  deepColor: {r: 0.18337849, g: 0.38908127, b: 0.7075471, a: 1}
   colorDepth: 2
   horizonColor: {r: 0.7311321, g: 0.7816798, b: 1, a: 1}
   horizonDistance: 3
@@ -119930,10 +119931,10 @@ MonoBehaviour:
   normalsScale: 2
   normalsSpeed: 0.5
   refractionStrength: 0.022
-  waveVisuals: {x: 0.02, y: 7.9, z: 1.38}
+  waveVisuals: {x: 0.02, y: 8, z: 1}
   waveSteepness: 0.02
-  waveLength: 7.9
-  waveSpeed: 1.38
+  waveLength: 8
+  waveSpeed: 1
   waveDirections: {x: 0, y: 1, z: 1, w: 0.33}
   waveDirection1: 0
   waveDirection2: 1

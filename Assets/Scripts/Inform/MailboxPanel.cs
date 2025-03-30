@@ -14,11 +14,6 @@ public class MailboxPanel : BasePanel
     public float letterPopHeight = 1.5f;
     public Ease popEase = Ease.OutBack;
     
-    // 放在某个持久化单例里面，因为是根据关卡进度决定的，就放关卡管理器里吧
-    // 只会有三个任务，根据不同主题决定
-    [Header("任务配置")] 
-    public MissionData[] availableMissions;
-    
     private bool hasNewMail = true;
     private Vector3 letterOriginalPos;
     private Sequence letterSequence;

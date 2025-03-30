@@ -39,6 +39,8 @@ public class SchedulePanel : SlidePanel
         mission3Btn.onClick.AddListener(() => { OpenInfo(mission3Info); });
         
         InitUI();
+        
+        // 添加新任务
     }
 
     void InitUI()
@@ -57,7 +59,8 @@ public class SchedulePanel : SlidePanel
     // 添加新任务方法
     public void AddNewMission(MissionData mission)
     {
-        if (!currentMissions.Contains(mission))
+        // 已接受且不允许重复
+        if (!currentMissions.Contains(mission) && mission.isMissionAccepted)
         {
             currentMissions.Add(mission);
             UpdateMissionButtons();
@@ -76,7 +79,6 @@ public class SchedulePanel : SlidePanel
         // 更新按钮文本等信息
         if (currentMissions.Count > 0)
             mission1Btn.GetComponentInChildren<Text>().text = currentMissions[0].missionName;
-        
     }
     
     // 当查看任务信息后调用

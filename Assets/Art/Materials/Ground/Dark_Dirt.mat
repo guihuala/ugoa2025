@@ -23,6 +23,7 @@ Material:
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
+  - _MK_WORKFLOW_SPECULAR
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
@@ -331,7 +332,7 @@ Material:
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
-    - _Workflow: 0
+    - _Workflow: 1
     - _WorkflowMode: 1
     - _WrappedLighting: 1
     - _ZTest: 4

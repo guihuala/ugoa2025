@@ -23,9 +23,11 @@ Material:
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
+  - _MK_WORKFLOW_ROUGHNESS
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
+  - _MK_BLEND_CUSTOM
   - _MK_DIFFUSE_MODE_OREN_NAYAR
   - _MK_OUTLINE_BAKED
   - _MK_SPECULAR_MODE_ISOTROPIC
@@ -218,7 +220,7 @@ Material:
     - _ArtisticProjection: 0
     - _ArtisticShadowFilter: 0
     - _ArtisticStyle: 0
-    - _Blend: 0
+    - _Blend: 4
     - _BlendDst: 0
     - _BlendDstAlpha: 0
     - _BlendMode: 0
@@ -334,15 +336,15 @@ Material:
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
-    - _Workflow: 0
+    - _Workflow: 2
     - _WorkflowMode: 1
     - _WrappedLighting: 1
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.8207547, g: 0.676018, b: 0.18970275, a: 1}
+    - _AlbedoColor: {r: 0.8207547, g: 0.676018, b: 0.18970272, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.8207547, g: 0.676018, b: 0.18970272, a: 1}
+    - _Color: {r: 0.8207547, g: 0.676018, b: 0.18970269, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 0.5}

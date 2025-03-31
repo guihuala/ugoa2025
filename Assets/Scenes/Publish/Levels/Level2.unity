@@ -30302,7 +30302,7 @@ MonoBehaviour:
   shallowColor: {r: 0.5518868, g: 0.90082735, b: 1, a: 0.7372549}
   deepColor: {r: 0.44811308, g: 0.66575867, b: 1, a: 1}
   colorDepth: 0.1
-  horizonColor: {r: 0.21170858, g: 0.25014395, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21170619, g: 0.25014156, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -112529,7 +112529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c74e3299b5e4057929c13b506611b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useOrthographicCamera: 0
 --- !u!114 &1682006756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112545,6 +112544,7 @@ MonoBehaviour:
   currentScene: 3
   nextLevel: 4
   nextLevelName: Level3
+  levelDialogue: {fileID: 0}
   isEndLevel: 0
 --- !u!4 &1682006757
 Transform:
@@ -122287,6 +122287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels: []
   failureReason: 
+  missions: []
 --- !u!114 &1829906360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143928,7 +143929,7 @@ MonoBehaviour:
   shallowColor: {r: 0.5518868, g: 0.90082735, b: 1, a: 0.7372549}
   deepColor: {r: 0.44811308, g: 0.66575867, b: 1, a: 1}
   colorDepth: 0.1
-  horizonColor: {r: 0.21170855, g: 0.25014392, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21170616, g: 0.2501415, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}

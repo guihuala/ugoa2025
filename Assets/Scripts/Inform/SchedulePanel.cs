@@ -78,7 +78,7 @@ public class SchedulePanel : SlidePanel
         
         // 更新按钮文本等信息
         if (currentMissions.Count > 0)
-            mission1Btn.GetComponentInChildren<Text>().text = currentMissions[0].missionName;
+            mission1Btn.GetComponentInChildren<Text>().text = currentMissions[0].missionID;
     }
     
     // 当查看任务信息后调用

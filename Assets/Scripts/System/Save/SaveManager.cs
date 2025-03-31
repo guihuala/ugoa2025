@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SaveManager : SingletonPersistent<SaveManager>
 {
@@ -33,25 +34,35 @@ public class SaveManager : SingletonPersistent<SaveManager>
         // 达成的成就
         public List<AchievementSaveData> achievements = new List<AchievementSaveData>();
 
-        // 新增：关卡解锁状态
+        // 关卡解锁状态
         public List<LevelUnlockData> levelUnlocks = new List<LevelUnlockData>();
+        
+        // 任务的状态
+        public List<missionSaveData> missions = new List<missionSaveData>();
     }
 
     // 关卡解锁状态数据结构
-    [System.Serializable]
+    [Serializable]
     public class LevelUnlockData
     {
         public string levelName; // 关卡名称或ID
         public bool isUnlocked; // 是否已解锁
     }
-
-
+    
     // 成就保存数据结构
-    [System.Serializable]
+    [Serializable]
     public class AchievementSaveData
     {
         public string cardID; // 成就卡片 ID
         public bool isHeld; // 是否已解锁
+    }
+    
+    [Serializable]
+    public class missionSaveData
+    {
+        [FormerlySerializedAs("missionName")] public string missionID;
+        public bool isUnlocked;
+        public bool isAccepted;
     }
 
     public void SetDefaultCurrentScene()
@@ -92,6 +103,16 @@ public class SaveManager : SingletonPersistent<SaveManager>
             });
         }
 
+        foreach (var mission in LevelManager.Instance.missions)
+        {
+            savedata.missions.Add(new missionSaveData
+            {
+                missionID = mission.missionID,
+                isAccepted = mission.isMissionAccepted,
+                isUnlocked = mission.isMissionUnlocked
+            });
+        }
+
         return savedata;
     }
 
@@ -104,7 +125,6 @@ public class SaveManager : SingletonPersistent<SaveManager>
         playTime = savedata.playTime;
         failureTime = savedata.failureTime;
     }
-
 
     public void NewRecord(string end = ".save")
     {

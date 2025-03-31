@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class MissionData
 {
-    public string missionName;
+    public string missionID;
     [TextArea] public string missionDescription;
     public Sprite missionIcon;
 

@@ -14,6 +14,7 @@ public class LevelData
 
 public class LevelManager : SingletonPersistent<LevelManager>
 {
+    [Header("关卡配置")]
     public List<LevelData> levels = new List<LevelData>();
     public string failureReason;
     
@@ -55,6 +56,8 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 }
             }
         }
+        
+        LoadMissionUnlocks(saveData);
     }
 
     // 解锁关卡
@@ -108,33 +111,54 @@ public class LevelManager : SingletonPersistent<LevelManager>
         {
             new MissionData
             {
-                missionName = "1", missionDescription = "", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
-                isMissionUnlocked = false, isMissionAccepted = true, unlockRequiredLevel = "Level1"
+                missionID = "1", missionDescription = "我是第一个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                isMissionUnlocked = true, isMissionAccepted = false, unlockRequiredLevel = "Level1"
             },
             new MissionData
             {
-                missionName = "2", missionDescription = "", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                missionID = "2", missionDescription = "我是第二个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
                 isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level3"
             },
             new MissionData
             {
-                missionName = "3", missionDescription = "", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                missionID = "3", missionDescription = "我是第三个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
                 isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level6"
             },
         };
     }
 
-    private void LoadMissionUnlocks()
+    private void LoadMissionUnlocks(SaveManager.SaveData saveData)
     {
-        
+        if (saveData != null && saveData.levelUnlocks != null)
+        {
+            foreach (var missionData in saveData.missions)
+            {
+                var mission = missions.Find(m => m.missionID == missionData.missionID);
+                if (mission != null)
+                {
+                    mission.isMissionUnlocked = missionData.isUnlocked;
+                    mission.isMissionAccepted = missionData.isUnlocked;
+                }
+            }
+        }
     }
     
     private void UnlockMission(string levelName)
     {
-        var mission = missions.Find(l => l.missionName == levelName);
+        var mission = missions.Find(l => l.missionID == levelName);
         if (mission != null)
         {
             mission.isMissionUnlocked = true;
+        }
+    }
+
+    // 与对应的任务的信件互动即为接受
+    public void AcceptMission(string levelName)
+    {
+        var mission = missions.Find(l => l.missionID == levelName);
+        if (mission != null)
+        {
+            mission.isMissionAccepted = true;
         }
     }
 

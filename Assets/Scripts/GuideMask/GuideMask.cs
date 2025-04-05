@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class GuideMask : MaskableGraphic, ICanvasRaycastFilter
     private Vector2 _targetMax;         // 目标区域最大坐标(右上)
     private RectTransform _targetArea;  // 用于复制目标区域参数的RectTransform
 
+    public event Action OnClickOutside;
+
     /// <summary>
     /// 射线检测过滤(实现ICanvasRaycastFilter接口)
     /// 只有点击在遮罩区域时才响应，目标区域穿透
@@ -24,6 +27,11 @@ public class GuideMask : MaskableGraphic, ICanvasRaycastFilter
     {
         // 当点击位置不在目标区域内时返回true(允许事件穿透)
         return !RectTransformUtility.RectangleContainsScreenPoint(_targetArea, sp, eventCamera);
+    }
+
+    public void OnClickButton()
+    {
+        OnClickOutside?.Invoke();
     }
 
     /// <summary>

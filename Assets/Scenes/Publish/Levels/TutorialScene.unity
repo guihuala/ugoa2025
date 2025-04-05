@@ -185,7 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c74e3299b5e4057929c13b506611b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useOrthographicCamera: 0
 --- !u!4 &15605296
 Transform:
   m_ObjectHideFlags: 0
@@ -463,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels: []
   failureReason: 
+  missions: []
 --- !u!114 &215035247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2845,7 +2845,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.8066038, b: 0.8066038, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -3635,7 +3635,7 @@ PrefabInstance:
     - target: {fileID: 1842668440175923509, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 5918377874590281035, guid: 7009b90fe569d4e5b82e106971f8235c, type: 3}
+      objectReference: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround

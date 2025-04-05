@@ -113,7 +113,7 @@ public class LevelSelectionCamera : MonoBehaviour
         }
     }
 
-    private void MoveLeft()
+    public void MoveLeft()
     {
         if (currentIndex > 0)
         {

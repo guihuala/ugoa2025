@@ -52,7 +52,6 @@ public class TitleUI : MonoBehaviour
 
     private void Start()
     {
-        // 设置 initialPosition 和 targetPosition 基于屏幕比例
         SetAboutPanelPosition();
         
         aboutPanelRectTransform.anchoredPosition = initialPosition;

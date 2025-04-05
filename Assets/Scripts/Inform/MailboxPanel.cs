@@ -158,6 +158,13 @@ public class MailboxPanel : BasePanel
             letterTransform.gameObject.SetActive(false);
             isOpening = false;
 
+            // 更新MailboxNews的状态
+            MailboxNews news = FindObjectOfType<MailboxNews>();
+            if (news != null)
+            {
+                news.HasPendingMissions();
+            }
+
             // 处理下一个任务
             ProcessNextMission();
         });

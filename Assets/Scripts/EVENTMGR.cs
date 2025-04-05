@@ -152,6 +152,17 @@ public static class EVENTMGR
 
     #endregion
 
+    #region 解锁道具
+
+    public static event Action<ItemData> OnUnlockItem;
+
+    public static void TriggerUnlockItem(ItemData item)
+    {
+        OnUnlockItem?.Invoke(item);
+    }
+
+    #endregion
+    
     #region 使用弹弓
 
     public static event Action OnUsingSlingshot;

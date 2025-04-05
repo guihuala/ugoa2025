@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEngine.Serialization;
 
 public class SchedulePanel : SlidePanel
 {
@@ -17,6 +16,10 @@ public class SchedulePanel : SlidePanel
     public Button mission2Btn;
     public Button mission3Btn;
 
+    public Transform mission1Transform;
+    public Transform mission2Transform;
+    public Transform mission3Transform;
+    
     [Header("面板配置")] 
     public Transform missionInfo;
     
@@ -26,6 +29,9 @@ public class SchedulePanel : SlidePanel
     
     [Header("动画配置")]
     public float infoFadeDuration = 0.2f;
+    public float infoScaleDuration = 0.3f;
+    public Ease infoScaleEase = Ease.OutBack;
+    public Vector3 infoStartScale = new Vector3(0.8f, 0.8f, 0.8f);
     
     private List<MissionData> currentMissions = new List<MissionData>();
 
@@ -40,6 +46,8 @@ public class SchedulePanel : SlidePanel
         
         InitUI();
         LoadAcceptedMissions();
+        
+        missionInfo.localScale = infoStartScale;
     }
 
     void InitUI()
@@ -72,9 +80,9 @@ public class SchedulePanel : SlidePanel
     
     private void UpdateMissionButtons()
     {
-        mission1Btn.gameObject.SetActive(currentMissions.Count > 0);
-        mission2Btn.gameObject.SetActive(currentMissions.Count > 1);
-        mission3Btn.gameObject.SetActive(currentMissions.Count > 2);
+        mission1Transform.gameObject.SetActive(currentMissions.Count > 0);
+        mission2Transform.gameObject.SetActive(currentMissions.Count > 1);
+        mission3Transform.gameObject.SetActive(currentMissions.Count > 2);
     }
     
     private void UpdateMissionInfo()
@@ -105,11 +113,20 @@ public class SchedulePanel : SlidePanel
     
     void OpenInfo()
     {
+        if(missionInfo.gameObject.activeSelf) return;
+        
         missionInfo.gameObject.SetActive(true);
         CanvasGroup canvasGroup = missionInfo.GetComponent<CanvasGroup>();
         if (canvasGroup == null) canvasGroup = missionInfo.gameObject.AddComponent<CanvasGroup>();
         
+        // 重置状态
         canvasGroup.alpha = 0;
-        canvasGroup.DOFade(1, infoFadeDuration);
+        missionInfo.localScale = infoStartScale;
+        
+        // 同时执行淡入和缩放动画
+        Sequence seq = DOTween.Sequence();
+        seq.Join(canvasGroup.DOFade(1, infoFadeDuration));
+        seq.Join(missionInfo.DOScale(Vector3.one, infoScaleDuration).SetEase(infoScaleEase));
+        seq.Play();
     }
 }

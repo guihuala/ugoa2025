@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -192,11 +193,14 @@ public class LevelManager : SingletonPersistent<LevelManager>
         {
             if (levelDates[i].isUnlocked)
             {
-                return $"第{i + 1}关";
+                string levelName = levelDates[i].levelName;
+                
+                int startIndex = Math.Max(0, levelName.Length - 3);
+                return $"第{levelName.Substring(startIndex)}关";
             }
         }
         return "None";
-    }    
+    }  
 
     #endregion
 
@@ -213,17 +217,17 @@ public class LevelManager : SingletonPersistent<LevelManager>
             new MissionData
             {
                 missionID = "1", missionDescription = "我是第一个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
-                isMissionUnlocked = true, isMissionAccepted = false, unlockRequiredLevel = "Level1"
+                isMissionUnlocked = true, isMissionAccepted = false, unlockRequiredLevel = "Level1_1"
             },
             new MissionData
             {
                 missionID = "2", missionDescription = "我是第二个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
-                isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level3"
+                isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level2_1"
             },
             new MissionData
             {
                 missionID = "3", missionDescription = "我是第三个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
-                isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level6"
+                isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level3_1"
             },
         };
     }

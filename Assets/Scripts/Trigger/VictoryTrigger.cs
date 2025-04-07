@@ -8,7 +8,7 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
     private LevelInfo levelInfo;
 
     [SerializeField] private bool ifRequestCollection;
-    private string[] requestedItemID = new[] { "7", "8", "9" };
+    [SerializeField] private string[] requestedItemID;
     
     public DialogueData dialogueData;
     

@@ -23,7 +23,7 @@ public class PhotoFrameItem : MonoBehaviour
                 continue;
             }
             
-            LevelData requiredLevel = LevelManager.Instance.levels[index];
+            LevelData requiredLevel = LevelManager.Instance.levels[index * 4];
 
             if (requiredLevel != null && requiredLevel.isUnlocked && requiredLevel.isPlayed)
             {

@@ -2,13 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class LevelSelectionButton : MonoBehaviour
 {
     [SerializeField] private bool unlocked;
 
-    [SerializeField] private GameObject levelUnlockImg;
+    [SerializeField] private GameObject themeUnlockImg;
+    [SerializeField] private GameObject themeLockImg;
+    
     [SerializeField] private GameObject levelLockImg;
     
     [SerializeField] private string levelName;
@@ -40,23 +43,29 @@ public class LevelSelectionButton : MonoBehaviour
 
     private void UpdateLevelImage()
     {
-        if(levelName == "Level1")
-            return;
-        
-        if (!unlocked)
+        if (unlocked)
         {
-            levelLockImg.SetActive(true);
-            levelUnlockImg.SetActive(false);
-            
-            gameObject.SetActive(false);
+            levelLockImg.SetActive(false);
         }
         else
         {
-            levelLockImg.SetActive(false);
-            levelUnlockImg.SetActive(true);
-            
-            gameObject.SetActive(true);
+            levelLockImg.SetActive(true);
         }
+        
+        SetLockImg(unlocked);
+        SetUnlockImg(unlocked);
+    }
+
+    void SetLockImg(bool isUnlocked)
+    {
+        if(themeUnlockImg != null)
+            levelLockImg.SetActive(!isUnlocked);
+    }
+
+    void SetUnlockImg(bool isUnlocked)
+    {
+        if(themeUnlockImg != null)
+            themeUnlockImg.SetActive(isUnlocked);
     }
 
     public void PressSelection(SceneName _LevelName)

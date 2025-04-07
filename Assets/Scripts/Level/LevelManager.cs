@@ -59,11 +59,11 @@ public class LevelManager : SingletonPersistent<LevelManager>
             },
             new LevelData
             {
-                name = "Level1_4", 
+                name = "Level1_4",
                 isUnlocked = false,
                 isPlayed = false,
                 requiresItems = true,
-                requiredItemIDs = new List<string> { "1", "2" }
+                requiredItemIDs = new List<string> { "1", "2", "3" }
             },
 
             new LevelData
@@ -93,7 +93,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 isUnlocked = false,
                 isPlayed = false,
                 requiresItems = true,
-                requiredItemIDs = new List<string> { "3", "4" }
+                requiredItemIDs = new List<string> { "4", "5", "6" }
             },
 
             new LevelData
@@ -123,7 +123,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 isUnlocked = false,
                 isPlayed = false,
                 requiresItems = true,
-                requiredItemIDs = new List<string> { "5", "6" }
+                requiredItemIDs = new List<string> { "6", "7", "8" }
             },
         };
         
@@ -153,18 +153,6 @@ public class LevelManager : SingletonPersistent<LevelManager>
     public void UnlockLevel(string levelName)
     {
         var level = levels.Find(l => l.name == levelName);
-        // 如果关卡需要特定物品
-        if (level.requiresItems)
-        {
-            // 检查所有需要的物品
-            foreach (var itemID in level.requiredItemIDs)
-            {
-                if (!AchievementManager.Instance.CheckUnlockCard(itemID))
-                {
-                    return;
-                }
-            }
-        }
         
         if (level != null && !level.isUnlocked)
         {
@@ -172,9 +160,27 @@ public class LevelManager : SingletonPersistent<LevelManager>
             SaveManager.Instance.NewRecord(); // 保存解锁状态
         }
         
-        // 如果是3、6关，直接用笨办法吧
+        // 如果是每个主题的底关就解锁任务，直接用笨办法吧
         if(levelName == "Level1_3" || levelName == "Level2_3")
             UnlockMission(levelName);
+    }
+
+    public void UnlockSpecialLevel(LevelData levelData)
+    {
+        // 检查所有需要的物品
+        foreach (var itemID in levelData.requiredItemIDs)
+        {
+            if (!AchievementManager.Instance.CheckUnlockCard(itemID))
+            {
+                return;
+            }
+        }
+
+        if (!levelData.isUnlocked)
+        {
+            levelData.isUnlocked = true;
+            SaveManager.Instance.NewRecord(); // 保存解锁状态
+        }
     }
     
     // 标记关卡被游玩过

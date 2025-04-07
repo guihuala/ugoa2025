@@ -37,6 +37,11 @@ public class LevelSelectionButton : MonoBehaviour
         var level = LevelManager.Instance.levels.Find(l => l.name == levelName);
         if (level != null)
         {
+            if (level.requiresItems)
+            {
+                LevelManager.Instance.UnlockSpecialLevel(level);
+            }
+            
             unlocked = level.isUnlocked; // 设置解锁状态
         }
     }

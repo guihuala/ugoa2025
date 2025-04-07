@@ -51,8 +51,6 @@ public class TitleLoadDataUI : MonoBehaviour
             // 如果存档存在，则设置存档名称
             if (RecordData.Instance.recordName[i] != "")
                 obj.GetComponent<RecordUI>().SetName(i);
-            
-            Debug.Log(RecordData.Instance.recordName[i]);
         }
     }
 

@@ -7,8 +7,8 @@ public class LevelInfo : MonoBehaviour
 {
     // 配置每一关的基本信息
     public SceneName currentScene;
-    public SceneName nextLevel;
-    public string nextLevelName;
+    [Tooltip("用于场景传送")]public SceneName nextLevel;
+    [Tooltip("用于解锁")]public string nextLevelName;
 
     public DialogueData levelDialogue;
     

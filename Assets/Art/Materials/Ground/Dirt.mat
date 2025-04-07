@@ -23,7 +23,6 @@ Material:
   - _MK_RIM_DEFAULT
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
-  - _MK_WORKFLOW_SPECULAR
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _RECEIVESHADOWS_ON
@@ -36,7 +35,7 @@ Material:
     IGNOREPROJECTOR: False
     RenderType: Opaque
   disabledShaderPasses: []
-  m_LockedProperties: _Dissolve
+  m_LockedProperties: _Dissolve _OutlineClipOffset
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -264,19 +263,19 @@ Material:
     - _IridescenceSmoothness: 1
     - _IridescenceThresholdOffset: 0.25
     - _Light: 2
-    - _LightBands: 3
-    - _LightBandsScale: 0.326
+    - _LightBands: 4
+    - _LightBandsScale: 0.428
     - _LightCuts: 3
     - _LightCutsScale: 0.5
     - _LightStyle: 0
-    - _LightThreshold: 0.284
+    - _LightThreshold: 0.386
     - _LightTransmission: 0
     - _LightTransmissionDistortion: 0.105
     - _LightTransmissionIntensity: 1
     - _LightTransmissionSmoothness: 0.485
     - _LightTransmissionThresholdOffset: 0.291
     - _Metallic: 0
-    - _NormalMapIntensity: 0.1
+    - _NormalMapIntensity: 0.01
     - _NormalMapScale: 1
     - _OcclusionMapIntensity: 1
     - _OcclusionMapScale: 1
@@ -331,7 +330,7 @@ Material:
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
-    - _Workflow: 1
+    - _Workflow: 0
     - _WorkflowMode: 1
     - _WrappedLighting: 1
     - _ZTest: 4

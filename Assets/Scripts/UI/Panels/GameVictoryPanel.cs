@@ -22,11 +22,16 @@ public class GameVictoryPanel : BasePanel
         if (levelInfo != null)
         {
             int index = 0;
-            if(levelInfo.currentScene == SceneName.Level1)
+            if (levelInfo.currentScene == SceneName.Level1_1 || levelInfo.currentScene == SceneName.Level1_2 ||
+                levelInfo.currentScene == SceneName.Level1_3 || levelInfo.currentScene == SceneName.Level1_4)
                 index = 0;
-            else if (levelInfo.currentScene == SceneName.Level2)
+            
+            else if (levelInfo.currentScene == SceneName.Level2_1 || levelInfo.currentScene == SceneName.Level2_2 ||
+                     levelInfo.currentScene == SceneName.Level2_3 || levelInfo.currentScene == SceneName.Level2_4)
                 index = 1;
-            else if (levelInfo.currentScene == SceneName.Level3)
+            
+            else if (levelInfo.currentScene == SceneName.Level3_1 || levelInfo.currentScene == SceneName.Level3_2 ||
+                     levelInfo.currentScene == SceneName.Level3_3 || levelInfo.currentScene == SceneName.Level3_4)
                 index = 2;
             
             SetVictoryImage(index); // 传入当前关卡索引

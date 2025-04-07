@@ -10,6 +10,8 @@ public class LevelData
     public string name; // 关卡名称
     public bool isUnlocked; // 是否解锁
     public bool isPlayed;
+    public bool requiresItems; // 是否需要物品解锁
+    public List<string> requiredItemIDs; // 需要的物品ID列表
 }
 
 public class LevelManager : SingletonPersistent<LevelManager>
@@ -33,9 +35,95 @@ public class LevelManager : SingletonPersistent<LevelManager>
     {
         levels = new List<LevelData>
         {
-            new LevelData { name = "Level1", isUnlocked = true, isPlayed = false}, // 默认解锁第一个关卡
-            new LevelData { name = "Level2", isUnlocked = false, isPlayed = false },
-            new LevelData { name = "Level3", isUnlocked = false, isPlayed = false }
+            new LevelData
+            {
+                name = "Level1_1",
+                isUnlocked = true,
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData { 
+                name = "Level1_2",
+                isUnlocked = false,
+                isPlayed = false,
+                requiresItems = false
+                
+            },
+            new LevelData
+            {
+                name = "Level1_3", 
+                isUnlocked = false,
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData
+            {
+                name = "Level1_4", 
+                isUnlocked = false,
+                isPlayed = false,
+                requiresItems = true,
+                requiredItemIDs = new List<string> { "1", "2" }
+            },
+
+            new LevelData
+            {
+                name = "Level2_1",
+                isUnlocked = false, 
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData
+            {
+                name = "Level2_2",
+                isUnlocked = false, 
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData
+            {
+                name = "Level2_3", 
+                isUnlocked = false, 
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData
+            {
+                name = "Level2_4", 
+                isUnlocked = false,
+                isPlayed = false,
+                requiresItems = true,
+                requiredItemIDs = new List<string> { "3", "4" }
+            },
+
+            new LevelData
+            {
+                name = "Level3_1", 
+                isUnlocked = false, 
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData
+            {
+                name = "Level3_2",
+                isUnlocked = false,
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData
+            {
+                name = "Level3_3",
+                isUnlocked = false, 
+                isPlayed = false,
+                requiresItems = false
+            },
+            new LevelData
+            {
+                name = "Level3_4",
+                isUnlocked = false,
+                isPlayed = false,
+                requiresItems = true,
+                requiredItemIDs = new List<string> { "5", "6" }
+            },
         };
         
         InitMissions();
@@ -64,6 +152,19 @@ public class LevelManager : SingletonPersistent<LevelManager>
     public void UnlockLevel(string levelName)
     {
         var level = levels.Find(l => l.name == levelName);
+        // 如果关卡需要特定物品
+        if (level.requiresItems)
+        {
+            // 检查所有需要的物品
+            foreach (var itemID in level.requiredItemIDs)
+            {
+                if (!AchievementManager.Instance.CheckUnlockCard(itemID))
+                {
+                    return;
+                }
+            }
+        }
+        
         if (level != null && !level.isUnlocked)
         {
             level.isUnlocked = true;
@@ -71,10 +172,10 @@ public class LevelManager : SingletonPersistent<LevelManager>
         }
         
         // 如果是3、6关，直接用笨办法吧
-        if(levelName == "Level3" || levelName == "Level6")
+        if(levelName == "Level1_3" || levelName == "Level2_3")
             UnlockMission(levelName);
     }
-
+    
     // 标记关卡被游玩过
     public void PlayLevel(string levelName)
     {

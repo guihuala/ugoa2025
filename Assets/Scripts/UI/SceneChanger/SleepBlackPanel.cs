@@ -26,12 +26,17 @@ public class SleepBlackPanel : BasePanel
     public void StartSleepCounting(float duration, string textStr, UnityAction callBack, SceneName sceneName)
     {
         SceneChangerInfo selectedScene = null;
-        
-        if(sceneName == SceneName.Level1)
+
+        if (sceneName == SceneName.Level1_1 || sceneName == SceneName.Level1_2 || sceneName == SceneName.Level1_3 ||
+            sceneName == SceneName.Level1_4)
             selectedScene = sceneChangerInfoList[0];
-        else if(sceneName == SceneName.Level2)
+        
+        else if (sceneName == SceneName.Level2_1 || sceneName == SceneName.Level2_2 ||
+                 sceneName == SceneName.Level2_3 || sceneName == SceneName.Level2_4)
             selectedScene = sceneChangerInfoList[1];
-        else if(sceneName == SceneName.Level3)
+        
+        else if (sceneName == SceneName.Level3_1 || sceneName == SceneName.Level3_2 ||
+                 sceneName == SceneName.Level3_3 || sceneName == SceneName.Level3_4)
             selectedScene = sceneChangerInfoList[2];
         else
         {

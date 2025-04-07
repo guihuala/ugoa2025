@@ -79,7 +79,7 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
         }
     }
 
-    // 检查卡牌是否满足解锁的条件
+    // 检查是否满足解锁的条件
     public void CheckAndUnlockCard(AchievementSO achievement, string itemId)
     {
         if (achievement.CheckCondition(itemId))
@@ -87,6 +87,13 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
             // 添加到临时堆栈
             pendingAchievements.Add(achievement.ID);
         }
+    }
+
+    public bool CheckUnlockCard(string itemId)
+    {
+        var achievement = _achievementList.Find(a => a.ID == itemId);
+        
+        return achievement.isHeld;
     }
 
     public Sprite GetAchievementIcon(string itemId)

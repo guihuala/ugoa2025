@@ -23,7 +23,6 @@ Material:
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
-  - _MK_WORKFLOW_SPECULAR
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
@@ -240,7 +239,7 @@ Material:
     - _Diffuse: 0
     - _DiffuseMode: 1
     - _DiffuseSmoothness: 0.356
-    - _DiffuseThresholdOffset: 1
+    - _DiffuseThresholdOffset: 0.393
     - _Dissolve: 0
     - _DissolveAmount: 0
     - _DissolveBorderSize: 0.689
@@ -268,7 +267,7 @@ Material:
     - _IridescenceSmoothness: 1
     - _IridescenceThresholdOffset: 0.25
     - _Light: 2
-    - _LightBands: 3
+    - _LightBands: 4
     - _LightBandsScale: 0.217
     - _LightCuts: 3
     - _LightCutsScale: 0.5
@@ -335,7 +334,7 @@ Material:
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
-    - _Workflow: 1
+    - _Workflow: 0
     - _WorkflowMode: 1
     - _WrappedLighting: 1
     - _ZTest: 4

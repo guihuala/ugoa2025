@@ -9,12 +9,26 @@ public enum SceneName
 {
     Title,
     LevelSelection,
-    Level1,
-    Level2,
-    Level3,
-    OfficeScene,
-    CG,
+    
+    Level1_1,
+    Level1_2,
+    Level1_3,
+    Level1_4,
+    
+    Level2_1,
+    Level2_2,
+    Level2_3,
+    Level2_4,
+    
+    Level3_1,
+    Level3_2,
+    Level3_3,
+    Level3_4,
+    
     TutorialScene,
+    OfficeScene,
+    
+    CG,
 }
 
 public class SceneLoader : SingletonPersistent<SceneLoader>

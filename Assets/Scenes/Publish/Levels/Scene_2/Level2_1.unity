@@ -30299,10 +30299,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.5518868, g: 0.90082735, b: 1, a: 0.7372549}
-  deepColor: {r: 0.44811308, g: 0.66575867, b: 1, a: 1}
-  colorDepth: 0.1
-  horizonColor: {r: 0.21170619, g: 0.25014156, b: 0.735849, a: 1}
+  shallowColor: {r: 0.28341824, g: 0.28455675, b: 0.31131962, a: 0.7372549}
+  deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
+  colorDepth: 1
+  horizonColor: {r: 0.21170464, g: 0.25013998, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -112541,9 +112541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c63a761daa74813a194425ca3458d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 3
-  nextLevel: 4
-  nextLevelName: Level3
+  currentScene: 6
+  nextLevel: 7
+  nextLevelName: Level2_2
   levelDialogue: {fileID: 0}
   isEndLevel: 0
 --- !u!4 &1682006757
@@ -143926,10 +143926,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.5518868, g: 0.90082735, b: 1, a: 0.7372549}
-  deepColor: {r: 0.44811308, g: 0.66575867, b: 1, a: 1}
-  colorDepth: 0.1
-  horizonColor: {r: 0.21170616, g: 0.2501415, b: 0.735849, a: 1}
+  shallowColor: {r: 0.2834182, g: 0.28455672, b: 0.3113196, a: 0.7372549}
+  deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
+  colorDepth: 1
+  horizonColor: {r: 0.21170458, g: 0.25013995, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}

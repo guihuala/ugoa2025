@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class TutorialManager : SingletonPersistent<TutorialManager>
+public class TutorialManager : Singleton<TutorialManager>
 {
     [Header("教程步骤配置")]
     public RectTransform mailboxHighlightTarget; // 邮箱UI目标
@@ -19,10 +19,16 @@ public class TutorialManager : SingletonPersistent<TutorialManager>
     [Header("动画设置")]
     public float textFadeDuration = 0.5f;
     public float pointerClickAnimationDuration = 0.3f;
+    public float stepTransitionDelay = 0.5f; // 步骤间延迟时间
+    
+    [Header("教程流程控制")]
+    public int startStep = 1; // 默认从第一步开始
+    public int endStep = 4;   // 默认到第四步结束
     
     private int currentStep = 0;
     private Sequence pointerSequence;
     private bool isWaitingForInput = false;
+    private bool isTransitioning = false; // 是否正在过渡到下一步
 
     private void Start()
     {
@@ -51,7 +57,7 @@ public class TutorialManager : SingletonPersistent<TutorialManager>
             return;
         }
         
-        currentStep = 1; // 直接从第一步开始
+        currentStep = Mathf.Clamp(startStep, 1, 4); // 确保开始步骤在有效范围内
         NextStep();
     }
 
@@ -66,6 +72,13 @@ public class TutorialManager : SingletonPersistent<TutorialManager>
         }
         
         Debug.Log($"进入教程步骤: {currentStep}");
+        
+        // 检查是否到达终点步骤
+        if (currentStep > endStep)
+        {
+            CompleteTutorial();
+            return;
+        }
         
         // 根据步骤执行不同操作
         switch (currentStep)
@@ -151,7 +164,7 @@ public class TutorialManager : SingletonPersistent<TutorialManager>
     private void UpdateTextPosition(Vector3 targetPosition)
     {
         Vector3 textPosition = new Vector3(
-            targetPosition.x,
+            targetPosition.x + 100f,
             targetPosition.y + 200f,
             targetPosition.z
         );
@@ -173,7 +186,7 @@ public class TutorialManager : SingletonPersistent<TutorialManager>
     
     private void OnClickOutsideMask()
     {
-        if (isWaitingForInput)
+        if (isWaitingForInput && !isTransitioning)
         {
             CompleteCurrentStep();
         }
@@ -182,13 +195,28 @@ public class TutorialManager : SingletonPersistent<TutorialManager>
     private void CompleteCurrentStep()
     {
         isWaitingForInput = false;
+        isTransitioning = true;
+        
+        // 添加延迟后再进入下一步
+        StartCoroutine(DelayedNextStep());
+    }
+    
+    private IEnumerator DelayedNextStep()
+    {
+        yield return new WaitForSeconds(stepTransitionDelay);
+        
         currentStep++;
+        isTransitioning = false;
         NextStep();
     }
 
     private void CompleteTutorial()
     {
-        PlayerPrefs.SetInt("Tutorial_Completed", 1);
+        // 只有当完成完整教程时才保存完成状态
+        if (endStep == 4)
+        {
+            PlayerPrefs.SetInt("Tutorial_Completed", 1);
+        }
         
         // 清理UI元素
         if (guideMask != null) guideMask.Close();

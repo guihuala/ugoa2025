@@ -18,7 +18,6 @@ Material:
   - _MK_FRESNEL_HIGHLIGHTS
   - _MK_LIGHT_BANDED
   - _MK_NORMAL_MAP
-  - _MK_OUTLINE_DATA_UV7
   - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
@@ -289,12 +288,12 @@ Material:
     - _OptionsTab: 1
     - _Outline: 3
     - _OutlineClipOffset: 0
-    - _OutlineData: 1
+    - _OutlineData: 0
     - _OutlineFadeMax: 2
     - _OutlineFadeMin: 0.25
     - _OutlineMode: 1
     - _OutlineNoise: 0
-    - _OutlineSize: 3.5
+    - _OutlineSize: 0
     - _OutlineTab: 1
     - _Parallax: 0.1
     - _QueueOffset: 0
@@ -353,7 +352,7 @@ Material:
     - _GoochDarkColor: {r: 0.3207547, g: 0.19820221, b: 0.19820221, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0.21176471}
     - _LightTransmissionColor: {r: 0.9056604, g: 0.5430277, b: 0.32039872, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 0.78520364, b: 0.495283, a: 0}
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColorBright: {r: 1, g: 1, b: 1, a: 1}

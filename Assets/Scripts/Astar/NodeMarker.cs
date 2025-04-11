@@ -109,7 +109,7 @@ public class NodeMarker : MonoBehaviour
         }
     }
     
-    void CheckClick()
+    public void CheckClick()
     {
         if (Input.GetMouseButtonDown(0)) // 左键点击
         {

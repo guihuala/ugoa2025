@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b47e8935dc184185b1e75ee5c1267e7, type: 3}
+  m_Name: Lv1-2
+  m_EditorClassIdentifier: 
+  Cells:
+  - Index: 0
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 1
+    CellFlag: 0
+    Content: "\u8FD9\u662F\u88AB\u5077\u730E\u8005\u6293\u4F4F\u7684\u9E66\u9E49\u5417...\uFF1F"
+  - Index: 1
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 2
+    CellFlag: 2
+    Content: "\u597D\u53EF\u601C...\u5F97\u60F3\u529E\u6CD5\u628A\u5B83\u4EEC\u6551\u51FA\u6765\uFF01"
+  - Index: 2
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 0
+    CellFlag: 1
+    Content: "\u53BB\u56DB\u5468\u770B\u770B\u600E\u4E48\u6253\u5F00\u8FD9\u4E2A\u7B3C\u5B50\u5427\u3002"

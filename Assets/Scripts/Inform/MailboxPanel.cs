@@ -9,6 +9,7 @@ public class MailboxPanel : BasePanel
     [Header("UI组件")]
     public Transform letterTransform;   // 信件Transform
     public Button letterButton; // 信件按钮
+    public Text missionTitle; // 任务标题
     public Text missionDescriptionText; // 任务描述文本
     public Button closePanelBtn;
 
@@ -87,7 +88,7 @@ public class MailboxPanel : BasePanel
     {
         isOpening = true;
 
-        // 设置任务描述
+        missionTitle.text = mission.missionTitle;
         missionDescriptionText.text = mission.missionDescription;
 
         // 重置信件位置和大小

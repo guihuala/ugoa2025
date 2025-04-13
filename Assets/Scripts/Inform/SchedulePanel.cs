@@ -22,6 +22,8 @@ public class SchedulePanel : SlidePanel
     
     [Header("面板配置")] 
     public Transform missionInfo;
+    public Text missionName;
+    public Text missionDescription;
     
     [Header("游戏次数统计")]
     public Text playTimeText;
@@ -98,11 +100,9 @@ public class SchedulePanel : SlidePanel
     
     private void UpdateInfoPanel(MissionData mission)
     {
-        Text descriptionText = missionInfo.GetComponentInChildren<Text>();
-        if (descriptionText != null)
-        {
-            descriptionText.text = mission.missionDescription;
-        }
+        missionName.text = mission.missionTitle;
+        missionDescription.text = mission.missionDescription;
+
         
         Image iconImage = missionInfo.GetComponentInChildren<Image>();
         if (iconImage != null && mission.missionIcon != null)

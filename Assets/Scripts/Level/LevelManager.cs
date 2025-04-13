@@ -222,17 +222,29 @@ public class LevelManager : SingletonPersistent<LevelManager>
         {
             new MissionData
             {
-                missionID = "1", missionDescription = "我是第一个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                missionID = "1",
+                missionTitle = "婚礼委托",
+                missionDescription =
+                    "护林员女士：\n近日接获报告，雨林东北区的部落即将举行一场重要婚礼，局里决定派你作为代表出席。按照传统，请务必携带礼物。\n注意：巡逻队在该区域发现了盗猎者设置的陷阱，目标疑似珍稀鸟兽。若遭遇，请避免正面冲突，优先记录证据。\n祝任务顺利。\n——林业局后勤科",
+                missionIcon = Resources.Load<Sprite>("Icons/Missions/Mission1"),
                 isMissionUnlocked = true, isMissionAccepted = false, unlockRequiredLevel = "Level1_1"
             },
             new MissionData
             {
-                missionID = "2", missionDescription = "我是第二个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                missionID = "2",
+                missionTitle = "民俗学家的委托",
+                missionDescription =
+                    "护林员女士：\n我在研究一个即将消失的古老习俗——‘白鹤共生祭’。根据零散的记载，黑土平原深处可能还存在举行该仪式的村落。\n委托内容：\n1. 找到祭祀村落并拍摄白鹤群舞的照片（附：旧版地图与胶卷）\n2. 若可能，记录祭祀歌谣的歌词（我的录音笔电量不足了…）\n警告：当地老人提过，平原上有位养鼠的巫婆，遇到她请保持距离。\n\n——（民俗学家的名字）（随信附赠一包驱鼠药粉）",
+                missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
                 isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level2_1"
             },
             new MissionData
             {
-                missionID = "3", missionDescription = "我是第三个任务", missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                missionID = "3",
+                missionTitle = "金字塔调查",
+                missionDescription =
+                    "紧急通知：\n金字塔群发生多起‘木乃伊目击事件’。初步调查显示，盗墓者破坏了内部祭坛，导致封印失效。\n你的任务：\n1. 查明盗墓者动机与行踪\n2. 收集散落的3件祭品（清单附图）\n3. 恢复金字塔封印（操作指南见附件）\n\n——文物局危机应对科",
+                missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
                 isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level3_1"
             },
         };

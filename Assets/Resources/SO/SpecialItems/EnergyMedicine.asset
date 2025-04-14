@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6cd2a3951d64c588b2da64d2e500ce, type: 3}
   m_Name: EnergyMedicine
   m_EditorClassIdentifier: 
-  itemName: "\u80FD\u91CF\u836F\u5242"
+  itemName: "\u8568\u7C7B\u5B62\u5B50\u6DF7\u5408\u767D\u6866\u6811\u6C41"
   icon: {fileID: 21300000, guid: 52efe4be70c664332a642e3a4a00b435, type: 3}
+  description: "\u767D\u9E64\u90E8\u843D\u7684\u79D8\u5236\u836F\u5242\u3002\u5B62\u5B50\u9047\u6C34\u8FC5\u901F\u81A8\u80C0\u7684\u7279\u6027\u4E0E\u6811\u6C41\u7684\u9ECF\u6027\u7ED3\u5408\uFF0C\u80FD\u77AC\u95F4\u5F62\u6210\u900F\u6C14\u7EF7\u5E26\u3002\u4F20\u95FB\u670D\u7528\u540E\uFF0C\u4F1A\u542C\u5230\u9690\u7EA6\u7684\u9E64\u9E23\u58F0\u2014\u2014\u6216\u8BB8\u53EA\u662F\u5C71\u98CE\u7A7F\u8FC7\u82A6\u82C7\u4E1B\u7684\u9519\u89C9\uFF1F\u4E3A\u4E86\u4E0D\u8BA9\u9519\u89C9\u5F71\u54CD\u5192\u9669\uFF0C\u5343\u4E07\u4E0D\u80FD\u8D2A\u676F\u554A\u3002"
   cooldownTime: 40
   effectDuration: 10
   requiredLevelName: Level1
-  isUnlocked: 1
+  isUnlocked: 0
   effectType: 1

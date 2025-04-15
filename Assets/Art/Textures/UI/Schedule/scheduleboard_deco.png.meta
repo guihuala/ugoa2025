@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eb532aeee09fd41e6b960b60216d868c
+guid: 45160c2a5071a4b63bf8044ffbb17b82
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,6 +107,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -136,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LevelSelection_0
+      name: scheduleboard_deco_0
       rect:
         serializedVersion: 2
-        x: 82
-        y: 438
-        width: 184
-        height: 172
+        x: 131
+        y: 71
+        width: 529
+        height: 625
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7db4e846e7c7d4ef7b6018cb21e90052
-      internalID: -692545796
+      spriteID: 592f79c0fc9d446f5b05b85e5fe66307
+      internalID: 1722041890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LevelSelection_1
+      name: scheduleboard_deco_1
       rect:
         serializedVersion: 2
-        x: 279
-        y: 438
-        width: 181
-        height: 173
+        x: 965
+        y: 572
+        width: 169
+        height: 141
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 267cc765a75b242988fcac696f40f38f
-      internalID: -2005457250
+      spriteID: 17907a07ed3d04bd5a59b939ab84639e
+      internalID: 822290816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LevelSelection_2
+      name: scheduleboard_deco_2
       rect:
         serializedVersion: 2
-        x: 467
-        y: 437
-        width: 163
-        height: 174
+        x: 721
+        y: 82
+        width: 429
+        height: 428
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,113 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a88af62ef1b634115aedbf718f551846
-      internalID: 482140244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LevelSelection_3
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 24
-        width: 487
-        height: 399
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ab30b6ec88db4081b89bc2443126546
-      internalID: -1380268427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LevelSelection_4
-      rect:
-        serializedVersion: 2
-        x: 710
-        y: 334
-        width: 424
-        height: 275
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3b9905cb26b94340a172b4d039abb86
-      internalID: -1402387131
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LevelSelection_5
-      rect:
-        serializedVersion: 2
-        x: 1139
-        y: 350
-        width: 187
-        height: 258
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5197c1ba3570a42e795653dddbfc480f
-      internalID: -583585324
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LevelSelection_6
-      rect:
-        serializedVersion: 2
-        x: 707
-        y: 42
-        width: 206
-        height: 251
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92c526a7e10fa465eb07b66412c3cb5f
-      internalID: -169187876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LevelSelection_7
-      rect:
-        serializedVersion: 2
-        x: 927
-        y: 26
-        width: 401
-        height: 304
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e7f955bd6b734cb294aa703e5c2516c
-      internalID: 1595915413
+      spriteID: e326a0c05ea7c4220aa3758cdf1494db
+      internalID: 811587942
       vertices: []
       indices: 
       edges: []
@@ -306,7 +214,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3fff9eeb11fbd4e8ba775bef62df4f27
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -314,14 +222,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LevelSelection_0: -692545796
-      LevelSelection_1: -2005457250
-      LevelSelection_2: 482140244
-      LevelSelection_3: -1380268427
-      LevelSelection_4: -1402387131
-      LevelSelection_5: -583585324
-      LevelSelection_6: -169187876
-      LevelSelection_7: 1595915413
+      scheduleboard_deco_0: 1722041890
+      scheduleboard_deco_1: 822290816
+      scheduleboard_deco_2: 811587942
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

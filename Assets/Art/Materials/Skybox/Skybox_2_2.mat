@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skybox_2
+  m_Name: Skybox_2_2
   m_Shader: {fileID: 4800000, guid: 093154cdc7f00644bb134b97b876b335, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -108,11 +108,11 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Exponent: 1.28
+    - _Exponent: 0.14
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Intensity: 1.21
+    - _Intensity: 0.85
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OutlineWidth: 0.15
@@ -137,7 +137,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0.99056596, g: 0.5512611, b: 0.35043606, a: 1}
-    - _Color1: {r: 0.5921679, g: 0.6132076, b: 0.4194108, a: 1}
+    - _Color1: {r: 0.15423967, g: 0.11503205, b: 0.4433962, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}

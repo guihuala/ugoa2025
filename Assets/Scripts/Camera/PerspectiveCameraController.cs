@@ -20,6 +20,8 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     [Header("缩放调节")]
     public float zoomSpeed = 10;
     public float smoothZoomTime = 0.2f; // 缩放的平滑时间
+    public float minZoom = 20f;
+    public float maxZoom = 40f;
     
     [Header("相机震动配置")]
     [SerializeField] private float duration;
@@ -180,7 +182,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
                 float deltaDistance = previousDistance - currentDistance;
 
                 targetZoom += deltaDistance * zoomSpeed * 0.1f;
-                targetZoom = Mathf.Clamp(targetZoom, 20f, 40f);
+                targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
                 isZooming = true;
                 mainCamera.fieldOfView = Mathf.SmoothDamp(
                     mainCamera.fieldOfView,
@@ -199,7 +201,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
             if (Mathf.Abs(scrollInput) > 0.001f)
             {
                 targetZoom -= scrollInput * zoomSpeed;
-                targetZoom = Mathf.Clamp(targetZoom, 20f, 40f);
+                targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
                 isZooming = true;
                 mainCamera.fieldOfView = Mathf.SmoothDamp(
                     mainCamera.fieldOfView,

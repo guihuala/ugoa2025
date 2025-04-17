@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private PathfindingManager pathfindingManager;
     private bool isMoving = false;
     private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
+    private float originRotation = 0f;
     
     void Start()
     {
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
         EVENTMGR.OnEnterTargetField += HandlePlayerMoveWihoutChecking;
         EVENTMGR.OnClickMarker += HandlePlayerMove;
+        
+        originRotation = playerSpine.rotation.eulerAngles.y;
     }
 
     private void OnDestroy()
@@ -232,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Mathf.Abs(direction.x) > 0.01f)
         {
-            targetRotation = direction.x > 0 ? 225f : 45f;
+            targetRotation = direction.x > 0 ? originRotation + 180f : originRotation;
             if (!Mathf.Approximately(targetRotation, currentRotation)) // 避免重复旋转
             {
                 playerSpine.DORotate(new Vector3(0f, targetRotation, 0f), 0.3f, RotateMode.FastBeyond360);

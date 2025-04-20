@@ -66,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void ChangeRotation(float newRotation)
+    {
+        playerSpine.rotation = Quaternion.Euler(0, newRotation, 0);
+        originRotation = newRotation;
+    }
     
     private void HandleMouseInput()
     {

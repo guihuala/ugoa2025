@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Stone
-  m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
+  m_Shader: {fileID: 4800000, guid: df695d70c539c3d4c87b79de307ab7bb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -18,8 +18,6 @@ Material:
   - _MK_FRESNEL_HIGHLIGHTS
   - _MK_LIGHT_BANDED
   - _MK_NORMAL_MAP
-  - _MK_OUTLINE_DATA_UV7
-  - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
@@ -29,6 +27,8 @@ Material:
   - _FRESNELHIGHLIGHTS_ON
   - _MK_DIFFUSE_MODE_OREN_NAYAR
   - _MK_OUTLINE_BAKED
+  - _MK_OUTLINE_DATA_UV7
+  - _MK_OUTLINE_HULL_CLIP
   - _MK_SPECULAR_MODE_ISOTROPIC
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
@@ -341,7 +341,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.5943396, g: 0.5354664, b: 0.5354664, a: 1}
+    - _AlbedoColor: {r: 0.5943396, g: 0.5354663, b: 0.5354663, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.5943396, g: 0.5354663, b: 0.5354663, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}

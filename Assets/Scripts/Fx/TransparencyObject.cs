@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class TransparencyObject : MonoBehaviour
 {
-    private Material originalMaterial;
+    private Material[] originalMaterials;
     public Material transparentMaterial;
 
     private void Start()
     {
-        originalMaterial = GetComponent<MeshRenderer>().material;
+        originalMaterials = GetComponent<MeshRenderer>().materials;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,21 +28,26 @@ public class TransparencyObject : MonoBehaviour
 
     public void OnBecameVisible()
     {
-        // 恢复原材质
+        // 存储原始材质
         Renderer renderer = GetComponent<MeshRenderer>();
         if (renderer != null)
         {
-            renderer.material = originalMaterial;
+            renderer.materials = originalMaterials;
         }
     }
 
     public void OnBecameInvisible()
     {
-        // 更改材质为半透明
+        // 所有材质设置为透明材质
         Renderer renderer = GetComponent<MeshRenderer>();
         if (renderer != null)
         {
-            renderer.material = transparentMaterial;
+            Material[] transparentMaterials = new Material[originalMaterials.Length];
+            for (int i = 0; i < originalMaterials.Length; i++)
+            {
+                transparentMaterials[i] = transparentMaterial;
+            }
+            renderer.materials = transparentMaterials;
         }
     }
 }

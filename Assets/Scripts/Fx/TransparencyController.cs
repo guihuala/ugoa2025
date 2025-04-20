@@ -77,13 +77,4 @@ public class TransparencyController : MonoBehaviour
             }
         }
     }
-
-    // 可视化调试（可选）
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, outerRadius);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, innerRadius);
-    }
 }

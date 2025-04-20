@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dirt
-  m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
+  m_Shader: {fileID: 4800000, guid: df695d70c539c3d4c87b79de307ab7bb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -17,14 +17,14 @@ Material:
   - _MK_ENVIRONMENT_REFLECTIONS_ADVANCED
   - _MK_LIGHT_BANDED
   - _MK_NORMAL_MAP
-  - _MK_OUTLINE_DATA_UV7
-  - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
   - _MK_RIM_DEFAULT
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
+  - _MK_OUTLINE_DATA_UV7
+  - _MK_OUTLINE_HULL_CLIP
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
   m_LightmapFlags: 2
@@ -336,9 +336,9 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.4339623, g: 0.26398322, b: 0.17399432, a: 1}
+    - _AlbedoColor: {r: 0.43396223, g: 0.26398316, b: 0.17399424, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.43396226, g: 0.2639832, b: 0.17399427, a: 1}
+    - _Color: {r: 0.4339622, g: 0.26398313, b: 0.17399421, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 0.5}

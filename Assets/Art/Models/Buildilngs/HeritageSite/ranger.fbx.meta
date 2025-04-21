@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fbea10a01e0f242d09ba6723606a813b
+guid: e61feee00cfc642ac9aad3307298199b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,53 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: colormap
-    second: {fileID: 2100000, guid: 8050882d31b26452580eb89acfeac0af, type: 2}
+      name: "\u5713\u67F1\u9AD4"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u5713\u67F1\u9AD4_1"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u5713\u7BA1"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u5713\u9310\u9AD4"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6620\u8C61"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6620\u8C61_1"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u7403\u9AD4"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u7403\u9AD4_1"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u7403\u9AD4_2"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u7403\u9AD4_split"
+    second: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +85,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +140,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 2
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

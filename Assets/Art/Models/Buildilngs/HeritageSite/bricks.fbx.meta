@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fbea10a01e0f242d09ba6723606a813b
+guid: cdd26481d3e2c43ffa105bbf825cc843
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: colormap
-    second: {fileID: 2100000, guid: 8050882d31b26452580eb89acfeac0af, type: 2}
+    second: {fileID: 2100000, guid: e67717d0fe5d4423fbb158c72cbafd57, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 2
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

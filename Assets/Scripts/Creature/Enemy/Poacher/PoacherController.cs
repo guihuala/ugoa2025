@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Poacher : EnemyBase
+public class PoacherController : EnemyBase
 {
     private int currentPointIndex = 0;
 

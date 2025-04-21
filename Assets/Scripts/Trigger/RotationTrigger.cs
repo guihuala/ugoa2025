@@ -7,6 +7,7 @@ public class RotationTrigger : MonoBehaviour, IEnterSpecialItem
 {
     public float rotationSpeed = 360;
     public float targetRotation;
+    public bool isPlayerFlip; 
     
     private PerspectiveCameraController perspectiveCameraController;
     private PlayerMovement playerMovement;
@@ -43,8 +44,15 @@ public class RotationTrigger : MonoBehaviour, IEnterSpecialItem
         
         perspectiveCameraController.angle_y = targetAngle;
         isAtTarget = !isAtTarget;
-        
-        playerMovement.ChangeRotation(targetAngle + 180);
+
+        if (isPlayerFlip)
+        {
+            playerMovement.ChangeRotation(targetAngle + 180);
+        }
+        else
+        {
+            playerMovement.ChangeRotation(targetAngle);
+        }
         
         isRotating = false;
     }

@@ -26394,16 +26394,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackDirtGround
       objectReference: {fileID: 0}
+    - target: {fileID: 6810791894850253058, guid: 1ec4f60b8ffcd41e8b3927e7a9891220, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c140988a756c840478d479176abd963e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5127902353517380188, guid: 1ec4f60b8ffcd41e8b3927e7a9891220, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1877628981}
   m_SourcePrefab: {fileID: 100100000, guid: 1ec4f60b8ffcd41e8b3927e7a9891220, type: 3}
 --- !u!4 &1877628979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3367316732063250160, guid: 1ec4f60b8ffcd41e8b3927e7a9891220, type: 3}
   m_PrefabInstance: {fileID: 1877628978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1877628980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5127902353517380188, guid: 1ec4f60b8ffcd41e8b3927e7a9891220, type: 3}
+  m_PrefabInstance: {fileID: 1877628978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1877628981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877628980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dfc38efdc9c40af8bf3c95b8e7046a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ifRequestCollection: 0
+  requestedItemID: []
+  dialogueData: {fileID: 0}
 --- !u!1001 &1884487888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30172,10 +30199,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28340748, g: 0.28454602, b: 0.31130886, a: 0.7372549}
+  shallowColor: {r: 0.28340736, g: 0.28454587, b: 0.31130874, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21169388, g: 0.25012922, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21169373, g: 0.2501291, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}

@@ -278,6 +278,8 @@ public class Player : MonoBehaviour
     {
         if (!isInSwamp || isDead) return;
     
+        initialHeight = transform.position.y;
+        
         stayTime += Time.deltaTime;
         transform.position += Vector3.down * sinkSpeed * Time.deltaTime;
         

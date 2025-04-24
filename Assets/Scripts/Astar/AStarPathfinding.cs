@@ -55,7 +55,7 @@ public class AStarPathfinding
 
     private static List<Transform> GetFastNeighbors(Transform node, List<Transform> nodes, bool allowNonWalkable)
     {
-        float threshold = allowNonWalkable ? 3.6f : 1.2f;
+        float threshold = allowNonWalkable ? 2f : 1.2f;
 
         List<Transform> neighbors = new List<Transform>();
         foreach (var n in nodes)

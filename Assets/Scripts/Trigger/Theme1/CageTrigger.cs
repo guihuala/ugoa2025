@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,12 @@ public class CageTrigger : MonoBehaviour, IEnterSpecialItem
     
     private LockedCageBehavior lockedCage;
 
+
+    private void Start()
+    {
+        lockedCage = FindObjectOfType<LockedCageBehavior>();
+    }
+
     public void Apply()
     {
         HashSet<string> achievementList = AchievementManager.Instance.pendingAchievements;
@@ -19,6 +26,8 @@ public class CageTrigger : MonoBehaviour, IEnterSpecialItem
         {
             if (!achievementList.Contains(requestedItem))
             {
+                Debug.Log(requestedItem);
+                
                 allRequestedItemsMet = false;
                 break;
             }

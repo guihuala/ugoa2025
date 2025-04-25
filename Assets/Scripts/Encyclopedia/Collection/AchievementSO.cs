@@ -29,17 +29,14 @@ public class AchievementSO
             condition = this.condition,
         };
     }
-    
+
     public bool CheckCondition(string itemId)
     {
         if (itemId == condition.requiredItem)
         {
             return true;
         }
-        else
-        {
-            return false;            
-        }
+        return false;
     }
 
     // 更新UI

@@ -85,6 +85,7 @@ public class AchievementManager : SingletonPersistent<AchievementManager>
         if (achievement.CheckCondition(itemId))
         {
             // 添加到临时堆栈
+            Debug.Log(achievement.name + " is unlocked");
             pendingAchievements.Add(achievement.ID);
         }
     }

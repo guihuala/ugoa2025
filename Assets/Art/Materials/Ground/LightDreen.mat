@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LightDreen
-  m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
+  m_Shader: {fileID: 4800000, guid: df695d70c539c3d4c87b79de307ab7bb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -18,7 +18,6 @@ Material:
   - _MK_FRESNEL_HIGHLIGHTS
   - _MK_LIGHT_BANDED
   - _MK_NORMAL_MAP
-  - _MK_OUTLINE_DATA_UV7
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
@@ -26,6 +25,7 @@ Material:
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
+  - _MK_OUTLINE_DATA_UV7
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
   m_LightmapFlags: 2
@@ -203,7 +203,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _AdvancedTab: 1
+    - _AdvancedTab: 0
     - _AlbedoMapIntensity: 1
     - _AlembicMotionVectors: 0
     - _AlphaClip: 0
@@ -306,7 +306,7 @@ Material:
     - _SSSSmoothness: 0
     - _Saturation: 1
     - _SketchMapScale: 1.61
-    - _Smoothness: 1
+    - _Smoothness: 0.08
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1
@@ -337,18 +337,18 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.58826375, g: 0.9245283, b: 0.48406905, a: 1}
+    - _AlbedoColor: {r: 0.46472454, g: 0.8113207, b: 0.35590947, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.58826375, g: 0.9245283, b: 0.484069, a: 1}
+    - _Color: {r: 0.46472448, g: 0.8113207, b: 0.35590944, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _EmissionColor: {r: 0.15352438, g: 0.4716981, b: 0.373109, a: 1}
     - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GoochDarkColor: {r: 0.3207547, g: 0.19820221, b: 0.19820221, a: 1}
+    - _GoochDarkColor: {r: 0.32075468, g: 0.19820216, b: 0.19820216, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0.21176471}
     - _LightTransmissionColor: {r: 1, g: 0.65, b: 0, a: 1}
-    - _OutlineColor: {r: 0.81967205, g: 0.8207547, b: 0.36004803, a: 1}
+    - _OutlineColor: {r: 0.43467426, g: 0.8301887, b: 0.4897095, a: 1}
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColorBright: {r: 1, g: 1, b: 1, a: 1}

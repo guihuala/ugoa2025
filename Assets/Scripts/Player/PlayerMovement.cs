@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float maxAllowedDistance = 1.2f; // 最大允许移动距离
     
     [SerializeField] private Vector3 positionOffset = new Vector3(0, 1.9f, 0); // 偏移量
     public Vector3 PositionOffset => positionOffset;
@@ -26,7 +27,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving = false;
     private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
     private float originRotation = 0f;
-    
+
+    #region 生命周期
+
     void Start()
     {
         _stepManager = FindObjectOfType<StepManager>();
@@ -64,29 +67,18 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(MoveAlongPath());
         }
-    }
+    }    
+
+    #endregion
+
 
     public void ChangeRotation(float newRotation)
     {
         playerSpine.rotation = Quaternion.Euler(0, newRotation, 0);
         originRotation = newRotation;
     }
-    
-    private void HandleMouseInput()
-    {
-        if (_stepManager.GetRemainingSteps() <= 0)
-            return;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, pathLayerMask))
-            {
-                HandlePlayerMove(hit.point);
-            }
-        }
-    }
+    #region 移动操作
 
     public void HandlePlayerMove(Vector3 pos)
     {
@@ -161,7 +153,12 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-    }
+    }    
+
+    #endregion
+
+
+    #region 移动的视听效果
 
     private void PlayWalkAnimation()
     {
@@ -190,15 +187,29 @@ public class PlayerMovement : MonoBehaviour
             int index = Random.Range(1, 4);
             AudioManager.Instance.PlaySfx("step_"+ index);
         }
-    }
+    }    
 
+    #endregion
+    
     private IEnumerator MoveAlongPath()
     {
         isMoving = true;
 
         while (pathQueue.Count > 0)
         {
-            Vector3 targetPosition = pathQueue.Dequeue();
+            Vector3 targetPosition = pathQueue.Peek(); // 先查看但不移除
+
+            // 检查距离是否过远
+            float distance = Vector3.Distance(transform.position, targetPosition);
+            if (distance > maxAllowedDistance)
+            {
+                Debug.LogWarning("Target position too far away! Stopping movement.");
+                pathQueue.Clear(); // 清空路径队列
+                break;
+            }
+
+            // 确认距离正常后才从队列中移除
+            targetPosition = pathQueue.Dequeue();
 
             Vector3 direction = targetPosition - transform.position;  // 计算旋转
 
@@ -209,7 +220,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position =
                     Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-                // 在角色走完格子之后显示脚印
                 
                 NodeMarker currentNodeMarker = pathfindingManager.GetClosestNode(transform.position - positionOffset)?.GetComponent<NodeMarker>();
                 if (currentNodeMarker != null)

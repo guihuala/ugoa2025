@@ -1,89 +1,111 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
 {
     public Vector3[] movePoints;
-    public float moveSpeed = 1f;  // 物体移动的速度
+    public float moveSpeed = 1f;
 
     private bool isActive = false;
+    private Coroutine movementCoroutine;
+    private Coroutine currentMoveCoroutine;
     
-    private Transform playerTransform;  // 玩家对象的位置
+    private Transform playerTransform;
     private PlayerMovement playerMovement;
-    private int currentPointIndex = 0;  // 当前目标点索引
-    private bool isPlayerFollowing = false;  // 玩家是否应该跟随物体
+    private int currentPointIndex = 0;
+    private bool isPlayerFollowing = false;
+    private bool shouldStop = false;
 
     private void Start()
     {
         playerTransform = FindObjectOfType<Player>().transform;
         playerMovement = FindObjectOfType<PlayerMovement>();
+        EVENTMGR.OnClickMarker += CancelFollowing;
+    }
+
+    private void OnDestroy()
+    {
+        EVENTMGR.OnClickMarker -= CancelFollowing;
     }
 
     public void Apply()
     {
-        isPlayerFollowing = true; // 当玩家站在物体上时，允许玩家跟随
+        isPlayerFollowing = true;
+        shouldStop = false;
 
-        if (isActive == false)
+        if (!isActive && movePoints.Length > 0)
         {
-            if (movePoints.Length > 0)
-            {
-                StartCoroutine(MoveAlongPath());
-                isActive = true;
-            }
+            movementCoroutine = StartCoroutine(MoveAlongPath());
+            isActive = true;
         }
     }
 
     public void Exit()
     {
         isPlayerFollowing = false;
+        shouldStop = true;
+    }
+
+    private void CancelFollowing(Vector3 targetPosition)
+    {
+        if(targetPosition != transform.position)
+        {
+            isPlayerFollowing = false;
+            shouldStop = true;
+        }
     }
 
     private IEnumerator MoveAlongPath()
     {
-        while (true)
+        while (!shouldStop)
         {
             Vector3 targetPosition = movePoints[currentPointIndex];
-            yield return StartCoroutine(MoveToPosition(targetPosition)); // 移动到目标位置
+            
 
-            // 移动到下一个路径点，循环回来
+            currentMoveCoroutine = StartCoroutine(MoveToPosition(targetPosition));
+            yield return currentMoveCoroutine;
+
+            if (shouldStop) break;
+
             currentPointIndex = (currentPointIndex + 1) % movePoints.Length;
-
-            // 控制移动间隔
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.5f);
         }
+
+        isActive = false;
+        movementCoroutine = null;
     }
 
     private IEnumerator MoveToPosition(Vector3 target)
     {
         Vector3 startPosition = transform.position;
-        Vector3 startPlayerPosition = playerTransform.position;  // 玩家初始位置
+        Vector3 startPlayerPosition = playerTransform.position;
         float journeyLength = Vector3.Distance(startPosition, target);
         float startTime = Time.time;
 
-        while (Vector3.Distance(transform.position, target) > 0.01f)
+        while (Vector3.Distance(transform.position, target) > 0.01f && !shouldStop)
         {
             float distanceCovered = (Time.time - startTime) * moveSpeed;
             float fractionOfJourney = distanceCovered / journeyLength;
-            float easedT = Mathf.SmoothStep(0f, 1f, fractionOfJourney); // 先快后慢曲线
+            float easedT = Mathf.SmoothStep(0f, 1f, fractionOfJourney);
 
-            // 移动物体
             transform.position = Vector3.Lerp(startPosition, target, easedT);
 
-            // 如果允许玩家跟随，则同步移动玩家
             if (isPlayerFollowing)
             {
-                playerTransform.position = Vector3.Lerp(startPlayerPosition, target + playerMovement.PositionOffset, easedT);
+                playerTransform.position = Vector3.Lerp(startPlayerPosition, 
+                    target + playerMovement.PositionOffset, easedT);
             }
 
-            yield return 1f; // 等待下一帧
+            yield return null;
         }
 
-        // 确保物体和玩家精确到达目标位置
-        transform.position = target;
-        if (isPlayerFollowing)
+        if (!shouldStop)
         {
-            playerTransform.position = target + playerMovement.PositionOffset;
+            transform.position = target;
+            if (isPlayerFollowing)
+            {
+                playerTransform.position = target + playerMovement.PositionOffset;
+            }
         }
     }
 }

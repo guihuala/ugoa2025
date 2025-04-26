@@ -1,16 +1,22 @@
 using System.Collections;
 using UnityEngine;
 
-public class ElevatorTrigger : MonoBehaviour, IEnterSpecialItem
+using System.Collections;
+using UnityEngine;
+
+public class ElevatorTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
 {
     public Vector3 originalPosition;  // 记录物体的初始位置
     public Vector3 targetPosition;     // 目标下降位置
     public float moveSpeed = 5f;       // 物体移动的速度
+    public float triggerDelay = .5f;    // 触发延迟时间（秒）
 
     public bool isMovingDown = false;  // 判断物体是否已经下降
 
     private Transform playerTransform;  // 玩家对象的位置
     private PlayerMovement playerMovement;
+    private Coroutine timerCoroutine;
+    private bool isPlayerOnElevator = false;
 
     private void Start()
     {
@@ -20,17 +26,41 @@ public class ElevatorTrigger : MonoBehaviour, IEnterSpecialItem
     
     public void Apply()
     {
-        if (isMovingDown)
-        {
-            StartCoroutine(MoveToPosition(originalPosition));
-        }
-        else
-        {
-            StartCoroutine(MoveToPosition(targetPosition));
-        }
+        isPlayerOnElevator = true;
+        // 启动计时器协程
+        timerCoroutine = StartCoroutine(TriggerAfterDelay());
+    }
 
-        EVENTMGR.TriggerElevatorMove(isMovingDown);
-        isMovingDown = !isMovingDown;
+    public void Exit()
+    {
+        isPlayerOnElevator = false;
+        // 如果玩家离开时计时器还在运行，停止它
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
+        }
+    }
+
+    private IEnumerator TriggerAfterDelay()
+    {
+        yield return new WaitForSeconds(triggerDelay);
+        
+        // 检查玩家是否仍然在电梯上
+        if (isPlayerOnElevator)
+        {
+            if (isMovingDown)
+            {
+                StartCoroutine(MoveToPosition(originalPosition));
+            }
+            else
+            {
+                StartCoroutine(MoveToPosition(targetPosition));
+            }
+
+            EVENTMGR.TriggerElevatorMove(isMovingDown);
+            isMovingDown = !isMovingDown;
+        }
     }
 
     private IEnumerator MoveToPosition(Vector3 target)

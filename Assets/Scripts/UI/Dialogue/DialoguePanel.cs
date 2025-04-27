@@ -36,25 +36,6 @@ public class DialoguePanel : BasePanel
         _skipBtn = transform.GetChild(2).GetComponent<Button>();
         _skipBtn.onClick.AddListener(SkipAllDialogue);
     }
-    
-    public override void OpenPanel(string name)
-    {
-        base.OpenPanel(name);
-        
-        DOTween.Sequence()
-            .AppendInterval(0.3f)
-            .AppendCallback(() =>
-            {
-                Time.timeScale = 0; // 暂停游戏
-            });
-    }
-
-    public override void ClosePanel()
-    {
-        Time.timeScale = 1; // 恢复游戏速度
-        
-        base.ClosePanel();
-    }
 
     public void StartDialogue(DialogueData data)
     {

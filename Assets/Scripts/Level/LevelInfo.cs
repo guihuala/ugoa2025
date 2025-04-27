@@ -19,9 +19,15 @@ public class LevelInfo : MonoBehaviour
     {
         if (levelDialogue != null)
         {
-            DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
-            dialoguePanel.StartDialogue(levelDialogue);
+            StartCoroutine(StartDialogueWithDelay());
         }
+    }
+
+    private IEnumerator StartDialogueWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
+        dialoguePanel.StartDialogue(levelDialogue);
     }
 
     public void GoToNextLevel()

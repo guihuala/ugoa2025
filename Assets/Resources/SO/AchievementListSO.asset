@@ -58,7 +58,7 @@ MonoBehaviour:
   - ID: 7
     name: "\u71E7\u77F3\u5315\u9996"
     des: "\u7528\u9ED1\u71E7\u77F3\u6253\u78E8\u800C\u6210\u7684\u77ED\u5200\uFF0C\u950B\u5229\u4F46\u6613\u788E\uFF0C\u5982\u4ECA\u53EA\u5269\u534A\u622A\u5200\u5203\u3002\u8FD9\u73A9\u610F\u513F\u5F53\u88C1\u7EB8\u5200\u6050\u6015\u90FD\u5371\u9669\u5427..."
-    icon: {fileID: 21300000, guid: 573f0092e586c4f4980e753f20567d67, type: 3}
+    icon: {fileID: 21300000, guid: 8ac4a04dcd2ea447f9a0152a80308c99, type: 3}
     isHeld: 0
     condition:
       requiredItem: 7
@@ -86,14 +86,14 @@ MonoBehaviour:
   - ID: 11
     name: "\u6CD5\u8001\u7EF7\u5E26\u6B8B\u7247"
     des: "\u4ECE\u82CF\u9192\u7684\u6728\u4E43\u4F0A\u8EAB\u4E0A\u6389\u843D\u7684\u7EF7\u5E26\u788E\u7247\uFF0C\u6563\u53D1\u7740\u8BE1\u5F02\u7684\u9999\u6599\u5473\uFF0C\u7ADF\u7136\u633A\u597D\u95FB\u7684\u3002"
-    icon: {fileID: 21300000, guid: fdd0af215402547a2b06403436108878, type: 3}
+    icon: {fileID: 21300000, guid: e4a5cfc99081d4729a508f47c7c03294, type: 3}
     isHeld: 0
     condition:
       requiredItem: 11
   - ID: 12
     name: "\u732B\u4E43\u4F0A"
     des: "\u732B\u5F62\u72B6\u7684\u6728\u4E43\u4F0A\u3002\u662F\u732B\u732B\u7684\u6837\u5B50\uFF0C\u5373\u4F7F\u662F\u6728\u4E43\u4F0A\u4E5F\u5F88\u53EF\u7231\u3002"
-    icon: {fileID: 21300000, guid: fdd0af215402547a2b06403436108878, type: 3}
+    icon: {fileID: 21300000, guid: f20205f85cbde48f69208707b0135a11, type: 3}
     isHeld: 0
     condition:
       requiredItem: 12
@@ -121,28 +121,28 @@ MonoBehaviour:
   - ID: 16
     name: "\u9F20\u5C3E\u8349\u675F"
     des: "\u5DF4\u5DF4\u96C5\u5676\u7684\u4FE1\u5F92\u4EEC\u7528\u6765\u9A71\u6563\u90AA\u6C14\u3002\u62A4\u6797\u5458\u5012\u662F\u6CA1\u60F3\u90A3\u4E48\u591A\uFF0C\u5979\u89C9\u5F97\u7528\u6765\u63D2\u82B1\u4E0D\u9519\u3002"
-    icon: {fileID: 21300000, guid: fdd0af215402547a2b06403436108878, type: 3}
+    icon: {fileID: 21300000, guid: 65622df5226e14c93a5c27d54ec18f5b, type: 3}
     isHeld: 0
     condition:
       requiredItem: 16
   - ID: 17
     name: "\u706B\u5C71\u7070\u62A4\u7B26"
     des: "\u7528\u706B\u5C71\u7070\u548C\u6811\u8102\u5236\u6210\u7684\u62A4\u7B26\uFF0C\u636E\u8BF4\u80FD\u62B5\u5FA1\u8BC5\u5492\u3002\u62A4\u6797\u5458\u89C9\u5F97\u62A4\u7B26\u5F88\u597D\u770B\uFF0C\u4E00\u5929\u5230\u665A\u90FD\u5E26\u7740\u3002"
-    icon: {fileID: 21300000, guid: fdd0af215402547a2b06403436108878, type: 3}
+    icon: {fileID: 21300000, guid: c74e882b049c0460a90cedb8ca52dc82, type: 3}
     isHeld: 0
     condition:
       requiredItem: 17
   - ID: 18
     name: "\u6C99\u6F20\u5E7B\u5F71\u955C"
     des: "\u4E00\u5757\u53E4\u8001\u7684\u94DC\u955C\uFF0C\u955C\u9762\u6A21\u7CCA\u4E0D\u6E05\uFF0C\u4F46\u5076\u5C14\u4F1A\u6620\u51FA\u5947\u602A\u7684\u5F71\u5B50\u3002\u62A4\u6797\u5458\u7167\u4E86\u7167\uFF0C\u53D1\u73B0\u955C\u5B50\u91CC\u7684\u4EBA\u2026\u2026\u597D\u50CF\u4E0D\u662F\u81EA\u5DF1\uFF1F"
-    icon: {fileID: 21300000, guid: fdd0af215402547a2b06403436108878, type: 3}
+    icon: {fileID: 21300000, guid: bbbff46040c1f4efd98d5302fd2a4252, type: 3}
     isHeld: 0
     condition:
       requiredItem: 18
   - ID: 19
     name: "\u6D41\u6C99\u6307\u5357\u9488"
     des: "\u4E00\u4E2A\u53E4\u8001\u7684\u6307\u5357\u9488\uFF0C\u6307\u9488\u5728\u6D41\u6C99\u9644\u8FD1\u4F1A\u75AF\u72C2\u65CB\u8F6C\u3002\u62A4\u6797\u5458\u6000\u7591\u5B83\u65E9\u5C31\u574F\u4E86\uFF0C\u4F46\u81F3\u5C11\u5916\u58F3\u8FD8\u633A\u7CBE\u81F4\u3002"
-    icon: {fileID: 21300000, guid: fdd0af215402547a2b06403436108878, type: 3}
+    icon: {fileID: 21300000, guid: beeeef5d202264022b8184658c804209, type: 3}
     isHeld: 0
     condition:
       requiredItem: 19

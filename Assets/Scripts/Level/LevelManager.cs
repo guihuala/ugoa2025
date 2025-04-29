@@ -63,7 +63,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 isUnlocked = false,
                 isPlayed = false,
                 requiresItems = true,
-                requiredItemIDs = new List<string> { "1", "2", "3" }
+                requiredItemIDs = new List<string> { "1", "2", "3", "4" }
             },
 
             new LevelData
@@ -93,7 +93,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 isUnlocked = false,
                 isPlayed = false,
                 requiresItems = true,
-                requiredItemIDs = new List<string> { "4", "5", "6" }
+                requiredItemIDs = new List<string> { "5", "6", "7", "8", "9", "10" }
             },
 
             new LevelData
@@ -123,7 +123,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 isUnlocked = false,
                 isPlayed = false,
                 requiresItems = true,
-                requiredItemIDs = new List<string> { "6", "7", "8" }
+                requiredItemIDs = new List<string> { "11", "12", "13", "14", "15" }
             },
         };
         

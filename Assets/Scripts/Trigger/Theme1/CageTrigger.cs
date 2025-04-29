@@ -26,8 +26,6 @@ public class CageTrigger : MonoBehaviour, IEnterSpecialItem
         {
             if (!achievementList.Contains(requestedItem))
             {
-                Debug.Log(requestedItem);
-                
                 allRequestedItemsMet = false;
                 break;
             }

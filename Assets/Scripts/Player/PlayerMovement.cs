@@ -28,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
     private Queue<Vector3> pathQueue = new Queue<Vector3>(); // 路径队列
     private float originRotation = 0f;
 
+    public bool IsPlayerRotate()
+    {
+        return currentRotation <= 0f;
+    }
+
     #region 生命周期
 
     void Start()
@@ -70,8 +75,7 @@ public class PlayerMovement : MonoBehaviour
     }    
 
     #endregion
-
-
+    
     public void ChangeRotation(float newRotation)
     {
         playerSpine.rotation = Quaternion.Euler(0, newRotation, 0);
@@ -251,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(direction.x) > 0.01f)
         {
             targetRotation = direction.x > 0 ? originRotation + 180f : originRotation;
-            if (!Mathf.Approximately(targetRotation, currentRotation)) // 避免重复旋转
+            if (!Mathf.Approximately(targetRotation, currentRotation))
             {
                 playerSpine.DORotate(new Vector3(0f, targetRotation, 0f), 0.3f, RotateMode.FastBeyond360);
                 currentRotation = targetRotation;

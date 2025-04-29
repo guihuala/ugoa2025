@@ -108708,7 +108708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4909892330287556248, guid: b08ae7658019d4d4f9687e4e486ed6c9, type: 3}
       propertyPath: itemID
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -114812,7 +114812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightRadius: 5
-  updateInterval: 0.1
+  updateInterval: 0.6
   startPositionOffset: {x: 0, y: 1.5, z: 0}
   usePathCache: 1
   mapNodes: []
@@ -114829,7 +114829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 0.1
+  stepIncreaseInterval: 0.6
 --- !u!114 &1951892695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126396,9 +126396,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18336174, g: 0.3890636, b: 0.7075471, a: 1}
+  deepColor: {r: 0.1833615, g: 0.38906336, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.4103601, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.41035983, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

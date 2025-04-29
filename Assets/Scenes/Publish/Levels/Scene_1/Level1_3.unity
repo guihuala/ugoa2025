@@ -14557,7 +14557,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.94580716, b: 0.7783019, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -48661,7 +48661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightRadius: 5
-  updateInterval: 1
+  updateInterval: 0.6
   startPositionOffset: {x: 0, y: 1.5, z: 0}
   usePathCache: 1
   mapNodes: []
@@ -48678,7 +48678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 1
+  stepIncreaseInterval: 0.6
 --- !u!114 &1214853521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85202,7 +85202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ifRequestCollection: 1
   requestedItemID:
-  - 4
+  - 3
   dialogueData: {fileID: 0}
 --- !u!1001 &2136457623
 PrefabInstance:
@@ -95652,9 +95652,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18336415, g: 0.38906616, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18336141, g: 0.38906327, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.41036263, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.41035974, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

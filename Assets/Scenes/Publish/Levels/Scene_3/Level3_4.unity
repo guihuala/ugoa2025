@@ -4208,7 +4208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 180
-  isPlayerFlip: 0
+  playerTargetRotation: 180
 --- !u!1001 &637167864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5671,6 +5671,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -8102,7 +8106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 225
-  isPlayerFlip: 0
+  playerTargetRotation: 45
 --- !u!1001 &1117655167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8886,6 +8890,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -8956,6 +8964,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -9989,6 +10001,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -10454,6 +10470,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -10599,7 +10619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 180
-  isPlayerFlip: 0
+  playerTargetRotation: 180
 --- !u!1001 &1488355817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11263,7 +11283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 225
-  isPlayerFlip: 0
+  playerTargetRotation: 45
 --- !u!1001 &1535378200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11963,7 +11983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 180
-  isPlayerFlip: 0
+  playerTargetRotation: 180
 --- !u!1001 &1644941781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13684,6 +13704,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -14825,6 +14849,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+    - target: {fileID: 2375100254480942198, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
+      propertyPath: IsWalkable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359924349694187819, guid: 5dfeff97032fb4a0a8bbac2151ab80c4, type: 3}
       propertyPath: m_Name
       value: SandGround
@@ -14974,7 +15002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 225
-  isPlayerFlip: 0
+  playerTargetRotation: 45
 --- !u!1001 &2087760978
 PrefabInstance:
   m_ObjectHideFlags: 0

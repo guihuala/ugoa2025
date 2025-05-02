@@ -31321,10 +31321,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.2834011, g: 0.2845396, b: 0.31130248, a: 0.7372549}
+  shallowColor: {r: 0.28340006, g: 0.2845386, b: 0.31130144, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.2116875, g: 0.25012285, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21168646, g: 0.2501218, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -79437,6 +79437,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: d1871e8eee0424f639e25d2aa10a23b3, type: 3}
+    - target: {fileID: 1815377509769887495, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815377509769887495, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815377509769887495, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3540993420848009712, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
       propertyPath: m_Name
       value: GameBaseUI
@@ -119837,10 +119849,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28340107, g: 0.28453958, b: 0.31130245, a: 0.7372549}
+  shallowColor: {r: 0.28340003, g: 0.28453857, b: 0.3113014, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21168745, g: 0.25012282, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21168643, g: 0.25012177, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -139305,7 +139317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightRadius: 5
-  updateInterval: 1
+  updateInterval: 0.8
   startPositionOffset: {x: 0, y: 1.5, z: 0}
   usePathCache: 1
   mapNodes: []
@@ -139322,7 +139334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 1
+  stepIncreaseInterval: 0.8
 --- !u!114 &2075850315
 MonoBehaviour:
   m_ObjectHideFlags: 0

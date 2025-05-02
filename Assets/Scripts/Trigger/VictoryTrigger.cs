@@ -38,9 +38,19 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
             {
                 SaveManager.Instance.SetDefaultCurrentScene();
                 levelInfo.VictorySaveLevel();
-                
-                SaveManager.Instance.NewRecord();
-                SceneLoader.Instance.LoadScene(SceneName.CG,"...");
+
+                if (levelInfo.isEndLevel == true)// 需要是最后一关，才会进入CG
+                {
+                    SaveManager.Instance.NewRecord();
+                    SceneLoader.Instance.LoadScene(SceneName.CG,"...");
+                }
+                else// 否则打开画布
+                {
+                    levelInfo.VictorySaveLevel();
+            
+                    SaveManager.Instance.NewRecord();
+                    UIManager.Instance.OpenPanel("GameVictoryPanel"); 
+                }
             }
             else
             {

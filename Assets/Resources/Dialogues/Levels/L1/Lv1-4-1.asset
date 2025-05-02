@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b47e8935dc184185b1e75ee5c1267e7, type: 3}
+  m_Name: Lv1-4-1
+  m_EditorClassIdentifier: 
+  Cells:
+  - Index: 0
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 1
+    CellFlag: 0
+    Content: "\u795D\u4F60\u4EEC\u5E78\u798F\uFF01 \u4E00\u70B9\u793C\u7269\uFF0C\u8BF7\u6536\u4E0B\u5427\u3002"
+  - Index: 1
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: 149425064840a47749852f6707f5c7c5, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 0
+    CellFlag: 1
+    Content: "\u554A\uFF0C\u592A\u611F\u8C22\u4E86\uFF01  "

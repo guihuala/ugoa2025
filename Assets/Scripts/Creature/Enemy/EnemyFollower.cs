@@ -65,9 +65,6 @@ public class EnemyFollower : MonoBehaviour
             Vector3 targetPosition = pathQueue.Dequeue() + positionOffset;
 
             HandleRotation(targetPosition - transform.position);
-
-            // 添加横向挤压弹性效果
-            // 这里的 DOPunchScale 会让对象的局部缩放先向 X 方向收缩、Y 方向增大（实现横向挤压效果），然后弹回原状
             transform.DOPunchScale(new Vector3(-0.2f, 0.2f, 0f), 0.3f, 5, 0.5f);
 
             // 开始平滑移动到目标点

@@ -164,7 +164,7 @@ public class TutorialManager : Singleton<TutorialManager>
     private void UpdateTextPosition(Vector3 targetPosition)
     {
         Vector3 textPosition = new Vector3(
-            targetPosition.x + 100f,
+            targetPosition.x + 200f,
             targetPosition.y + 200f,
             targetPosition.z
         );

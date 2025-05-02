@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+
 public class MailboxPanel : BasePanel
 {
     [Header("UI组件")]
@@ -22,17 +23,27 @@ public class MailboxPanel : BasePanel
 
     private Vector3 letterOriginalPos;
     private Sequence letterSequence;
+    private MailboxNews mailboxNews;
 
     // 任务相关变量
     private Queue<MissionData> pendingMissions = new Queue<MissionData>();
     private MissionData currentMission;
     private bool isOpening = false;
+    private bool isProcessingMissions = false;
 
     protected override void Awake()
     {
         base.Awake();
+        
         // 保存信件原始位置
         letterOriginalPos = letterTransform.localPosition;
+        
+        // 初始化UI状态
+        letterTransform.gameObject.SetActive(false);
+        closePanelBtn.interactable = true;
+        
+        // 缓存MailboxNews引用
+        mailboxNews = FindObjectOfType<MailboxNews>(true);
     }
 
     private void Start()
@@ -44,10 +55,13 @@ public class MailboxPanel : BasePanel
     public override void OpenPanel(string name)
     {
         base.OpenPanel(name);
-
-        // 初始化任务队列
+        
+        // 重置状态
+        isProcessingMissions = true;
+        
+        // 初始化待处理任务队列
         InitPendingMissions();
-
+        
         // 开始处理任务
         ProcessNextMission();
     }
@@ -57,10 +71,16 @@ public class MailboxPanel : BasePanel
     {
         pendingMissions.Clear();
 
+        if (LevelManager.Instance == null)
+        {
+            Debug.LogWarning("LevelManager instance not found!");
+            return;
+        }
+
         // 获取所有已解锁但未接受的任务
         foreach (var mission in LevelManager.Instance.missions)
         {
-            if (mission.isMissionUnlocked && !mission.isMissionAccepted)
+            if (mission != null && mission.isMissionUnlocked && !mission.isMissionAccepted)
             {
                 pendingMissions.Enqueue(mission);
             }
@@ -70,15 +90,34 @@ public class MailboxPanel : BasePanel
     // 处理下一个任务
     private void ProcessNextMission()
     {
+        if (isOpening || !isProcessingMissions) return;
+
         // 如果没有打开的信件且有任务待处理
-        if (!isOpening && pendingMissions.Count > 0)
+        if (pendingMissions.Count > 0)
         {
             currentMission = pendingMissions.Dequeue();
-            ShowMissionLetter(currentMission);
+            if (currentMission != null)
+            {
+                ShowMissionLetter(currentMission);
+            }
+            else
+            {
+                // 如果任务无效，继续处理下一个
+                ProcessNextMission();
+            }
         }
-        else if (!isOpening && pendingMissions.Count == 0)
+        else
         {
-            // 没有更多任务时直接关闭邮箱
+            // 没有更多任务时完成处理
+            isProcessingMissions = false;
+            
+            // 更新MailboxNews的状态
+            if (mailboxNews != null)
+            {
+                mailboxNews.HasPendingMissions();
+            }
+            
+            // 关闭邮箱
             UIManager.Instance.ClosePanel(panelName);
         }
     }
@@ -86,7 +125,10 @@ public class MailboxPanel : BasePanel
     // 显示任务信件
     private void ShowMissionLetter(MissionData mission)
     {
+        if (mission == null || isOpening) return;
+
         isOpening = true;
+        closePanelBtn.interactable = false;
 
         missionTitle.text = mission.missionTitle;
         missionDescriptionText.text = mission.missionDescription;
@@ -98,7 +140,10 @@ public class MailboxPanel : BasePanel
         
         // 停止之前的动画
         if (letterSequence != null && letterSequence.IsActive())
+        {
             letterSequence.Kill();
+            letterSequence = null;
+        }
 
         // 播放信件弹出动画
         OpenLetterAnimation();
@@ -106,10 +151,9 @@ public class MailboxPanel : BasePanel
 
     private void HideMissionLetter()
     {
-        if (currentMission != null && isOpening)
-        {
-            CloseLetterAnimation();
-        }
+        if (currentMission == null || !isOpening) return;
+
+        CloseLetterAnimation();
     }
 
     // 播放信件打开动画
@@ -132,16 +176,27 @@ public class MailboxPanel : BasePanel
                 letterOriginalPos.y + letterPopHeight,
                 letterTransform.localPosition.z
             );
+            
+            // 允许关闭面板
+            closePanelBtn.interactable = true;
         });
     }
 
     // 播放信件关闭动画
     private void CloseLetterAnimation()
     {
+        // 防止重复点击
+        if (!isOpening) return;
+        
+        // 禁用交互
+        closePanelBtn.interactable = false;
+        letterButton.interactable = false;
+
         // 停止之前的动画
-        DOTween.Kill(letterTransform);
         if (letterSequence != null && letterSequence.IsActive())
+        {
             letterSequence.Kill();
+        }
 
         letterSequence = DOTween.Sequence();
 
@@ -152,19 +207,18 @@ public class MailboxPanel : BasePanel
         letterSequence.OnComplete(() =>
         {
             // 接受当前显示的任务
-            LevelManager.Instance.AcceptMission(currentMission.missionID);
-            currentMission = null;
+            if (LevelManager.Instance != null && currentMission != null)
+            {
+                LevelManager.Instance.AcceptMission(currentMission.missionID);
+            }
 
+            // 重置状态
+            currentMission = null;
+            isOpening = false;
+            
             // 隐藏信件
             letterTransform.gameObject.SetActive(false);
-            isOpening = false;
-
-            // 更新MailboxNews的状态
-            MailboxNews news = FindObjectOfType<MailboxNews>();
-            if (news != null)
-            {
-                news.HasPendingMissions();
-            }
+            letterButton.interactable = true;
 
             // 处理下一个任务
             ProcessNextMission();
@@ -174,15 +228,39 @@ public class MailboxPanel : BasePanel
     // 关闭邮箱时的处理
     private void OnCloseMailbox()
     {
-        if (currentMission == null && !isOpening)
+        if (isProcessingMissions)
         {
-            // 没有任务时直接关闭
+            // 如果正在处理任务，先停止处理
+            isProcessingMissions = false;
+            
+            if (isOpening)
+            {
+                // 如果有打开的信件，先关闭它
+                HideMissionLetter();
+            }
+            else
+            {
+                // 直接关闭面板
+                UIManager.Instance.ClosePanel(panelName);
+            }
+        }
+        else
+        {
+            // 没有任务处理时直接关闭
             UIManager.Instance.ClosePanel(panelName);
         }
-        else if (isOpening)
+    }
+
+    private void OnDestroy()
+    {
+        // 清理动画
+        if (letterSequence != null && letterSequence.IsActive())
         {
-            // 有任务时先关闭当前信件
-            HideMissionLetter();
+            letterSequence.Kill();
         }
+        
+        // 移除事件监听
+        letterButton.onClick.RemoveAllListeners();
+        closePanelBtn.onClick.RemoveAllListeners();
     }
 }

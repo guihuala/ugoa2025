@@ -47,6 +47,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
     {
         public string levelName; // 关卡名称或ID
         public bool isUnlocked; // 是否已解锁
+        public bool isPlayed;
     }
     
     // 成就保存数据结构
@@ -60,7 +61,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
     [Serializable]
     public class missionSaveData
     {
-        [FormerlySerializedAs("missionName")] public string missionID;
+        public string missionID;
         public bool isUnlocked;
         public bool isAccepted;
     }
@@ -99,7 +100,8 @@ public class SaveManager : SingletonPersistent<SaveManager>
             savedata.levelUnlocks.Add(new LevelUnlockData
             {
                 levelName = level.name,
-                isUnlocked = level.isUnlocked
+                isUnlocked = level.isUnlocked,
+                isPlayed = level.isPlayed
             });
         }
 

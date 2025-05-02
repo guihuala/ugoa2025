@@ -201,18 +201,8 @@ public class PlayerMovement : MonoBehaviour
 
         while (pathQueue.Count > 0)
         {
-            Vector3 targetPosition = pathQueue.Peek(); // 先查看但不移除
+            Vector3 targetPosition = pathQueue.Peek();
 
-            // 检查距离是否过远
-            float distance = Vector3.Distance(transform.position, targetPosition);
-            if (distance > maxAllowedDistance)
-            {
-                Debug.LogWarning("Target position too far away! Stopping movement.");
-                pathQueue.Clear(); // 清空路径队列
-                break;
-            }
-
-            // 确认距离正常后才从队列中移除
             targetPosition = pathQueue.Dequeue();
 
             Vector3 direction = targetPosition - transform.position;  // 计算旋转

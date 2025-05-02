@@ -142,6 +142,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 if (level != null)
                 {
                     level.isUnlocked = levelData.isUnlocked;
+                    level.isPlayed = levelData.isPlayed;
                 }
             }
         }
@@ -161,7 +162,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
         }
         
         // 如果是每个主题的底关就解锁任务，直接用笨办法吧
-        if(levelName == "Level1_3" || levelName == "Level2_3")
+        if(levelName == "Level2_1" || levelName == "Level3_1")
             UnlockMission(levelName);
     }
 
@@ -170,6 +171,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
         // 检查所有需要的物品
         foreach (var itemID in levelData.requiredItemIDs)
         {
+            Debug.Log(itemID);
             if (!AchievementManager.Instance.CheckUnlockCard(itemID))
             {
                 return;
@@ -235,7 +237,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 missionTitle = "民俗学家的委托",
                 missionDescription =
                     "护林员女士：\n我在研究一个即将消失的古老习俗——‘白鹤共生祭’。根据零散的记载，黑土平原深处可能还存在举行该仪式的村落。\n委托内容：\n1. 找到祭祀村落并拍摄白鹤群舞的照片（附：旧版地图与胶卷）\n2. 若可能，记录祭祀歌谣的歌词（我的录音笔电量不足了…）\n警告：当地老人提过，平原上有位养鼠的巫婆，遇到她请保持距离。\n\n——（民俗学家的名字）（随信附赠一包驱鼠药粉）",
-                missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                missionIcon = Resources.Load<Sprite>("Icons/Missions/Mission2"),
                 isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level2_1"
             },
             new MissionData
@@ -244,7 +246,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 missionTitle = "金字塔调查",
                 missionDescription =
                     "紧急通知：\n金字塔群发生多起‘木乃伊目击事件’。初步调查显示，盗墓者破坏了内部祭坛，导致封印失效。\n你的任务：\n1. 查明盗墓者动机与行踪\n2. 收集散落的3件祭品（清单附图）\n3. 恢复金字塔封印（操作指南见附件）\n\n——文物局危机应对科",
-                missionIcon = Resources.Load<Sprite>("Icons/Missions/"),
+                missionIcon = Resources.Load<Sprite>("Icons/Missions/Mission3"),
                 isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level3_1"
             },
         };
@@ -260,7 +262,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 if (mission != null)
                 {
                     mission.isMissionUnlocked = missionData.isUnlocked;
-                    mission.isMissionAccepted = missionData.isUnlocked;
+                    mission.isMissionAccepted = missionData.isAccepted;
                 }
             }
         }

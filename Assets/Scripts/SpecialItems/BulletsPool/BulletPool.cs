@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletPool : MonoBehaviour
 {
     public GameObject bulletPrefab; // 子弹预制体
-    public int poolSize = 10;       // 对象池大小
+    public int poolSize = 5;       // 对象池大小
 
     private Queue<GameObject> bulletQueue = new Queue<GameObject>();
 

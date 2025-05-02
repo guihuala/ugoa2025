@@ -17,6 +17,9 @@ public class LevelInfo : MonoBehaviour
 
     private void Start()
     {
+        // 记录游玩状态
+        LevelManager.Instance.PlayLevel(currentScene.ToString());
+        
         if (levelDialogue != null)
         {
             StartCoroutine(StartDialogueWithDelay());

@@ -46,6 +46,8 @@ public class BulletLifecycle : MonoBehaviour
         
         if (enemyBase != null)
         {
+            EVENTMGR.TriggerPlayerFound();// 屏幕震动
+            
             SpawnHitEffect(); // 在原地生成粒子特效
             StartFadeOut();
             

@@ -22,6 +22,7 @@ public class SchedulePanel : SlidePanel
     
     [Header("面板配置")] 
     public Transform missionInfo;
+    public Image missionImage;
     public Text missionName;
     public Text missionDescription;
     
@@ -100,15 +101,9 @@ public class SchedulePanel : SlidePanel
     
     private void UpdateInfoPanel(MissionData mission)
     {
+        missionImage.sprite = mission.missionIcon;
         missionName.text = mission.missionTitle;
         missionDescription.text = mission.missionDescription;
-
-        
-        Image iconImage = missionInfo.GetComponentInChildren<Image>();
-        if (iconImage != null && mission.missionIcon != null)
-        {
-            iconImage.sprite = mission.missionIcon;
-        }
     }
     
     void OpenInfo()

@@ -74,7 +74,6 @@ public class LevelSelectionButton : MonoBehaviour
         if (unlocked)
         {
             SaveManager.Instance.playTime++;
-            LevelManager.Instance.PlayLevel(levelName);
             SceneLoader.Instance.LoadScene(_LevelName,"...");
         }
     }

@@ -17,9 +17,10 @@ public class EnemyData : ScriptableObject
     public bool CheckUnlock(List<LevelData> levels)
     {
         LevelData requiredLevel = levels.Find(l => l.name == requiredLevelName);
-
+        
         if (requiredLevel != null && requiredLevel.isUnlocked && requiredLevel.isPlayed)
         {
+            
             isUnlocked = true;
         }
         else

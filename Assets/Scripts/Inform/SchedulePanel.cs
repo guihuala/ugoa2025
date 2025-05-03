@@ -43,9 +43,9 @@ public class SchedulePanel : SlidePanel
         closeButton.onClick.AddListener(() => UIManager.Instance.ClosePanel(panelName));
         CGBtn.onClick.AddListener(() => SceneLoader.Instance.LoadScene(SceneName.CG,"..."));
 
-        mission1Btn.onClick.AddListener(() => { OpenInfo(); });
-        mission2Btn.onClick.AddListener(() => { OpenInfo(); });
-        mission3Btn.onClick.AddListener(() => { OpenInfo(); });
+        mission1Btn.onClick.AddListener(() => { OpenInfo("1"); });
+        mission2Btn.onClick.AddListener(() => { OpenInfo("2"); });
+        mission3Btn.onClick.AddListener(() => { OpenInfo("3"); });
         
         InitUI();
         LoadAcceptedMissions();
@@ -78,7 +78,6 @@ public class SchedulePanel : SlidePanel
         }
         
         UpdateMissionButtons();
-        UpdateMissionInfo();
     }
     
     private void UpdateMissionButtons()
@@ -88,14 +87,14 @@ public class SchedulePanel : SlidePanel
         mission3Transform.gameObject.SetActive(currentMissions.Count > 2);
     }
     
-    private void UpdateMissionInfo()
+    private void UpdateMissionInfo(string ID)
     {
         // 更新任务信息面板的内容
-        if (currentMissions.Count > 0)
+        if (ID == "1")
             UpdateInfoPanel(currentMissions[0]);
-        if (currentMissions.Count > 1)
+        if (ID == "2")
             UpdateInfoPanel(currentMissions[1]);
-        if (currentMissions.Count > 2)
+        if (ID == "3")
             UpdateInfoPanel(currentMissions[2]);
     }
     
@@ -106,7 +105,7 @@ public class SchedulePanel : SlidePanel
         missionDescription.text = mission.missionDescription;
     }
     
-    void OpenInfo()
+    void OpenInfo(string ID)
     {
         if(missionInfo.gameObject.activeSelf) return;
         
@@ -123,5 +122,7 @@ public class SchedulePanel : SlidePanel
         seq.Join(canvasGroup.DOFade(1, infoFadeDuration));
         seq.Join(missionInfo.DOScale(Vector3.one, infoScaleDuration).SetEase(infoScaleEase));
         seq.Play();
+        
+        UpdateMissionInfo(ID);
     }
 }

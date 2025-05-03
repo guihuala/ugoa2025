@@ -270,7 +270,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
     
     private void UnlockMission(string levelName)
     {
-        var mission = missions.Find(l => l.missionID == levelName);
+        var mission = missions.Find(l => l.unlockRequiredLevel == levelName);
         if (mission != null)
         {
             mission.isMissionUnlocked = true;
@@ -278,9 +278,9 @@ public class LevelManager : SingletonPersistent<LevelManager>
     }
 
     // 与对应的任务的信件互动即为接受
-    public void AcceptMission(string levelName)
+    public void AcceptMission(string ID)
     {
-        var mission = missions.Find(l => l.missionID == levelName);
+        var mission = missions.Find(l => l.missionID == ID);
         if (mission != null)
         {
             mission.isMissionAccepted = true;

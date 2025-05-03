@@ -203,7 +203,7 @@ public class MailboxPanel : BasePanel
         // 关闭动画 - 下落并缩小
         letterSequence.Append(letterTransform.DOLocalMoveY(letterOriginalPos.y, letterCloseDuration).SetEase(closeEase));
         letterSequence.Join(letterTransform.DOScale(0, letterCloseDuration).SetEase(closeEase));
-
+        
         letterSequence.OnComplete(() =>
         {
             // 接受当前显示的任务
@@ -215,10 +215,16 @@ public class MailboxPanel : BasePanel
             // 重置状态
             currentMission = null;
             isOpening = false;
-            
+    
             // 隐藏信件
             letterTransform.gameObject.SetActive(false);
             letterButton.interactable = true;
+
+            // 处理下一个任务前检查状态
+            if (mailboxNews != null)
+            {
+                mailboxNews.CheckMissionsStatus();
+            }
 
             // 处理下一个任务
             ProcessNextMission();
@@ -232,7 +238,7 @@ public class MailboxPanel : BasePanel
         {
             // 如果正在处理任务，先停止处理
             isProcessingMissions = false;
-            
+        
             if (isOpening)
             {
                 // 如果有打开的信件，先关闭它
@@ -241,16 +247,28 @@ public class MailboxPanel : BasePanel
             else
             {
                 // 直接关闭面板
-                UIManager.Instance.ClosePanel(panelName);
+                ClosePanelAndCheckStatus();
             }
         }
         else
         {
             // 没有任务处理时直接关闭
-            UIManager.Instance.ClosePanel(panelName);
+            ClosePanelAndCheckStatus();
         }
     }
 
+    // 关闭面板并检查任务状态
+    private void ClosePanelAndCheckStatus()
+    {
+        UIManager.Instance.ClosePanel(panelName);
+    
+        // 通知MailboxNews检查任务状态
+        if (mailboxNews != null)
+        {
+            mailboxNews.CheckMissionsStatus();
+        }
+    }
+    
     private void OnDestroy()
     {
         // 清理动画

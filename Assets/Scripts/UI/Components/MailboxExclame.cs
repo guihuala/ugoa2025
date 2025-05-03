@@ -7,6 +7,8 @@ public class MailboxNews : MonoBehaviour
 {
     [Header("UI配置")]
     [SerializeField] private Transform exclamationMark;  // 感叹号标记
+    
+    [Header("动画配置")]
     [SerializeField] private float bounceHeight = 0.2f;  // 弹跳高度
     [SerializeField] private float bounceDuration = 0.5f; // 单次弹跳持续时间
     [SerializeField] private int bounceCount = 2;        // 弹跳次数
@@ -46,6 +48,13 @@ public class MailboxNews : MonoBehaviour
     /// </summary>
     public void CheckMissionsStatus()
     {
+        // 先停止当前动画
+        if (bounceSequence != null && bounceSequence.IsActive())
+        {
+            bounceSequence.Kill();
+        }
+
+        // 检查任务状态并更新UI
         if (HasPendingMissions())
         {
             ShowExclamationMark();

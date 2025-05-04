@@ -125,7 +125,6 @@ public class PlayerMovement : MonoBehaviour
     
     public void HandlePlayerMoveWihoutChecking(Vector3 pos)
     {
-        // 剧情用不需要检查步数
         
         if (pathfindingManager != null)
         {
@@ -138,18 +137,12 @@ public class PlayerMovement : MonoBehaviour
 
                 if (path != null)
                 {
-                    if (path.Count - 1 > _stepManager.GetRemainingSteps())
-                    {
-                        Debug.Log("路径超出剩余步数，无法移动！");
-                        return;
-                    }
-
+                    Debug.Log("enter destination");
                     pathQueue.Clear();
                     foreach (var node in path)
                     {
                         Vector3 targetPos = new Vector3(node.position.x, node.position.y + positionOffset.y, node.position.z);
                         pathQueue.Enqueue(targetPos);
-                        EVENTMGR.TriggerUseStep(1);
                         EVENTMGR.TriggerClickPath();
                     }
 

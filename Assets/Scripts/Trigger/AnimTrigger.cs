@@ -29,7 +29,7 @@ public class AnimTrigger : MonoBehaviour, IEnterSpecialItem
     public void Apply()
     {
         HashSet<string> achievementList = AchievementManager.Instance.pendingAchievements;
-
+        
         if (achievementList.Count == 0)
         {
             // 如果没有收集到的展品，直接触发回调

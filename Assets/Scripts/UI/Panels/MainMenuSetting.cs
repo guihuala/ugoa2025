@@ -70,7 +70,8 @@ public class MainMenuSetting : MonoBehaviour
     private void ClearAllGameData()
     {
         // 调用SAVE类的方法清除数据
-        SAVE.DeleteAll();
+        SAVE.DeletePlayerData();
+        PlayerPrefs.DeleteAll();
         
         // 重新加载TitleUI状态
         if (titleUI != null)

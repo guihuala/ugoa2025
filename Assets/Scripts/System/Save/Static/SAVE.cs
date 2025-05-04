@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using Camera = UnityEngine.Camera;
 
 public static class SAVE
 {
@@ -178,15 +177,12 @@ public static class SAVE
 
     #region 清理功能
 
-#if UNITY_EDITOR
-    [UnityEditor.MenuItem("Delete/Records List")]
     public static void DeleteRecord()
     {
-        UnityEngine.PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         Debug.Log("已清空存档列表");
     }
 
-    [UnityEditor.MenuItem("Delete/Player Data")]
     public static void DeletePlayerData()
     {
         ClearDirectory(Application.persistentDataPath);
@@ -206,6 +202,7 @@ public static class SAVE
         }
     }
 
+#if UNITY_EDITOR
     [UnityEditor.MenuItem("Delete/All")]
     public static void DeleteAll()
     {

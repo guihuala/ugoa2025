@@ -10,22 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b47e8935dc184185b1e75ee5c1267e7, type: 3}
-  m_Name: Lv1-4-2
+  m_Name: Lv2-2
   m_EditorClassIdentifier: 
   Cells:
   - Index: 0
     CharacterName: 
-    NPC: {fileID: 11400000, guid: 2c60acfbb687b461093acd0839fcb0fd, type: 2}
-    SelectedVariantIndex: 0
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 2
     CellType: 0
     JumpToIndex: 1
     CellFlag: 0
-    Content: "\u8FD9\u4E2A\u5F39\u5F13\u8FD9\u662F\u6211\u4EEC\u4EB2\u624B\u505A\u7684\uFF0C\u8BF7\u4F60\u6536\u4E0B\u5427\uFF01  "
+    Content: "\u8FD9\u5730\u65B9\u597D\u9661\u5CED\u5440\u3002"
   - Index: 1
     CharacterName: 
     NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
-    SelectedVariantIndex: 0
+    SelectedVariantIndex: 2
+    CellType: 0
+    JumpToIndex: 2
+    CellFlag: 2
+    Content: "\u5DF4\u5DF4\u96C5\u5676\u7684\u8001\u9F20\u4EC6\u4ECE\u4EEC\uFF1F\u8FD9\u4E48\u591A......\uFF01"
+  - Index: 2
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 2
     CellType: 0
     JumpToIndex: 0
     CellFlag: 1
-    Content: "\u8C22\u8C22\uFF0C\u6211\u4F1A\u597D\u597D\u4F7F\u7528\u7684\u3002  "
+    Content: "\u5F97\u8EB2\u5F00\u5B83\u4EEC\uFF01"

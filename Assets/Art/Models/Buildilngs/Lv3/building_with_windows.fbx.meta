@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2ccca148fdb224697bbdc20f3bd024e5
+guid: 7fe3d2ca032004d63adf6fc46512ab53
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: colormap
+      name: "\u6750\u8D28"
     second: {fileID: 2100000, guid: e67717d0fe5d4423fbb158c72cbafd57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6750\u8D28.001"
+    second: {fileID: 2100000, guid: 257eb0729b7fa4c1c83c11ca6c5b04e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6750\u8D28.002"
+    second: {fileID: 2100000, guid: dd115170183a74f25a1946423b1f5762, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -95,7 +105,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 2
+    globalScale: 0.02
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

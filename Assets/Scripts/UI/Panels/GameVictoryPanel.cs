@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class GameVictoryPanel : BasePanel
 {
@@ -35,6 +33,18 @@ public class GameVictoryPanel : BasePanel
                 index = 2;
             
             SetVictoryImage(index); // 传入当前关卡索引
+            
+            // 检查是否是关卡3的胜利面板（Level1_3, Level2_3, Level3_3）
+            if (levelInfo.currentScene == SceneName.Level1_3 || 
+                levelInfo.currentScene == SceneName.Level2_3 || 
+                levelInfo.currentScene == SceneName.Level3_3)
+            {
+                nextLevelBtn.gameObject.SetActive(false);
+            }
+            else
+            {
+                nextLevelBtn.gameObject.SetActive(true);
+            }
         }
     }
     

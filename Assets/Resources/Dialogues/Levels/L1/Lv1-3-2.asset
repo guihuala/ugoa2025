@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b47e8935dc184185b1e75ee5c1267e7, type: 3}
-  m_Name: Lv1-4-2
+  m_Name: Lv1-3-2
   m_EditorClassIdentifier: 
   Cells:
   - Index: 0
     CharacterName: 
-    NPC: {fileID: 11400000, guid: 2c60acfbb687b461093acd0839fcb0fd, type: 2}
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
     SelectedVariantIndex: 0
     CellType: 0
     JumpToIndex: 1
     CellFlag: 0
-    Content: "\u8FD9\u4E2A\u5F39\u5F13\u8FD9\u662F\u6211\u4EEC\u4EB2\u624B\u505A\u7684\uFF0C\u8BF7\u4F60\u6536\u4E0B\u5427\uFF01  "
+    Content: "\u76F4\u63A5\u79BB\u5F00\u7684\u8BDD\uFF0C\u5A5A\u793C\u5C31\u4E0D\u80FD\u8FDB\u884C\u4E86\u5427..."
   - Index: 1
     CharacterName: 
     NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
@@ -28,4 +28,4 @@ MonoBehaviour:
     CellType: 0
     JumpToIndex: 0
     CellFlag: 1
-    Content: "\u8C22\u8C22\uFF0C\u6211\u4F1A\u597D\u597D\u4F7F\u7528\u7684\u3002  "
+    Content: "\u90A3\u6211\u4E0D\u5C31\u767D\u6765\u4E86\u561B\uFF0C\u8FD8\u662F\u518D\u53BB\u627E\u627E\u5427\u3002"

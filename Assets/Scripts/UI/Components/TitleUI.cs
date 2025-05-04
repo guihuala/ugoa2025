@@ -17,7 +17,7 @@ public class TitleUI : MonoBehaviour
     public GameObject recordPanel; // 存档面板
     public GameObject setPanel;
 
-    private bool isFirstTimePlay;
+    public bool isFirstTimePlay;
 
     public RectTransform aboutPanelRectTransform;
     public Vector2 targetPosition; // 目标位置，可以根据比例计算

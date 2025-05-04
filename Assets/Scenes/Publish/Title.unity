@@ -4777,7 +4777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 226755491882041011, guid: 008a0362d24da4f42a29511c7792c0f4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 226755491882041011, guid: 008a0362d24da4f42a29511c7792c0f4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4785,11 +4785,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 226755491882041011, guid: 008a0362d24da4f42a29511c7792c0f4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 643138707200775724, guid: 008a0362d24da4f42a29511c7792c0f4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 643138707200775724, guid: 008a0362d24da4f42a29511c7792c0f4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4797,7 +4797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 643138707200775724, guid: 008a0362d24da4f42a29511c7792c0f4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1016743886004736571, guid: 008a0362d24da4f42a29511c7792c0f4, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -10762,6 +10762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels: []
   failureReason: 
+  missions: []
 --- !u!1001 &1866444628
 PrefabInstance:
   m_ObjectHideFlags: 0

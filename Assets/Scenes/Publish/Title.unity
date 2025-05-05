@@ -5124,6 +5124,7 @@ MonoBehaviour:
   About: {fileID: 103936087}
   recordPanel: {fileID: 327504024295497852}
   setPanel: {fileID: 1169921953}
+  isFirstTimePlay: 0
   aboutPanelRectTransform: {fileID: 1527336126}
   targetPosition: {x: -500, y: 120}
   initialPosition: {x: -500, y: 1000}
@@ -8323,7 +8324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2cc0bf5863d29434c973247b6b3b95c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b500dcd06c2e044ae96f6082300af1f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

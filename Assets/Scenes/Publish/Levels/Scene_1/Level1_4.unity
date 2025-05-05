@@ -60271,7 +60271,7 @@ PrefabInstance:
     - target: {fileID: 1690537058174379915, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 485c070fc18d642c3a3080eba8cf9da9, type: 2}
+      objectReference: {fileID: 2100000, guid: 23c688ac136b34d8b8fcc044e5ae7950, type: 2}
     - target: {fileID: 3038420282858366751, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -60279,7 +60279,7 @@ PrefabInstance:
     - target: {fileID: 3607594466953634580, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: b549eb27958c24e82980e430e8b9fa4b, type: 2}
+      objectReference: {fileID: 11400000, guid: 29fabdc73948c446a83986a5f0d46d36, type: 2}
     - target: {fileID: 4632453307822825503, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Color.b
       value: 0.25943398
@@ -75809,7 +75809,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 0.2
+  baseInterval: 0.2
+  minInterval: 0.5
+  accelerationRate: 0.9
+  decelerationWhenFull: 1.5
+  speedBoostEffect: {fileID: 0}
+  stepRecoveryAnimator: {fileID: 0}
+  recoverySpeedParam: RecoverySpeed
 --- !u!114 &1682498179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135149,9 +135155,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18335167, g: 0.389053, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18335086, g: 0.38905212, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.41034946, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.41034862, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

@@ -41,9 +41,9 @@ public class PlayerItemEffect : MonoBehaviour
     {
         if (stepManager == null) return;
 
-        originInterval = stepManager.stepIncreaseInterval;
+        originInterval = stepManager.baseInterval;
         
-        stepManager.SetStepIncreaseInterval(0.5f);
+        stepManager.SetStepIncreaseInterval(originInterval * 0.5f);
         intervalDecreaseFx.gameObject.SetActive(true);
         
         StartCoroutine(ResetStepIncreaseIntervalAfterDelay());

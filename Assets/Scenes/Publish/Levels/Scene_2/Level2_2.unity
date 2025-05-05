@@ -4250,8 +4250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b169c60606476464997be5151851ede4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 2
-  detectionAngle: 60
+  detectionRadius: 0
+  detectionAngle: 0
   visualizerMaterial: {fileID: 2100000, guid: 912753b94a576409190a5108b3f4064b, type: 2}
 --- !u!23 &224396398
 MeshRenderer:
@@ -23399,8 +23399,8 @@ MonoBehaviour:
   - {fileID: 1555809002}
   - {fileID: 1213185098}
   moveSpeed: 2
-  detectionRadius: 2
-  detectionAngle: 60
+  detectionRadius: 0
+  detectionAngle: 0
   CheckPoint: {fileID: 1791683}
   positionOffset: {x: 0, y: 1.4, z: 0}
   followerPrefab: {fileID: 836466697617626911, guid: 0a75d4047cf974ba38afd7962ec6a22f, type: 3}
@@ -26098,7 +26098,7 @@ PrefabInstance:
     - target: {fileID: 1690537058174379915, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 485c070fc18d642c3a3080eba8cf9da9, type: 2}
+      objectReference: {fileID: 2100000, guid: 23c688ac136b34d8b8fcc044e5ae7950, type: 2}
     - target: {fileID: 1851155027510517048, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: skin
       value: 1
@@ -26118,7 +26118,7 @@ PrefabInstance:
     - target: {fileID: 3607594466953634580, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: b549eb27958c24e82980e430e8b9fa4b, type: 2}
+      objectReference: {fileID: 11400000, guid: 29fabdc73948c446a83986a5f0d46d36, type: 2}
     - target: {fileID: 4632453307822825503, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Color.b
       value: 0.6415094
@@ -27802,8 +27802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b169c60606476464997be5151851ede4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 2
-  detectionAngle: 60
+  detectionRadius: 0
+  detectionAngle: 0
   visualizerMaterial: {fileID: 2100000, guid: 912753b94a576409190a5108b3f4064b, type: 2}
 --- !u!23 &1512855964
 MeshRenderer:
@@ -36910,8 +36910,8 @@ MonoBehaviour:
   - {fileID: 1706147499}
   - {fileID: 631092278}
   moveSpeed: 2
-  detectionRadius: 2
-  detectionAngle: 60
+  detectionRadius: 0
+  detectionAngle: 0
   CheckPoint: {fileID: 1544666685}
   positionOffset: {x: 0, y: 1.4, z: 0}
   followerPrefab: {fileID: 836466697617626911, guid: 0a75d4047cf974ba38afd7962ec6a22f, type: 3}
@@ -40813,8 +40813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b169c60606476464997be5151851ede4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 2
-  detectionAngle: 60
+  detectionRadius: 0
+  detectionAngle: 0
   visualizerMaterial: {fileID: 2100000, guid: 912753b94a576409190a5108b3f4064b, type: 2}
 --- !u!1 &2607548609370987156
 GameObject:
@@ -41299,10 +41299,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28339866, g: 0.28453717, b: 0.31130004, a: 0.7372549}
+  shallowColor: {r: 0.28339368, g: 0.2845322, b: 0.31129506, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21168503, g: 0.25012037, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21168008, g: 0.25011542, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -41521,8 +41521,8 @@ MonoBehaviour:
   - {fileID: 2141207505}
   - {fileID: 1753736840}
   moveSpeed: 2
-  detectionRadius: 2
-  detectionAngle: 60
+  detectionRadius: 0
+  detectionAngle: 0
   CheckPoint: {fileID: 2758789080940724138}
   positionOffset: {x: 0, y: 1.4, z: 0}
   followerPrefab: {fileID: 836466697617626911, guid: 0a75d4047cf974ba38afd7962ec6a22f, type: 3}

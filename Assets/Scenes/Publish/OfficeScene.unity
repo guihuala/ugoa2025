@@ -2798,6 +2798,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 3898f567f93a949e39582dd90897a6a5, type: 3}
+    - target: {fileID: 1815377509769887495, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815377509769887495, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815377509769887495, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3540993420848009712, guid: 7b6fa182e604a4b62bfe91376f910f5b, type: 3}
       propertyPath: m_Name
       value: GameBaseUI
@@ -34611,7 +34623,7 @@ PrefabInstance:
     - target: {fileID: 1690537058174379915, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 485c070fc18d642c3a3080eba8cf9da9, type: 2}
+      objectReference: {fileID: 2100000, guid: 23c688ac136b34d8b8fcc044e5ae7950, type: 2}
     - target: {fileID: 3038420282858366751, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -34619,7 +34631,7 @@ PrefabInstance:
     - target: {fileID: 3607594466953634580, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: b549eb27958c24e82980e430e8b9fa4b, type: 2}
+      objectReference: {fileID: 11400000, guid: 29fabdc73948c446a83986a5f0d46d36, type: 2}
     - target: {fileID: 4632453307822825503, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_SortingOrder
       value: 19

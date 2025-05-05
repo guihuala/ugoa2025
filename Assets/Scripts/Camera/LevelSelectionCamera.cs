@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectionCamera : MonoBehaviour
 {
@@ -30,6 +31,28 @@ public class LevelSelectionCamera : MonoBehaviour
     private Vector3 currentTargetPosition;
     private bool isMoving = false;
 
+    // PlayerPrefs keys
+    private const string CameraIndexKey = "LevelSelectionCamera_CurrentIndex";
+    private const string SceneNameKey = "LevelSelectionCamera_SceneName";
+
+    private void Awake()
+    {
+        string lastScene = PlayerPrefs.GetString(SceneNameKey, "");
+        string currentScene = SceneManager.GetActiveScene().name;
+        
+        if (lastScene == currentScene)
+        {
+            currentIndex = PlayerPrefs.GetInt(CameraIndexKey, 1);
+        }
+        else
+        {
+            currentIndex = 1;
+            PlayerPrefs.SetInt(CameraIndexKey, currentIndex);
+        }
+        
+        PlayerPrefs.SetString(SceneNameKey, currentScene);
+    }
+
     private void Start()
     {
         prevBtn.onClick.AddListener(MoveLeft);
@@ -39,10 +62,25 @@ public class LevelSelectionCamera : MonoBehaviour
         timeOffsetY = Random.Range(0f, 100f);
 
         currentTargetPosition = fixedPositions[currentIndex];
-        Vector3 startPosition = fixedPositions[1]; 
+        Vector3 startPosition = fixedPositions[currentIndex]; // Start from saved position
         transform.position = startPosition;
 
-        StartCoroutine(SmoothMove(startPosition, currentTargetPosition, transitionTime));
+        // Only animate if we're not at the default position
+        if (currentIndex != 1)
+        {
+            StartCoroutine(SmoothMove(startPosition, currentTargetPosition, transitionTime));
+        }
+        else
+        {
+            // Immediately set colors for default position
+            skyboxMaterial.SetColor("_Color0", targetColor0[currentIndex]);
+            skyboxMaterial.SetColor("_Color1", targetColor1[currentIndex]);
+            startColor0 = targetColor0[currentIndex];
+            startColor1 = targetColor1[currentIndex];
+            
+            // Update button states
+            UpdateButtonStates();
+        }
     }
 
     private void Update()
@@ -112,6 +150,7 @@ public class LevelSelectionCamera : MonoBehaviour
         if (currentIndex > 0 && !isMoving)
         {
             currentIndex--;
+            SaveCurrentPosition();
             MoveToPosition(currentIndex);
             prevBtn.interactable = false;
             nextBtn.interactable = false;
@@ -123,6 +162,7 @@ public class LevelSelectionCamera : MonoBehaviour
         if (currentIndex < fixedPositions.Length - 1 && !isMoving)
         {
             currentIndex++;
+            SaveCurrentPosition();
             MoveToPosition(currentIndex);
             prevBtn.interactable = false;
             nextBtn.interactable = false;
@@ -164,9 +204,25 @@ public class LevelSelectionCamera : MonoBehaviour
         currentTargetPosition = endPos;
         isMoving = false;
     
+        UpdateButtonStates();
+    }
+
+    private void SaveCurrentPosition()
+    {
+        PlayerPrefs.SetInt(CameraIndexKey, currentIndex);
+        PlayerPrefs.Save();
+    }
+
+    private void UpdateButtonStates()
+    {
         prevBtn.interactable = true;
         nextBtn.interactable = true;
         prevBtn.gameObject.SetActive(currentIndex > 0);
         nextBtn.gameObject.SetActive(currentIndex < fixedPositions.Length - 1);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.Save();
     }
 }

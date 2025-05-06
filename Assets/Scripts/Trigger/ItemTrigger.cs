@@ -29,7 +29,7 @@ public class ItemTrigger : MonoBehaviour
         
         isCollected = true;
         
-        AudioManager.Instance.PlaySfx("Collect_1");
+        AudioManager.Instance.PlaySfx("Collect_2");
         
         itemData.UnlockItem();
 

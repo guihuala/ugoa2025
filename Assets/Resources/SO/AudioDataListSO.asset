@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioDataList:
   - audioName: click
-    audioPath: Audios/Sfx/MP3/Coffee1
+    audioPath: Audios/Sfx/Coffee
   - audioName: into_grass_1
     audioPath: Audios/Sfx/into_grass_1
   - audioName: into_grass_2
@@ -39,11 +39,17 @@ MonoBehaviour:
     audioPath: Audios/Sfx/step_4
   - audioName: BeFound_1
     audioPath: Audios/Sfx/BeFound_1
-  - audioName: BeFound_2
-    audioPath: Audios/Sfx/BeFound_2
   - audioName: Collect_1
-    audioPath: Audios/Sfx/Collect_1
+    audioPath: Audios/Sfx/Collect_Collection
   - audioName: Collect_2
-    audioPath: Audios/Sfx/Collect_2
-  - audioName: Collect_3
-    audioPath: Audios/Sfx/Collect_3
+    audioPath: Audios/Sfx/Collect_special_item
+  - audioName: chain
+    audioPath: Audios/Sfx/chain
+  - audioName: stone_blast
+    audioPath: Audios/Sfx/stone_blast
+  - audioName: stone_friction
+    audioPath: Audios/Sfx/stone_friction
+  - audioName: Unlock
+    audioPath: Audios/Sfx/UnlockCage
+  - audioName: wobble_wood
+    audioPath: Audios/Sfx/wobble_board

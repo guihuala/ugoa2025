@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -42,21 +41,37 @@ public class BulletLifecycle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyBase enemyBase = other.gameObject.GetComponent<EnemyBase>();
+        IShootable shootable = other.GetComponent<IShootable>();
+        if (shootable != null)
+        {
+            HandleShootableHit(shootable);
+            return;
+        }
         
+        EnemyBase enemyBase = other.GetComponent<EnemyBase>();
         if (enemyBase != null)
         {
-            EVENTMGR.TriggerPlayerFound();// 屏幕震动
-            
-            SpawnHitEffect(); // 在原地生成粒子特效
-            StartFadeOut();
-            
-            // 令敌人眩晕
-            enemyBase.Stun();
+            HandleEnemyHit(enemyBase);
         }
     }
 
-    // 在子弹击中敌人时生成粒子特效
+    // 处理实现了接口的对象
+    private void HandleShootableHit(IShootable shootable)
+    {
+        shootable.OnShot(this); // 调用接口方法
+        StartFadeOut();
+    }
+
+    // 处理敌人命中
+    private void HandleEnemyHit(EnemyBase enemy)
+    {
+        EVENTMGR.TriggerPlayerFound(); // 屏幕震动
+        SpawnHitEffect();
+        StartFadeOut();
+        enemy.Stun();
+    }
+
+    // 在子弹击中时生成粒子特效
     private void SpawnHitEffect()
     {
         if (hitEffectPrefab != null)
@@ -71,7 +86,9 @@ public class BulletLifecycle : MonoBehaviour
         if (hasReturned) return;
         hasReturned = true;
         
-        bulletTransform.DOScale(Vector3.zero, fadeOutDuration).SetEase(Ease.InBack).OnComplete(ReturnToPool);
+        bulletTransform.DOScale(Vector3.zero, fadeOutDuration)
+            .SetEase(Ease.InBack)
+            .OnComplete(ReturnToPool);
     }
 
     // 归还子弹到对象池

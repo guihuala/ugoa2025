@@ -153,8 +153,7 @@ public class PlayerMovement : MonoBehaviour
     }    
 
     #endregion
-
-
+    
     #region 移动的视听效果
 
     private void PlayWalkAnimation()

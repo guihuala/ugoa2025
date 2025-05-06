@@ -8,7 +8,7 @@ public class SlingshotManager : MonoBehaviour
     public LineRenderer lineRenderer;         // 用于显示拖拽的线
 
     public LineRenderer trajectoryLineRenderer; // 用于显示子弹轨迹的线
-    public int trajectoryPoints = 10;           // 轨迹线点数
+    private int trajectoryPoints = 2;           // 轨迹线点数
     public float timeStep = 0.5f;               // 每个轨迹点间的时间间隔
 
     public Transform slingStart;             // 弹弓的起始位置

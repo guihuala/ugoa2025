@@ -6874,7 +6874,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7257648384260116724, guid: dc20dc7db4fbb4605b83ea271b7ad18f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 660790bb19a97eb4581a05d90c81f369, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3e8c0210b67474b3ea18da7abd1a2b87, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -14714,6 +14714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: 32d7b49ce947943f79e0bc36416784aa, type: 2}
+  linkedTriggers: []
 --- !u!1 &1123351287
 GameObject:
   m_ObjectHideFlags: 0
@@ -15701,7 +15702,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7030233663997126098, guid: dc20dc7db4fbb4605b83ea271b7ad18f, type: 2}
   m_audioClip: {fileID: 8300000, guid: b1336e74afe244cd7ae02faf1ea91da5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -150,7 +150,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 101
+  m_SortingOrder: 1
   m_Positions:
   - {x: 0, y: 1.95, z: 0}
   - {x: 0, y: 1.95, z: 0}
@@ -162,7 +162,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.07206726
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -204,8 +204,8 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 0
-    textureMode: 0
+    alignment: 1
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -24874,7 +24874,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -88
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 0.97822684, b: 0.495283, a: 1}
   m_FlipX: 0
@@ -24977,7 +24977,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 485c070fc18d642c3a3080eba8cf9da9, type: 2}
+  - {fileID: 2100000, guid: 23c688ac136b34d8b8fcc044e5ae7950, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25096,7 +25096,6 @@ MonoBehaviour:
   maxDragDistance: 1
   lineRenderer: {fileID: 1758187186040680762}
   trajectoryLineRenderer: {fileID: 4017873436187490725}
-  trajectoryPoints: 15
   timeStep: 0.5
   slingStart: {fileID: 8136058351939939110}
   bulletPool: {fileID: 5665369310815810427}
@@ -25254,6 +25253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleSlow: 0.2
+  showHintUI: 1
   isActive: 1
 --- !u!114 &3785773938734048854
 MonoBehaviour:

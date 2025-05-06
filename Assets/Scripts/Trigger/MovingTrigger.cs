@@ -35,6 +35,8 @@ public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
 
         if (!isActive && movePoints.Length > 0)
         {
+            AudioManager.Instance.PlaySfx("wobble_wood");
+            AudioManager.Instance.PlaySfx("chain");
             movementCoroutine = StartCoroutine(MoveAlongPath());
             isActive = true;
         }
@@ -61,7 +63,6 @@ public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
         {
             Vector3 targetPosition = movePoints[currentPointIndex];
             
-
             currentMoveCoroutine = StartCoroutine(MoveToPosition(targetPosition));
             yield return currentMoveCoroutine;
 
@@ -70,7 +71,7 @@ public class MovingTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialItem
             currentPointIndex = (currentPointIndex + 1) % movePoints.Length;
             yield return new WaitForSeconds(.5f);
         }
-
+        
         isActive = false;
         movementCoroutine = null;
     }

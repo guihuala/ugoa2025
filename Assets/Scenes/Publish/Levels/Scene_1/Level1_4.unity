@@ -33071,7 +33071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 145
-  playerTargetRotation: -35
+  playerTargetRotation: 145
 --- !u!1001 &900382283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47668,11 +47668,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 668419855986055345, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
   m_PrefabInstance: {fileID: 1107068142}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1108261043 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
-  m_PrefabInstance: {fileID: 1385247973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1108462431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59086,31 +59081,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1385247979}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
 --- !u!4 &1385247974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 668419855986055345, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
   m_PrefabInstance: {fileID: 1385247973}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1385247979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108261043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 633a22b469e404d03ba43784f5926394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 360
-  targetRotation: 145
-  playerTargetRotation: -35
 --- !u!1001 &1385393559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60633,6 +60610,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3607594466953634580, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
+      propertyPath: _animationName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607594466953634580, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: 29fabdc73948c446a83986a5f0d46d36, type: 2}
@@ -60654,7 +60635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7196689061731527475, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.17364825
+      value: 0.953717
       objectReference: {fileID: 0}
     - target: {fileID: 7196689061731527475, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -60662,7 +60643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7196689061731527475, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9848078
+      value: -0.30070576
       objectReference: {fileID: 0}
     - target: {fileID: 7196689061731527475, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_LocalRotation.z
@@ -60670,7 +60651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7196689061731527475, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 160
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 8982854469498687822, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_Name
@@ -62412,7 +62393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 145
-  playerTargetRotation: -35
+  playerTargetRotation: 145
 --- !u!1001 &1520428397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70155,7 +70136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 145
-  playerTargetRotation: -35
+  playerTargetRotation: 145
 --- !u!1001 &1627848175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89049,7 +89030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 360
   targetRotation: 145
-  playerTargetRotation: -35
+  playerTargetRotation: 145
 --- !u!1001 &1807937661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102679,7 +102660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
       propertyPath: angle_y
-      value: 160
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 811059991025582900, guid: 663a2612fa328482a85a1fb093c76370, type: 3}
       propertyPath: maxZoom
@@ -135810,9 +135791,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18334755, g: 0.38904864, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18334508, g: 0.38904604, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.41034514, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.4103425, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

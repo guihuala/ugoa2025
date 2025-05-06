@@ -32,6 +32,8 @@ public class ItemTrigger : MonoBehaviour
         AudioManager.Instance.PlaySfx("Collect_2");
         
         itemData.UnlockItem();
+        
+        SaveManager.Instance.NewRecord();
 
         Destroy(gameObject);
     }

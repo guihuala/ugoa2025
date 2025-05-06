@@ -49,19 +49,19 @@ public class Player : MonoBehaviour
     public string sneakAnimation = "move/sneak";
     public string hatAnimation = "move/hat";
     
-    [Header("Spine 默认眼睛")]
+    [Header("Spine 默认表情")]
     public string eyeslv1Animation = "expressions/default-lv1";
     public string eyeslv2Animation = "expressions/default-lv2";
     public string eyeslv3Animation = "expressions/default_lv3";
 
     [Header("Spine 眼睛动画")]
     public string eyesXAnimation = "expressions/eyes/eyes-X";
-    public string eyesShutAnimation = "expressions/eyes/eyes-shut";
+    public string eyesShutAnimation = "expressions/eyes/eyes_shut";
     public string eyesBlinkAnimation = "expressions/eyes/eyes_blink";
     
     [Header("Spine 嘴动画")]
-    public string defaultMouthAnimation = "expressions/mouth/mouth-default";
-    public string trembleMouthAnimation = "expressions/mouth/mouth-tremble";
+    public string defaultMouthAnimation = "expressions/mouth/mouth_default";
+    public string trembleMouthAnimation = "expressions/mouth/mouth_tremble";
     public string VmouthAnimation = "expressions/mouth/smile-v";
     
     [Header("lv 1 帽子")]
@@ -72,16 +72,12 @@ public class Player : MonoBehaviour
     private string sinkAnimation = "sets/struggle";
     private string saluteAnimation = "sets/salute";
     
-    [Header("Spine 道具动画")]
-    private string withSlingshotAnimation = "tool/with_catapult";
-    private string hideSlingshotAnimation = "tool/hide_catpult";
-    private string withoutSlingshotAnimation = "tool/without_catapult";
-    
     [Header("Spine 动画轨道配置")]
     private int baseTrack = 1;    // 主动画轨道
     private int eyesTrack = 2;    // 眼睛
     private int mouseTrack = 3;   // 嘴
     private int toolTrack = 4; // 道具    
+    private int hatTrack = 5;
 
     #endregion
     
@@ -105,7 +101,6 @@ public class Player : MonoBehaviour
         
         ClearTrack();
         PlayEyesAnimation();
-        PlayOverlayAnimation(4, withoutSlingshotAnimation, true);
         
         triangle.SetActive(false);
         
@@ -136,7 +131,6 @@ public class Player : MonoBehaviour
                 return;
 
             skeletonAnimation.state.SetAnimation(baseTrack, animName, loop);
-            PlayOverlayAnimation(4, withoutSlingshotAnimation, true); // 隐藏弹弓
         }
     }
 
@@ -164,7 +158,7 @@ public class Player : MonoBehaviour
                 }                
             }
             
-            PlayOverlayAnimation(eyesTrack, selectedEyeAnimation, true, 0.1f);
+            PlayOverlayAnimation(eyesTrack, selectedEyeAnimation);
         }
     }
 
@@ -196,14 +190,16 @@ public class Player : MonoBehaviour
         skeletonAnimation.state.ClearTrack(baseTrack);
         skeletonAnimation.state.ClearTrack(eyesTrack);
         skeletonAnimation.state.ClearTrack(mouseTrack);
+        skeletonAnimation.state.ClearTrack(hatTrack);
         
         skeletonAnimation.Skeleton.SetToSetupPose();
         
         PlayAnimation(standAnimation, true);
         PlayEyesAnimation();
+        PlayOverlayAnimation(4, "tool/without_catapult");
         
         if(skin == PlayerSkin.lv1)
-            skeletonAnimation.state.SetAnimation(4, hat1Animation, true);
+            skeletonAnimation.state.SetAnimation(5, hat1Animation, true);
     }
 
     #endregion
@@ -254,7 +250,7 @@ public class Player : MonoBehaviour
         PlayAnimation(sinkAnimation, true);
         
         if(skin == PlayerSkin.lv1)
-            skeletonAnimation.state.SetAnimation(4, hat2Animation, true);
+            skeletonAnimation.state.SetAnimation(5, hat2Animation, true);
         
         if(skin == PlayerSkin.lv3)
             return;

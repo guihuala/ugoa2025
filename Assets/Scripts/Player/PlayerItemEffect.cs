@@ -19,9 +19,13 @@ public class PlayerItemEffect : MonoBehaviour
     private float originInterval;
     
     private bool isSlingshotActive;
+    
+    private Player player;
 
     private void Start()
     {
+        player = GetComponent<Player>();
+        
         intervalDecreaseFx.gameObject.SetActive(false);
         
         slingshotManager = FindObjectOfType<SlingshotManager>();
@@ -80,7 +84,26 @@ public class PlayerItemEffect : MonoBehaviour
         
         slingshotManager.SetIsUsingSlingshot(true);
         isSlingshotActive = true;
-        
+
+        // 发射弹弓的动画，默认动画会隐藏弹弓
+        if (player.skin == Player.PlayerSkin.lv1)
+        {
+            player.PlayOverlayAnimation(4, "tool/with_catapult");
+            player.PlayOverlayAnimation(2,"expressions/eyes/eyes_shut");
+            player.PlayOverlayAnimation(3, "expressions/mouth/smile-v");
+            player.PlayOverlayAnimation(5,"expressions/hat/hat_down-lv1");
+        }else if (player.skin == Player.PlayerSkin.lv2)
+        {
+            player.PlayOverlayAnimation(4, "tool/with_catapult");
+            player.PlayOverlayAnimation(2,"expressions/eyes/eyes-X");
+            player.PlayOverlayAnimation(3, "expressions/mouth/smile-v");
+        }
+        else
+        {
+            player.PlayOverlayAnimation(3, "expressions/mouth/smile-v");
+            player.PlayOverlayAnimation(4, "tool/hide_catpult", false, 0.1f, true);
+        }
+
         EVENTMGR.TriggerTimeScaleChange(timeScaleSlow);
     }
 
@@ -91,6 +114,8 @@ public class PlayerItemEffect : MonoBehaviour
         
         slingshotManager.SetIsUsingSlingshot(false);
         isSlingshotActive = false;
+        
+        player.ClearTrack();
         
         EVENTMGR.TriggerTimeScaleChange(1.0f);
     }

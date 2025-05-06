@@ -16,7 +16,6 @@ public class PlayerInteractManager : MonoBehaviour
     {
         if (officeItem != null)
         {
-            // 这里可以放置逻辑来禁用之前的物体，例如恢复其状态
             officeItem.HideHighlight();
         }
         

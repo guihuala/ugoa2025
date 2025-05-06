@@ -2,11 +2,11 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
-
 public class ClickableEffect : MonoBehaviour, IClickable
 {
     [Header("点击设置")]
     [SerializeField] private float timeScaleSlow = 0.2f;
+    [SerializeField] private bool showHintUI = true; // 是否显示提示UI
 
     private GameObject clickUI; // 生成的 UI 对象
     private CanvasGroup uiCanvasGroup; // 用于控制 UI 透明度
@@ -16,22 +16,25 @@ public class ClickableEffect : MonoBehaviour, IClickable
 
     private void Awake()
     {
-        // 动态生成 UI
-        clickUI = Instantiate(Resources.Load<GameObject>("UIcomponents/ClickUI"));
-        clickUI.transform.SetParent(transform);
-        clickUI.transform.localPosition = new Vector3(0, 0.5f, 0);
-        clickUI.SetActive(false);
-
-        uiCanvasGroup = clickUI.GetComponent<CanvasGroup>();
-        if (uiCanvasGroup == null)
+        if (showHintUI)
         {
-            uiCanvasGroup = clickUI.AddComponent<CanvasGroup>();
+            // 动态生成 UI
+            clickUI = Instantiate(Resources.Load<GameObject>("UIcomponents/ClickUI"));
+            clickUI.transform.SetParent(transform);
+            clickUI.transform.localPosition = new Vector3(0, 0.5f, 0);
+            clickUI.SetActive(false);
+
+            uiCanvasGroup = clickUI.GetComponent<CanvasGroup>();
+            if (uiCanvasGroup == null)
+            {
+                uiCanvasGroup = clickUI.AddComponent<CanvasGroup>();
+            }
         }
     }
 
     public void OnClick()
     {
-        // **如果对象未激活，直接返回**
+        // 如果对象未激活，直接返回
         if (!isActive) return;
 
         // 如果鼠标指针位于 UI 上，则不执行点击检测
@@ -44,18 +47,20 @@ public class ClickableEffect : MonoBehaviour, IClickable
         {
             EVENTMGR.TriggerClickPlayer(false);
             EVENTMGR.TriggerTimeScaleChange(1.0f);
-            HideUIWithAnimation();
+            if (showHintUI) HideUIWithAnimation();
             return;
         }
 
         // 触发点击事件（仅在激活时）
         EVENTMGR.TriggerClickPlayer(true);
         EVENTMGR.TriggerTimeScaleChange(timeScaleSlow);
-        ShowUIWithAnimation();
+        if (showHintUI) ShowUIWithAnimation();
     }
 
     public void ShowUIWithAnimation()
     {
+        if (!showHintUI || clickUI == null) return;
+
         clickUI.SetActive(true);
         uiCanvasGroup.alpha = 0;
         uiCanvasGroup.DOFade(1, 0.1f).SetEase(Ease.InOutQuad); // 渐变动画
@@ -66,6 +71,8 @@ public class ClickableEffect : MonoBehaviour, IClickable
 
     public void HideUIWithAnimation()
     {
+        if (!showHintUI || clickUI == null) return;
+
         uiCanvasGroup.DOFade(0, 0.1f).SetEase(Ease.InOutQuad).OnComplete(() =>
         {
             clickUI.SetActive(false);
@@ -83,6 +90,6 @@ public class ClickableEffect : MonoBehaviour, IClickable
     public void Deactivate()
     {
         isActive = false;
-        if (isUIOpen) HideUIWithAnimation(); // 关闭UI
+        if (isUIOpen && showHintUI) HideUIWithAnimation(); // 关闭UI
     }
 }

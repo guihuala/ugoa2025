@@ -30,9 +30,9 @@ public class ItemData : ScriptableObject
     }
     
     // 判断是否解锁
-    public bool CheckUnlock(List<LevelData> levels)
+    public bool CheckUnlock()
     {
-        LevelData requiredLevel = levels.Find(l => l.name == requiredLevelName);
+        LevelData requiredLevel = LevelManager.Instance.levels.Find(l => l.name == requiredLevelName);
 
         if (requiredLevel != null && requiredLevel.isUnlocked && requiredLevel.isPlayed)
         {

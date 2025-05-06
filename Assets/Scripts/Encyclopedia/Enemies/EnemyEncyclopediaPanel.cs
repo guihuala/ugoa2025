@@ -73,6 +73,7 @@ public class EnemyEncyclopediaPanel : SlidePanel
             pageEnemyName.text = "???";
             pageEnemyDescription.text = "尚未解锁";
             pageEnemyImage.sprite = enemy.enemySprite;
+            pageEnemyImage.color = Color.black;
         }
     }
 

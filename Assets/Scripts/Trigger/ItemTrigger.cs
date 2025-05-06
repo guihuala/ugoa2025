@@ -30,8 +30,9 @@ public class ItemTrigger : MonoBehaviour
         isCollected = true;
         
         AudioManager.Instance.PlaySfx("Collect_2");
-        
-        itemData.UnlockItem();
+
+        if (!itemData.CheckUnlock())
+            itemData.UnlockItem();
         
         SaveManager.Instance.NewRecord();
 

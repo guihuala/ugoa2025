@@ -35,7 +35,7 @@ public class ItemUIContainer : MonoBehaviour
     {
         foreach (var item in items)
         {
-            if (item.CheckUnlock(LevelManager.Instance.levels))
+            if (item.CheckUnlock())
             {
                 GameObject newItem = Instantiate(itemPrefab, itemContainer);
                 newItem.GetComponent<ItemUI>().UpdateItemInfo(item);

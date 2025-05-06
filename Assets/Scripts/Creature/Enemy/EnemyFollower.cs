@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent(typeof(Collision))]
-public class EnemyFollower : MonoBehaviour
+[RequireComponent(typeof(Collider))]
+public class EnemyFollower : MonoBehaviour, IShootable
 {
     private Queue<Vector3> pathQueue = new Queue<Vector3>();
     private bool isMoving = false;
     private bool stopMoving = false;
+    private bool isStunned = false; // 是否处于眩晕状态
 
     private float followDelay;
-    
     private float currentRotation = 0f;
     private float targetRotation = 180f;
     
@@ -20,25 +20,27 @@ public class EnemyFollower : MonoBehaviour
     private Vector3 positionOffset = Vector3.zero;
 
     private EnemyBase targetEnemy;
+    private Coroutine moveCoroutine;
+    private Coroutine stunCoroutine;
 
     /// <summary>
     /// 设置跟随路径和延迟时间
     /// </summary>
-    /// <param name="path">路径队列</param>
-    /// <param name="delay">跟随延迟</param>
     public void FollowPath(Queue<Vector3> path, float delay)
     {
+        if (isStunned) return; // 眩晕状态下不接收新路径
+
         pathQueue.Clear();
         foreach (var point in path)
         {
             pathQueue.Enqueue(point);
         }
 
-        followDelay = delay;  // 设置小弟的跟随延迟
+        followDelay = delay;
 
-        if (!isMoving && !stopMoving)
+        if (!isMoving && !stopMoving && moveCoroutine == null)
         {
-            StartCoroutine(MoveAlongPath());
+            moveCoroutine = StartCoroutine(MoveAlongPath());
         }
     }
 
@@ -51,9 +53,8 @@ public class EnemyFollower : MonoBehaviour
     {
         isMoving = true;
 
-        while (pathQueue.Count > 0)
+        while (pathQueue.Count > 0 && !isStunned) // 检查眩晕状态
         {
-            // 每次移动前等待设定的延迟时间
             yield return new WaitForSeconds(followDelay + 1.2f);
             
             if (Time.timeScale == 0)
@@ -61,14 +62,12 @@ public class EnemyFollower : MonoBehaviour
                 yield return new WaitUntil(() => Time.timeScale > 0);
             }
 
-            // 从路径中取出目标点，并添加偏移量
             Vector3 targetPosition = pathQueue.Dequeue() + positionOffset;
 
             HandleRotation(targetPosition - transform.position);
             transform.DOPunchScale(new Vector3(-0.2f, 0.2f, 0f), 0.3f, 5, 0.5f);
 
-            // 开始平滑移动到目标点
-            while ((transform.position - targetPosition).sqrMagnitude > 0.01f)
+            while ((transform.position - targetPosition).sqrMagnitude > 0.01f && !isStunned)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, 3f * Time.deltaTime);
                 yield return null;
@@ -76,6 +75,7 @@ public class EnemyFollower : MonoBehaviour
         }
 
         isMoving = false;
+        moveCoroutine = null;
     }
     
     private void HandleRotation(Vector3 direction)
@@ -83,7 +83,7 @@ public class EnemyFollower : MonoBehaviour
         if (Mathf.Abs(direction.x) > 0.01f)
         {
             targetRotation = direction.x > 0 ? 180f : 0f;
-            if (!Mathf.Approximately(targetRotation, currentRotation)) // 避免重复旋转
+            if (!Mathf.Approximately(targetRotation, currentRotation))
             {
                 transform.DORotate(new Vector3(0f, targetRotation, 0f), 0.3f, RotateMode.FastBeyond360);
                 currentRotation = targetRotation;
@@ -93,6 +93,9 @@ public class EnemyFollower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // 眩晕状态下不与玩家交互
+        if (isStunned) return;
+
         if (other.GetComponent<Player>())
         {
             if (targetEnemy != null)
@@ -100,5 +103,48 @@ public class EnemyFollower : MonoBehaviour
                 targetEnemy.PerformAttackPlayer();
             }
         }
+    }
+    
+    public void OnShot(BulletLifecycle bullet)
+    {
+        if (isStunned) return; // 已经处于眩晕状态则不再处理
+
+        EVENTMGR.TriggerPlayerFound(); // 屏幕震动
+        
+        // 停止当前移动
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
+        
+        // 开始眩晕状态
+        stunCoroutine = StartCoroutine(StunEffect());
+    }
+
+    private IEnumerator StunEffect()
+    {
+        isStunned = true;
+        
+        yield return new WaitForSeconds(3f); // 眩晕3秒
+        
+        // 恢复原状
+        GetComponent<Renderer>().material.color = Color.white;
+        isStunned = false;
+        
+        // 如果还有路径点，继续移动
+        if (pathQueue.Count > 0 && !stopMoving)
+        {
+            moveCoroutine = StartCoroutine(MoveAlongPath());
+        }
+        
+        stunCoroutine = null;
+    }
+
+    private void OnDestroy()
+    {
+        // 清理协程
+        if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
     }
 }

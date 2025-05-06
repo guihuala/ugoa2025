@@ -2037,7 +2037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 0.8
+  baseInterval: 1
 --- !u!114 &99845014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14160,7 +14160,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7030233663997126098, guid: dc20dc7db4fbb4605b83ea271b7ad18f, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c820dcd8336834c2b8d79bc36e0025af, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -41299,10 +41299,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28339368, g: 0.2845322, b: 0.31129506, a: 0.7372549}
+  shallowColor: {r: 0.28339332, g: 0.28453186, b: 0.31129473, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21168008, g: 0.25011542, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21167973, g: 0.25011507, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}

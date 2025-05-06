@@ -3848,7 +3848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 0.1
+  baseInterval: 1
 --- !u!114 &102317153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34720,7 +34720,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7030233663997126098, guid: dc20dc7db4fbb4605b83ea271b7ad18f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: bd4118b112c1b4b0d9bc998eb5e959a4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4695efa91e55641cd88d9dfc0ec989ed, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

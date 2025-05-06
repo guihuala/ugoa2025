@@ -4175,6 +4175,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 73315402}
+    - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 73315403}
   m_SourcePrefab: {fileID: 100100000, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
 --- !u!4 &73315395 stripped
 Transform:
@@ -4213,6 +4216,24 @@ MonoBehaviour:
   rotationSpeed: 360
   targetRotation: 225
   playerTargetRotation: 45
+--- !u!114 &73315403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73315396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b5ad7e8014146a392ed32ba704d11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 11400000, guid: 9414418ba3efd47169eef67b1ccab91c, type: 2}
+  linkedTriggers:
+  - {fileID: 1800580886}
+  - {fileID: 895235787}
+  - {fileID: 73315403}
+  - {fileID: 532489068}
 --- !u!1001 &74611840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32338,6 +32359,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 532489067}
+    - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 532489068}
   m_SourcePrefab: {fileID: 100100000, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
 --- !u!4 &532489060 stripped
 Transform:
@@ -32376,6 +32400,24 @@ MonoBehaviour:
   rotationSpeed: 360
   targetRotation: 225
   playerTargetRotation: 45
+--- !u!114 &532489068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532489061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b5ad7e8014146a392ed32ba704d11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 11400000, guid: 9414418ba3efd47169eef67b1ccab91c, type: 2}
+  linkedTriggers:
+  - {fileID: 1800580886}
+  - {fileID: 895235787}
+  - {fileID: 73315403}
+  - {fileID: 532489068}
 --- !u!1001 &532548960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53509,6 +53551,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 895235786}
+    - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 895235787}
   m_SourcePrefab: {fileID: 100100000, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
 --- !u!4 &895235779 stripped
 Transform:
@@ -53547,6 +53592,24 @@ MonoBehaviour:
   rotationSpeed: 360
   targetRotation: 225
   playerTargetRotation: 45
+--- !u!114 &895235787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895235780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b5ad7e8014146a392ed32ba704d11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 11400000, guid: 9414418ba3efd47169eef67b1ccab91c, type: 2}
+  linkedTriggers:
+  - {fileID: 1800580886}
+  - {fileID: 895235787}
+  - {fileID: 73315403}
+  - {fileID: 532489068}
 --- !u!1001 &895763116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104159,7 +104222,7 @@ PrefabInstance:
     - target: {fileID: 6827262078228367225, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: c4168f2464e994828bd6d1daf4a15866, type: 2}
+      objectReference: {fileID: 2100000, guid: 2a914ec0e46a547f589dd0812a73c460, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -104190,7 +104253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requestedItemID:
   - 4
-  dialogueData: {fileID: 11400000, guid: 9414418ba3efd47169eef67b1ccab91c, type: 2}
+  dialogueData: {fileID: 11400000, guid: 7bc21d05a941348cba0f918b7fbdf28f, type: 2}
 --- !u!1001 &1734314439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107715,6 +107778,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1800580885}
+    - targetCorrespondingSourceObject: {fileID: 3583959105995346392, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1800580886}
   m_SourcePrefab: {fileID: 100100000, guid: d54dce20fcceb48fb987eafe810f8c27, type: 3}
 --- !u!4 &1800580878 stripped
 Transform:
@@ -107753,6 +107819,24 @@ MonoBehaviour:
   rotationSpeed: 360
   targetRotation: 225
   playerTargetRotation: 45
+--- !u!114 &1800580886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800580879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b5ad7e8014146a392ed32ba704d11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 11400000, guid: 9414418ba3efd47169eef67b1ccab91c, type: 2}
+  linkedTriggers:
+  - {fileID: 1800580886}
+  - {fileID: 895235787}
+  - {fileID: 73315403}
+  - {fileID: 532489068}
 --- !u!1001 &1802416160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130324,9 +130408,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.1833508, g: 0.38905206, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18335024, g: 0.38905147, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.41034856, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.41034797, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

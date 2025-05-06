@@ -56743,7 +56743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightRadius: 5
-  updateInterval: 1
+  updateInterval: 0.5
   startPositionOffset: {x: 0, y: 1.5, z: 0}
   usePathCache: 1
   mapNodes: []
@@ -56760,7 +56760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5
-  stepIncreaseInterval: 1
+  baseInterval: 1
 --- !u!114 &779749157
 MonoBehaviour:
   m_ObjectHideFlags: 0

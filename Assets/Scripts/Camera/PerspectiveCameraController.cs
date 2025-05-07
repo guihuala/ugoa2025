@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class PerspectiveCameraController : MonoBehaviour, CameraController
 {
+    [Header("跟随设置")]
+    public bool followPlayer = true; // 是否跟随玩家
     public Transform player;
     public float followSpeed = 1f;
 
@@ -41,12 +43,16 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     private bool isShaking = false; // 震动标志
     private Vector3 shakeOffset = Vector3.zero; // 震动偏移量
     
-    [Header("是否开启触屏控制")]
+    [Header("触屏控制")]
     public bool allowCameraControl = true;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (followPlayer)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        
         mainCamera = Camera.main;
         mainCamera.orthographic = false; // 使用透视模式
 
@@ -71,7 +77,7 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
         HandleZoom();
         HandleInput();
 
-        if (player == null || isDragging || isShaking)
+        if (player == null || isDragging || isShaking || !followPlayer) // 修改：增加!followPlayer判断
             return;
 
         FollowPlayer();

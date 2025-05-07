@@ -198,4 +198,15 @@ public static class EVENTMGR
     }
 
     #endregion
+
+    #region 对话
+
+    public static event Action OnDialogueEnd;
+    
+    public static void TriggerDialogueEnd()
+    {
+        OnDialogueEnd?.Invoke();
+    }
+
+    #endregion
 }

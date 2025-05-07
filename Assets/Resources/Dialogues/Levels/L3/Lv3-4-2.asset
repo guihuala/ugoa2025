@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b47e8935dc184185b1e75ee5c1267e7, type: 3}
+  m_Name: Lv3-4-2
+  m_EditorClassIdentifier: 
+  Cells:
+  - Index: 0
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: fc331ac09b54d4e7ca948a3d963fbe09, type: 2}
+    SelectedVariantIndex: 2
+    CellType: 0
+    JumpToIndex: 3
+    CellFlag: 0
+    Content: "\u4EC0\u4E48\u60C5\u51B5\uFF01\u4F60\u4EEC\u662F\u8C01\uFF01"
+  - Index: 1
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 4
+    CellType: 0
+    JumpToIndex: 0
+    CellFlag: 2
+    Content: "\u5C31\u662F\u4F60\u4EEC\u5C06\u6536\u96C6\u54C1\u5077\u8D70\u7684\u5417\uFF0C\u8BC1\u636E\u786E\u51FF\uFF0C\u5FEB\u5FEB\u4E3E\u624B\u6295\u964D\u5427\uFF01"
+  - Index: 2
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: fc331ac09b54d4e7ca948a3d963fbe09, type: 2}
+    SelectedVariantIndex: 1
+    CellType: 0
+    JumpToIndex: 3
+    CellFlag: 2
+    Content: "\u62A4\u6797\u5458\uFF01\u6211\u4EEC\u4E0D\u662F\u4E00\u4F19\u7684\u5417\uFF01\u6211\u4EEC\u4E5F\u662F\u5949\u547D\u884C\u4E8B\u554A\uFF01"
+  - Index: 3
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: fc331ac09b54d4e7ca948a3d963fbe09, type: 2}
+    SelectedVariantIndex: 4
+    CellType: 0
+    JumpToIndex: 4
+    CellFlag: 2
+    Content: "\u662F\u554A\u662F\u554A\uFF0C\u6211\u4EEC\u90FD\u662F\u542C\u547D\u4E0E\u6797\u4E1A\u5C40\u7684\uFF0C\u662F\u6797\u4E1A\u5C40\u8BA9\u6211\u4EEC\u8FD9\u4E48\u505A\u7684\u3002"
+  - Index: 4
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 5
+    CellType: 0
+    JumpToIndex: 5
+    CellFlag: 2
+    Content: "...\uFF08\u4ED4\u7EC6\u7684\u770B\u4E86\u770B\u6587\u4EF6\uFF09"
+  - Index: 5
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 5
+    CellType: 0
+    JumpToIndex: 6
+    CellFlag: 2
+    Content: "\u8FD9\u4E0A\u9762\u662F\u8BA9\u4F60\u4EEC\u5E2E\u5FD9\u767B\u8BB0\u5E76\u4FDD\u62A4\u5386\u53F2\u9057\u8FF9\uFF0C\u4F60\u4EEC\u90FD\u505A\u4E86\u4EC0\u4E48..."
+  - Index: 6
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: fc331ac09b54d4e7ca948a3d963fbe09, type: 2}
+    SelectedVariantIndex: 3
+    CellType: 0
+    JumpToIndex: 7
+    CellFlag: 2
+    Content: "\u5446\u5B50\uFF01\u4F60\u4E0D\u662F\u8BA4\u8BC6\u5B57\u5417\uFF0C\u4F60\u4E0D\u662F\u8BF4\u8FD9\u4E0A\u9762\u662F\u8BA9\u6211\u4EEC\u6536\u7F34\u672A\u7533\u62A5\u6587\u7269\u5417\uFF1F\uFF01"
+  - Index: 7
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: fc331ac09b54d4e7ca948a3d963fbe09, type: 2}
+    SelectedVariantIndex: 0
+    CellType: 0
+    JumpToIndex: 8
+    CellFlag: 2
+    Content: "\u554A\uFF1F\u662F\u6211\u7406\u89E3\u9519\u4E86\u5417\uFF0C\u539F\u6765\u4E0D\u662F\u4E00\u4E2A\u610F\u601D\u5417..."
+  - Index: 8
+    CharacterName: 
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
+    SelectedVariantIndex: 6
+    CellType: 0
+    JumpToIndex: 0
+    CellFlag: 1
+    Content: ...

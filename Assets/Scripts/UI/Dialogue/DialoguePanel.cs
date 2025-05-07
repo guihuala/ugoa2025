@@ -142,6 +142,8 @@ public class DialoguePanel : BasePanel
 
     private void EndDialogue()
     {
+        EVENTMGR.TriggerDialogueEnd();
+        
         UIManager.Instance.ClosePanel(panelName);
     }
 

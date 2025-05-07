@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class DialogueTrigger : MonoBehaviour, IEnterSpecialItem
 {
     [SerializeField] private DialogueData dialogueData;
     [SerializeField] private List<DialogueTrigger> linkedTriggers; // 联动触发器列表
+    [SerializeField] private PlayableDirector timeline; // 可选的Timeline引用
+    
     private bool isPlayed = false;
     private bool isDisabledByLink = false; // 是否被其他联动触发器禁用
 
@@ -24,14 +27,40 @@ public class DialogueTrigger : MonoBehaviour, IEnterSpecialItem
             }
         }
 
-        // 开始对话
-        DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
-        dialoguePanel.StartDialogue(dialogueData);
+        // 如果有配置 Timeline，则播放
+        if (timeline != null)
+        {
+            PlayTimelineAndStartDialogue();
+        }
+        else
+        {
+            StartDialogueDirectly();
+        }
         
         isPlayed = true;
     }
 
-    // 被其他联动触发器调用，禁用此触发器
+    private void PlayTimelineAndStartDialogue()
+    {
+        timeline.Play();
+        // 在Timeline播放完成后开始对话
+        timeline.stopped += OnTimelineFinished;
+    }
+
+    private void OnTimelineFinished(PlayableDirector director)
+    {
+        director.stopped -= OnTimelineFinished;
+        
+        // 开始对话
+        StartDialogueDirectly();
+    }
+
+    private void StartDialogueDirectly()
+    {
+        DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
+        dialoguePanel.StartDialogue(dialogueData);
+    }
+    
     public void DisableByLinkedTrigger()
     {
         isDisabledByLink = true;

@@ -29,14 +29,7 @@ public class PathfindingManager : MonoBehaviour
             return;
         }
 
-        // 仅存储可行走节点
-        foreach (var node in FindObjectsOfType<NodeMarker>())
-        {
-            if (node.IsWalkable)
-            {
-                mapNodes.Add(node.transform);
-            }
-        }
+        FindWalkableNodes();
 
         Transform closestNode = GetClosestNode(player.transform.position);
         if (closestNode != null)
@@ -47,6 +40,7 @@ public class PathfindingManager : MonoBehaviour
         EVENTMGR.ChangeSteps += UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer += OnClickPlayer;
         EVENTMGR.OnPlayerDead += ClearAllHighlights;
+        EVENTMGR.OnTerrainChange += FindWalkableNodes;
     }
 
     private void OnDestroy()
@@ -54,6 +48,7 @@ public class PathfindingManager : MonoBehaviour
         EVENTMGR.ChangeSteps -= UpdateHighlightRadius;
         EVENTMGR.OnClickPlayer -= OnClickPlayer;
         EVENTMGR.OnPlayerDead -= ClearAllHighlights;
+        EVENTMGR.OnTerrainChange -= FindWalkableNodes;
 
         if (highlightCoroutine != null)
         {
@@ -62,6 +57,79 @@ public class PathfindingManager : MonoBehaviour
         }
     }
 
+    #region 搜索节点有关的方法
+
+private void FindWalkableNodes()
+    {
+        HashSet<Transform> currentWalkableNodes = new HashSet<Transform>();
+        
+        // 查找场景中所有节点标记
+        foreach (var node in FindObjectsOfType<NodeMarker>())
+        {
+            if (node.IsWalkable)
+            {
+                currentWalkableNodes.Add(node.transform);
+            }
+        }
+
+        // 移除已不存在于场景中的节点
+        mapNodes.RemoveAll(node => node == null);
+
+        // 创建需要移除的节点列表
+        List<Transform> nodesToRemove = new List<Transform>();
+        
+        // 检查现有节点
+        foreach (var existingNode in mapNodes)
+        {
+            // 如果节点不在当前可行走集合中，标记为需要移除
+            if (!currentWalkableNodes.Contains(existingNode))
+            {
+                nodesToRemove.Add(existingNode);
+            }
+            else
+            {
+                // 如果节点仍然可行走，从当前集合中移除以避免重复添加
+                currentWalkableNodes.Remove(existingNode);
+            }
+        }
+
+        // 移除不再可行走的节点
+        foreach (var nodeToRemove in nodesToRemove)
+        {
+            mapNodes.Remove(nodeToRemove);
+            
+            // 同时从缓存中移除相关路径
+            if (usePathCache)
+            {
+                RemoveNodeFromCache(nodeToRemove);
+            }
+        }
+
+        // 添加新发现的可行走节点
+        mapNodes.AddRange(currentWalkableNodes);
+    }
+
+    // 从缓存中移除与指定节点相关的所有路径
+    private void RemoveNodeFromCache(Transform nodeToRemove)
+    {
+        List<(Transform, Transform)> keysToRemove = new List<(Transform, Transform)>();
+        
+        foreach (var key in pathCache.Keys)
+        {
+            if (key.Item1 == nodeToRemove || key.Item2 == nodeToRemove)
+            {
+                keysToRemove.Add(key);
+            }
+        }
+
+        foreach (var key in keysToRemove)
+        {
+            pathCache.Remove(key);
+        }
+    }
+    
+    #endregion
+    
     private void UpdateHighlightRadius(int newHighlightRadius)
     {
         if (highlightRadius != newHighlightRadius)

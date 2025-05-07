@@ -7868,7 +7868,7 @@ MonoBehaviour:
   movePoints:
   - {x: 30, y: 0, z: 14}
   - {x: 30, y: 0.4, z: 24}
-  - {x: 14, y: 0.8, z: 24}
+  - {x: 14, y: 0.8, z: 25}
   - {x: 30, y: 0.4, z: 24}
   moveSpeed: 3
 --- !u!1001 &120952712
@@ -29701,10 +29701,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28339148, g: 0.28453, b: 0.31129286, a: 0.7372549}
+  shallowColor: {r: 0.28339097, g: 0.2845295, b: 0.31129238, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21167788, g: 0.25011322, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21167737, g: 0.2501127, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -38101,7 +38101,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 257eb0729b7fa4c1c83c11ca6c5b04e3, type: 2}
+  - {fileID: 2100000, guid: 906e3ed8730214787ab50e1b7d8e5104, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114834,10 +114834,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28339145, g: 0.28452998, b: 0.31129283, a: 0.7372549}
+  shallowColor: {r: 0.28339094, g: 0.28452948, b: 0.31129232, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21167785, g: 0.2501132, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21167734, g: 0.25011268, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -133288,7 +133288,7 @@ MonoBehaviour:
   currentScene: 8
   nextLevel: 10
   nextLevelName: Level3_1
-  levelDialogue: {fileID: 0}
+  levelDialogue: {fileID: 11400000, guid: b11a4a6d14129447e931117a4c67b1ff, type: 2}
   isEndLevel: 0
 --- !u!4 &2075850317
 Transform:

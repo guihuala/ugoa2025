@@ -4,18 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public class AStarPathfinding
 {
     public static List<Transform> FindPath(Transform startNode, Transform targetNode, List<Transform> nodes, bool allowNonWalkable = false)
     {
+        // 首先检查起点和终点是否有效
+        if (startNode == null || !startNode.gameObject.activeSelf || 
+            targetNode == null || !targetNode.gameObject.activeSelf)
+        {
+            return null;
+        }
+
         SortedList<float, Queue<Transform>> openSet = new SortedList<float, Queue<Transform>>();
         HashSet<Transform> closedSet = new HashSet<Transform>();
         Dictionary<Transform, Transform> cameFrom = new Dictionary<Transform, Transform>();
         Dictionary<Transform, float> gCost = new Dictionary<Transform, float>();
         Dictionary<Transform, float> fCost = new Dictionary<Transform, float>();
 
+        // 初始化所有节点成本，只处理激活的节点
         foreach (var node in nodes)
         {
+            if (!node.gameObject.activeSelf) continue;
+            
             gCost[node] = float.MaxValue;
             fCost[node] = float.MaxValue;
         }
@@ -35,7 +46,9 @@ public class AStarPathfinding
 
             foreach (var neighbor in GetFastNeighbors(currentNode, nodes, allowNonWalkable))
             {
-                if (closedSet.Contains(neighbor)) continue;
+                // 确保邻居节点是激活的
+                if (!neighbor.gameObject.activeSelf || closedSet.Contains(neighbor)) 
+                    continue;
 
                 float tentativeGCost = gCost[currentNode] + Vector3.Distance(currentNode.position, neighbor.position);
 
@@ -45,7 +58,6 @@ public class AStarPathfinding
                     gCost[neighbor] = tentativeGCost;
                     fCost[neighbor] = tentativeGCost + Vector3.SqrMagnitude(neighbor.position - targetNode.position);
 
-                    // 如果队列中没有这个邻居，加入队列
                     Enqueue(openSet, neighbor, fCost[neighbor]);
                 }
             }
@@ -60,6 +72,10 @@ public class AStarPathfinding
         List<Transform> neighbors = new List<Transform>();
         foreach (var n in nodes)
         {
+            // 只考虑激活的节点
+            if (!n.gameObject.activeSelf)
+                continue;
+            
             if (Vector3.SqrMagnitude(node.position - n.position) <= threshold * threshold)
                 neighbors.Add(n);
         }

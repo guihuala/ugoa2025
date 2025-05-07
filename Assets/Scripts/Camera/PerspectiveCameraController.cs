@@ -24,8 +24,8 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
     public float maxZoom = 40f;
     
     [Header("相机震动配置")]
-    [SerializeField] private float duration;
-    [SerializeField] private float magnitude;
+    [SerializeField] private float duration = 0.2f;
+    [SerializeField] private float magnitude = 0.1f;
 
     private Vector3 velocity = Vector3.zero;
     private bool isDragging = false;
@@ -239,7 +239,13 @@ public class PerspectiveCameraController : MonoBehaviour, CameraController
 
     #region 震动
 
-    public void ShakeCamera()
+    private void ShakeCamera()
+    {
+        if (isShaking) return;
+        StartCoroutine(ShakeCoroutine(duration, magnitude));
+    }
+
+    public void ShakeCamera(float duration)
     {
         if (isShaking) return;
         StartCoroutine(ShakeCoroutine(duration, magnitude));

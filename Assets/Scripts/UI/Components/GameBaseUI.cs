@@ -15,6 +15,9 @@ public class GameBaseUI : MonoBehaviour
 
     private void Awake()
     {
+        if (!pauseBtn)
+            return;
+        
         pauseBtn.onClick.AddListener(() =>
         {
             UIManager.Instance.OpenPanel("SettingPanel");

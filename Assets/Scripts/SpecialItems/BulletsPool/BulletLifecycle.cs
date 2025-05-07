@@ -58,6 +58,7 @@ public class BulletLifecycle : MonoBehaviour
     // 处理实现了接口的对象
     private void HandleShootableHit(IShootable shootable)
     {
+        AudioManager.Instance.PlaySfx("hit");
         shootable.OnShot(this); // 调用接口方法
         StartFadeOut();
     }
@@ -65,7 +66,10 @@ public class BulletLifecycle : MonoBehaviour
     // 处理敌人命中
     private void HandleEnemyHit(EnemyBase enemy)
     {
+        AudioManager.Instance.PlaySfx("hit");
+        
         EVENTMGR.TriggerPlayerFound(); // 屏幕震动
+        
         SpawnHitEffect();
         StartFadeOut();
         enemy.Stun();

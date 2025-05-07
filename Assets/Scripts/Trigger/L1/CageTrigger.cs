@@ -9,8 +9,7 @@ public class CageTrigger : MonoBehaviour, IEnterSpecialItem
     public DialogueData dialogueData;
     
     private LockedCageBehavior lockedCage;
-
-
+    
     private void Start()
     {
         lockedCage = FindObjectOfType<LockedCageBehavior>();

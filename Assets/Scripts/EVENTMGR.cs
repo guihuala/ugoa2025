@@ -187,4 +187,15 @@ public static class EVENTMGR
     }
 
     #endregion
+
+    #region 地形改变
+
+    public static event Action OnTerrainChange;
+    
+    public static void TriggerTerrainChange()
+    {
+        OnTerrainChange?.Invoke();
+    }
+
+    #endregion
 }

@@ -184,6 +184,17 @@ public class LevelManager : SingletonPersistent<LevelManager>
             SaveManager.Instance.NewRecord(); // 保存解锁状态
         }
     }
+
+    public bool IsLevelUnlocked(string levelName)
+    {
+        var level = levels.Find(l => l.name == levelName);
+        if (level != null)
+        {
+            return level.isUnlocked;
+        }
+
+        return false;
+    }
     
     // 标记关卡被游玩过
     public void PlayLevel(string levelName)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class SchedulePanel : SlidePanel
 {
@@ -16,6 +17,7 @@ public class SchedulePanel : SlidePanel
     public Button mission2Btn;
     public Button mission3Btn;
 
+    public Transform mission2_finishTransform;
     public Transform mission1Transform;
     public Transform mission2Transform;
     public Transform mission3Transform;
@@ -85,6 +87,8 @@ public class SchedulePanel : SlidePanel
         mission1Transform.gameObject.SetActive(currentMissions.Count > 0);
         mission2Transform.gameObject.SetActive(currentMissions.Count > 1);
         mission3Transform.gameObject.SetActive(currentMissions.Count > 2);
+        
+        mission2_finishTransform.gameObject.SetActive(LevelManager.Instance.IsLevelUnlocked("Level2_4"));
     }
     
     private void UpdateMissionInfo(string ID)

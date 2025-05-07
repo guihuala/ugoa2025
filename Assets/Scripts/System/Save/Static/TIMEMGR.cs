@@ -1,48 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System; // 引入 TimeSpan
+using System;
 
 public static class TIMEMGR
 {
-    public static float oriT; // 初始标准时间
-    public static float curT; // 当前时间    
+    private static float sessionStartTime;    // 当前运行开始时间戳
+    private static float accumulatedTime;     // 累积游戏时间（不包括本次运行）
 
-    // 设置初始时间
-    public static void SetOriTime()
+    // 游戏开始时调用
+    public static void Init()
     {
-        float tempT = Time.realtimeSinceStartup;
-        oriT = SaveManager.Instance.gameTime - tempT;
-        SetCurTime();
+        sessionStartTime = Time.realtimeSinceStartup;
+        accumulatedTime = SaveManager.Instance.gameTime;
     }
 
-    // 更新当前时间
-    public static void SetCurTime()
+    // 获取当前总游戏时间（单位：秒）
+    public static float GetCurrentGameTime()
     {
-        // 当前时间不能小于 0
-        curT = Mathf.Max(TIMEMGR.oriT + Time.realtimeSinceStartup, 0);
-        SaveManager.Instance.gameTime = curT;
+        return accumulatedTime + (Time.realtimeSinceStartup - sessionStartTime);
     }
 
-    // 将秒数转换为格式化的时间字符串 00:00:00
+    // 保存当前总游戏时间
+    public static void SaveCurrentGameTime()
+    {
+        SaveManager.Instance.gameTime = GetCurrentGameTime();
+    }
+
+    // 获取格式化时间字符串 00:00:00
     public static string GetFormatTime(int seconds)
     {
-        // 将秒数转为时间段
         TimeSpan ts = new TimeSpan(0, 0, seconds);
-        return $"{ts.Hours.ToString("00")}:{ts.Minutes.ToString("00")}:{ts.Seconds.ToString("00")}";
+        return $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}";
     }
 
     // 将 8 位数字日期转换为 YYYY/MM/DD 格式
     public static void SetDate(ref string date)
     {
-        date = date.Insert(4, "/");
-        date = date.Insert(7, "/");
+        if (date.Length >= 8)
+        {
+            date = date.Insert(4, "/").Insert(7, "/");
+        }
     }
 
     // 将 6 位数字时间转换为 HH:MM:SS 格式
     public static void SetTime(ref string time)
     {
-        time = time.Insert(2, ":");
-        time = time.Insert(5, ":");
+        if (time.Length >= 6)
+        {
+            time = time.Insert(2, ":").Insert(5, ":");
+        }
     }
 }

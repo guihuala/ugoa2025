@@ -20,7 +20,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
 
     private void Update()
     {
-        TIMEMGR.SetCurTime();
+        TIMEMGR.SaveCurrentGameTime();
     }
 
     public class SaveData
@@ -143,7 +143,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
 
         Save(ID);
         
-        TIMEMGR.SetOriTime();
+        TIMEMGR.Init();
     }
 
     void DeleteRecord(int i, bool isCover = true)

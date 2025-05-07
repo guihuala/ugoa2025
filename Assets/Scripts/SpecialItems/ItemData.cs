@@ -25,6 +25,8 @@ public class ItemData : ScriptableObject
 
     public void UnlockItem()
     {
+        if (isUnlocked) return;
+
         isUnlocked = true;
         EVENTMGR.TriggerUnlockItem(this);
     }

@@ -53,18 +53,13 @@ public class RecordPanel : BasePanel
         detail.SetActive(false);
 
         // 初始化时间
-        TIMEMGR.SetOriTime();
+        TIMEMGR.Init();
     }
     
     private void OnDestroy()
     {
         RecordUI.OnLeftClick -= LeftClickGrid;
         RecordUI.OnEnter -= ShowDetails;
-    }
-
-    private void Update()
-    {
-        TIMEMGR.SetCurTime();
     }
 
     // 显示存档详情（鼠标进入事件）

@@ -26,14 +26,12 @@ public class ItemTrigger : MonoBehaviour
         {
             return;
         }
-        
+
         isCollected = true;
-        
+
         AudioManager.Instance.PlaySfx("Collect_2");
 
-        if (!itemData.CheckUnlock())
-            itemData.UnlockItem();
-        
+        itemData.UnlockItem();
         SaveManager.Instance.NewRecord();
 
         Destroy(gameObject);

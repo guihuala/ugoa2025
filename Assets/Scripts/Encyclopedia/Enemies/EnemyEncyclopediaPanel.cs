@@ -45,6 +45,7 @@ public class EnemyEncyclopediaPanel : SlidePanel
     {
         for (int i = 0; i < enemies.Count; i++)
         {
+            Debug.unityLogger.Log(enemies[i].ToString());
             DisplayEnemy(i);
         }
     }

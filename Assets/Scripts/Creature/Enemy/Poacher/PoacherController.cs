@@ -72,7 +72,7 @@ public class PoacherController : EnemyBase
     {
         for (int i = 0; i < numberOfFollowers; i++)
         {
-            EnemyFollower follower = Instantiate(followerPrefab, transform.position, Quaternion.identity);
+            EnemyFollower follower = Instantiate(followerPrefab, transform.position, Quaternion.identity, transform.parent);
             follower.SetTargetEnemy(this);
             followers.Add(follower);
         }

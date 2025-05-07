@@ -236,7 +236,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 missionID = "2",
                 missionTitle = "民俗学家的委托",
                 missionDescription =
-                    "护林员女士：\n我在研究一个即将消失的古老习俗——‘白鹤共生祭’。根据零散的记载，黑土平原深处可能还存在举行该仪式的村落。\n委托内容：\n1. 找到祭祀村落并拍摄白鹤群舞的照片（附：旧版地图与胶卷）\n2. 若可能，记录祭祀歌谣的歌词（我的录音笔电量不足了…）\n警告：当地老人提过，平原上有位养鼠的巫婆，遇到她请保持距离。\n\n——（民俗学家的名字）（随信附赠一包驱鼠药粉）",
+                    "护林员女士：\n我在研究一个即将消失的古老习俗——‘白鹤共生祭’。根据零散的记载，黑土平原深处可能还存在举行该仪式的村落。\n委托内容：\n1. 找到祭祀村落并拍摄白鹤群舞的照片（附：旧版地图与胶卷）\n2. 若可能，记录祭祀歌谣的歌词（我的录音笔电量不足了…）\n警告：当地老人提过，平原上有位养鼠的巫婆，遇到她请保持距离。\n\n——民俗学家）（随信附赠一包驱鼠药粉）",
                 missionIcon = Resources.Load<Sprite>("Icons/Missions/Mission2"),
                 isMissionUnlocked = false, isMissionAccepted = false, unlockRequiredLevel = "Level2_1"
             },

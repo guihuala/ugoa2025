@@ -91,7 +91,9 @@ public class DialogueTrigger : MonoBehaviour, IEnterSpecialItem
     private void StartDialogueDirectly()
     {
         DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
-        dialoguePanel.StartDialogue(dialogueData);
+        
+        if(dialoguePanel != null)
+            dialoguePanel.StartDialogue(dialogueData);
     }
 
     private void PlayTimeline()

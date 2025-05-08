@@ -30,7 +30,9 @@ public class LevelInfo : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
-        dialoguePanel.StartDialogue(levelDialogue);
+        
+        if (dialoguePanel != null)
+            dialoguePanel.StartDialogue(levelDialogue);
     }
 
     public void GoToNextLevel()

@@ -238,7 +238,7 @@ public class LevelManager : SingletonPersistent<LevelManager>
                 missionID = "1",
                 missionTitle = "婚礼委托",
                 missionDescription =
-                    "护林员女士：\n近日接获报告，雨林东北区的部落即将举行一场重要婚礼，局里决定派你作为代表出席。按照传统，请务必携带礼物。\n注意：巡逻队在该区域发现了盗猎者设置的陷阱，目标疑似珍稀鸟兽。若遭遇，请避免正面冲突，优先记录证据。\n祝任务顺利。\n——林业局后勤科",
+                    "护林员女士：\n近日接获报告，雨林东北区的部落即将举行一场重要婚礼，局里决定派你作为代表出席。\n按照传统，请务必携带礼物。\n注意：巡逻队在该区域发现了盗猎者设置的陷阱，目标疑似珍稀鸟兽。若遭遇，请避免正面冲突，优先记录证据。\n祝任务顺利。\n——林业局后勤科",
                 missionIcon = Resources.Load<Sprite>("Icons/Missions/Mission1"),
                 isMissionUnlocked = true, isMissionAccepted = false, unlockRequiredLevel = "Level1_1"
             },

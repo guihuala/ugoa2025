@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using DG.Tweening; // Ensure you have DOTween imported
+using DG.Tweening;
 
 public class CrocodileBehavior : MonoBehaviour
 {

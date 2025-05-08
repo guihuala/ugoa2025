@@ -7556,6 +7556,7 @@ MonoBehaviour:
   dialogueData: {fileID: 11400000, guid: 5c9d1ad7441234a52bc3f9f6318b8ee3, type: 2}
   linkedTriggers: []
   timeline: {fileID: 916408052}
+  dialogueTiming: 0
 --- !u!114 &916408047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7568,8 +7569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224132c33bf2442daa1229707242e049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 916408046}
   target: {fileID: 1761257646}
+  timelineDirector: {fileID: 0}
 --- !u!320 &916408052
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -14010,6 +14011,7 @@ MonoBehaviour:
   dialogueData: {fileID: 11400000, guid: 7f2180581fb9845b59978cacb65e4197, type: 2}
   linkedTriggers: []
   timeline: {fileID: 846889676}
+  dialogueTiming: 0
 --- !u!114 &1761257652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14336,7 +14338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c63a761daa74813a194425ca3458d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 13
+  currentScene: 14
   nextLevel: 1
   nextLevelName: 
   levelDialogue: {fileID: 0}

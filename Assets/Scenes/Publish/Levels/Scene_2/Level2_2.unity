@@ -2062,7 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c63a761daa74813a194425ca3458d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 7
+  currentScene: 8
   nextLevel: 9
   nextLevelName: Level2_3
   levelDialogue: {fileID: 11400000, guid: eebc7ebb864ef40359c156659fd51b1b, type: 2}
@@ -28093,7 +28093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1358685812772629022, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 1358685812772629022, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28101,7 +28101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1358685812772629022, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1358685812772629022, guid: 00d39dcdd3c754191b80798033ba6466, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28161,10 +28161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePoints:
-  - {x: -17, y: 2.42, z: 2}
-  - {x: -17, y: 1, z: 6.8}
+  - {x: -16, y: 2.42, z: 1}
+  - {x: -16, y: 1, z: 6.8}
   - {x: -22.4, y: -0.6, z: 6.8}
-  - {x: -17, y: 1, z: 6.8}
+  - {x: -16, y: 1, z: 6.8}
   moveSpeed: 3
 --- !u!4 &1524289486 stripped
 Transform:
@@ -41299,10 +41299,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28339046, g: 0.284529, b: 0.31129187, a: 0.7372549}
+  shallowColor: {r: 0.2833899, g: 0.28452843, b: 0.3112913, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21167687, g: 0.2501122, b: 0.735849, a: 1}
+  horizonColor: {r: 0.2116763, g: 0.25011164, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}

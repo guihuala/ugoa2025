@@ -29701,10 +29701,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.28339043, g: 0.28452897, b: 0.31129184, a: 0.7372549}
+  shallowColor: {r: 0.28339, g: 0.28452852, b: 0.3112914, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.21167684, g: 0.25011218, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21167639, g: 0.25011173, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -53422,7 +53422,7 @@ PrefabInstance:
       objectReference: {fileID: 836466697617626911, guid: 0a75d4047cf974ba38afd7962ec6a22f, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -87075,7 +87075,7 @@ PrefabInstance:
       objectReference: {fileID: 836466697617626911, guid: 0a75d4047cf974ba38afd7962ec6a22f, type: 3}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: detectionRadius
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6428944717280857849, guid: 598f2fef25a614757affdf512aa2ce60, type: 3}
       propertyPath: scaredAnimation
@@ -114834,10 +114834,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.2833904, g: 0.28452894, b: 0.3112918, a: 0.7372549}
+  shallowColor: {r: 0.28338996, g: 0.2845285, b: 0.31129137, a: 0.7372549}
   deepColor: {r: 0.47641504, g: 0.8117031, b: 1, a: 1}
   colorDepth: 1
-  horizonColor: {r: 0.2116768, g: 0.25011215, b: 0.735849, a: 1}
+  horizonColor: {r: 0.21167636, g: 0.2501117, b: 0.735849, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -133285,7 +133285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c63a761daa74813a194425ca3458d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 8
+  currentScene: 9
   nextLevel: 11
   nextLevelName: Level3_1
   levelDialogue: {fileID: 11400000, guid: b11a4a6d14129447e931117a4c67b1ff, type: 2}

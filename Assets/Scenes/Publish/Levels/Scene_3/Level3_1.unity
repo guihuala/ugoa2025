@@ -4468,7 +4468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c63a761daa74813a194425ca3458d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 10
+  currentScene: 11
   nextLevel: 12
   nextLevelName: Level3_2
   levelDialogue: {fileID: 11400000, guid: 6a8bb457056224c8fa09b942e150e928, type: 2}
@@ -72127,6 +72127,7 @@ MonoBehaviour:
   dialogueData: {fileID: 11400000, guid: 4cc8b9696da1248aaba869b1a91b691d, type: 2}
   linkedTriggers: []
   timeline: {fileID: 0}
+  dialogueTiming: 0
 --- !u!1001 &1430182707
 PrefabInstance:
   m_ObjectHideFlags: 0

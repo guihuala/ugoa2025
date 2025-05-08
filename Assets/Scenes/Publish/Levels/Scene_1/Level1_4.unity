@@ -33468,7 +33468,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: jump
+  _animationName: breathe
   loop: 1
   timeScale: 1
 --- !u!23 &904028029
@@ -135935,9 +135935,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18333662, g: 0.3890371, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18333405, g: 0.3890344, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.41033357, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.4103309, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

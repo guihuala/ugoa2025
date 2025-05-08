@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841a7d5bcfabb465889b1b40f6570c4e, type: 3}
   m_Name: Priest
   m_EditorClassIdentifier: 
-  NPCName: 
-  Variants: []
+  NPCName: "\u5927\u796D\u53F8"
+  Variants:
+  - {fileID: 21300000, guid: 04d3cb336851b4afe9b32e0b9a497db9, type: 3}

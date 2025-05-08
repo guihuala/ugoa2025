@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,37 @@ using UnityEngine.Playables;
 
 public class DialogueTrigger : MonoBehaviour, IEnterSpecialItem
 {
+    public enum DialogueTiming
+    {
+        AfterTimeline,
+        BeforeTimeline
+    }
+
     [SerializeField] private DialogueData dialogueData;
     [SerializeField] private List<DialogueTrigger> linkedTriggers; // 联动触发器列表
     [SerializeField] private PlayableDirector timeline; // 可选的Timeline引用
+    [SerializeField] private DialogueTiming dialogueTiming = DialogueTiming.AfterTimeline; // 对话触发时机
     
     private bool isPlayed = false;
+    private bool isTimelinePlayed = false;
     private bool isDisabledByLink = false; // 是否被其他联动触发器禁用
+
+
+    private void Start()
+    {
+        if (dialogueTiming == DialogueTiming.BeforeTimeline)
+        {
+            EVENTMGR.OnDialogueEnd += PlayTimeline;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (dialogueTiming == DialogueTiming.BeforeTimeline)
+        {
+            EVENTMGR.OnDialogueEnd -= PlayTimeline;
+        }
+    }
 
     public void Apply()
     {
@@ -27,10 +53,17 @@ public class DialogueTrigger : MonoBehaviour, IEnterSpecialItem
             }
         }
 
-        // 如果有配置 Timeline，则播放
+        // 根据选择的时机决定执行顺序
         if (timeline != null)
         {
-            PlayTimelineAndStartDialogue();
+            if (dialogueTiming == DialogueTiming.BeforeTimeline)
+            {
+                StartDialogueDirectly();
+            }
+            else
+            {
+                PlayTimelineAndStartDialogue();
+            }
         }
         else
         {
@@ -59,6 +92,14 @@ public class DialogueTrigger : MonoBehaviour, IEnterSpecialItem
     {
         DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
         dialoguePanel.StartDialogue(dialogueData);
+    }
+
+    private void PlayTimeline()
+    {
+        if (isTimelinePlayed) return;
+
+        isTimelinePlayed = true;
+        timeline.Play();
     }
     
     public void DisableByLinkedTrigger()

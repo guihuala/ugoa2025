@@ -9,7 +9,7 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
 
     [SerializeField] private bool ifRequestCollection;
     [SerializeField] private string[] requestedItemID;
-    
+
     public DialogueData dialogueData;
     
     private void Start()
@@ -44,12 +44,13 @@ public class VictoryTrigger : MonoBehaviour , IEnterSpecialItem
                     SaveManager.Instance.NewRecord();
                     SceneLoader.Instance.LoadScene(SceneName.CG,"...");
                 }
-                else// 否则打开画布
+                else// 否则就开始timeline，反正就1-3需要收集物体，就硬编码写死了
                 {
                     levelInfo.VictorySaveLevel();
             
                     SaveManager.Instance.NewRecord();
-                    UIManager.Instance.OpenPanel("GameVictoryPanel"); 
+                    
+                    SceneLoader.Instance.LoadScene(SceneName.Level1_3_story);
                 }
             }
             else

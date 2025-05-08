@@ -1,7 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System;
 
 // 在这里配置游戏的场景枚举，名称需要与场景名一致
@@ -14,6 +13,8 @@ public enum SceneName
     Level1_2,
     Level1_3,
     Level1_4,
+    
+    Level1_3_story,
     
     Level2_1,
     Level2_2,
@@ -70,20 +71,24 @@ public class SceneLoader : SingletonPersistent<SceneLoader>
             // 改变一下存档管理器当前的场景
             SaveManager.Instance.scensName = sceneName;
         },sceneName);
-        
-        // 以后改成事件触发
+
         AchievementManager.Instance.ClearPendingAchievements();
     }
-
-    // 检查传入的字符串是否在枚举中，返回找到的场景枚举
-    public SceneName? GetSceneInEnum(string sceneName)
+    
+    /// <summary>
+    /// 普通黑屏过场
+    /// </summary>
+    /// <param name="sceneName"></param>
+    public void LoadScene(SceneName sceneName)
     {
-        // 尝试解析字符串到枚举
-        if (Enum.TryParse(sceneName, out SceneName result))
-        {
-            return result; // 返回找到的枚举值
-        }
+        BlackPanel blackPanel = UIManager.Instance.OpenPanel("BlackPanel") as BlackPanel;
 
-        return null; // 如果未找到则返回 null
+        if (!blackPanel) return;
+
+        blackPanel.StartCounting(fadeDuration, () =>
+        {
+            SceneManager.LoadScene(sceneName.ToString());
+            UIManager.Instance.RemovePanel("BlackPanel");
+        });
     }
 }

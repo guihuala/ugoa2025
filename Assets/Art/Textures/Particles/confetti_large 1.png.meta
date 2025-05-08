@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: a5fd1d31c7504cd4083d950f36ed7511
+guid: 066f8e30375cd4477b17c49153509e08
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 21300000
-    second: confetti_large_0
-  - first:
-      213: 21300002
-    second: confetti_large_1
-  - first:
-      213: 21300004
-    second: confetti_large_2
-  - first:
-      213: 21300006
-    second: confetti_large_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -57,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -75,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -91,7 +79,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -104,20 +92,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -130,7 +105,20 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
@@ -143,7 +131,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -156,12 +144,12 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: confetti_large_0
+      name: confetti_large 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -175,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3def8eef2b3291419c2c8b50a79ad38
-      internalID: 21300000
+      spriteID: 8e74b8cfebb3e4e84b70110f75505095
+      internalID: -2021827691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: confetti_large_1
+      name: confetti_large 1_1
       rect:
         serializedVersion: 2
         x: 128
@@ -196,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d0316f44527adf449110a5f1e294caa
-      internalID: 21300002
+      spriteID: 2a592f14cf4c84669a957a92d6b7e4b4
+      internalID: 808740758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: confetti_large_2
+      name: confetti_large 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -217,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f9c3a58a9833ae4cb383db3197bfddd
-      internalID: 21300004
+      spriteID: 49f40f37b651c41f4aabfa513ddfef5a
+      internalID: 1307326984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: confetti_large_3
+      name: confetti_large 1_3
       rect:
         serializedVersion: 2
         x: 128
@@ -238,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd8f9eac858377640abc9c26a677e308
-      internalID: 21300006
+      spriteID: 8142f4ca48c3e492cb5acee51a1ba2f4
+      internalID: 35219153
       vertices: []
       indices: 
       edges: []
@@ -247,7 +235,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 19396ce76bc83c24a9ee7dbfb7491525
+    spriteID: 7bc6dbbc8081c46288e30f63576c5b57
     internalID: 0
     vertices: []
     indices: 
@@ -255,10 +243,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      confetti_large_0: 21300000
-      confetti_large_1: 21300002
-      confetti_large_2: 21300004
-      confetti_large_3: 21300006
+      confetti_large 1_0: -2021827691
+      confetti_large 1_1: 808740758
+      confetti_large 1_2: 1307326984
+      confetti_large 1_3: 35219153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

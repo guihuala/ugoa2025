@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5751585, g: 0.82994306, b: 0.5475157, a: 1}
+  m_IndirectSpecularColor: {r: 0.17205942, g: 0.039745893, b: 0.026334137, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4469,7 +4469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScene: 10
-  nextLevel: 11
+  nextLevel: 12
   nextLevelName: Level3_2
   levelDialogue: {fileID: 11400000, guid: 6a8bb457056224c8fa09b942e150e928, type: 2}
   isEndLevel: 0
@@ -72126,6 +72126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: 4cc8b9696da1248aaba869b1a91b691d, type: 2}
   linkedTriggers: []
+  timeline: {fileID: 0}
 --- !u!1001 &1430182707
 PrefabInstance:
   m_ObjectHideFlags: 0

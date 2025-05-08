@@ -27,7 +27,7 @@ MonoBehaviour:
     SelectedVariantIndex: 0
     CellType: 0
     JumpToIndex: 2
-    CellFlag: 0
+    CellFlag: 2
     Content: "\u53EF\u8FD9\u662F\u4F60\u4EEC\u7684\u8A93\u7EA6\u77F3\u76D8\u2026\u2026  "
   - Index: 2
     CharacterName: 
@@ -35,11 +35,11 @@ MonoBehaviour:
     SelectedVariantIndex: 0
     CellType: 0
     JumpToIndex: 3
-    CellFlag: 0
+    CellFlag: 2
     Content: "\u5982\u679C\u6CA1\u6709\u4F60\uFF0C\u5A5A\u793C\u6839\u672C\u65E0\u6CD5\u5B8C\u6210\u3002\u6BD4\u8D77\u5B88\u7740\u5B83\uFF0C\u6211\u4EEC\u66F4\u60F3\u8868\u8FBE\u8C22\u610F\u3002  "
   - Index: 3
     CharacterName: 
-    NPC: {fileID: 11400000, guid: 149425064840a47749852f6707f5c7c5, type: 2}
+    NPC: {fileID: 11400000, guid: e2a10ebe1e1914aed8aedd2d9d463a46, type: 2}
     SelectedVariantIndex: 1
     CellType: 0
     JumpToIndex: 0

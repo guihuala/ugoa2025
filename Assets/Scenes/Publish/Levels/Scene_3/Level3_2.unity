@@ -11989,7 +11989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScene: 11
-  nextLevel: 12
+  nextLevel: 13
   nextLevelName: Level3_3
   levelDialogue: {fileID: 11400000, guid: 133274b8dbf3347298b9854c99a04ed2, type: 2}
   isEndLevel: 0
@@ -14715,6 +14715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: 32d7b49ce947943f79e0bc36416784aa, type: 2}
   linkedTriggers: []
+  timeline: {fileID: 0}
 --- !u!1 &1123351287
 GameObject:
   m_ObjectHideFlags: 0

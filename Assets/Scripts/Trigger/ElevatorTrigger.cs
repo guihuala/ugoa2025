@@ -49,6 +49,8 @@ public class ElevatorTrigger : MonoBehaviour, IEnterSpecialItem, IExitSpecialIte
         // 检查玩家是否仍然在电梯上
         if (isPlayerOnElevator)
         {
+            AudioManager.Instance.PlaySfx("stone_friction");
+            
             if (isMovingDown)
             {
                 StartCoroutine(MoveToPosition(originalPosition));

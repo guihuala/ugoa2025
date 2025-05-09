@@ -4234,6 +4234,8 @@ MonoBehaviour:
   - {fileID: 895235787}
   - {fileID: 73315403}
   - {fileID: 532489068}
+  timeline: {fileID: 0}
+  dialogueTiming: 0
 --- !u!1001 &74611840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32418,6 +32420,8 @@ MonoBehaviour:
   - {fileID: 895235787}
   - {fileID: 73315403}
   - {fileID: 532489068}
+  timeline: {fileID: 0}
+  dialogueTiming: 0
 --- !u!1001 &532548960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53738,6 +53742,8 @@ MonoBehaviour:
   - {fileID: 895235787}
   - {fileID: 73315403}
   - {fileID: 532489068}
+  timeline: {fileID: 0}
+  dialogueTiming: 0
 --- !u!1001 &895763116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107968,6 +107974,8 @@ MonoBehaviour:
   - {fileID: 895235787}
   - {fileID: 73315403}
   - {fileID: 532489068}
+  timeline: {fileID: 0}
+  dialogueTiming: 0
 --- !u!1001 &1802416160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123753,7 +123761,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7030233663997126098, guid: dc20dc7db4fbb4605b83ea271b7ad18f, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0f4bf2f055252469898678fe8bc5b0b5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -130539,9 +130547,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18334743, g: 0.38904852, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18333283, g: 0.3890331, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.410345, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.4103296, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

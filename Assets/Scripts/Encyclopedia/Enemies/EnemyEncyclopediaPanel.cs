@@ -45,39 +45,71 @@ public class EnemyEncyclopediaPanel : SlidePanel
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            Debug.unityLogger.Log(enemies[i].ToString());
             DisplayEnemy(i);
         }
     }
 
-    // 显示当前敌人信息
     private void DisplayEnemy(int index)
     {
         if (index < 0 || index >= enemies.Count || index >= pages.Count)
             return;
 
         EnemyData enemy = enemies[index];
+        if(enemy ==null)return;
+        
         Transform page = pages[index];
 
         Image pageEnemyImage = page.GetChild(0).GetChild(0).GetComponent<Image>();
         Text pageEnemyName = page.GetChild(0).GetChild(1).GetComponent<Text>();
         Text pageEnemyDescription = page.GetChild(0).GetChild(2).GetComponent<Text>();
-        
+    
+        Text diary = page.GetChild(1).GetChild(0).GetComponent<Text>();
+    
         if (enemy.CheckUnlock(LevelManager.Instance.levels))
         {
+            // 已解锁 - 显示正常信息
             pageEnemyName.text = enemy.enemyName;
             pageEnemyDescription.text = enemy.enemyDescription;
             pageEnemyImage.sprite = enemy.enemySprite;
+            pageEnemyImage.color = Color.white;
         }
         else
         {
+            // 未解锁 - 显示模糊/乱码信息
             pageEnemyName.text = "???";
             pageEnemyDescription.text = "尚未解锁";
             pageEnemyImage.sprite = enemy.enemySprite;
             pageEnemyImage.color = Color.black;
+        
+            // 生成随机乱码作为日记内容
+            diary.text = GenerateRandomGibberish();
         }
     }
 
+    // 生成随机乱码字符串
+    private string GenerateRandomGibberish()
+    {
+        // 乱码字符集
+        string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;':\",./<>?~`";
+        int length = Random.Range(50, 150); // 随机长度
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+    
+        for (int i = 0; i < length; i++)
+        {
+            // 随机添加一些空格和换行符
+            if (Random.Range(0, 10) == 0)
+            {
+                sb.Append(Random.Range(0, 2) == 0 ? " " : "\n");
+                continue;
+            }
+        
+            // 添加随机字符
+            sb.Append(chars[Random.Range(0, chars.Length)]);
+        }
+    
+        return sb.ToString();
+    }
+    
     private IEnumerator RotatePage(Transform page, float targetAngle, bool isForward)
     {
         isRotating = true;

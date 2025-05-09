@@ -9,6 +9,7 @@ public class StepManager : MonoBehaviour
 
     [Header("动态恢复设置")]
     public float baseInterval = 1f; // 基础恢复间隔
+    private float originalBaseInterval; // 存储原始基础间隔
     private float minInterval = 0.1f; // 最快恢复间隔
     private float accelerationRate = 0.7f; // 每次恢复加速比例
 
@@ -18,6 +19,7 @@ public class StepManager : MonoBehaviour
 
     private void Start()
     {
+        originalBaseInterval = baseInterval; // 保存原始间隔
         InitializeStepSystem();
     }
 
@@ -32,14 +34,19 @@ public class StepManager : MonoBehaviour
         currentInterval = baseInterval;
         stepIncreaseCoroutine = StartCoroutine(DynamicIncreaseSteps());
         
-        // 注册事件
         EVENTMGR.OnUseStep += UseStep;
     }
 
     // 消耗步数
     public void UseStep(int steps)
     {
-        if (remainingSteps > 0 && remainingSteps >= steps)
+        if (steps <= 0) 
+        {
+            Debug.LogWarning("步数消耗值必须大于0");
+            return;
+        }
+
+        if (remainingSteps >= steps)
         {
             remainingSteps -= steps;
             consecutiveRecoveries = 0; // 使用步数重置连续恢复
@@ -49,8 +56,17 @@ public class StepManager : MonoBehaviour
             {
                 currentInterval = baseInterval;
             }
+            else if (remainingSteps < maxSteps)
+            {
+                // 重新计算间隔
+                currentInterval = baseInterval;
+            }
             
             EVENTMGR.TriggerChangeSteps(remainingSteps);
+        }
+        else
+        {
+            Debug.LogWarning("步数不足");
         }
     }
 
@@ -71,26 +87,42 @@ public class StepManager : MonoBehaviour
                 currentInterval = Mathf.Max(minInterval, newInterval);
 
                 EVENTMGR.TriggerChangeSteps(remainingSteps);
-            }
-            else
-            {
-                // 步数满时减速
-                consecutiveRecoveries = 0;
-                currentInterval = baseInterval;
+                
+                // 如果步数已满，重置恢复计数
+                if (remainingSteps == maxSteps)
+                {
+                    consecutiveRecoveries = 0;
+                    currentInterval = baseInterval;
+                }
             }
         }
     }
 
     // 修改基础恢复间隔(用于道具)
-    public void SetStepIncreaseInterval(float multiplier)
+    public void SetStepIncreaseInterval(float multiplier, bool isTemporary = false)
     {
-        baseInterval *= multiplier;
-        baseInterval = Mathf.Clamp(baseInterval, minInterval, 10f); // 限制最小和最大间隔
+        if (isTemporary)
+        {
+            currentInterval *= multiplier;
+            currentInterval = Mathf.Clamp(currentInterval, minInterval, 10f);
+        }
+        else
+        {
+            baseInterval *= multiplier;
+            baseInterval = Mathf.Clamp(baseInterval, minInterval, 10f);
+        }
+    }
+
+    // 重置为基础恢复间隔
+    public void ResetStepIncreaseInterval()
+    {
+        baseInterval = originalBaseInterval;
+        currentInterval = baseInterval;
     }
 
     private void OnDestroy()
     {
-            EVENTMGR.OnUseStep -= UseStep;
+        EVENTMGR.OnUseStep -= UseStep;
         
         // 停止协程
         if (stepIncreaseCoroutine != null)

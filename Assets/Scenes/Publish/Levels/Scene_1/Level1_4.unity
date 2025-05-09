@@ -6548,6 +6548,8 @@ GameObject:
   - component: {fileID: 100100524}
   - component: {fileID: 100100523}
   - component: {fileID: 100100522}
+  - component: {fileID: 100100526}
+  - component: {fileID: 100100527}
   m_Layer: 0
   m_Name: Spine GameObject (enemy-lv1) (1)
   m_TagString: Untagged
@@ -6657,6 +6659,41 @@ Transform:
   m_Father: {fileID: 737095756}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!114 &100100526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100100521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b579b6e4da0bf47a48d393cbeaa719c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &100100527
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100100521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.1299953
+  m_Height: 7.040041
+  m_Direction: 1
+  m_Center: {x: -0.20931482, y: 0.12232208, z: -0.0000038194958}
 --- !u!1001 &100648338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29905,6 +29942,8 @@ GameObject:
   - component: {fileID: 740947863}
   - component: {fileID: 740947862}
   - component: {fileID: 740947861}
+  - component: {fileID: 740947865}
+  - component: {fileID: 740947866}
   m_Layer: 0
   m_Name: Spine GameObject (enemy-lv1)
   m_TagString: Untagged
@@ -30014,6 +30053,41 @@ Transform:
   m_Father: {fileID: 737095756}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -57.29, z: 0}
+--- !u!114 &740947865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740947860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b579b6e4da0bf47a48d393cbeaa719c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &740947866
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740947860}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.1299958
+  m_Height: 7.040041
+  m_Direction: 1
+  m_Center: {x: -0.20931008, y: 0.12231445, z: 0.0000047601893}
 --- !u!1001 &756993648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33501,6 +33575,8 @@ GameObject:
   - component: {fileID: 904028029}
   - component: {fileID: 904028028}
   - component: {fileID: 904028027}
+  - component: {fileID: 904028031}
+  - component: {fileID: 904028032}
   m_Layer: 0
   m_Name: Bridegroom
   m_TagString: Untagged
@@ -33631,6 +33707,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904028025}
   m_Mesh: {fileID: 0}
+--- !u!114 &904028031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904028025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b579b6e4da0bf47a48d393cbeaa719c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &904028032
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904028025}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.9568697
+  m_Height: 9.7699995
+  m_Direction: 1
+  m_Center: {x: -0.32922786, y: 0.36400747, z: 0.000001899801}
 --- !u!1001 &907001259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56953,6 +57064,8 @@ GameObject:
   - component: {fileID: 1297251588}
   - component: {fileID: 1297251587}
   - component: {fileID: 1297251586}
+  - component: {fileID: 1297251590}
+  - component: {fileID: 1297251591}
   m_Layer: 0
   m_Name: Bride
   m_TagString: Untagged
@@ -57062,6 +57175,41 @@ Transform:
   m_Father: {fileID: 737095756}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!114 &1297251590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297251585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b579b6e4da0bf47a48d393cbeaa719c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &1297251591
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297251585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.176033
+  m_Height: 8.958436
+  m_Direction: 1
+  m_Center: {x: 0.11199832, y: 0.5386069, z: 0.0000000025675932}
 --- !u!1001 &1297285130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136102,9 +136250,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18333241, g: 0.38903266, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18333134, g: 0.38903153, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.41032916, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.41032803, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

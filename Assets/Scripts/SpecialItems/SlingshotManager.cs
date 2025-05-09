@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
+using UnityEngine;
+using UnityEngine.EventSystems;
+
 public class SlingshotManager : MonoBehaviour
 {
     [Header("发射设置")]
@@ -10,6 +13,7 @@ public class SlingshotManager : MonoBehaviour
     public float velocityInfluenceFactor = 0.5f; // 人物速度对发射的影响系数
     public float minDragDistance = 10f;     // 最小有效拖拽距离
     [Range(0, 90)] public float maxVerticalAngle = 45f; // 最大垂直发射角度(度)
+    public float failedLaunchForce = 2f;    // 发射失败时的微弱力度
 
     [Header("视觉效果")]
     public LineRenderer trajectoryLineRenderer; // 轨迹线渲染器
@@ -26,6 +30,7 @@ public class SlingshotManager : MonoBehaviour
     private Vector3 dragStartWorldPosition; // 拖拽开始的世界坐标
     private bool isDragging = false;        // 是否正在拖拽
     private bool isUsingSlingshot = false;  // 是否正在使用弹弓
+    private Vector3 lastCharacterPosition;
 
     private void Start()
     {
@@ -62,7 +67,6 @@ public class SlingshotManager : MonoBehaviour
             lastCharacterPosition = characterTransform.position;
         }
     }
-    private Vector3 lastCharacterPosition;
 
     private void HandleInput()
     {
@@ -87,40 +91,27 @@ public class SlingshotManager : MonoBehaviour
     private void StartDrag()
     {
         AudioManager.Instance.PlaySfx("TightenUp");
-        
         isDragging = true;
         dragStartWorldPosition = slingStartPoint.position;
     }
 
     private void UpdateDrag()
     {
-        // 获取当前鼠标位置(世界坐标)
         Vector3 currentDragPosition = GetMouseWorldPosition();
-        
-        // 计算拖拽向量并限制最大距离
         Vector3 dragVector = currentDragPosition - dragStartWorldPosition;
-        
-        // 限制垂直角度
         dragVector = ClampVerticalAngle(dragVector, maxVerticalAngle);
         dragVector = Vector3.ClampMagnitude(dragVector, maxDragDistance);
 
-        // 更新弹弓位置(临时偏移)
         slingStartPoint.position = dragStartWorldPosition + dragVector;
-
-        // 更新轨迹预测
         UpdateTrajectory(dragVector);
     }
 
     private Vector3 ClampVerticalAngle(Vector3 direction, float maxAngle)
     {
-        // 计算当前角度
         Vector3 horizontalDirection = new Vector3(direction.x, 0, direction.z);
         float currentAngle = Vector3.Angle(horizontalDirection, direction);
-        
-        // 确定是向上还是向下
         float angleSign = Mathf.Sign(direction.y);
         
-        // 如果角度超过限制，则调整y值
         if (Mathf.Abs(currentAngle) > maxAngle)
         {
             float horizontalLength = horizontalDirection.magnitude;
@@ -136,22 +127,27 @@ public class SlingshotManager : MonoBehaviour
         if (!isDragging) return;
         isDragging = false;
     
-        // 计算当前鼠标位置
         Vector3 currentDragPosition = GetMouseWorldPosition();
-    
-        // 计算拖拽向量
         Vector3 dragVector = currentDragPosition - dragStartWorldPosition;
         dragVector = ClampVerticalAngle(dragVector, maxVerticalAngle);
         dragVector = Vector3.ClampMagnitude(dragVector, maxDragDistance);
     
-        Debug.Log("Drag Vector: " + dragVector);
+        // 检查是否发射失败
+        bool isFailedLaunch = dragVector.magnitude < minDragDistance || 
+                            IsInvalidAngle(dragVector, maxVerticalAngle);
     
-        // 检查是否达到最小拖拽距离
-        if (dragVector.magnitude >= minDragDistance)
+        if (isFailedLaunch)
         {
+            // 发射失败，使用微弱力度下落
+            AudioManager.Instance.PlaySfx("Drop");
+            LaunchBullet(Vector3.down, failedLaunchForce);
+        }
+        else
+        {
+            // 正常发射
             AudioManager.Instance.PlaySfx("FlyOut");
             Vector3 launchDirection = -dragVector.normalized;
-            LaunchBullet(launchDirection);
+            LaunchBullet(launchDirection, launchForce);
         }
 
         // 重置弹弓位置
@@ -165,37 +161,34 @@ public class SlingshotManager : MonoBehaviour
         TerminateSlingshot();
     }
 
+    // 检查角度是否无效
+    private bool IsInvalidAngle(Vector3 direction, float maxAngle)
+    {
+        Vector3 horizontalDirection = new Vector3(direction.x, 0, direction.z);
+        float currentAngle = Vector3.Angle(horizontalDirection, direction);
+        return Mathf.Abs(currentAngle) > maxAngle;
+    }
+
     private Vector3 GetMouseWorldPosition()
     {
-        // 创建射线从相机到鼠标位置
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    
-        // 计算射线与垂直于Y轴的平面的交点
         float enter;
         if (new Plane(Vector3.up, dragStartWorldPosition).Raycast(ray, out enter))
         {
             return ray.GetPoint(enter);
         }
-    
-        // 如果射线与平面不相交，返回默认值
         return dragStartWorldPosition;
     }
     
-    private void LaunchBullet(Vector3 launchDirection)
+    private void LaunchBullet(Vector3 launchDirection, float force)
     {
-        // 固定发射力度，只受人物速度影响
-        Vector3 finalForce = launchDirection * launchForce + (characterVelocity * velocityInfluenceFactor);
+        Vector3 finalForce = launchDirection * force + (characterVelocity * velocityInfluenceFactor);
 
-        // 从对象池获取子弹
         GameObject bullet = bulletPool.GetBullet(slingStartPoint.position, Quaternion.identity);
-    
-        // 配置子弹
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero; // 重置速度
-        rb.angularVelocity = Vector3.zero; // 重置角速度
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         rb.AddForce(finalForce, ForceMode.VelocityChange);
-    
-        // 激活子弹相关组件
         bullet.SetActive(true);
     }
 
@@ -222,7 +215,6 @@ public class SlingshotManager : MonoBehaviour
     public void SetIsUsingSlingshot(bool isUsing)
     {
         isUsingSlingshot = isUsing;
-        
         if (!isUsing)
         {
             slingStartPoint.localPosition = slingBaseLocalPosition;

@@ -54,8 +54,7 @@ public class FishJumpBehavior : MonoBehaviour
         transform.position = originalPosition;
         isJumping = false;
     }
-
-    // 防止编辑器模式下位置被修改
+    
     private void OnValidate()
     {
         if (Application.isPlaying && originalPosition != Vector3.zero)

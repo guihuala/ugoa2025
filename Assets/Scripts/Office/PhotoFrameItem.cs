@@ -17,14 +17,12 @@ public class PhotoFrameItem : MonoBehaviour
         {
             if (index >= LevelManager.Instance.levels.Count)
             {
-                Debug.LogWarning(
-                    $"Index {index} is out of bounds for levels list (Size: {LevelManager.Instance.levels.Count})");
                 photo.SetActive(false);
                 continue;
             }
             
             LevelData requiredLevel = LevelManager.Instance.levels[index * 4];
-
+            
             if (requiredLevel != null && requiredLevel.isUnlocked && requiredLevel.isPlayed)
             {
                 photo.SetActive(true);

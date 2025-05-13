@@ -6,6 +6,6 @@ public class SceneChangeTrigger : MonoBehaviour,IEnterSpecialItem
 {
     public void Apply()
     {
-        SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"...");
+        SceneLoader.Instance.LoadScene(SceneName.LevelSelection);
     }
 }

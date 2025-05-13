@@ -11,28 +11,24 @@ public class PhotoFrameItem : MonoBehaviour
     
     private void InitUI()
     {
-        int index = 0;
-
         foreach (var photo in photos)
         {
-            if (index >= LevelManager.Instance.levels.Count)
-            {
-                photo.SetActive(false);
-                continue;
-            }
-            
-            LevelData requiredLevel = LevelManager.Instance.levels[index * 4];
-            
-            if (requiredLevel != null && requiredLevel.isUnlocked && requiredLevel.isPlayed)
-            {
-                photo.SetActive(true);
-                index++;
-            }
-            else
-            {
-                photo.SetActive(false);
-                return;
-            }
+            photo.gameObject.SetActive(false);
+        }
+        
+        if (LevelManager.Instance.IsLevelPlayed(SceneName.Level1_3.ToString()))
+        {
+            photos[0].gameObject.SetActive(true);
+        }
+
+        if (LevelManager.Instance.IsLevelPlayed(SceneName.Level2_3.ToString()))
+        {
+            photos[1].gameObject.SetActive(true);
+        }
+
+        if (LevelManager.Instance.IsLevelPlayed(SceneName.Level3_3.ToString()))
+        {
+            photos[2].gameObject.SetActive(true);
         }
     }
 }

@@ -195,6 +195,17 @@ public class LevelManager : SingletonPersistent<LevelManager>
 
         return false;
     }
+
+    public bool IsLevelPlayed(string levelName)
+    {
+        var level = levels.Find(l => l.name == levelName);
+        if (level != null)
+        {
+            return level.isPlayed;
+        }
+
+        return false;
+    }
     
     // 标记关卡被游玩过
     public void PlayLevel(string levelName)

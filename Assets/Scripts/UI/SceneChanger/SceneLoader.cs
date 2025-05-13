@@ -3,6 +3,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+
 // 在这里配置游戏的场景枚举，名称需要与场景名一致
 public enum SceneName
 {
@@ -32,9 +36,14 @@ public enum SceneName
     CG,
 }
 
+
 public class SceneLoader : SingletonPersistent<SceneLoader>
 {
-    private float fadeDuration = 1.5f;
+    private float fadeDuration = 1f;
+    private float minLoadTime = 1f; // 最小加载时间
+
+    private bool isLoading = false;
+    private AsyncOperation currentLoadingOperation;
 
     private void OnEnable()
     {
@@ -52,43 +61,92 @@ public class SceneLoader : SingletonPersistent<SceneLoader>
         UIManager.Instance.ClosePanel("SceneLoadedBlackPanel");
     }
 
-    public void LoadScene(SceneName sceneName, string loadStr)
+    public async void LoadScene(SceneName sceneName, string loadStr)
     {
-        SleepBlackPanel sleepBlackPanel = UIManager.Instance.OpenPanel("SleepBlackPanel") as SleepBlackPanel;
+        if (isLoading) return;
+        isLoading = true;
 
-        if (!sleepBlackPanel) return;
-
-        sleepBlackPanel.StartSleepCounting(fadeDuration, loadStr, () =>
+        SleepBlackPanel sleepBlackPanel = UIManager.Instance.OpenPanel("SleepBlackPanel",true) as SleepBlackPanel;
+        if (!sleepBlackPanel)
         {
-            // 保存当前场景名到 PlayerPrefs
-            PlayerPrefs.SetString("LastSceneName", SceneManager.GetActiveScene().name);
-            PlayerPrefs.Save(); // 确保立即保存
-            
-            // 使用枚举值的字符串表示加载场景
-            SceneManager.LoadScene(sceneName.ToString());
-            UIManager.Instance.RemovePanel("SleepBlackPanel");
-            
-            // 改变一下存档管理器当前的场景
-            SaveManager.Instance.scensName = sceneName;
-        },sceneName);
+            isLoading = false;
+            return;
+        }
+        
+        sleepBlackPanel.StartSleepCounting(fadeDuration, loadStr, null, sceneName);
+        
+        await Task.Delay((int)(fadeDuration * 1000));
+        
+        PlayerPrefs.SetString("LastSceneName", SceneManager.GetActiveScene().name);
+        PlayerPrefs.Save();
+        
+        currentLoadingOperation = SceneManager.LoadSceneAsync(sceneName.ToString());
+        currentLoadingOperation.allowSceneActivation = false;
+
+        float loadStartTime = Time.time;
+        float progress = 0;
+        
+        while (!currentLoadingOperation.isDone)
+        {
+            if (currentLoadingOperation.progress >= 0.9f)
+            {
+                // 等待最小加载时间结束
+                if (Time.time - loadStartTime >= minLoadTime)
+                {
+                    currentLoadingOperation.allowSceneActivation = true;
+                }
+            }
+
+            await Task.Yield();
+        }
+
+        // 更新保存管理器
+        SaveManager.Instance.scensName = sceneName;
+        
+        UIManager.Instance.ClosePanel("SleepBlackPanel");
+        currentLoadingOperation = null;
+        isLoading = false;
 
         AchievementManager.Instance.ClearPendingAchievements();
     }
-    
-    /// <summary>
-    /// 普通黑屏过场
-    /// </summary>
-    /// <param name="sceneName"></param>
-    public void LoadScene(SceneName sceneName)
+
+    public async void LoadScene(SceneName sceneName)
     {
-        BlackPanel blackPanel = UIManager.Instance.OpenPanel("BlackPanel") as BlackPanel;
+        if (isLoading) return;
+        isLoading = true;
 
-        if (!blackPanel) return;
-
-        blackPanel.StartCounting(fadeDuration, () =>
+        BlackPanel blackPanel = UIManager.Instance.OpenPanel("BlackPanel",true) as BlackPanel;
+        if (!blackPanel)
         {
-            SceneManager.LoadScene(sceneName.ToString());
-            UIManager.Instance.RemovePanel("BlackPanel");
-        });
+            isLoading = false;
+            return;
+        }
+
+        // 淡出
+        blackPanel.StartCounting(fadeDuration, null);
+        
+        await Task.Delay((int)(fadeDuration * 1000));
+        
+        currentLoadingOperation = SceneManager.LoadSceneAsync(sceneName.ToString());
+        currentLoadingOperation.allowSceneActivation = false;
+
+        float loadStartTime = Time.time;
+        
+        while (!currentLoadingOperation.isDone)
+        {
+            if (currentLoadingOperation.progress >= 0.9f)
+            {
+                if (Time.time - loadStartTime >= minLoadTime)
+                {
+                    currentLoadingOperation.allowSceneActivation = true;
+                }
+            }
+
+            await Task.Yield();
+        }
+        
+        UIManager.Instance.ClosePanel("BlackPanel");
+        currentLoadingOperation = null;
+        isLoading = false;
     }
 }

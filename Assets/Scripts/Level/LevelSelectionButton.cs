@@ -95,7 +95,6 @@ public class LevelSelectionButton : MonoBehaviour, IPointerEnterHandler, IPointe
             var tooltipText = currentTooltip.GetComponentInChildren<Text>();
             if (tooltipText != null)
             {
-                Debug.Log(currentLevel.requiresItems);
                 tooltipText.text = currentLevel.requiresItems
                     ? specialConditionText
                     : lockedTooltipText;

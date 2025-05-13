@@ -62,10 +62,6 @@ public class SleepBlackPanel : BasePanel
         // 动画播放文字效果
         DOTween.Sequence()
             .Append(_sleepText.DOText(textStr, duration)
-                .OnComplete(() =>
-                {
-                    _displayImage.gameObject.SetActive(false);
-                    callBack?.Invoke();
-                }));
+                .OnComplete(() => { callBack?.Invoke(); }));
     }
 }

@@ -143,11 +143,11 @@ public static class EVENTMGR
         OnPlayerDead?.Invoke();
     }
     
-    /// <summary>
-    /// 屏幕震动效果
-    /// </summary>
     public static event Action OnPlayerFound;
     
+    /// <summary>
+    /// 屏幕震动效果
+    /// </summary>    
     public static void TriggerPlayerFound()
     {
         OnPlayerFound?.Invoke();

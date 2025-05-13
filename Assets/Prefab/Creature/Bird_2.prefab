@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471919636959396366}
   - component: {fileID: 327759573204178961}
+  - component: {fileID: 8715247324460541032}
   m_Layer: 0
   m_Name: Bird_2
   m_TagString: Untagged
@@ -54,6 +55,30 @@ MonoBehaviour:
   animationSpeed: 0.1
   flyAreaMin: {x: -4, y: 13, z: 2}
   flyAreaMax: {x: 50, y: -6, z: 3}
+  fallDuration: 1
+  destroyDelay: 3
+  fallDistance: 5
+--- !u!65 &8715247324460541032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780472277734155205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6543558570063075462
 GameObject:
   m_ObjectHideFlags: 0

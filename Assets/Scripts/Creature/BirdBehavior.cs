@@ -3,32 +3,40 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class BirdBehavior : MonoBehaviour
+[RequireComponent(typeof(Collider))]
+public class BirdBehavior : MonoBehaviour, IShootable
 {
     public Sprite[] birdSprites;
     
     public float minFlyTime = 3f;
     public float maxFlyTime = 6f;
     public float stopTime = 2f;
-    public float animationSpeed = 0.1f; // 控制动画播放速度
+    public float animationSpeed = 0.1f;
     
-    public Vector3 flyAreaMin;  // 随机飞行区域最小值
-    public Vector3 flyAreaMax;  // 随机飞行区域最大值
+    public Vector3 flyAreaMin;
+    public Vector3 flyAreaMax;
+
+    [Header("被击中设置")]
+    public float fallDuration = 1f; // 下落持续时间
+    public float destroyDelay = 3f; // 被击中后多久销毁
+    public float fallDistance = 5f; // 下落距离
 
     private bool isFlying = true;
+    private bool isShot = false; // 是否被击中
     private float currentRotation = 0f;
     private SpriteRenderer spriteRenderer;
     private Coroutine animationCoroutine;
+    private Coroutine actionCoroutine;
 
     private void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        StartCoroutine(BirdAction());
+        actionCoroutine = StartCoroutine(BirdAction());
     }
 
     private IEnumerator BirdAction()
     {
-        while (true)
+        while (!isShot)
         {
             if (isFlying)
             {
@@ -89,11 +97,41 @@ public class BirdBehavior : MonoBehaviour
     private IEnumerator AnimateSprite()
     {
         int index = 0;
-        while (isFlying)
+        while (isFlying && !isShot)
         {
             spriteRenderer.sprite = birdSprites[index];
             index = (index + 1) % birdSprites.Length;
             yield return new WaitForSeconds(animationSpeed);
         }
+    }
+
+    public void OnShot(BulletLifecycle bullet)
+    {
+        if (isShot) return; // 防止重复调用
+        
+        EVENTMGR.TriggerPlayerFound();
+        
+        isShot = true;
+        
+        // 停止所有行为协程
+        if (actionCoroutine != null) StopCoroutine(actionCoroutine);
+        if (animationCoroutine != null) StopCoroutine(animationCoroutine);
+        
+        // 停止所有DOTween动画
+        transform.DOKill();
+        
+        // 设置物理效果
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // 添加向下冲击力
+        
+        // 固定时间后销毁
+        StartCoroutine(DestroyAfterDelay());
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(destroyDelay);
+        Destroy(gameObject);
     }
 }

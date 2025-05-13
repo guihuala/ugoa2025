@@ -16,22 +16,24 @@ public class PhotoFramePanel : SlidePanel
 
     private void InitUI()
     {
-        int index = 0;
-
         foreach (var photo in photos)
         {
-            LevelData requiredLevel = LevelManager.Instance.levels[index];
+            photo.gameObject.SetActive(false);
+        }
+        
+        if (LevelManager.Instance.IsLevelPlayed(SceneName.Level1_3.ToString()))
+        {
+            photos[0].gameObject.SetActive(true);
+        }
 
-            if (requiredLevel != null && requiredLevel.isUnlocked && requiredLevel.isPlayed)
-            {
-                photo.gameObject.SetActive(true);
-                index++;
-            }
-            else
-            {
-                photo.gameObject.SetActive(false);
-                return;
-            }
+        if (LevelManager.Instance.IsLevelPlayed(SceneName.Level2_3.ToString()))
+        {
+            photos[1].gameObject.SetActive(true);
+        }
+
+        if (LevelManager.Instance.IsLevelPlayed(SceneName.Level3_3.ToString()))
+        {
+            photos[2].gameObject.SetActive(true);
         }
     }
 }

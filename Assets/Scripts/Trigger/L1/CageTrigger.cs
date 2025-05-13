@@ -37,7 +37,9 @@ public class CageTrigger : MonoBehaviour, IEnterSpecialItem
         else // 未收集完的情况
         {
             DialoguePanel dialoguePanel = UIManager.Instance.OpenPanel("DialoguePanel") as DialoguePanel;
-            dialoguePanel.StartDialogue(dialogueData);
+            
+            if(dialoguePanel != null)
+                dialoguePanel.StartDialogue(dialogueData);
         }
     }
 }

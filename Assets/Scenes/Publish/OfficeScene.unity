@@ -3667,6 +3667,14 @@ PrefabInstance:
       propertyPath: startStep
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1986643626965372975, guid: b508d2f9c2ca343179c4e817aab75a2c, type: 3}
+      propertyPath: verticalOffsetRatio
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986643626965372975, guid: b508d2f9c2ca343179c4e817aab75a2c, type: 3}
+      propertyPath: horizontalOffsetRatio
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3047083407620834286, guid: b508d2f9c2ca343179c4e817aab75a2c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 200
@@ -24654,6 +24662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scensName: 1
+  isTutorialComplete: 0
   gameTime: 0
   isComplete: 0
   playTime: 0

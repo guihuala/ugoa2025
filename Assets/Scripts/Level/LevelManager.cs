@@ -171,7 +171,6 @@ public class LevelManager : SingletonPersistent<LevelManager>
         // 检查所有需要的物品
         foreach (var itemID in levelData.requiredItemIDs)
         {
-            Debug.Log(itemID);
             if (!AchievementManager.Instance.CheckUnlockCard(itemID))
             {
                 return;

@@ -25,13 +25,23 @@ public class TutorialManager : Singleton<TutorialManager>
     public int startStep = 1; // 默认从第一步开始
     public int endStep = 4;   // 默认到第四步结束
     
+    [Header("文字偏移设置")]
+    [Tooltip("基于屏幕宽度的水平偏移比例")]
+    private float horizontalOffsetRatio = 0.12f;
+    [Tooltip("基于屏幕高度的垂直偏移比例")]
+    private float verticalOffsetRatio = 0.2f;
+    
     private int currentStep = 0;
     private Sequence pointerSequence;
     private bool isWaitingForInput = false;
     private bool isTransitioning = false; // 是否正在过渡到下一步
+    private Canvas rootCanvas;
 
     private void Start()
     {
+        // 获取根Canvas
+        rootCanvas = GetComponentInParent<Canvas>();
+        
         // 初始化遮罩
         guideMask.Init();
         guideMask.OnClickOutside += OnClickOutsideMask;
@@ -51,7 +61,7 @@ public class TutorialManager : Singleton<TutorialManager>
     public void StartTutorial()
     {
         // 检查是否已经完成过教程
-        if (PlayerPrefs.HasKey("Tutorial_Completed"))
+        if (SaveManager.Instance.isTutorialComplete)
         {
             CompleteTutorial();
             return;
@@ -163,9 +173,17 @@ public class TutorialManager : Singleton<TutorialManager>
     
     private void UpdateTextPosition(Vector3 targetPosition)
     {
+        // 计算基于屏幕比例的偏移量
+        float screenWidth = rootCanvas.pixelRect.width;
+        float screenHeight = rootCanvas.pixelRect.height;
+        
+        float horizontalOffset = screenWidth * horizontalOffsetRatio;
+        float verticalOffset = screenHeight * verticalOffsetRatio;
+        
+        // 确保文字面板不会超出屏幕边界
         Vector3 textPosition = new Vector3(
-            targetPosition.x + 200f,
-            targetPosition.y + 200f,
+            targetPosition.x + Mathf.Clamp(horizontalOffset, -screenWidth/2, screenWidth/2),
+            targetPosition.y + Mathf.Clamp(verticalOffset, -screenHeight/2, screenHeight/2),
             targetPosition.z
         );
         
@@ -215,7 +233,7 @@ public class TutorialManager : Singleton<TutorialManager>
         // 只有当完成完整教程时才保存完成状态
         if (endStep == 4)
         {
-            PlayerPrefs.SetInt("Tutorial_Completed", 1);
+            SaveManager.Instance.isTutorialComplete = true;
         }
         
         // 清理UI元素

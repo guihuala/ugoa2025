@@ -8,6 +8,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
 {
     // 一些需要保存零散的数据
     public SceneName scensName = SceneName.Title; // 玩家上一次所在的场景，在游戏时需要触发更新
+    public bool isTutorialComplete = false;
     public float gameTime; // 游戏时间
     public bool isComplete = false; // 是否通关
     public int playTime = 0;
@@ -26,6 +27,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
     public class SaveData
     {
         public SceneName scensName;
+        public bool isTutorialComplete;
         public float gameTime;
         public bool isComplete;
         public int playTime;
@@ -71,6 +73,15 @@ public class SaveManager : SingletonPersistent<SaveManager>
         SceneName sceneName = SceneName.LevelSelection;
     }
 
+    public void ResetBaseInfo()
+    {
+        SceneName sceneName = SceneName.Title;
+        isTutorialComplete = false;
+        isComplete = false;
+        gameTime = 0;
+        failureTime = 0;
+    }
+
     SaveData ForSave()
     {
         AchievementManager.Instance.SaveAchievements();
@@ -78,6 +89,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
         var savedata = new SaveData
         {
             scensName = scensName,
+            isTutorialComplete = isTutorialComplete,
             gameTime = gameTime,
             isComplete = isComplete,
             playTime = playTime,
@@ -122,6 +134,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
     void ForLoad(SaveData savedata)
     {
         scensName = savedata.scensName;
+        isTutorialComplete = savedata.isTutorialComplete;
         gameTime = savedata.gameTime;
         isComplete = savedata.isComplete;
         playTime = savedata.playTime;

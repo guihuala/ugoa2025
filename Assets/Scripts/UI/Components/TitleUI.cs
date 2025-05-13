@@ -17,8 +17,6 @@ public class TitleUI : MonoBehaviour
     public GameObject recordPanel; // 存档面板
     public GameObject setPanel;
 
-    public bool isFirstTimePlay;
-
     public RectTransform aboutPanelRectTransform;
     public Vector2 targetPosition; // 目标位置，可以根据比例计算
     public Vector2 initialPosition; // 初始位置
@@ -64,15 +62,11 @@ public class TitleUI : MonoBehaviour
         {
             Continue.interactable = true;
             Load.interactable = true;
-
-            isFirstTimePlay = false;
         }
         else
         {
             Continue.interactable = false;
             Load.interactable = false;
-            
-            isFirstTimePlay = true;
         }           
     }
 
@@ -116,6 +110,8 @@ public class TitleUI : MonoBehaviour
         // 清除成就管理器的数据
         AchievementManager.Instance.InitLockCards();
         
+        SaveManager.Instance.ResetBaseInfo();
+        
         SaveManager.Instance.ID = RecordData.Instance.GetFirstEmptyRecordIndex();
         
         if(!RecordData.Instance.IsRecordFull())
@@ -131,15 +127,8 @@ public class TitleUI : MonoBehaviour
             });
             return;
         }
-
-        if (isFirstTimePlay)
-        {
-            SceneLoader.Instance.LoadScene(SceneName.TutorialScene,"Step Or Sink...？");
-            return;
-        }
         
-        // 切换到默认场景
-        SceneLoader.Instance.LoadScene(SceneName.LevelSelection,"loading...");
+        SceneLoader.Instance.LoadScene(SceneName.TutorialScene, "Step Or Sink...？");
     }
 
     // 退出游戏

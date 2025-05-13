@@ -71,6 +71,7 @@ public class MainMenuSetting : MonoBehaviour
     {
         // 调用SAVE类的方法清除数据
         SAVE.DeletePlayerData();
+        SAVE.DeleteRecord();
         PlayerPrefs.DeleteAll();
         
         // 重新加载TitleUI状态
@@ -86,12 +87,11 @@ public class MainMenuSetting : MonoBehaviour
             if (titleUI.setPanel != null)
                 titleUI.setPanel.SetActive(false);
             
-            // 标记为首次游玩状态
-            titleUI.isFirstTimePlay = true;
-            
             // 重置RecordData的lastID
             RecordData.Instance.lastID = 123;
             RecordData.Instance.Save();
+            
+            // 各个管理器的状态会在点击新游戏后重置
         }
     }
 }

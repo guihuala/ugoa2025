@@ -34,10 +34,12 @@ public class SleepBlackPanel : BasePanel
         else if (sceneName == SceneName.Level2_1 || sceneName == SceneName.Level2_2 ||
                  sceneName == SceneName.Level2_3 || sceneName == SceneName.Level2_4)
             selectedScene = sceneChangerInfoList[1];
-        
+
         else if (sceneName == SceneName.Level3_1 || sceneName == SceneName.Level3_2 ||
                  sceneName == SceneName.Level3_3 || sceneName == SceneName.Level3_4)
             selectedScene = sceneChangerInfoList[2];
+        else if (sceneName == SceneName.OfficeScene)
+            selectedScene = sceneChangerInfoList[3];
         else
         {
             if (sceneChangerInfoList != null && sceneChangerInfoList.Count > 0)

@@ -22,7 +22,8 @@ public class UIManager : SingletonPersistent<UIManager>
     private Transform _uiRoot;
     private Transform _persistentUIRoot; // 持久化UI根节点
     private GameObject _mainCanvas;
-
+    public UIDatas uiDatas;
+    
     public Transform UIRoot
     {
         get
@@ -35,17 +36,23 @@ public class UIManager : SingletonPersistent<UIManager>
                     Debug.LogError("场景中未找到名为 'Canvas' 的UI根节点");
                 }
             }
+
             return _uiRoot;
         }
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        InitDicts();
+    }
+    
     public Transform PersistentUIRoot
     {
         get
         {
             if (_persistentUIRoot == null)
             {
-                // 检查是否已存在持久化画布（防止重复创建）
                 GameObject existingPersistentCanvas = GameObject.Find("PersistentCanvas");
                 if (existingPersistentCanvas != null && existingPersistentCanvas.transform.parent == transform)
                 {
@@ -53,48 +60,32 @@ public class UIManager : SingletonPersistent<UIManager>
                     return _persistentUIRoot;
                 }
 
-                // 创建新的持久化UI根节点
                 GameObject persistentRoot = new GameObject("PersistentCanvas");
-            
-                // 设置为UIManager的子对象
                 persistentRoot.transform.SetParent(transform);
                 persistentRoot.transform.localPosition = Vector3.zero;
                 persistentRoot.transform.localRotation = Quaternion.identity;
                 persistentRoot.transform.localScale = Vector3.one;
             
-                // 添加必要的UI组件
                 Canvas canvas = persistentRoot.AddComponent<Canvas>();
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             
                 CanvasScaler scaler = persistentRoot.AddComponent<CanvasScaler>();
                 scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                scaler.referenceResolution = new Vector2(1920, 1080); // 根据项目需要调整
+                scaler.referenceResolution = new Vector2(1920, 1080);
                 scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
                 scaler.matchWidthOrHeight = 0.5f;
             
                 persistentRoot.AddComponent<GraphicRaycaster>();
-            
-                // 确保画布渲染顺序高于普通UI
                 canvas.sortingOrder = 100;
             
-                // 标记为DontDestroyOnLoad
                 DontDestroyOnLoad(persistentRoot);
-            
                 _persistentUIRoot = persistentRoot.transform;
-            
-                Debug.Log("Persistent UI Canvas created and initialized");
             }
             return _persistentUIRoot;
         }
     }
 
-    public UIDatas uiDatas;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        InitDicts();
-    }
     
     private void InitDicts()
     {
@@ -109,23 +100,24 @@ public class UIManager : SingletonPersistent<UIManager>
     }
 
     /// <summary>
-    /// 打开UI面板
+    /// 打开UI面板，自动清理无效面板引用
     /// </summary>
-    /// <param name="name">面板名称</param>
-    /// <param name="asPersistent">是否作为持久化面板</param>
-    /// <returns>打开的UI面板脚本</returns>
     public BasePanel OpenPanel(string name, bool asPersistent = false)
     {
-        BasePanel panel = null;
-
-        // 检查面板是否已经打开
-        if (_panelDict.TryGetValue(name, out panel))
+        // 检查面板是否已经打开但实例已被销毁
+        if (_panelDict.TryGetValue(name, out BasePanel panel))
         {
-            Debug.LogWarning($"面板 {name} 已经打开");
-            return panel;
+            if (panel == null || panel.gameObject == null)
+            {
+                _panelDict.Remove(name);
+            }
+            else
+            {
+                Debug.LogWarning($"面板 {name} 已经打开");
+                return panel;
+            }
         }
 
-        // 检查面板路径是否存在于路径字典中
         if (!_panelPathDict.TryGetValue(name, out string path))
         {
             Debug.LogWarning($"面板 {name} 的路径不存在");
@@ -144,7 +136,7 @@ public class UIManager : SingletonPersistent<UIManager>
             _uiPrefabDict.Add(name, panelPrefab);
         }
 
-        // 选择正确的父节点
+        // 选择正确的父节点并检查是否存在
         Transform parent = asPersistent ? PersistentUIRoot : UIRoot;
         if (parent == null)
         {
@@ -152,7 +144,24 @@ public class UIManager : SingletonPersistent<UIManager>
             return null;
         }
 
-        // 实例化面板
+        // 检查父节点下是否已存在同名面板（可能由其他方式创建）
+        Transform existingPanel = parent.Find(name);
+        if (existingPanel != null)
+        {
+            panel = existingPanel.GetComponent<BasePanel>();
+            if (panel != null)
+            {
+                _panelDict[name] = panel;
+                panel.OpenPanel(name);
+                return panel;
+            }
+            else
+            {
+                Destroy(existingPanel.gameObject);
+            }
+        }
+
+        // 实例化新面板
         GameObject panelObj = Instantiate(panelPrefab, parent, false);
         panel = panelObj.GetComponent<BasePanel>();
 
@@ -163,10 +172,10 @@ public class UIManager : SingletonPersistent<UIManager>
             return null;
         }
 
+        panelObj.name = name; // 确保对象名称一致
         panel.OpenPanel(name);
         _panelDict.Add(name, panel);
 
-        // 如果是持久化面板，标记DontDestroyOnLoad
         if (asPersistent)
         {
             DontDestroyOnLoad(panelObj);
@@ -176,16 +185,20 @@ public class UIManager : SingletonPersistent<UIManager>
     }
 
     /// <summary>
-    /// 关闭UI面板
+    /// 关闭UI面板，自动清理无效引用
     /// </summary>
-    /// <param name="name">面板名称</param>
-    /// <param name="destroyPersistent">是否销毁持久化面板</param>
-    /// <returns>是否关闭成功</returns>
     public bool ClosePanel(string name, bool destroyPersistent = false)
     {
         if (!_panelDict.TryGetValue(name, out BasePanel panel))
         {
             Debug.LogWarning($"面板 {name} 当前未打开，无法关闭");
+            return false;
+        }
+
+        // 检查面板实例是否已被销毁
+        if (panel == null || panel.gameObject == null)
+        {
+            _panelDict.Remove(name);
             return false;
         }
 
@@ -218,26 +231,39 @@ public class UIManager : SingletonPersistent<UIManager>
         _panelDict.Remove(name);
         return true;
     }
-
+    
     /// <summary>
-    /// 关闭所有非持久化面板
+    /// 检查并清理所有无效的面板引用
     /// </summary>
-    public void CloseAllNonPersistentPanels()
+    public void CleanInvalidPanelReferences()
     {
-        List<string> panelsToClose = new List<string>();
+        List<string> invalidPanels = new List<string>();
 
-        foreach (var panel in _panelDict)
+        foreach (var kvp in _panelDict)
         {
-            if (!panel.Value.transform.IsChildOf(PersistentUIRoot))
+            if (kvp.Value == null || kvp.Value.gameObject == null)
             {
-                panelsToClose.Add(panel.Key);
+                invalidPanels.Add(kvp.Key);
             }
         }
 
-        foreach (string panelName in panelsToClose)
+        foreach (string panelName in invalidPanels)
         {
-            ClosePanel(panelName);
+            _panelDict.Remove(panelName);
+            Debug.Log($"已清理无效面板引用: {panelName}");
         }
+    }
+
+    /// <summary>
+    /// 检查指定面板是否存在于场景中
+    /// </summary>
+    public bool IsPanelActiveInScene(string name)
+    {
+        if (_panelDict.TryGetValue(name, out BasePanel panel))
+        {
+            return panel != null && panel.gameObject != null;
+        }
+        return false;
     }
 
     /// <summary>

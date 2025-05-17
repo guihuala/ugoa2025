@@ -17701,7 +17701,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375953065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -4.9, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -59935,6 +59935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scensName: 1
+  isTutorialComplete: 0
   gameTime: 0
   isComplete: 0
   playTime: 0

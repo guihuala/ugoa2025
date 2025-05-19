@@ -1,11 +1,11 @@
 {
 "skeleton": {
-	"hash": "dE2o9vzKdG7qieq4DSAXRwOxYcQ",
+	"hash": "oVB+PZc+EVBAUMPsJG8S4AG/NNc",
 	"spine": "3.8",
-	"x": -226.49,
-	"y": -362.6,
-	"width": 561.41,
-	"height": 756,
+	"x": -215.72,
+	"y": -440.02,
+	"width": 550.63,
+	"height": 774.91,
 	"images": "./images/",
 	"audio": "C:/Users/16152/Downloads"
 },
@@ -400,9 +400,9 @@
 	},
 	"expressions/default-lv1": {
 		"slots": {
-			"eyebrow": {
+			"eyes": {
 				"attachment": [
-					{ "name": "eyebrow" }
+					{ "name": "eyes-lv1" }
 				]
 			},
 			"weapon": {
@@ -415,9 +415,9 @@
 					{ "name": "mouse" }
 				]
 			},
-			"eyes": {
+			"eyebrow": {
 				"attachment": [
-					{ "name": "eyes-lv1" }
+					{ "name": "eyebrow" }
 				]
 			},
 			"nose": {
@@ -429,9 +429,9 @@
 	},
 	"expressions/default-lv2": {
 		"slots": {
-			"eyebrow": {
+			"eyes": {
 				"attachment": [
-					{ "name": "eyebrows-lv2" }
+					{ "name": "eyes-lv2" }
 				]
 			},
 			"weapon": {
@@ -444,9 +444,9 @@
 					{ "name": "mouth-lv2" }
 				]
 			},
-			"eyes": {
+			"eyebrow": {
 				"attachment": [
-					{ "name": "eyes-lv2" }
+					{ "name": "eyebrows-lv2" }
 				]
 			},
 			"nose": {
@@ -468,6 +468,11 @@
 			"HAND-R": {
 				"rotate": [
 					{ "angle": 8.95 }
+				]
+			},
+			"NOSE": {
+				"rotate": [
+					{ "angle": -0.07 }
 				]
 			}
 		}
@@ -618,12 +623,7 @@
 	},
 	"expressions/hat/hat_down-lv1": {
 		"slots": {
-			"eyebrow": {
-				"attachment": [
-					{ "time": 0.0667, "name": "eyebrow" }
-				]
-			},
-			"hat2_2-lv1": {
+			"hat2_1-lv1": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -638,9 +638,14 @@
 					{ "color": "ffffff00" }
 				]
 			},
-			"hat2_1-lv1": {
+			"hat2_2-lv1": {
 				"color": [
 					{ "color": "ffffff00" }
+				]
+			},
+			"eyebrow": {
+				"attachment": [
+					{ "time": 0.0667, "name": "eyebrow" }
 				]
 			}
 		}
@@ -656,7 +661,12 @@
 	},
 	"expressions/hat/hat_without": {
 		"slots": {
-			"hat2_2-lv1": {
+			"hat2_1-lv1": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"hat_down-lv1": {
 				"attachment": [
 					{ "name": null }
 				]
@@ -666,12 +676,7 @@
 					{ "name": null }
 				]
 			},
-			"hat2_1-lv1": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"hat_down-lv1": {
+			"hat2_2-lv1": {
 				"attachment": [
 					{ "name": null }
 				]
@@ -1337,16 +1342,7 @@
 					{ "x": -0.11, "y": -9.48 }
 				]
 			}
-		},
-		"drawOrder": [
-			{
-				"offsets": [
-					{ "slot": "skirt-lv1", "offset": 6 },
-					{ "slot": "hand_r-lv1", "offset": 4 },
-					{ "slot": "hand_l-lv1", "offset": 4 }
-				]
-			}
-		]
+		}
 	},
 	"move/walk": {
 		"bones": {

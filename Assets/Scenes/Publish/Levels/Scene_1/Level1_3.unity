@@ -7857,6 +7857,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3607594466953634580, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 29fabdc73948c446a83986a5f0d46d36, type: 2}
     - target: {fileID: 4632453307822825503, guid: ddd97fc4d1df743fb8280c98d2f342b6, type: 3}
       propertyPath: m_SortingOrder
       value: 40
@@ -13976,6 +13980,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3983484214961889105, guid: e899e940c8b0042969f521e9bde80862, type: 3}
+      propertyPath: m_SortingOrder
+      value: 108
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14495,6 +14503,10 @@ PrefabInstance:
     - target: {fileID: 2786384792859792695, guid: e899e940c8b0042969f521e9bde80862, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983484214961889105, guid: e899e940c8b0042969f521e9bde80862, type: 3}
+      propertyPath: m_SortingOrder
+      value: 59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19083,6 +19095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scensName: 1
+  isTutorialComplete: 0
   gameTime: 0
   isComplete: 0
   playTime: 0
@@ -21057,6 +21070,10 @@ PrefabInstance:
     - target: {fileID: 6163339459551973405, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
       propertyPath: m_Name
       value: Resident2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536412029235636080, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 7031596368104333332, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
       propertyPath: m_SortingOrder
@@ -27198,6 +27215,10 @@ PrefabInstance:
     - target: {fileID: 6163339459551973405, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
       propertyPath: m_Name
       value: Resident2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536412029235636080, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 7031596368104333332, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
       propertyPath: m_SortingOrder
@@ -59757,6 +59778,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3983484214961889105, guid: e899e940c8b0042969f521e9bde80862, type: 3}
+      propertyPath: m_SortingOrder
+      value: 79
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -86731,6 +86756,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resident2
       objectReference: {fileID: 0}
+    - target: {fileID: 6536412029235636080, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 7031596368104333332, guid: 6cb309189ed8c43018060e280bf1e4a1, type: 3}
       propertyPath: m_SortingOrder
       value: 19
@@ -103997,9 +104026,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0.74313134, g: 0.9921568, b: 0.6666667, a: 1}
-  deepColor: {r: 0.18333113, g: 0.38903132, b: 0.7075471, a: 1}
+  deepColor: {r: 0.18332946, g: 0.38902956, b: 0.7075471, a: 1}
   colorDepth: 2
-  horizonColor: {r: 0.4103278, g: 0.93285835, b: 1, a: 1}
+  horizonColor: {r: 0.41032603, g: 0.93285835, b: 1, a: 1}
   horizonDistance: 2
   shoreFade: 1
   shoreColor: {r: 0.6745283, g: 1, b: 0.76797086, a: 0}

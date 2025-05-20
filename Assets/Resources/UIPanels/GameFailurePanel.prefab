@@ -363,6 +363,11 @@ MonoBehaviour:
   replayBtn: {fileID: 7142357074742178485}
   mainMenuBtn: {fileID: 1317618096449690899}
   titleText: {fileID: 7667902009806962945}
+  FailureImg: {fileID: 2295084211699579140}
+  FailureSprites:
+  - {fileID: 21300000, guid: 4b810728dcfa84545b8bae5c8a02131f, type: 3}
+  - {fileID: 21300000, guid: 363b421aabf8b42ba95b82f3afd1ae02, type: 3}
+  - {fileID: 21300000, guid: 3a953bae190cb46ffa07693b11a9655f, type: 3}
 --- !u!225 &1839222838236877858
 CanvasGroup:
   m_ObjectHideFlags: 0

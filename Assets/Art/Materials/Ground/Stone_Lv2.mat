@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Stone_Lv2
-  m_Shader: {fileID: 4800000, guid: df695d70c539c3d4c87b79de307ab7bb, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -18,12 +18,12 @@ Material:
   - _MK_IRIDESCENCE_DEFAULT
   - _MK_LIGHT_CEL
   - _MK_NORMAL_MAP
+  - _MK_OUTLINE_DATA_UV7
+  - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
-  - _MK_OUTLINE_DATA_UV7
-  - _MK_OUTLINE_HULL_CLIP
   - _RECEIVESHADOWS_ON
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
@@ -134,7 +134,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 6c8ded7dae09977458bde1e5a554f3d9, type: 3}
+        m_Texture: {fileID: 2800000, guid: f19bc2945cd1d724e92c1bcf2b70cab3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -287,7 +287,7 @@ Material:
     - _OutlineFadeMin: 0.25
     - _OutlineMode: 1
     - _OutlineNoise: 0
-    - _OutlineSize: 3.5
+    - _OutlineSize: 20
     - _OutlineTab: 1
     - _Parallax: 0.1
     - _QueueOffset: 0
@@ -335,9 +335,9 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.4245283, g: 0.39048594, b: 0.39048594, a: 1}
+    - _AlbedoColor: {r: 0.42452824, g: 0.39048588, b: 0.39048588, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.42452827, g: 0.3904859, b: 0.3904859, a: 1}
+    - _Color: {r: 0.4245282, g: 0.39048585, b: 0.39048585, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 0.5}
@@ -346,7 +346,7 @@ Material:
     - _GoochDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0.36862746}
     - _LightTransmissionColor: {r: 0, g: 0.89255476, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColorBright: {r: 1, g: 1, b: 1, a: 1}

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Stone
-  m_Shader: {fileID: 4800000, guid: df695d70c539c3d4c87b79de307ab7bb, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -18,6 +18,8 @@ Material:
   - _MK_FRESNEL_HIGHLIGHTS
   - _MK_LIGHT_BANDED
   - _MK_NORMAL_MAP
+  - _MK_OUTLINE_DATA_UV7
+  - _MK_OUTLINE_HULL_ORIGIN
   - _MK_RECEIVE_SHADOWS
   - _MK_SPECULAR_ISOTROPIC
   - _MK_THRESHOLD_MAP
@@ -27,8 +29,6 @@ Material:
   - _FRESNELHIGHLIGHTS_ON
   - _MK_DIFFUSE_MODE_OREN_NAYAR
   - _MK_OUTLINE_BAKED
-  - _MK_OUTLINE_DATA_UV7
-  - _MK_OUTLINE_HULL_CLIP
   - _MK_SPECULAR_MODE_ISOTROPIC
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
@@ -286,14 +286,14 @@ Material:
     - _OcclusionMapScale: 1
     - _OcclusionStrength: 1
     - _OptionsTab: 1
-    - _Outline: 3
+    - _Outline: 2
     - _OutlineClipOffset: 0
     - _OutlineData: 1
     - _OutlineFadeMax: 2
     - _OutlineFadeMin: 0.25
     - _OutlineMode: 1
     - _OutlineNoise: 0
-    - _OutlineSize: 3.5
+    - _OutlineSize: 9
     - _OutlineTab: 1
     - _Parallax: 0.1
     - _QueueOffset: 0
